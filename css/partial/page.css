@@ -1,0 +1,11 @@
+.main > .page {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: justify;
+}
+.main > .page a.category,
+.main > .page a.tag {
+  display: inline-block;
+  margin: 10px 2px;
+}

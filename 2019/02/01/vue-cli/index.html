@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!--[if lte IE 8]>
+    <script type="text/javascript">  
+        var tags = ["header", "footer", "nav", "aside", "article", "section", "object", "main"];  
+        for (var i in tags) {  
+            document.createElement(tags[i]);  
+        }  
+    </script>   
+  <![endif]-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue-cli</title>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <!-- js -->
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/blotter.min.js"></script>
+  <script type="text/javascript" src="/js/rollingDistortMaterial.js"></script> -->
+  <!-- css -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/icon.css">
+  
+    
+      <link rel="stylesheet" href="/css/index.css">
+    
+  
+</head>
+
+<body>
+  <!-- header -->
+  <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- main -->
+  <main id="main" class="main">
+    <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text"> 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-create-命令"><span class="toc-text"> vue create 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建项目"><span class="toc-text"> 创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监控配置文件更新"><span class="toc-text"> 监控配置文件更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模拟jsonjsonp数据"><span class="toc-text"> 模拟JSON|JSONP数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理设置"><span class="toc-text"> 代理设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prettier规则设置"><span class="toc-text"> Prettier规则设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用资源的路径别名"><span class="toc-text"> 引用资源的路径别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#style中图片的路径别名"><span class="toc-text"> style中图片的路径别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#url部署路径"><span class="toc-text"> URL部署路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断环境模式"><span class="toc-text"> 判断环境模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用vscode调试vue程序"><span class="toc-text"> 使用Vscode调试Vue程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启source-map"><span class="toc-text"> 开启source-map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1 class="title">vue-cli</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-01-31T16:00:00.000Z">
+            2019-02-01
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Vue/">
+              <span>Vue</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Vue/">
+            <span>Vue</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>1 安装vue-cli</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line">//or</span><br><span class="line"> yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
+<p>2 安装node-gyp所需编译工具</p>
+<p>安装  <a href="https://visualstudio.microsoft.com/vs/community" target="_blank" rel="noopener">Visual Studio Community 2017</a><br>
+安装Python2.7(node-gyp不支持3.x)<br>
+打开cmd, 执行如下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set python python2.7</span><br><span class="line">npm config set msvs_version 2017</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<p>3 修改镜像地址为阿里源</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org/</span><br><span class="line">yarn config set registry https://registry.npm.taobao.org/</span><br><span class="line"></span><br><span class="line">// node-sass所需</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="vue-create-命令"><a class="markdownIt-Anchor" href="#vue-create-命令"></a> vue create 命令</h2>
+<p>vue-cli使用vue create <projectname>新建项目</projectname></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create myApp</span><br></pre></td></tr></table></figure>
+<p>注: 在vue-cli2中,使用init命令新建项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vue init &lt;template-name&gt; &lt;projectName&gt;</span><br><span class="line">// template-name 为模板名称,一般用webpack模板</span><br></pre></td></tr></table></figure>
+<p>如希望在vue-cli3中使用init命令,则需安装桥接工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 安装@vue/cli-init</span><br><span class="line">yarn global  @vue/cli-init</span><br><span class="line">// 创建项目</span><br><span class="line">vue init webpack myApp</span><br></pre></td></tr></table></figure>
+<h2 id="创建项目"><a class="markdownIt-Anchor" href="#创建项目"></a> 创建项目</h2>
+<p>用vue create 命令新建项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create hello-world</span><br></pre></td></tr></table></figure>
+<p>vue-cli会提示选择默认配置/手动选择配置(上下方向键移动光标 回车确定)<br>
+这里选择Manually select features<br>
+<img src="/img/93b039c7.PNG" alt="1.PNG"></p>
+<p>启用哪些功能(上下方向键移动光标 空格选择对应的功能 回车确定)<br>
+<img src="/img/2e7d0639.PNG" alt="2.PNG"></p>
+<p>选项说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Babel   Es6 to Es5                          </span><br><span class="line">TypeScript      js的超级,强类型                      </span><br><span class="line">Progressive Web App (PWA) Support   仿原生Web应用</span><br><span class="line">Router      Vue-Router路由管理                        </span><br><span class="line">Vuex    Vue组件间状态(数据)管理(共享)                           </span><br><span class="line">CSS Pre-processors      CSS预处理器(SCSS Stylus)    </span><br><span class="line">Linter / Formatter      代码风格/错误检查(Eslint Prettier)      </span><br><span class="line">Unit Testing    单元测试(Mocha chai)       </span><br><span class="line">E2E Testing     ui测试 ?</span><br></pre></td></tr></table></figure>
+<p>设置Vue-Router,是否使用history模式,选否</p>
+<p><img src="/img/ead1a233.PNG" alt="3.PNG"></p>
+<p>Vue-Router有两种路径模式, hash和history<br>
+默认为hash模式(用&quot;#&quot;号模拟url路径)</p>
+<p>hash模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 对应的url</span><br><span class="line">http://127.0.0.1:8080/#/seller</span><br><span class="line"></span><br><span class="line">window.location.pathname &quot;/&quot;</span><br><span class="line">window.location.hash // #/seller</span><br></pre></td></tr></table></figure>
+<p>history模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 对应的url</span><br><span class="line">http://127.0.0.1:8080/seller</span><br><span class="line"></span><br><span class="line">window.location.pathname // /seller</span><br><span class="line">window.location.hash // &quot;&quot;</span><br></pre></td></tr></table></figure>
+<p><a href="https://router.vuejs.org/zh/guide/essentials/history-mode.html" target="_blank" rel="noopener">HTML5 History 模式 | Vue Router</a></p>
+<p>设置CSS预处理器,选择SCSS
+<img src="/img/61fa141a.PNG" alt="4.PNG"></p>
+<p>设置EsLint规范,这里选择ESLint + Prettier<br>
+<img src="/img/046f41d3.PNG" alt="5.PNG"></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ESLint with error prevention only // 仅检查语法错误  </span><br><span class="line">ESLint + Airbnb config</span><br><span class="line">ESLint + Standard config</span><br><span class="line">ESLint + Prettier</span><br></pre></td></tr></table></figure>
+<p>风格标准</p>
+<ul>
+<li><a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">airbnb</a></li>
+<li><a href="https://github.com/standard/standard/blob/master/docs/README-zhcn.md" target="_blank" rel="noopener">standard</a></li>
+</ul>
+<p>是否自动修复代码错误, 选择 Lint on save,仅检查
+<img src="/img/e5c50352.PNG" alt="6.PNG"></p>
+<p>如何储存配置文件,选择In dedicated config files
+<img src="/img/7b74bbba.PNG" alt="7.PNG"></p>
+<p>In package.json选项把eslintConfig browserslist等配置保存到package.json文件<br>
+In dedicated config files选项把配置保存到单独的文件(如 .eslintrc.js)</p>
+<p>储存本次选项配置<br>
+<img src="/img/22555a4e.PNG" alt="8.PNG"></p>
+<p>项目配置储存在C:\Users%username%.vuerc中,可用vue config命令查看
+下次安装时,用 -p &lt;配置名&gt; 命令使用本次配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create projectname -p 1</span><br></pre></td></tr></table></figure>
+<p>安装完成后,使用yarn serve命令启动</p>
+<h2 id="监控配置文件更新"><a class="markdownIt-Anchor" href="#监控配置文件更新"></a> 监控配置文件更新</h2>
+<p>更改 vue.config.js|.eslintrc.js 等配置文件后要手动重启,配置才能生效<br>
+如希望自动重启vue-cli,可以借助nodemon</p>
+<p>先安装nodemon</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add modemon --dev</span><br></pre></td></tr></table></figure>
+<p>示例<br>
+然后修改package.json的配置<br>
+vue-cli3</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"watch"</span>: <span class="string">"nodemon --watch vue.config.js --exec yarn serve"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>vue-cli2</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">     <span class="string">"watch"</span>: <span class="string">"nodemon --watch build/webpack.dev.conf.js --exec yarn start"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>watch参数后的文件名就是nodemon所监控的文件.需监控多个文件的话,重复配置多个watch参数即可</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">     <span class="string">"watch"</span>: <span class="string">"nodemon --watch build/webpack.dev.conf.js --watch build/webpack.base.conf.js --exec yarn start"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后用yarn watch命令启动服务.当config文件被更改时,nodemon会重新执行参数exec后的命令</p>
+<h2 id="模拟jsonjsonp数据"><a class="markdownIt-Anchor" href="#模拟jsonjsonp数据"></a> 模拟JSON|JSONP数据</h2>
+<p>编写项目时,可能需要一些假的api,供vue调用<br>
+可以通过express和axios,返回虚拟的api数据<br>
+vue-cli3 vue.config.js示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">'axios'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123; </span><br><span class="line">  devServer: &#123;</span><br><span class="line">    before(app) &#123;</span><br><span class="line">      <span class="keyword">const</span> apiRoutes = express.Router();</span><br><span class="line">      app.use(<span class="string">'/api'</span>, apiRoutes);</span><br><span class="line"></span><br><span class="line">      app.get(<span class="string">'/api/person'</span>, (req, res) =&gt; &#123;</span><br><span class="line">        res.json(&#123;</span><br><span class="line">          name: <span class="string">'aaron'</span>,</span><br><span class="line">          age: <span class="number">20</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="comment">// 上下二者等价</span></span><br><span class="line">      apiRoutes.get(<span class="string">'/person1'</span>, (req, res) =&gt; &#123;</span><br><span class="line">        res.json(&#123;</span><br><span class="line">          name: <span class="string">'aaron'</span>,</span><br><span class="line">          age: <span class="number">20</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">      app.get(<span class="string">'/api/posts'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">        axios.get(<span class="string">'https://jsonplaceholder.typicode.com/posts'</span>, &#123;</span><br><span class="line">          params: req.query, <span class="comment">// 参数,例如 /api/posts?userId=2 ,则 req.query = &#123;userId: '2'&#125;</span></span><br><span class="line">          headers: &#123; <span class="comment">// 修改数据头</span></span><br><span class="line">            referer: <span class="string">"https://jsonplaceholder.typicode.com/"</span>,</span><br><span class="line">            host: <span class="string">"jsonplaceholder.typicode.com"</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">          res.json(response.data)</span><br><span class="line">        &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> <span class="built_in">console</span>.log(err))</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代理设置"><a class="markdownIt-Anchor" href="#代理设置"></a> 代理设置</h2>
+<p>Webpack启动速度慢, 每次修改api之后都要重启很浪费时间<br>
+为了在编辑api之后能快速重启,可以用express开一个指向另一个端口的服务(127.0.0.1: 8000),让webpack代理'/api/...'部分的url到这个8000端口</p>
+<p>一个express服务的例子:</p>
+<p>创建express.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">'axios'</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 端口</span></span><br><span class="line"><span class="keyword">const</span> PORT = <span class="number">8000</span> </span><br><span class="line"><span class="comment">// user-agent</span></span><br><span class="line"><span class="keyword">const</span> USER_AGENT =</span><br><span class="line">  <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3487.0 Safari/537.36'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="keyword">const</span> router = express.Router()</span><br><span class="line">app.use(router)  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取歌手信息</span></span><br><span class="line">app.get(<span class="string">"/api/getSingerDetail"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> url = <span class="string">"https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg"</span></span><br><span class="line">  <span class="comment">// 请求参数</span></span><br><span class="line">  <span class="keyword">let</span> params = req.query </span><br><span class="line">  axios.get(url, &#123;</span><br><span class="line">    <span class="comment">// 请求参数</span></span><br><span class="line">    params: params,</span><br><span class="line">    <span class="comment">// 修改headers</span></span><br><span class="line">    headers: &#123;</span><br><span class="line">      origin: <span class="string">"https://y.qq.com"</span>,</span><br><span class="line">      referer: <span class="string">`https://y.qq.com/n/yqq/singer/<span class="subst">$&#123;params.singermid&#125;</span>.html`</span>,</span><br><span class="line">      <span class="string">'user-agent'</span>: USER_AGENT</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 返回json数据</span></span><br><span class="line">    res.json(response.data)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听8000端口</span></span><br><span class="line">app.listen(<span class="number">8000</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123; </span><br><span class="line">  <span class="comment">// 如果出错</span></span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 正常启动</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Listening at http://127.0.0.1:'</span> + PORT)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>start-express.bat, 用于启动express.js的文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">REM 使用nodemon监控express.js内容变化,自动重启  </span><br><span class="line">nodemon --watch main.js --exec node main.js</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">vue.config.js配置   </span><br><span class="line">```js</span><br><span class="line">// 如果非生产环境,则代理'/api'到'http://127.0.0.1:8000'  </span><br><span class="line">module.exports = &#123;//...&#125;</span><br><span class="line">if (process.env.NODE_ENV !== "production") &#123;</span><br><span class="line">  module.exports.devServer.proxy = &#123;</span><br><span class="line">    '/api': &#123;</span><br><span class="line">      target: 'http://127.0.0.1:8000'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="prettier规则设置"><a class="markdownIt-Anchor" href="#prettier规则设置"></a> Prettier规则设置</h2>
+<p>本文用vue create创建项目时,eslint选择的是ESLint + Prettier</p>
+<p>Prettier的默认规则和vue有些不同(例如 vue不建议用分号结尾),建议按照自己的代码风格更改规则设置<br>
+Prettier的规则应放在根目录下.prettierrc.js文件中(没有的话需自己建一个),而不是.eslintrc.js</p>
+<p>示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  semi: <span class="literal">false</span>, <span class="comment">// 禁用分号结尾  </span></span><br><span class="line">  singleQuote: <span class="literal">true</span> <span class="comment">// 使用单引号,而非双引号  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意 修改.prettierre.js配置后,需重启webpack才能生效</p>
+<p>更多设置见 <a href="https://prettier.io/docs/en/options.html" target="_blank" rel="noopener">prettier官方文档</a></p>
+<h2 id="引用资源的路径别名"><a class="markdownIt-Anchor" href="#引用资源的路径别名"></a> 引用资源的路径别名</h2>
+<p>vue-cli3 在vue.config.js设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    chainWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">        config.resolve.alias</span><br><span class="line">            .set(<span class="string">'common'</span>, path.join(__dirname, <span class="string">'src/common'</span>))</span><br><span class="line">            .set(<span class="string">'api'</span>, path.join(__dirname, <span class="string">'src/api'</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>vue-cli2则在build/webpack.base.conf.js中设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span>,</span><br><span class="line">      <span class="string">'@'</span>: resolve(<span class="string">'src'</span>),</span><br><span class="line">      <span class="string">'common'</span>: resolve(<span class="string">'src/common'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="style中图片的路径别名"><a class="markdownIt-Anchor" href="#style中图片的路径别名"></a> style中图片的路径别名</h2>
+<p>假设该vue项目有以下目录结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- src</span><br><span class="line">    - common</span><br><span class="line">         - img</span><br><span class="line">            - bg.jpg</span><br><span class="line">    - component</span><br><span class="line">        - group</span><br><span class="line">            - group.vue</span><br></pre></td></tr></table></figure>
+<p>且该vue项目在vue.config.js中声明了路径别名common</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    chainWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">        config.resolve.alias .set(<span class="string">'common'</span>, path.join(__dirname, <span class="string">'src/common'</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但要是在group.vue里用如下方式载入bg.jpg,则会报错提示找不到图片</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'common/img/bg.jpg'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>这是因为vue-html-loader和css-loader会将&quot;非根路径&quot;转化为&quot;相对路径&quot;,如需将其视为模块,则需要在路径前加上~号</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'~common/img/bg.jpg'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>另外,在&lt;script&gt;标签中import载入的的CSS内,不需要这样做</p>
+<p><a href="https://segmentfault.com/a/1190000008107976" target="_blank" rel="noopener">Vue2 模板中的图片地址如何使用 webpack 定义的别名? - 前端开发 - SegmentFault 思否</a></p>
+<h2 id="url部署路径"><a class="markdownIt-Anchor" href="#url部署路径"></a> URL部署路径</h2>
+<p>vue-cli默认页面会部署在&quot;跟&quot;路径下, 如 www.example/index.html<br>
+如需部署在子路径下, 如www.example/exp/index.html, 则使用baseUrl属性设置路径</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    baseUrl: <span class="string">'./'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    baseUrl: <span class="string">'exp'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果用import载入scss,同时又希望把图片放在public中.则可以设置一个全局变量供scss使用(因为生产环境和线上环境的url子路径可能不同,最好不要把子路径写在scss里)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> baseUrl = process.env.NODE_ENV === <span class="string">"production"</span> ? <span class="string">"/Lactuca/"</span> : <span class="string">"/"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  baseUrl: baseUrl,</span><br><span class="line">  css: &#123;</span><br><span class="line">    loaderOptions: &#123;</span><br><span class="line">      sass: &#123;</span><br><span class="line">        data: <span class="string">`$baseUrl: "<span class="subst">$&#123;baseUrl&#125;</span>";`</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用方式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>($baseUrl + <span class="string">'img/bg.jpg'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用方式,假设需要在src/components/guip.vue中载入src/common/exp.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import exp from &apos;common/exp.js&apos;</span><br></pre></td></tr></table></figure>
+<p>另外,即便设置了baseUrlvue-cli默认@别名指向src目录,即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import exp from &apos;@/common/exp.js&apos;</span><br></pre></td></tr></table></figure>
+<p><a href="https://cli.vuejs.org/zh/config/#baseurl" target="_blank" rel="noopener">vue-cli3 官方文档 baseUrl</a></p>
+<h2 id="判断环境模式"><a class="markdownIt-Anchor" href="#判断环境模式"></a> 判断环境模式</h2>
+<p>常用的模式有</p>
+<ul>
+<li>development  对应 yarn serve</li>
+<li>production 对应 yarn build<br>
+在vue.config.js中,可用process.env.NODE_ENV变量判断当前的环境模式</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  baseUrl: process.env.NODE_ENV === <span class="string">"production"</span> ? <span class="string">"Lactuca"</span> : <span class="string">"/"</span>,</span><br><span class="line">  productionSourceMap: process.env.NODE_ENV === <span class="string">"production"</span> ? <span class="literal">false</span> : <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">vue-cli3 官方文档 环境变量和模式</a></p>
+<h2 id="使用vscode调试vue程序"><a class="markdownIt-Anchor" href="#使用vscode调试vue程序"></a> 使用Vscode调试Vue程序</h2>
+<p>首先, 安装Vscode扩展<a href="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome" target="_blank" rel="noopener">Debugger for chrome</a><br>
+<img src="/img/673ddf35.PNG" alt="1.PNG"></p>
+<p>安装完成后, 依照上图所示, 点击Vscode左侧的 Debug按钮,进入调试页面.<br>
+然后点击左上方齿轮图标, 在弹出的launch.json中填入如下配置:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">  <span class="attr">"configurations"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"chrome"</span>,</span><br><span class="line">      <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"vuejs: chrome"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"http://localhost:8080"</span>,</span><br><span class="line">      <span class="attr">"webRoot"</span>: <span class="string">"$&#123;workspaceFolder&#125;/src"</span>,</span><br><span class="line">      // 直接安装chrome不需要设置runtimeExecutable</span><br><span class="line">      // 而便携式的chromium则需要配置runtimeExecutable为chrome.exe文件的所在路径  </span><br><span class="line">      "runtimeExecutable": "C:/chromium/chrome.exe",</span><br><span class="line">      "breakOnLoad": true,</span><br><span class="line">      "sourceMapPathOverrides": &#123;</span><br><span class="line">        "webpack:///./src/*": "$&#123;webRoot&#125;/*"</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://cn.vuejs.org/v2/cookbook/debugging-in-vscode.html" target="_blank" rel="noopener">在 VS Code 中调试 — Vue.js</a></p>
+<h2 id="开启source-map"><a class="markdownIt-Anchor" href="#开启source-map"></a> 开启source-map</h2>
+<p>开启source-map可以更便捷的调试vue代码</p>
+<p>先通过在vue.config.js中添加如下参数来开启source-map</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devServer: &#123;&#125;,</span><br><span class="line">  configureWebpack: &#123;</span><br><span class="line">    devtool: <span class="string">'source-map'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>开启/不开启source-map的区别是什么?<br>
+如下图所示,在Vscode安装Debugger for chrome, 然后设置一个断点.
+<img src="/img/53e785ab.PNG" alt="断点.PNG"></p>
+<p>然后start debugging按钮, 观查开启/关闭source-map时, 断点代码的区别<br>
+已开启source-map:
+<img src="/img/1e465c26.PNG" alt="开启了.PNG"><br>
+未开启source-map:<br>
+<img src="/img/8e357018.PNG" alt="未开启source-map.PNG"><br>
+通过上面两张图可知, 开启source-map时, 中断位置的代码和原始代码一致.<br>
+而未开启source-map中断位置的代码是被编译过的,基本没法debug.</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="https://segmentfault.com/a/1190000016120011" target="_blank" rel="noopener">Vue CLI 3 搭建的项目中路径相关问题 - 个人文章 - SegmentFault 思否</a><br>
+<a href="https://killerlei.github.io/2017/10/08/vue-cli%E4%B8%ADprocess-env-NODE-ENV/" target="_blank" rel="noopener">vue-cli中process.env.NODE_ENV | 雨田</a><br>
+<a href="https://github.com/imsobear/blog/issues/48" target="_blank" rel="noopener">__dirname __filename process.cwd() ./ ../ 的区别</a><br>
+<a href="https://stackoverflow.com/questions/35048686/difference-between-path-resolve-and-path-join-invocation" target="_blank" rel="noopener">path.join和path.resolve的区别 stackoverflow</a><br>
+<a href="https://webpack.docschina.org/configuration/dev-server/" target="_blank" rel="noopener">webpack devServe官方文档</a><br>
+<a href="https://cli.vuejs.org/zh/guide/" target="_blank" rel="noopener">vue-cli3官方文档</a><br>
+<a href="https://github.com/remy/nodemon#monitoring-multiple-directories" target="_blank" rel="noopener">nodemon官方文档</a><br>
+<a href="https://segmentfault.com/a/1190000010984731" target="_blank" rel="noopener">整理 node-sass 安装失败的原因及解决办法</a><br>
+<a href="https://github.com/nodejs/node-gyp#on-windows" target="_blank" rel="noopener">node-gyp官方文档 安装 windows下</a><br>
+<a href="https://github.com/vuejs/vue-cli/issues/1704#issuecomment-445803146" target="_blank" rel="noopener">监控vue.config.js变化自动重启</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/2019/02/08/this/">&lt;  this</a>
+      
+      
+        <a class="next" href="/2019/02/01/编译 Chromium(Windows)/">编译 Chromium(Windows)  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+  </main>
+
+  <!-- search -->      
+  
+
+  
+    
+      <script src="/js/main.js"></script>
+    
+  
+</body>
+</html>

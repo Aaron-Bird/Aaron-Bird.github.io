@@ -1,0 +1,103 @@
+.site-search {
+  transition: 0.1s linear;
+  opacity: 0;
+  display: none;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.9);
+  transition: 0.4s ease;
+}
+.site-search.fadeIn {
+  opacity: 1;
+}
+.site-search .local-search {
+  max-height: 100vh;
+  position: absolute;
+  height: 500px;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.1);
+  border-radius: 2px;
+  background-color: #fff;
+  padding: 20px 10px;
+}
+.site-search .local-search .local-search {
+  height: 100%;
+}
+.site-search .local-search-header {
+  position: relative;
+  height: 50px;
+}
+.site-search .local-search-header #local-search-input {
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 0 2px rgba(0,0,0,0.1) inset;
+  width: calc(100% - 40px);
+  box-sizing: border-box;
+  height: 36px;
+  padding: 4px;
+  outline: none;
+}
+.site-search .local-search-header .hide-site-search {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  float: right;
+  text-align: center;
+  position: relative;
+  margin-top: 2px;
+  transition: 0.4s ease;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+.site-search .local-search-header .hide-site-search svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.site-search .local-search-header .hide-site-search:hover {
+/* background-color: #d7d7d7; */
+  box-shadow: 0 0 2px rgba(0,0,0,0.1) inset;
+}
+.site-search .fa-window-close {
+  font-size: 2rem;
+  color: col-black;
+  cursor: pointer;
+}
+.site-search #local-search-result {
+  overflow-y: auto;
+  height: calc(100% - 50px);
+  -webkit-overflow-scrolling: touch;
+}
+.site-search #local-search-result ul.search-result-list {
+  margin-left: 0;
+}
+.site-search #local-search-result ul.search-result-list li {
+  border-bottom: 1px dashed col-black;
+  margin: 10px 0;
+  list-style-type: none;
+}
+.site-search #local-search-result ul.search-result-list li .search-result-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.site-search #local-search-result ul.search-result-list li p.search-result {
+  text-align: left;
+}
+.site-search #local-search-result ul.search-result-list li p.search-result em.search-keyword {
+  color: #55e;
+  font-style: normal;
+}
+@media screen and (max-width: 860px) {
+  .site-search .local-search {
+    width: calc(100% - 40px);
+    height: calc(100% - 60px);
+  }
+}

@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!--[if lte IE 8]>
+    <script type="text/javascript">  
+        var tags = ["header", "footer", "nav", "aside", "article", "section", "object", "main"];  
+        for (var i in tags) {  
+            document.createElement(tags[i]);  
+        }  
+    </script>   
+  <![endif]-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three.js入门</title>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <!-- js -->
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/blotter.min.js"></script>
+  <script type="text/javascript" src="/js/rollingDistortMaterial.js"></script> -->
+  <!-- css -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/icon.css">
+  
+    
+      <link rel="stylesheet" href="/css/index.css">
+    
+  
+</head>
+
+<body>
+  <!-- header -->
+  <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- main -->
+  <main id="main" class="main">
+    <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#速查表"><span class="toc-text"> 速查表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入threejs"><span class="toc-text"> 导入Three.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#渲染器renderer"><span class="toc-text"> 渲染器(Renderer)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建渲染器"><span class="toc-text"> 创建渲染器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用属性"><span class="toc-text"> 常用属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#domelement-渲染器画布"><span class="toc-text"> domElement 渲染器画布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shadowmap-阴影"><span class="toc-text"> shadowMap 阴影</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用方法"><span class="toc-text"> 常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#getsize-获取渲染器尺寸"><span class="toc-text"> getSize 获取渲染器尺寸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setsize-设置渲染器尺寸"><span class="toc-text"> setSize 设置渲染器尺寸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getclearcolor-获取背景颜色"><span class="toc-text"> getClearColor 获取背景颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setclearcolor-设置背景颜色"><span class="toc-text"> setClearColor 设置背景颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setpixelratio-设置设备像素比例"><span class="toc-text"> setPixelRatio 设置设备像素比例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#render-渲染画布"><span class="toc-text"> render 渲染画布</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景scene"><span class="toc-text"> 场景(Scene)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建场景"><span class="toc-text"> 创建场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用属性-2"><span class="toc-text"> 常用属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fog-雾"><span class="toc-text"> fog 雾</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相机camera"><span class="toc-text"> 相机(Camera)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正交投影相机"><span class="toc-text"> 正交投影相机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#透视投影相机perspectivecamera"><span class="toc-text"> 透视投影相机(PerspectiveCamera)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-text"> 属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zoom"><span class="toc-text"> zoom</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#公共属性"><span class="toc-text"> 公共属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position-设置相机位置"><span class="toc-text"> position 设置相机位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lookat-设置相机指向"><span class="toc-text"> lookAt 设置相机指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#灯光light"><span class="toc-text"> 灯光(Light)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境光"><span class="toc-text"> 环境光</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#点光"><span class="toc-text"> 点光</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#平行光"><span class="toc-text"> 平行光</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚光灯"><span class="toc-text"> 聚光灯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阴影"><span class="toc-text"> 阴影</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#几何图形geometry"><span class="toc-text"> 几何图形(Geometry)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#长方形"><span class="toc-text"> 长方形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多边形"><span class="toc-text"> 多边形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#圆环"><span class="toc-text"> 圆环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长方体"><span class="toc-text"> 长方体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#球"><span class="toc-text"> 球</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#柱体"><span class="toc-text"> 柱体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正四面体"><span class="toc-text"> 正四面体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#圆环-2"><span class="toc-text"> 圆环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体"><span class="toc-text"> 字体</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#材质basicmaterial"><span class="toc-text"> 材质(BasicMaterial)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#meshbasicmaterial-平面材质"><span class="toc-text"> MeshBasicMaterial 平面材质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#meshlambertmaterial-无光泽材质"><span class="toc-text"> MeshLambertMaterial 无光泽材质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#meshphongmaterial-有光泽表面"><span class="toc-text"> MeshPhongMaterial 有光泽表面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#meshnormalmaterial-法相材质"><span class="toc-text"> MeshNormalMaterial 法相材质</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#贴图"><span class="toc-text"> 贴图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#载入贴图"><span class="toc-text"> 载入贴图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#载入多张贴图"><span class="toc-text"> 载入多张贴图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wraps"><span class="toc-text"> wrapS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wrapt"><span class="toc-text"> wrapT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mesh-网格"><span class="toc-text"> Mesh 网格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#meshposition"><span class="toc-text"> mesh.position</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scale"><span class="toc-text"> scale</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rotation"><span class="toc-text"> rotation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动画"><span class="toc-text"> 动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windowsetinterval"><span class="toc-text"> window.setInterval()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#windowrequestanimationframe"><span class="toc-text"> window.requestAnimationFrame()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#辅助插件"><span class="toc-text"> 辅助插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#orbitcontrolsjs-自由视角"><span class="toc-text"> OrbitControls.js 自由视角</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#statjs-显示fps"><span class="toc-text"> stat.js 显示FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reflectorjs-镜面反射"><span class="toc-text"> Reflector.js 镜面反射</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录"><span class="toc-text"> 附录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#已不被赞成使用的函数及代替品"><span class="toc-text"> 已不被赞成使用的函数及代替品</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#已不赞成使用被移除的插件及代替品"><span class="toc-text"> 已不赞成使用/被移除的插件及代替品</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1 class="title">Three.js入门</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-12-24T12:45:00.000Z">
+            2017-12-24
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript-library/">
+              <span>JavaScript library</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/JavaScript-library/">
+            <span>JavaScript library</span>
+          </a>
+        
+          <a href="/tags/three-js/">
+            <span>three.js</span>
+          </a>
+        
+          <a href="/tags/WebGL/">
+            <span>WebGL</span>
+          </a>
+        
+          <a href="/tags/HTML5/">
+            <span>HTML5</span>
+          </a>
+        
+          <a href="/tags/Canvas/">
+            <span>Canvas</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <script type="text/javascript" src="/js/three.js"></script>
+<script type="text/javascript" src="/js/OrbitControls.js"></script>
+<style>
+canvas {
+    width:200px;
+    height:200px;
+}
+</style>
+<script>
+var creExp = function(eleSel,shape) {
+    // the function will render a shape in canvas element
+    // eleSel: css selector,used to select canvas objcet,like: document.querySelector('canvas')
+    // shape: three shape object,like: new THREE.SphereGeometry(1)
+    
+    var element = document.querySelector(eleSel)
+    var renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha:true,
+        //canvas: document.querySelector("canvas"),
+        canvas: element, 
+    });
+    renderer.setSize(element.clientWidth, element.clientHeight)
+    renderer.setClearColor(0xffffff,0);
+    var loader = new THREE.FontLoader();
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.OrthographicCamera(-2, 2, 2, -2, 0, 10);
+    camera.position.set(0, 0, 3);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    scene.add(camera);
+    var cube = new THREE.Mesh(shape,
+        new THREE.MeshBasicMaterial({
+            color: 0x555555,
+            wireframe: true
+        })
+    );
+    scene.add(cube);
+
+    var controls = new THREE.OrbitControls(camera,element);
+
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    animate();
+    renderer.render(scene, camera);
+};
+
+</script>
+<h2 id="速查表"><a class="markdownIt-Anchor" href="#速查表"></a> 速查表</h2>
+<p><img src="/img/THREE.png" alt></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="http://www.ituring.com.cn/book/1272" target="_blank" rel="noopener">Three.js入门指南</a>
+<a href="https://www.qcloud.com/community/article/376875" target="_blank" rel="noopener">Three.js 粒子系统学习小记</a>
+<a href="https://threejs.org/docs/" target="_blank" rel="noopener">官方文档</a></p>
+<h2 id="导入threejs"><a class="markdownIt-Anchor" href="#导入threejs"></a> 导入Three.js</h2>
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;three.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Three.js把所有属性和方法都封装在THREE对象中,类似于jQuery的$</p>
+<h2 id="渲染器renderer"><a class="markdownIt-Anchor" href="#渲染器renderer"></a> 渲染器(Renderer)</h2>
+<h3 id="创建渲染器"><a class="markdownIt-Anchor" href="#创建渲染器"></a> 创建渲染器</h3>
+<p>THREE.WebGLRenderer(parameter)</p>
+<ul>
+<li>parameter 包含一组渲染器参数的对象(可选)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> renderer = <span class="keyword">new</span> THREE.WebGLRenderer();</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">var</span> renderer = <span class="keyword">new</span> THREE.WebGLRenderer(&#123;</span><br><span class="line">    canvas: <span class="built_in">document</span>.querySelector(<span class="string">'canvas'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>渲染器有以下常用参数</p>
+<ul>
+<li>canvas 渲染器画布,对应domElement</li>
+<li>precision: 'highp'|'mediump'|'lowp' 着色器精度</li>
+<li>alpha 是否开启透明缓冲.布尔值,默认值为false</li>
+<li>antialias 是否开启抗锯齿.布尔值,默认值为false</li>
+</ul>
+<h3 id="常用属性"><a class="markdownIt-Anchor" href="#常用属性"></a> 常用属性</h3>
+<h4 id="domelement-渲染器画布"><a class="markdownIt-Anchor" href="#domelement-渲染器画布"></a> domElement 渲染器画布</h4>
+<p>renderer.domElement<br>
+渲染器画布对象.如果创建渲染器时未指定canvas参数,则由构造函数自动创建.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> renderer = <span class="keyword">new</span> THREE.WebGLRenderer();</span><br><span class="line"><span class="comment">// 获取画布</span></span><br><span class="line"><span class="keyword">var</span> canvas = renderer.domElement;</span><br><span class="line"><span class="comment">// 添加画布到body元素中</span></span><br><span class="line"><span class="built_in">document</span>.body.appendChild(canvas);</span><br></pre></td></tr></table></figure>
+<h4 id="shadowmap-阴影"><a class="markdownIt-Anchor" href="#shadowmap-阴影"></a> shadowMap 阴影</h4>
+<p>shadowMap.enabled<br>
+是否渲染阴影.布尔值.默认值为false</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">renderer.shadowMap.enabled = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>shadowMap.type<br>
+阴影渲染方式,默认值为THREE.PCFShadowMap</p>
+<ul>
+<li>HREE.BasicShadowMap 未过滤阴影.生成速度快,质量低</li>
+<li>THREE.PCFShadowMap 使用Percentage-Closer Filtering (PCF)算法生成阴影</li>
+<li>THREE.PCFSoftShadowMap 使用Percentage-Closer Soft Shadows (PCSS)算法生成阴影,阴影边缘带有虚化效果</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">renderer.shadowMap.type = THREE.PCFSoftShadowMap;</span><br></pre></td></tr></table></figure>
+<h3 id="常用方法"><a class="markdownIt-Anchor" href="#常用方法"></a> 常用方法</h3>
+<h4 id="getsize-获取渲染器尺寸"><a class="markdownIt-Anchor" href="#getsize-获取渲染器尺寸"></a> getSize 获取渲染器尺寸</h4>
+<p>getSize()<br>
+返回一个对象,包含渲染器画布的宽度和高度</p>
+<h4 id="setsize-设置渲染器尺寸"><a class="markdownIt-Anchor" href="#setsize-设置渲染器尺寸"></a> setSize 设置渲染器尺寸</h4>
+<p>setSize ( width, height, updateStyle )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">renderer.setSize(<span class="number">400</span>,<span class="number">400</span>);</span><br></pre></td></tr></table></figure>
+<p>注意 渲染器画布尺寸要和canvas大小相匹配,否则渲染出来的图像可能会变形/发虚</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ele = <span class="built_in">document</span>.querySelector(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(ele.clientWidth, ele.clientHeight); <span class="comment">// 500 500</span></span><br><span class="line"><span class="keyword">var</span> renderer = <span class="keyword">new</span> THREE.WebGLRenderer(&#123;</span><br><span class="line">    canvas: ele;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 渲染器尺寸比canvas尺寸要小,导致渲染出来的图形模糊不清</span></span><br><span class="line"><span class="built_in">console</span>.log(renderer.getSize()) <span class="comment">// &#123;width: 300, height: 150&#125; </span></span><br><span class="line"><span class="comment">// 调整渲染器尺寸</span></span><br><span class="line">renderer.setSize(ele.clientWidth,ele.clientHeight);</span><br></pre></td></tr></table></figure>
+<h4 id="getclearcolor-获取背景颜色"><a class="markdownIt-Anchor" href="#getclearcolor-获取背景颜色"></a> getClearColor 获取背景颜色</h4>
+<p>getClearColor()
+返回当前的THREE.color实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">renderer.getClearColor(); <span class="comment">// Color &#123;r: 1, g: 1, b: 0&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="setclearcolor-设置背景颜色"><a class="markdownIt-Anchor" href="#setclearcolor-设置背景颜色"></a> setClearColor 设置背景颜色</h4>
+<p>setClearColor ( color, alpha )</p>
+<ul>
+<li>color 颜色</li>
+<li>alpha 透明度,需在创建渲染器时设置alpha: true</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 黑色背景</span></span><br><span class="line">renderer.setClearColor(<span class="number">0x000000</span>)</span><br><span class="line"><span class="comment">// 黄色背景</span></span><br><span class="line">renderer.setClearColor(<span class="string">'#ffff00'</span>)</span><br><span class="line"><span class="comment">// 透明背景</span></span><br><span class="line">renderer.setClearColor(<span class="number">0x000000</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="setpixelratio-设置设备像素比例"><a class="markdownIt-Anchor" href="#setpixelratio-设置设备像素比例"></a> setPixelRatio 设置设备像素比例</h4>
+<p>setPixelRatio ( value )<br>
+常用于适配视网膜屏幕,防止输出到画布的图像模糊</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">renderer.setPixelRatio(<span class="built_in">window</span>.devicePixelRatio);</span><br></pre></td></tr></table></figure>
+<h4 id="render-渲染画布"><a class="markdownIt-Anchor" href="#render-渲染画布"></a> render 渲染画布</h4>
+<p>render( scene, camera, renderTarget, forceClear)</p>
+<ul>
+<li>scene 场景对象</li>
+<li>camera 照相机对象</li>
+<li>renderTarget 将渲染结果缓存在RenderTarget对象中</li>
+<li>forceClear</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建场景</span></span><br><span class="line"><span class="keyword">var</span> scene = <span class="keyword">new</span> THREE.Scene();</span><br><span class="line"><span class="comment">// 创建相机</span></span><br><span class="line"><span class="keyword">var</span> camera = <span class="keyword">new</span> THREE.OrthographicCamera(<span class="number">-1000</span>, <span class="number">1000</span>, <span class="number">1000</span>, <span class="number">-1000</span>, <span class="number">1</span>, <span class="number">2000</span>);</span><br><span class="line"><span class="comment">// 添加相机到场景中</span></span><br><span class="line">scene.add(camera);</span><br><span class="line">renderer.render(scene, camera);</span><br></pre></td></tr></table></figure>
+<h2 id="场景scene"><a class="markdownIt-Anchor" href="#场景scene"></a> 场景(Scene)</h2>
+<p>用于放置物体/灯光/照相机</p>
+<h3 id="创建场景"><a class="markdownIt-Anchor" href="#创建场景"></a> 创建场景</h3>
+<p>THREE.Scene()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scene = <span class="keyword">new</span> THREE.Scene();</span><br></pre></td></tr></table></figure>
+<h3 id="常用属性-2"><a class="markdownIt-Anchor" href="#常用属性-2"></a> 常用属性</h3>
+<h4 id="fog-雾"><a class="markdownIt-Anchor" href="#fog-雾"></a> fog 雾</h4>
+<p>定义应用于场景中雾的类型,默认值为null</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scene.fog = <span class="keyword">new</span> THREE.Fog(<span class="string">'#ff0000'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="相机camera"><a class="markdownIt-Anchor" href="#相机camera"></a> 相机(Camera)</h2>
+<p>相机的横纵比应于画布一致,否则会导致物体变形.在相机范围外的物体不会被显示</p>
+<p>PerspectiveCamera 透视投影相机 模拟人眼所见的透视比例,常用于渲染3D物体<br>
+OrthographicCamera 正交投影相机.物体大小与照相机距离无关,常用于2D/UI的渲染</p>
+<h3 id="正交投影相机"><a class="markdownIt-Anchor" href="#正交投影相机"></a> 正交投影相机</h3>
+<p>THREE.OrthographicCamera(left, right, top, bottom, near, far);</p>
+<ul>
+<li>near 最近可视范围</li>
+<li>far 最远可视范围</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> width = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">var</span> height = <span class="number">1000</span>;</span><br><span class="line"><span class="comment">// 创建正交投影相机</span></span><br><span class="line"><span class="keyword">var</span> camera = THREE.OrthographicCamera(width / <span class="number">-2</span>, width / <span class="number">2</span>, height / <span class="number">2</span>, height / <span class="number">-2</span>, <span class="number">1</span>, <span class="number">1000</span>);</span><br><span class="line"><span class="comment">// 把相机放入场景</span></span><br><span class="line">scene.add(camear);</span><br></pre></td></tr></table></figure>
+<h3 id="透视投影相机perspectivecamera"><a class="markdownIt-Anchor" href="#透视投影相机perspectivecamera"></a> 透视投影相机(PerspectiveCamera)</h3>
+<p>PerspectiveCamera( fov, aspect, near, far )</p>
+<ul>
+<li>fov 垂直方向张角</li>
+<li>aspect 相机横纵比</li>
+<li>near 最近可视距离</li>
+<li>far 最远可视距离</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> camera = HTREE.PerspectiveCamera(<span class="number">45</span>, width / height, <span class="number">1</span>, <span class="number">1000</span>);</span><br><span class="line">scene.add(camera);</span><br></pre></td></tr></table></figure>
+<h4 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h4>
+<h4 id="zoom"><a class="markdownIt-Anchor" href="#zoom"></a> zoom</h4>
+<p>等比放大/缩小相机,默认值为1</p>
+<h3 id="公共属性"><a class="markdownIt-Anchor" href="#公共属性"></a> 公共属性</h3>
+<p>大多数属性更新后需调用updateProjectionMatrix方法使更改生效</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">camera.updateProjectionMatrix();</span><br></pre></td></tr></table></figure>
+<h3 id="position-设置相机位置"><a class="markdownIt-Anchor" href="#position-设置相机位置"></a> position 设置相机位置</h3>
+<p>camera.position.set(x, y, z)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">camera.position.set(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="lookat-设置相机指向"><a class="markdownIt-Anchor" href="#lookat-设置相机指向"></a> lookAt 设置相机指向</h3>
+<p>camera.lookAt(x, y, z)<br>
+camera.lookAt(new THREE.Vector3(x, y, z))</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">camera =  <span class="keyword">new</span> THREE.OrthographicCamera(<span class="number">-5</span>, <span class="number">5</span>, <span class="number">-5</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">camera.lookAt.set(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="灯光light"><a class="markdownIt-Anchor" href="#灯光light"></a> 灯光(Light)</h2>
+<h3 id="环境光"><a class="markdownIt-Anchor" href="#环境光"></a> 环境光</h3>
+<p>用来照亮场景中的所有物体.没有方向,因此不能生成投影<br>
+THREE.AmbientLight( color, intensity )</p>
+<ul>
+<li>color 颜色</li>
+<li>intensity 光照强度</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// soft white light</span></span><br><span class="line"><span class="keyword">var</span> light = <span class="keyword">new</span> THREE.AmbientLight( <span class="number">0x404040</span> );</span><br><span class="line">scene.add( light );</span><br></pre></td></tr></table></figure>
+<h3 id="点光"><a class="markdownIt-Anchor" href="#点光"></a> 点光</h3>
+<p>从单个点发出的光线,光线呈线性衰减.物体距离越远,光线越暗<br>
+可生成阴影<br>
+PointLight( color, intensity, distance, decay )</p>
+<ul>
+<li>color 光线颜色</li>
+<li>intensity 光照强度,默认值为1</li>
+<li>distance 光线能照射到的最远距离,为零时距离无限长.默认值为0</li>
+<li>decay 光线衰减程度,默认值为1</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> light = <span class="keyword">new</span> THREE.PointLight( <span class="number">0xffffff</span>);</span><br><span class="line">light.position.set( <span class="number">20</span>, <span class="number">30</span>, <span class="number">50</span> );</span><br><span class="line">scene.add(light);</span><br></pre></td></tr></table></figure>
+<h3 id="平行光"><a class="markdownIt-Anchor" href="#平行光"></a> 平行光</h3>
+<p>从特定方向上发出的光,距离物体无限远.常用作模拟太阳光<br>
+可生成阴影<br>
+DirectionalLight( color, intensity )</p>
+<ul>
+<li>color 光线颜色</li>
+<li>intensity 光照强度,默认值为1</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> light = <span class="keyword">new</span> THREE.DirectionalLight( <span class="number">0xffffff</span>);</span><br><span class="line">light.position.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>);</span><br><span class="line">scene.add(light);</span><br></pre></td></tr></table></figure>
+<p>修改光线指向</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> light = <span class="keyword">new</span> THREE.DirectionalLight( <span class="number">0xffffff</span>);</span><br><span class="line">light.target.position.set(<span class="number">100</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">scene.add(light);</span><br><span class="line"><span class="comment">// 如果targe.position被改变,需将target加入场景</span></span><br><span class="line">scene.add(light.target);</span><br></pre></td></tr></table></figure>
+<h3 id="聚光灯"><a class="markdownIt-Anchor" href="#聚光灯"></a> 聚光灯</h3>
+<p>从一点发出,总体近似一个圆锥形<br>
+可生成阴影<br>
+SpotLight( color, intensity, distance, angle, penumbra, decay )</p>
+<ul>
+<li>color</li>
+<li>intensity 光照强度</li>
+<li>distance 光照范围最远距离</li>
+<li>angle 光线最大角度,最大值为Math.PI * 2</li>
+<li>penumbra</li>
+<li>decay</li>
+</ul>
+<p>修改光线指向</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> light = <span class="keyword">new</span> THREE.SpotLight( <span class="number">0xffffff</span>);</span><br><span class="line">light.target.position.set(<span class="number">100</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">scene.add(light, light.target);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以把目标指向某一物体,使聚光灯自动跟踪目标</span></span><br><span class="line"><span class="keyword">var</span> shape = <span class="keyword">new</span> THREE.CubeGeometry(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshLambertMaterial(&#123;</span><br><span class="line">    color: <span class="number">0xffff00</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> cube = <span class="keyword">new</span> THREE.Mesh(shape, material);</span><br><span class="line">light.target = cube;</span><br></pre></td></tr></table></figure>
+<h3 id="阴影"><a class="markdownIt-Anchor" href="#阴影"></a> 阴影</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> renderer = THREE.WebGLRenderer();</span><br><span class="line"><span class="keyword">var</span> scene = THREE.Scene();</span><br><span class="line"><span class="comment">// 开启阴影</span></span><br><span class="line">renderer.shadowMapEnabled = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// 设置阴影渲染方式</span></span><br><span class="line">renderer.shadowMap.type = THREE.PCFSoftShadowMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> light = <span class="keyword">var</span> SpotLight(<span class="number">0xffffff</span>);</span><br><span class="line"><span class="comment">// 投射投影</span></span><br><span class="line">light.castShadow = <span class="literal">true</span>;</span><br><span class="line">light.shadowCameraVisible = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// 显示光源位置</span></span><br><span class="line"><span class="keyword">var</span> helper = <span class="keyword">new</span> THREE.CameraHelper(light.shadow.camera);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> shape = <span class="keyword">new</span> THREE.CubeGeometry(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> cube = <span class="keyword">new</span> THREE.Mesh(shape, material);</span><br><span class="line"><span class="comment">// 投射投影</span></span><br><span class="line">cube.castShadow = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> shape1 = <span class="keyword">new</span> THREE.CubeGeometry(<span class="number">500</span>, <span class="number">1</span>, <span class="number">500</span>);</span><br><span class="line"><span class="keyword">var</span> cube = <span class="keyword">new</span> THREE.Mesh(shape1, material);</span><br><span class="line">shape.position.set(<span class="number">0</span>,<span class="number">-200</span>,<span class="number">0</span>);</span><br><span class="line"><span class="comment">// 接收投影</span></span><br><span class="line">cube.receiveShadow = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">scene.add(light, shape, shape1, helper);</span><br></pre></td></tr></table></figure>
+<h2 id="几何图形geometry"><a class="markdownIt-Anchor" href="#几何图形geometry"></a> 几何图形(Geometry)</h2>
+<h3 id="长方形"><a class="markdownIt-Anchor" href="#长方形"></a> 长方形</h3>
+<p>new THREE.PlaneGeometry(width, height, widthSegments, heightSegments)</p>
+<ul>
+<li>widthSegments 长度分段数(默认值为1)</li>
+<li>heightSegments 高度分段数(默认值为1)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.PlaneGeometry( <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/threeSegment.PNG" alt></p>
+<h3 id="多边形"><a class="markdownIt-Anchor" href="#多边形"></a> 多边形</h3>
+<p>THREE.CircleGeometry(radius, segments, thetaStart, thetaLength)</p>
+<ul>
+<li>radius 半径</li>
+<li>segments 分割数</li>
+<li>thetaStart 起始度数</li>
+<li>thetaLength 度数跨度</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.CircleGeometry(<span class="number">1.5</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI / <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><canvas class="cir-3"></canvas></p>
+<script>creExp('.cir-3', new THREE.CircleGeometry(1.5, 4, 0, Math.PI / 2))</script>
+<h3 id="圆环"><a class="markdownIt-Anchor" href="#圆环"></a> 圆环</h3>
+<p>new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, thetaLength)</p>
+<ul>
+<li>innerRadius 内半径</li>
+<li>outerRadius 外半径</li>
+<li>thetaSegments 段数</li>
+<li>phiSegments</li>
+<li>thetaStart 初始角度</li>
+<li>thetaLength 中心角度</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.RingGeometry(<span class="number">0.7</span>, <span class="number">1.5</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="built_in">Math</span>.PI)</span><br></pre></td></tr></table></figure>
+<p><canvas class="rin-1"></canvas></p>
+<script>creExp('.rin-1', new THREE.RingGeometry(0.7, 1.5, 6, 3, Math.PI))</script>
+<h3 id="长方体"><a class="markdownIt-Anchor" href="#长方体"></a> 长方体</h3>
+<p>new THREE.CubeGeometry(width, height, depth, widthSegments, heightSegments, depthSegments)</p>
+<ul>
+<li>width 长</li>
+<li>height 高</li>
+<li>depath 宽</li>
+<li>widthSegments 长度分段数(默认值为1)</li>
+<li>heightSegments 高度分段数(默认值为1)</li>
+<li>depthSegments 宽度分段数(默认值为1)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.CubeGeometry(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/threeSegment1.PNG" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.CubeGeometry(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/threeSegment2.PNG" alt></p>
+<h3 id="球"><a class="markdownIt-Anchor" href="#球"></a> 球</h3>
+<p>new THREE.SphereGeometry(radius, segmentsWidth, segmentsHeight, phiStart, phiLength, thetaStart, thetaLength)</p>
+<ul>
+<li>radius 半径</li>
+<li>segmentsWidth 经度分隔数(横着)</li>
+<li>segmentsHeight 维度分隔数(竖着)</li>
+<li>phiStart 初始经度</li>
+<li>phiLength  经度跨度</li>
+<li>thetaStart 初始维度</li>
+<li>thetaLength 维度跨度</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.SphereGeometry(<span class="number">1.5</span>, <span class="number">4</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p><canvas class="sph-2" style="width:200px;height:200px"></canvas></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.SphereGeometry(<span class="number">1.5</span>, <span class="number">4</span>, <span class="number">4</span>,  <span class="built_in">Math</span>.PI / <span class="number">2</span>, <span class="built_in">Math</span>.PI)</span><br></pre></td></tr></table></figure>
+<p><canvas class="sph-3" style="width:200px;height:200px"></canvas></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.SphereGeometry(<span class="number">1.5</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>, <span class="built_in">Math</span>.PI / <span class="number">2</span>, <span class="built_in">Math</span>.PI)</span><br></pre></td></tr></table></figure>
+<p><canvas class="sph-4" style="width:200px;height:200px"></canvas></p>
+<script>creExp(".sph-2",new THREE.SphereGeometry(1.5, 4, 4));</script>
+<script>creExp(".sph-3",new THREE.SphereGeometry(1.5, 4, 4,  Math.PI / 2, Math.PI));</script>
+<script>creExp(".sph-4",new THREE.SphereGeometry(1.5, 4, 4, 0, Math.PI * 2,Math.PI / 2, Math.PI));</script>
+<p>注 Math.PI属性是一个固定值,其值为元周长与直径比(π)</p>
+<h3 id="柱体"><a class="markdownIt-Anchor" href="#柱体"></a> 柱体</h3>
+<p>new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded)</p>
+<ul>
+<li>radiusTop 顶部半径</li>
+<li>radiusBottom 底部半径</li>
+<li>height 高度</li>
+<li>radialSegments  元周分段数,默认值为8</li>
+<li>heightSegments 高度分段数,默认值为1</li>
+<li>openEnded 布尔值,是否开放顶面和底面</li>
+<li>thetaStart  初始角度</li>
+<li>thetaLength 中心角度,默认值 Math.PI * 2</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.CylinderGeometry(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><canvas class="cyi-1"></canvas></p>
+<script>creExp(".cyi-1", new THREE.CylinderGeometry(1, 2));</script>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.CylinderGeometry(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p><canvas class="cyi-2"></canvas></p>
+<script>creExp(".cyi-2", new THREE.CylinderGeometry(1, 1, 2, 8, 2, true));</script>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.CylinderGeometry(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="literal">false</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI)</span><br></pre></td></tr></table></figure>
+<p><canvas class="cyi-3"></canvas></p>
+<script>creExp(".cyi-3", new THREE.CylinderGeometry(1, 1, 2, 8, 2, false, 0, Math.PI));</script>
+<h3 id="正四面体"><a class="markdownIt-Anchor" href="#正四面体"></a> 正四面体</h3>
+<p>new THREE.TetrahedronGeometry(radius, detail)</p>
+<ul>
+<li>radius 半径</li>
+<li>detail</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.TetrahedronGeometry(<span class="number">1.5</span>)</span><br></pre></td></tr></table></figure>
+<p><canvas class="cyl-1"></canvas></p>
+<script>creExp(".cyl-1", new THREE.TetrahedronGeometry(1.5))</script>
+<p>正八面体 THREE.OctahedronGeometry(radius, detail)<br>
+正十二面体 THREE.DodecahedronGeometry(radius, detail)<br>
+正二十面体 THREE.IcosahedronGeometry(radius, detail)</p>
+<h3 id="圆环-2"><a class="markdownIt-Anchor" href="#圆环-2"></a> 圆环</h3>
+<p>new THREE.TorusGeometry(radius, tube, radialSegments, tubularSegments, arc)</p>
+<ul>
+<li>radius 外半径</li>
+<li>tube 圆环厚度(外半径-内半径),默认值0.4</li>
+<li>radialSegments 默认值8</li>
+<li>tubularSegments 默认值6</li>
+<li>arc 中心角度,默认值Math.PI * 2</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.TorusGeometry(<span class="number">1.5</span>, <span class="number">0.4</span>, <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<p><canvas class="tet-2"></canvas></p>
+<script>creExp(".tet-2", new THREE.TorusGeometry(1.5, 0.4, 20))</script>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.TorusGeometry(<span class="number">1.5</span>, <span class="number">0.4</span>, <span class="number">8</span>, <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<p><canvas class="tet-3"></canvas></p>
+<script>creExp(".tet-3", new THREE.TorusGeometry(1.5, 0.4, 8, 20))</script>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> THREE.TorusGeometry(<span class="number">1.5</span>, <span class="number">0.4</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="built_in">Math</span>.PI )</span><br></pre></td></tr></table></figure>
+<p><canvas class="tet-4"></canvas></p>
+<script>creExp(".tet-4", new THREE.TorusGeometry(1.5, 0.4, 8, 6, Math.PI ))</script>
+<h3 id="字体"><a class="markdownIt-Anchor" href="#字体"></a> 字体</h3>
+<p>载入字体前,需用Facetype.js把字体转换成转换成json格式,避免乱码<br>
+<a href="https://github.com/gero3/facetype.js" target="_blank" rel="noopener">Facetype.js</a></p>
+<p>new THREE.FontLoader( parameters )</p>
+<ul>
+<li>text 文本</li>
+<li>parameters 参数
+<ul>
+<li>font 字体,默认值为'helvetiker'</li>
+<li>size 字号,默认值 100</li>
+<li>height 字体厚度,默认值 50</li>
+<li>curveSegments 曲线分段数,默认值 12</li>
+<li>bevelEnabled — 布尔值,是否在字体边缘添加斜面,默认值 false</li>
+<li>bevelThickness —  斜面厚度,默认值10</li>
+<li>bevelSize — 斜面宽度,默认值8</li>
+<li>bevelSegments — 倒角分段数,默认值3</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/TextGeometry.PNG" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> material =  <span class="keyword">new</span> THREE.MeshBasicMaterial(&#123;</span><br><span class="line">    color: <span class="number">0x555555</span>,</span><br><span class="line">    wireframe: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> font = <span class="function"><span class="keyword">function</span>(<span class="params">font</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(<span class="keyword">new</span> THREE.TextGeometry(<span class="string">'anna'</span>, &#123;</span><br><span class="line">        font: font,</span><br><span class="line">        size: <span class="number">1</span>,</span><br><span class="line">        height: <span class="number">0.4</span>,</span><br><span class="line">        curveSegments: <span class="number">2</span>,</span><br><span class="line">    &#125;), material);</span><br><span class="line"></span><br><span class="line">    mesh.position.set(<span class="number">-1.5</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    scene.add(mesh);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> loader = <span class="keyword">new</span> THREE.FontLoader();</span><br><span class="line">loader.load(<span class="string">'font/helvetiker_regular.typeface.json'</span>, font);</span><br></pre></td></tr></table></figure>
+<h2 id="材质basicmaterial"><a class="markdownIt-Anchor" href="#材质basicmaterial"></a> 材质(BasicMaterial)</h2>
+<h3 id="meshbasicmaterial-平面材质"><a class="markdownIt-Anchor" href="#meshbasicmaterial-平面材质"></a> MeshBasicMaterial 平面材质</h3>
+<p>基本材质,用平面绘制图形,不受灯光影响<br>
+THREE.MeshBasicMaterial( parameters )<br>
+常用参数</p>
+<ul>
+<li>visible 是否显示图形,布尔值</li>
+<li>side:THREE.FrontSide|THREE.BackSide|THREE.DoubleSide 渲染哪一面</li>
+<li>transparent 是否透明 布尔值,为true时,可用opacity属性控制透明效果</li>
+<li>color 颜色</li>
+<li>wireframe 是否渲染线框.布尔值,默认值false</li>
+</ul>
+<h3 id="meshlambertmaterial-无光泽材质"><a class="markdownIt-Anchor" href="#meshlambertmaterial-无光泽材质"></a> MeshLambertMaterial 无光泽材质</h3>
+<p>MeshLambertMaterial( parameters )</p>
+<ul>
+<li>emissive 自发光颜色,默认值 0x000000</li>
+</ul>
+<h3 id="meshphongmaterial-有光泽表面"><a class="markdownIt-Anchor" href="#meshphongmaterial-有光泽表面"></a> MeshPhongMaterial 有光泽表面</h3>
+<p>用于渲染金属,镜面等有光泽材质<br>
+THREE.MeshPhongMaterial( parameters )</p>
+<ul>
+<li>specular 高光颜色.16进制数,默认值 0x111111</li>
+<li>shininess 高光大小.值越大,高光越小.默认值 30</li>
+</ul>
+<h3 id="meshnormalmaterial-法相材质"><a class="markdownIt-Anchor" href="#meshnormalmaterial-法相材质"></a> MeshNormalMaterial 法相材质</h3>
+<p>THREE.MeshNormalMaterial( parameters )</p>
+<p><img src="/img/MeshNormalMaterial.PNG" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshBasicMaterial(&#123;<span class="attr">wireframe</span>: <span class="literal">true</span>&#125;);</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshBasicMaterial();</span><br><span class="line">material.wireframe = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="贴图"><a class="markdownIt-Anchor" href="#贴图"></a> 贴图</h2>
+<h3 id="载入贴图"><a class="markdownIt-Anchor" href="#载入贴图"></a> 载入贴图</h3>
+<p>THREE.TextureLoader().load(imgPath)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> texture = <span class="keyword">new</span> THREE.TextureLoader().load(<span class="string">'img/glass.jpg'</span>);</span><br><span class="line"><span class="keyword">var</span> material =  <span class="keyword">new</span> THREE.MeshLambertMaterial(&#123;</span><br><span class="line">    map: texture,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="载入多张贴图"><a class="markdownIt-Anchor" href="#载入多张贴图"></a> 载入多张贴图</h3>
+<p>使用数组传入即可
+<img src="/img/texture.PNG" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> textureLoader = <span class="keyword">new</span> THREE.TextureLoader();</span><br><span class="line"><span class="keyword">var</span> texture0 = textureLoader.load( <span class="string">'img/number_1.jpg'</span> );</span><br><span class="line"><span class="keyword">var</span> texture1 = textureLoader.load( <span class="string">'img/number_2.jpg'</span> );</span><br><span class="line"><span class="keyword">var</span> texture2 = textureLoader.load( <span class="string">'img/number_3.jpg'</span> );</span><br><span class="line"><span class="keyword">var</span> texture3 = textureLoader.load( <span class="string">'img/number_4.jpg'</span> );</span><br><span class="line"><span class="keyword">var</span> texture4 = textureLoader.load( <span class="string">'img/number_5.jpg'</span> );</span><br><span class="line"><span class="keyword">var</span> texture5 = textureLoader.load( <span class="string">'img/number_6.jpg'</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> material = [</span><br><span class="line">    <span class="keyword">new</span> THREE.MeshLambertMaterial( &#123; <span class="attr">map</span>: texture0&#125; ),</span><br><span class="line">    <span class="keyword">new</span> THREE.MeshLambertMaterial( &#123; <span class="attr">map</span>: texture1&#125; ),</span><br><span class="line">    <span class="keyword">new</span> THREE.MeshLambertMaterial( &#123; <span class="attr">map</span>: texture2&#125; ),</span><br><span class="line">    <span class="keyword">new</span> THREE.MeshLambertMaterial( &#123; <span class="attr">map</span>: texture3&#125; ),</span><br><span class="line">    <span class="keyword">new</span> THREE.MeshLambertMaterial( &#123; <span class="attr">map</span>: texture4&#125; ),</span><br><span class="line">    <span class="keyword">new</span> THREE.MeshLambertMaterial( &#123; <span class="attr">map</span>: texture5&#125; )</span><br><span class="line">];</span><br><span class="line"><span class="keyword">var</span> shape = <span class="keyword">new</span> THREE.CubeGeometry(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>);</span><br><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(shape, material);</span><br></pre></td></tr></table></figure>
+<h3 id="wraps"><a class="markdownIt-Anchor" href="#wraps"></a> wrapS</h3>
+<p>定义材质如何横向排列</p>
+<ul>
+<li>THREE.ClampToEdgeWrapping 拉伸材质,默认值</li>
+<li>THREE.RepeatWrapping 重复排列</li>
+<li>THREE.MirroredRepeatWrapping 镜像式重复排列</li>
+</ul>
+<p><img src="/img/RepeatWrapping.PNG" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> texture = textureLoader.load( <span class="string">'number_1.jpg'</span> );</span><br><span class="line">texture.wrapS  = THREE.RepeatWrapping;</span><br></pre></td></tr></table></figure>
+<p><img src="/img/MirroredRepeatWrapping.PNG" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> texture = textureLoader.load( <span class="string">'number_1.jpg'</span> );</span><br><span class="line">texture.wrapS  = THREE.MirroredRepeatWrapping;</span><br></pre></td></tr></table></figure>
+<h3 id="wrapt"><a class="markdownIt-Anchor" href="#wrapt"></a> wrapT</h3>
+<p>定义材质如何纵向排列<br>
+参数同上wrapS</p>
+<p>可用 repeat.set()方法控制重复次数</p>
+<pre><code>//横向重复3次,纵向重复4次
+texture.repeat.set(3,4)
+</code></pre>
+<h2 id="mesh-网格"><a class="markdownIt-Anchor" href="#mesh-网格"></a> Mesh 网格</h2>
+<p>new Mesh(geometry, material)</p>
+<ul>
+<li>geometry 几何图形,默认值为new BufferGeometry</li>
+<li>material 材质,默认值为MeshBasicMaterial(随机颜色)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shape = <span class="keyword">new</span> THREE.CubeGeometry(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshLambertMaterial(&#123;<span class="attr">color</span>:<span class="number">0xffffff</span>&#125;);</span><br><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">var</span> Mesh(shape, material)</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line">mesh.material = <span class="keyword">new</span> THREE.MeshNormalMaterial(&#123;<span class="attr">color</span>:<span class="number">0xffffff</span>&#125;);</span><br><span class="line">mesh.shape = <span class="keyword">new</span> THREE.SphereGeometry(<span class="number">1</span>,<span class="number">36</span>,<span class="number">36</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="meshposition"><a class="markdownIt-Anchor" href="#meshposition"></a> mesh.position</h3>
+<p>修改坐标<br>
+mesh.position.set(x, y, z)<br>
+mesh.position.x<br>
+mesh.position.y<br>
+mesh.position.z</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">var</span> Mesh();</span><br><span class="line">mesh.position.set(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 修改单个坐标</span></span><br><span class="line">mesh.position.x = <span class="number">1</span>;</span><br><span class="line">mesh.position.y = <span class="number">1</span>;</span><br><span class="line">mesh.position.z = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="scale"><a class="markdownIt-Anchor" href="#scale"></a> scale</h3>
+<p>缩放</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">var</span> Mesh();</span><br><span class="line">mesh.scale.set(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line">mesh.scale.x = <span class="number">2</span>;</span><br><span class="line">mesh.scale.y = <span class="number">2</span>;</span><br><span class="line">mesh.scale.z = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="rotation"><a class="markdownIt-Anchor" href="#rotation"></a> rotation</h3>
+<p>旋转</p>
+<h2 id="动画"><a class="markdownIt-Anchor" href="#动画"></a> 动画</h2>
+<h3 id="windowsetinterval"><a class="markdownIt-Anchor" href="#windowsetinterval"></a> window.setInterval()</h3>
+<h3 id="windowrequestanimationframe"><a class="markdownIt-Anchor" href="#windowrequestanimationframe"></a> window.requestAnimationFrame()</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    requestAnimationFrame(animate);</span><br><span class="line">    renderer.render(scene, camera);</span><br><span class="line">&#125;</span><br><span class="line">animate();</span><br></pre></td></tr></table></figure>
+<h2 id="辅助插件"><a class="markdownIt-Anchor" href="#辅助插件"></a> 辅助插件</h2>
+<h3 id="orbitcontrolsjs-自由视角"><a class="markdownIt-Anchor" href="#orbitcontrolsjs-自由视角"></a> OrbitControls.js 自由视角</h3>
+<p>OrbitControls构造函数会导致camera.lookAt失效<br>
+应该先调用OrbitControls构造函数,再设置相机指向
+<a href="https://stackoverflow.com/questions/10325095/threejs-camera-lookat-has-no-effect-is-there-something-im-doing-wrong" target="_blank" rel="noopener">参考</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> controls = <span class="keyword">new</span> THREE.OrbitControls(camera); </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    requestAnimationFrame();</span><br><span class="line">    camera.lookAt(<span class="number">100</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    renderer.render(scene, camera);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="statjs-显示fps"><a class="markdownIt-Anchor" href="#statjs-显示fps"></a> stat.js 显示FPS</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stats = <span class="keyword">new</span> Stats();</span><br><span class="line">stats.showPanel(<span class="number">1</span>); <span class="comment">// 0: fps, 1: ms, 2: mb, 3+: custom</span></span><br><span class="line"><span class="built_in">document</span>.body.appendChild( stats.dom );</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//每一帧开始</span></span><br><span class="line">    stats.begin();</span><br><span class="line">    <span class="comment">// monitored code goes here</span></span><br><span class="line">    <span class="comment">//每一帧结束</span></span><br><span class="line">    stats.end();</span><br><span class="line">    requestAnimationFrame( animate );</span><br><span class="line">&#125;</span><br><span class="line">requestAnimationFrame( animate );</span><br></pre></td></tr></table></figure>
+<p>也可以把stat.js作为书签使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> script=<span class="built_in">document</span>.createElement(<span class="string">'script'</span>);script.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> stats=<span class="keyword">new</span> Stats();<span class="built_in">document</span>.body.appendChild(stats.dom);requestAnimationFrame(<span class="function"><span class="keyword">function</span> <span class="title">loop</span>(<span class="params"></span>)</span>&#123;stats.update();requestAnimationFrame(loop)&#125;);&#125;;script.src=<span class="string">'//rawgit.com/mrdoob/stats.js/master/build/stats.min.js'</span>;<span class="built_in">document</span>.head.appendChild(script);&#125;)()</span><br></pre></td></tr></table></figure>
+<h3 id="reflectorjs-镜面反射"><a class="markdownIt-Anchor" href="#reflectorjs-镜面反射"></a> Reflector.js 镜面反射</h3>
+<p>创建镜子之类的物体</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sphereGeom = <span class="keyword">new</span> THREE.CircleBufferGeometry( <span class="number">40</span>, <span class="number">64</span> );</span><br><span class="line"><span class="keyword">var</span> groundMirror = <span class="keyword">new</span> THREE.Reflector( sphereGeom, &#123;</span><br><span class="line">    clipBias: <span class="number">0.003</span>,</span><br><span class="line">    color: <span class="number">0x777777</span>,</span><br><span class="line">    recursion: <span class="number">1</span>,</span><br><span class="line">&#125; );</span><br><span class="line">scene.add(groundMirror);</span><br></pre></td></tr></table></figure>
+<h2 id="附录"><a class="markdownIt-Anchor" href="#附录"></a> 附录</h2>
+<h3 id="已不被赞成使用的函数及代替品"><a class="markdownIt-Anchor" href="#已不被赞成使用的函数及代替品"></a> 已不被赞成使用的函数及代替品</h3>
+<p>THREE.MeshFaceMaterial  &gt; []<br>
+THREE.ImageUtils.loadTexture() &gt;  THREE.TextureLoader()<br>
+.shadowMapEnabled &gt; .shadowMap.enabled</p>
+<h3 id="已不赞成使用被移除的插件及代替品"><a class="markdownIt-Anchor" href="#已不赞成使用被移除的插件及代替品"></a> 已不赞成使用/被移除的插件及代替品</h3>
+<p>OBJMTLLoader.js &gt; OBJLoader.js</p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/2017/12/31/利用Three.js实现粒子系统/">&lt;  利用Three.js实现粒子系统</a>
+      
+      
+        <a class="next" href="/2017/12/22/html2canvas/">html2canvas  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+  </main>
+
+  <!-- search -->      
+  
+
+  
+    
+      <script src="/js/main.js"></script>
+    
+  
+</body>
+</html>

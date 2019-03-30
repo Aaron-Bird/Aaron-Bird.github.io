@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!--[if lte IE 8]>
+    <script type="text/javascript">  
+        var tags = ["header", "footer", "nav", "aside", "article", "section", "object", "main"];  
+        for (var i in tags) {  
+            document.createElement(tags[i]);  
+        }  
+    </script>   
+  <![endif]-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html2canvas</title>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <!-- js -->
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/blotter.min.js"></script>
+  <script type="text/javascript" src="/js/rollingDistortMaterial.js"></script> -->
+  <!-- css -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/icon.css">
+  
+    
+      <link rel="stylesheet" href="/css/index.css">
+    
+  
+</head>
+
+<body>
+  <!-- header -->
+  <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- main -->
+  <main id="main" class="main">
+    <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#载入"><span class="toc-text"> 载入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用"><span class="toc-text"> 调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用范例"><span class="toc-text"> 使用范例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不支持的属性"><span class="toc-text"> 不支持的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bug"><span class="toc-text"> bug</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不显示canvas"><span class="toc-text"> 不显示canvas</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1 class="title">html2canvas</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-12-22T06:00:00.000Z">
+            2017-12-22
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript-library/">
+              <span>JavaScript library</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/JavaScript-library/">
+            <span>JavaScript library</span>
+          </a>
+        
+          <a href="/tags/img/">
+            <span>img</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <script src="/js/html2canvas.min.js"></script>
+<script>
+var dwsnapshot = function(){
+    var ele = document.querySelector('.content-wrap');
+    html2canvas(ele,{
+        // width: 800,
+        scale: 2,
+    }).then(function(c) {
+        var aNode = document.createElement('a');
+        aNode.href = c.toDataURL("png", 1);
+        //别忘了设置download属性,否则会报错
+        // Not allowed to navigate top frame to data URL
+        aNode.download = 'filename';
+        //下载文件
+        document.body.appendChild(aNode);
+        aNode.click();
+        aNode.parentNode.removeChild(aNode);
+    });  
+}
+</script>
+<p>html2canvas使用Promise执行后续操作,需确保Promise在全局作用域没有被覆盖<br>
+如需支持旧版浏览器,可提前加载babel polyfill(垫片)<br>
+<button class="snapshot" onclick="dwsnapshot()">截图</button></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="https://html2canvas.hertzen.com/documentation" target="_blank" rel="noopener">官方文档</a></p>
+<h2 id="载入"><a class="markdownIt-Anchor" href="#载入"></a> 载入</h2>
+<p>载入本地html2canvas代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"html2canvas.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="调用"><a class="markdownIt-Anchor" href="#调用"></a> 调用</h2>
+<p>html2canvas(<em>element</em>).then(function(canv) {<em>do something</em>})<br>
+html2canvas(<em>element</em>, <em>set</em>).then(function(canv) {<em>do something</em>})</p>
+<ul>
+<li>element 需生成截图的js DOM对象</li>
+<li>set 截图配置选项,可选</li>
+<li>canv 是一个canvas对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">html2canvas(<span class="built_in">document</span>.body).then(<span class="function"><span class="keyword">function</span>(<span class="params">canvas</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.body.innerHTML = <span class="string">''</span>;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(canvas);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><a href="http://html2canvas.hertzen.com/configuration" target="_blank" rel="noopener">更多设置详见官方文档</a></p>
+<h2 id="使用范例"><a class="markdownIt-Anchor" href="#使用范例"></a> 使用范例</h2>
+<p>获取图片</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">html2canvas(<span class="built_in">document</span>.body).then(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 用canvas.toDataURL将canvas对象转换为data URI</span></span><br><span class="line">    <span class="keyword">var</span> pngData = c.toDataURL(<span class="string">"png"</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> imgNode = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">    imgNode.src = pngData;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(imgNode);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>下载图片</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">html2canvas(<span class="built_in">document</span>.body).then(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aNode = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">    aNode.href = c.toDataURL(<span class="string">"png"</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="comment">//别忘了设置download属性,否则会报错</span></span><br><span class="line">    <span class="comment">// Not allowed to navigate top frame to data URL</span></span><br><span class="line">    aNode.download = <span class="string">'filename'</span>;</span><br><span class="line">    <span class="comment">//下载文件</span></span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(aNode);</span><br><span class="line">    aNode.click();</span><br><span class="line">    aNode.parentNode.removeChild(aNode);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="不支持的属性"><a class="markdownIt-Anchor" href="#不支持的属性"></a> 不支持的属性</h2>
+<p>html2canvas的实现原理是获取元素后,在canvas中重新绘制,因此有一定的局限性<br>
+暂时不支持部分属性,例如</p>
+<ul>
+<li>box-shadow</li>
+<li>filter</li>
+<li>word-wrap</li>
+<li>word-break</li>
+</ul>
+<p><a href="http://html2canvas.hertzen.com/features/" target="_blank" rel="noopener">详细列表见官方文档</a></p>
+<h2 id="bug"><a class="markdownIt-Anchor" href="#bug"></a> bug</h2>
+<h3 id="不显示canvas"><a class="markdownIt-Anchor" href="#不显示canvas"></a> 不显示canvas</h3>
+<p>有时html2canvas无法获取画布(canvas)绘制的图形,
+可暂时通过设置removeContainer: false解决该问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">html2canvas(<span class="built_in">document</span>.body, &#123;</span><br><span class="line">    removeContainer: <span class="literal">false</span>,</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">canvas</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.body.innerHTML = <span class="string">''</span>;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(canvas);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>注 版本v1.0.0-alpha.5已修复该bug
+<a href="https://github.com/niklasvh/html2canvas/issues/1311" target="_blank" rel="noopener">详见html2canvas issues</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/2017/12/24/three.js入门/">&lt;  Three.js入门</a>
+      
+      
+        <a class="next" href="/2017/12/18/JavaScript-Array/">JavaScript Array  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+  </main>
+
+  <!-- search -->      
+  
+
+  
+    
+      <script src="/js/main.js"></script>
+    
+  
+</body>
+</html>

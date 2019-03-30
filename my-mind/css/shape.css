@@ -1,0 +1,53 @@
+.shape-box > .content {
+	padding: 0.15em 0.4em;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+}
+
+.shape-ellipse > .content {
+	padding: 0.5em 1em;
+	border: 1px solid #aaa;
+	border-radius: 50%;
+}
+
+#port,
+#port ul,
+#port li,
+.shape-box > .content,
+.shape-ellipse > .content {
+	background-color: inherit;
+}
+
+
+
+/* current */
+#port>.shape-box.current > .content,
+.current > .content,
+.shape-underline.current > .content .text {
+	background-color: rgba(0,213,224, 0.2);
+}
+
+.shape-underline.current > .content {
+	background-color: transparent;
+}
+
+/* root */
+
+#port > .item > .content {
+	/* personal change del bold*/
+	/* font-weight: bold; */
+	/* border-width: 2px; */
+	font-size: 140%;
+}
+
+#port > .item > .toggle {
+	display: none;
+}
+
+/* 1st children */
+
+#port > .item > .children > .item > .content {
+	/* border-width: 2px; */
+	font-size: 120%;
+}
+

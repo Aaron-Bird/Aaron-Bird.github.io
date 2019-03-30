@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!--[if lte IE 8]>
+    <script type="text/javascript">  
+        var tags = ["header", "footer", "nav", "aside", "article", "section", "object", "main"];  
+        for (var i in tags) {  
+            document.createElement(tags[i]);  
+        }  
+    </script>   
+  <![endif]-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <!-- js -->
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/blotter.min.js"></script>
+  <script type="text/javascript" src="/js/rollingDistortMaterial.js"></script> -->
+  <!-- css -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/icon.css">
+  
+    
+      <link rel="stylesheet" href="/css/index.css">
+    
+  
+</head>
+
+<body>
+  <!-- header -->
+  <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- main -->
+  <main id="main" class="main">
+    
+
+<div class="index">
+    
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/30/缓动函数(easing function)/">
+                    缓动函数(easing function)
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-30T06:00:00.000Z">
+                  2019-03-30
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>网页设计经常会用到各种动画效果.<br>
+现实世界的大多数运动都是变速的.与变速运动相比,匀速运动就显得很生硬,给人一种不自然的感觉.</p>
+<p>css可以用timing-function参数来实现变速运动.<br>
+但不是所有的动画都能用css来解决, 例如下拉刷新, 要用js来根据touchmove的距离来绘制动画效果.<br>
+这时就可以用缓动公式来实现各种动画效果.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/30/缓动函数(easing function)/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
+                    -webkit-overflow-scrolling导致元素消失
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-24T09:00:00.000Z">
+                  2019-03-24
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>在ios系统的浏览器中, 如果想让可滚动元素(例如有overflow: scroll属性的元素)带有弹性效果, 往往会给可滚动元素添加-webkit-overflow-scrolling: touch属性.<br>
+但这个属性有个bug, 可能会导致其内部的某些元素不显示.看起来就好象给元素加上了visibility:hidden一样.</p>
+<p>为了修复这个bug, 需要给&quot;某些&quot;后代元素添加transform: translate3d(0,0,0)属性.</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: scroll;</span><br><span class="line">  -webkit-<span class="attribute">overflow</span>-scrolling: touch;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: translate3d(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里之所以称&quot;某些&quot;,是因为无法确定到底应该加到哪些元素之上.<br>
+因为translate3d会产生很多副作用, 例如会改变元素的z-index, 要依具体情况而定.<br>
+需注意的是这个方法也不一定总是有效.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/23/封装Swiper为Vue组件/">
+                    封装Swiper为Vue组件
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-23T07:00:00.000Z">
+                  2019-03-23
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="载入"><a class="markdownIt-Anchor" href="#载入"></a> 载入</h2>
+<p>安装swiper</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add swiper@<span class="number">4.5</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>另外, 也可以使用cdn载入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// css</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css&quot;&gt;</span><br><span class="line">// js</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="结构"><a class="markdownIt-Anchor" href="#结构"></a> 结构</h2>
+<p>一个swiper所需的html结构如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div class=&quot;swiper-container&quot;&gt;</span><br><span class="line">    &lt;!-- Additional required wrapper --&gt;</span><br><span class="line">    &lt;!-- swiper通过更改swiper-wrapper的transform属性来轮播内容 --&gt;</span><br><span class="line">    &lt;div class=&quot;swiper-wrapper&quot;&gt;</span><br><span class="line">        &lt;!-- Slides 单个内容--&gt;</span><br><span class="line">        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 1&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 2&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 3&lt;/div&gt;</span><br><span class="line">        ...</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>class属性值swiper-wrapper和swiper-slide是必有的,没找到可以更改这两个class的设置项.</p>
+<p>创建swiper</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mySwiper = <span class="keyword">new</span> Swiper (<span class="string">'.swiper-container'</span>, &#123; params...&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://idangero.us/swiper/get-started/" target="_blank" rel="noopener">https://idangero.us/swiper/get-started/</a></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/23/封装Swiper为Vue组件/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/20/圆形运算相关知识点/">
+                    圆形运算相关知识点
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-20T05:00:00.000Z">
+                  2019-03-20
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="弧度"><a class="markdownIt-Anchor" href="#弧度"></a> 弧度</h2>
+<p>角度: 圆被平分为360分(人为定义),其中的一份为 1deg, 1deg =  π / 180</p>
+<p>弧度: 圆上弧长等于半径时的圆心角,  1rad ~ 57.2958deg<br>
+<img src="/img/7e45e675.png" alt="51987688-08c55300-24de-11e9-81ba-e4aa61fb0446.png"><br>
+整圆弧度 2π (2πr / r)</p>
+<h2 id="角弧度换算"><a class="markdownIt-Anchor" href="#角弧度换算"></a> 角弧度换算</h2>
+<p>弧度转角度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toAngle</span>(<span class="params">radian</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  (<span class="number">180</span> / <span class="built_in">Math</span>.PI)  * radian</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>角度转弧度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toRadian</span>(<span class="params">angle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">Math</span>.PI / <span class="number">180</span>) *  angle</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/20/圆形运算相关知识点/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/20/储存keep-alive内组件的滚动位置/">
+                    储存keep-alive内组件的滚动位置
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-19T23:00:00.000Z">
+                  2019-03-20
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>keep-alive一般被用来缓存组件实例.当从一个组件切换到另一个时, 这个组件不会被销毁, 而会被保存起来供下次调用时使用.<br>
+遗憾的是, 如果被keep-alive包裹的组件中有滚动元素,keep-alive不会储存滚动位置.<br>
+需要在滚动时储存位置, 然后在组件被激活时还原.</p>
+<p>keep-alive 组件有两个特殊的生命周期钩子:  activated和deactivated.<br>
+activated在keep-alive组件激活时调用.<br>
+deactivated在keep-alive组件被停用时调用.<br>
+<a href="https://cn.vuejs.org/v2/api/#activated" target="_blank" rel="noopener">API — Vue.js</a></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/20/储存keep-alive内组件的滚动位置/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/20/急性肠胃炎的表现症状及护理注意事项/">
+                    急性肠胃炎的表现症状及护理注意事项
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-19T21:00:00.000Z">
+                  2019-03-20
+                </time>
+              
+              <!-- categories -->
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="症状表现"><a class="markdownIt-Anchor" href="#症状表现"></a> 症状表现</h2>
+<p>急性胃肠炎的初期表现为排气 打嗝 腹胀.<br>
+过一段时间后,患者常会并发腹痛 腹泻 呕吐 发热等症状.</p>
+<h2 id="诊断方式"><a class="markdownIt-Anchor" href="#诊断方式"></a> 诊断方式</h2>
+<p>查血常规, 一般可见 白细胞 中性细胞比率增加, 淋巴细胞比率下降.<br>
+如果嗜酸性粒细胞上升,则考虑为过敏或寄生虫感染.</p>
+<h2 id="病因"><a class="markdownIt-Anchor" href="#病因"></a> 病因</h2>
+<p>1 吃了变质的食物进而导致沙门氏菌等细菌/寄生虫感染<br>
+2 吃了刺激性食物导致的胃肠炎(如雪糕/火锅等)<br>
+3 饮食过量暴饮暴食也可能会导致急性胃肠炎</p>
+<h2 id="治疗"><a class="markdownIt-Anchor" href="#治疗"></a> 治疗</h2>
+<p>轻度患者无需挂水, 服用 蒙脱石散(思密达 止泻) 和 黄连素(消炎).<br>
+重症患者需要挂抗生素(如左氧氟沙星).<br>
+如果出现脱水症状或饮水也会导致呕吐, 则挂葡萄糖补冲水分.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/20/急性肠胃炎的表现症状及护理注意事项/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/16/event loop/">
+                    event loop
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-16T04:00:00.000Z">
+                  2019-03-16
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>JavaScript支持处理并发事件,其并发模型基于event loop.<br>
+<img src="/img/8709b91c.jpg" alt="Untitled Diagram (2).jpg"></p>
+<h2 id="并发与并行"><a class="markdownIt-Anchor" href="#并发与并行"></a> 并发与并行</h2>
+<p>并发和并行是两个不同的概念,很容易被弄混.<br>
+并发(concurrency)指的是<strong>同一时间有能力应对多件事</strong>,而并行(Parallel )指的是<strong>同一时间有能力做多件事</strong>.</p>
+<p>举个例子:<br>
+妈妈一边打小明,一边和老王通电话.妈妈先打一下小明, 然后和老王聊一句.如此交替,这是并发.<br>
+小明的妈妈是个妖怪,长了两个脑袋.一个脑袋骂小明,同时另一个脑袋通电话.这即是并行,也是并发.<br>
+但如果妈妈的两个脑袋同时骂小明,那这就只能是并行了,不是并发.因为骂小明是同一个事件.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/16/event loop/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/10/Js是一门_单线程_语言/">
+                    Js是一门&#34;单线程&#34;语言
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-10T04:00:00.000Z">
+                  2019-03-10
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="什么是线程-和进程有什么区别"><a class="markdownIt-Anchor" href="#什么是线程-和进程有什么区别"></a> 什么是&quot;线程&quot;, 和&quot;进程&quot;有什么区别?</h2>
+<p>&quot;进程&quot;(process)是运行中的&quot;程序&quot;(program)实例, 一个&quot;程序&quot;可以拥有多个&quot;进程&quot;.<br>
+进程之间彼此独立,有独立的内存空间.</p>
+<p>Windows中的Chrome进程大军:<br>
+<img src="/img/0143c06b.PNG" alt="捕获.PNG"></p>
+<p>&quot;线程&quot;(thread)是操作系统分配CPU控制时间的基本单位, 一个&quot;进程&quot;可以拥有一个或多个&quot;线程&quot;,这些&quot;线程&quot;共享进程内的资源.</p>
+<p>单个进程内的线程数量:<br>
+<img src="/img/35818f8e.PNG" alt="2.PNG"></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/10/Js是一门_单线程_语言/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/03/移动端浏览器对audio标签的限制总结/">
+                    移动端浏览器对audio标签的限制总结
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-03T09:00:00.000Z">
+                  2019-03-03
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>往往在桌面写好的播放功能,到移动端各种出错.<br>
+这是因为在移动端,对于audio的使用有很多限制,特别是safari.<br>
+而且现在的各种框架, 极大加深了程序的复杂程度,使调试变得异常困难.</p>
+<h2 id="测试环境"><a class="markdownIt-Anchor" href="#测试环境"></a> 测试环境</h2>
+<p>本文测试环境为iPad ios12,没有条件进行iphone/桌面端safari环境下audio的表现</p>
+<h2 id="不支持autoplaypreload"><a class="markdownIt-Anchor" href="#不支持autoplaypreload"></a> 不支持autoplay/preload</h2>
+<p>大部分移动端浏览器都不允许网页自动播放/预加载音乐.<br>
+例如下面这个示例, 桌面浏览器可以自动播放,而移动浏览器没有任何反应.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span> <span class="attr">autoplay</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>除非用户点了播放按钮/手动触发了某个事件(这个事件里调用了audio.play()方法)<br>
+为啥这么设计?据说是怕网页偷跑流量.</p>
+<h2 id="只有用户手动触发的事件能调用playload"><a class="markdownIt-Anchor" href="#只有用户手动触发的事件能调用playload"></a> 只有用户手动触发的事件能调用play/load</h2>
+<p>既然autoplay不能用,那能不能用play方法来自动播放呢?
+很遗憾的是, 不行.
+例如下面这样,在移动端没效果:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> audioEl = <span class="built_in">document</span>.querySelector(<span class="string">'audio'</span>)</span></span><br><span class="line"><span class="undefined">  audioEl.play()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>先来看看水果的文档:</p>
+<blockquote>
+<p>In Safari on iOS (for all devices, including iPad), where the user may be on a cellular network and be charged per data unit, preload and autoplay are disabled. No data is loaded until the user initiates it. This means the JavaScript play() and load() methods are also inactive until the user initiates playback, unless the play() or load() method is triggered by user action. In other words, a user-initiated Play button works, but an onLoad=&quot;play()&quot; event does not.</p>
+</blockquote>
+<p><a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html" target="_blank" rel="noopener">iOS-Specific Considerations</a></p>
+<p>也就是说,只有当用户手动触发某个事件时,audio.play才能被调用.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">click由用户触发, 有效</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Play"</span> <span class="attr">onclick</span>=<span class="string">"document.myMovie.play()"</span>&gt;</span></span><br><span class="line">onload事件不是用户触发的,无效</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"document.myMovie.play()"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>因此,可以给外层元素绑定一个click事件.<br>
+只要用户点了这个元素,就能播放音乐.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> audioEl = <span class="built_in">document</span>.querySelector(<span class="string">'audio'</span>)</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> played = <span class="literal">false</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>).addEventListener(<span class="string">'click'</span>, ()=&gt; &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">if</span> (!played) &#123;</span></span><br><span class="line"><span class="undefined">      audioEl.play()</span></span><br><span class="line"><span class="actionscript">      played = <span class="literal">true</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/03/移动端浏览器对audio标签的限制总结/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/02/25/transform导致fixed失效/">
+                    transform导致fixed失效
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-02-25T12:00:00.000Z">
+                  2019-02-25
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>transform是个超级常用的属性, 需要居中/动画/开启cpu加速时经常会用到.<br>
+但这个属性也有很多副作用, 例如把后边的元素盖住了,或者是后代absolute元素被overflow:hidden剪裁.<br>
+除此之外还有个影响, 让拥有固定定位(fixed)属性的子元素变的像个绝对定位(absolute)元素.</p>
+<p><img src="/img/6cb4441c.PNG" alt="1.PNG"></p>
+<p>如上图所示, 黑色子元素为固定定位元素(fixed), 由于黄色父元素transfrom属性的影响, 表现的像个绝对定位元素(absolute).</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/02/25/transform导致fixed失效/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+    
+    <!-- pagination -->
+<nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">></a>
+</nav>
+</div>
+  </main>
+
+  <!-- search -->      
+  
+
+  
+    
+      <script src="/js/main.js"></script>
+    
+  
+</body>
+</html>
