@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!--[if lte IE 8]>
+    <script type="text/javascript">  
+        var tags = ["header", "footer", "nav", "aside", "article", "section", "object", "main"];  
+        for (var i in tags) {  
+            document.createElement(tags[i]);  
+        }  
+    </script>   
+  <![endif]-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>(动画效果)跟随下拉放大图像</title>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <!-- js -->
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/blotter.min.js"></script>
+  <script type="text/javascript" src="/js/rollingDistortMaterial.js"></script> -->
+  <!-- css -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/icon.css">
+  
+    
+      <link rel="stylesheet" href="/css/index.css">
+    
+  
+</head>
+
+<body>
+  <!-- header -->
+  <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- main -->
+  <main id="main" class="main">
+    <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-text"> 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dom结构"><span class="toc-text"> Dom结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js代码"><span class="toc-text"> Js代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整代码"><span class="toc-text"> 完整代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么不用background-image和position实现"><span class="toc-text"> 为什么不用background-image和position实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1 class="title">(动画效果)跟随下拉放大图像</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-03-31T06:00:00.000Z">
+            2019-03-31
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p><img src="/img/702feb54.gif" alt="a.gif"></p>
+<h2 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h2>
+<p>监控用户touch事件, 根据移动距离修改图像的高度及缩放尺寸.<br>
+图像的放大要配合修改height和scale来进行,不能单独使用scale.因为缩放并不会占用文本流位置,这会导致图像覆盖下面的内容.</p>
+<a id="more"></a>
+<p><img src="/img/9484a462.gif" alt="alice.gif"></p>
+<h2 id="dom结构"><a class="markdownIt-Anchor" href="#dom结构"></a> Dom结构</h2>
+<p>用.img-container元素包裹图像,搭配height和overflow来控制图片的显示高度.<br>
+然后用position将图像定位到.img-container元素的中心位置.<br>
+用户向下拖动页面时,根据移动距离分别修改.img-container的height和.img的scale.</p>
+<p>html代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"img-container"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"img"</span> <span class="attr">src</span>=<span class="string">"./2.png"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>css代码:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img-container</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">250px</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">background-color</span>: cornflowerblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="js代码"><a class="markdownIt-Anchor" href="#js代码"></a> Js代码</h2>
+<p>用户拖动移动端页面时,会分别触发touchstart touchmove touchend事件,这三个事件分别对应手指按下 拖动 抬起.<br>
+通过访问event.targetTouches可获取Touch对象.这是一个只读的列表,包含当前所有手指触摸点对应的Touch对象.</p>
+<p>在touchstart事件中(手指点击时), 保存手指按下时的初始位置.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> startY</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'touchstart'</span>, (e) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 获取触摸点相对于页面可视区域的高度  </span></span><br><span class="line">  <span class="keyword">const</span> y = e.targetTouches[<span class="number">0</span>].clientY</span><br><span class="line">  startY = y</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在touchmove事件中(手指滑动时), 根据startY和y(当前触摸点位置)判断用户滑动方向.<br>
+如果已经到顶了还向下滑动, 则缩放图像.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'touchmove'</span>, (e) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> y = e.targetTouches[<span class="number">0</span>].clientY</span><br><span class="line">  <span class="comment">// 获取页面的滚动距离</span></span><br><span class="line">  <span class="keyword">const</span> scrollTop = imgContEl.scrollTop</span><br><span class="line">  <span class="comment">// 判断手指移动方向, 向下移动时小于0,反之大于零</span></span><br><span class="line">  <span class="keyword">const</span> moveDis = y - startY</span><br><span class="line">  <span class="comment">// 滚动到顶时继续下拉,则放大图像    </span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.scrollY &lt;= <span class="number">0</span> &amp;&amp; moveDis &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 增加.img-container元素的高度</span></span><br><span class="line">    <span class="keyword">const</span> height = easeOutCubic(moveDis, imgHeight, <span class="number">130</span>, <span class="number">300</span>)</span><br><span class="line">    imgContEl.style.height = height + <span class="string">'px'</span></span><br><span class="line">    <span class="comment">// 增加.img元素的scale值来放大图片  </span></span><br><span class="line">    <span class="keyword">const</span> scale = easeOutCubic(moveDis, <span class="number">1</span>, <span class="number">0.2</span>, <span class="number">300</span>)</span><br><span class="line">    imgEl.style.transform = <span class="string">`translate(-50%, -50%) scale(<span class="subst">$&#123;scale&#125;</span>)`</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>easeOutCubic是一个三次方ease-out缓动函数,可以制造类似橡皮筋的效果.<br>
+代码如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> easeOutCubic = <span class="function">(<span class="params">t, b, c, d</span>) =&gt;</span> &#123;</span><br><span class="line">  t /= d;</span><br><span class="line">  t--;</span><br><span class="line">  <span class="keyword">return</span> c * (t * t * t + <span class="number">1</span>) + b;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在touchend事件中(用户松手时), 还原图像大小.<br>
+因为不需要根据手指的移动来计算,所以直接用css来过渡缩小时的动画效果.<br>
+js代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'touchend'</span>, (e) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 还原样式  </span></span><br><span class="line">  imgContEl.style.height = imgHeight + <span class="string">'px'</span></span><br><span class="line">  imgEl.style.transform = <span class="string">'translate(-50%, -50%)'</span></span><br><span class="line">  <span class="comment">// 添加class: rebound触发回弹效果  </span></span><br><span class="line">  imgContEl.classList.add(<span class="string">'rebound'</span>)</span><br><span class="line">  imgEl.classList.add(<span class="string">'rebound'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">css代码:  </span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>css</span><br><span class="line">.rebound &#123;</span><br><span class="line">  transition: <span class="number">0.2</span>s ease-out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>除了ease-out, 还可以用cubic-bezier制造回弹效果.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.rebound</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: <span class="number">0.4s</span> <span class="built_in">cubic-bezier</span>(0.175, 0.885, 0.32, 1.275);</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">## 浏览器兼容  </span><br><span class="line"></span><br><span class="line">移动端浏览器和桌面端不同,有自己的下拉效果.  </span><br><span class="line">例如下拉刷新, 或是<span class="selector-tag">ios</span>平台浏览器拉到头时的弹动效果.  </span><br><span class="line">这些都和图像放大有冲突, 因此要阻止触发这些事件.  </span><br><span class="line"></span><br><span class="line">在一般元素绑定的事件内, 可以用<span class="selector-tag">event</span><span class="selector-class">.preventDefault</span>()阻止触发浏览器自带的事件.</span><br><span class="line">但是<span class="selector-tag">body</span>不行,如果在<span class="selector-tag">body</span>或<span class="selector-tag">window</span>绑定的事件中调用<span class="selector-tag">preventDefault</span>, 多半会报错:  </span><br><span class="line"></span><br><span class="line">&gt;<span class="selector-tag">Unable</span> <span class="selector-tag">to</span> <span class="selector-tag">preventDefault</span> <span class="selector-tag">inside</span> <span class="selector-tag">passive</span> <span class="selector-tag">event</span> <span class="selector-tag">listener</span> <span class="selector-tag">due</span> <span class="selector-tag">to</span> <span class="selector-tag">target</span> <span class="selector-tag">being</span> <span class="selector-tag">treated</span> <span class="selector-tag">as</span> <span class="selector-tag">passive</span>.  </span><br><span class="line"></span><br><span class="line">这和<span class="selector-tag">addEventListener</span>的第三个参数有关, 这个参数除了传入<span class="selector-tag">Boolean</span>之外,还可以传入对象,例如:  </span><br><span class="line">```<span class="selector-tag">js</span></span><br><span class="line">document.body.addEventListener('touchmove',calback, &#123;</span><br><span class="line">  <span class="selector-tag">capture</span>: <span class="selector-tag">false</span>,</span><br><span class="line">  <span class="selector-tag">passive</span>: <span class="selector-tag">false</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>关键点就在于第三个参数中的passive属性.</p>
+<p>当passive为true是, 浏览器会忽略calback中所有的preventDefault.<br>
+这是一个优化.在这之前,浏览器需要在等待touchmove事件中的回调函数执行完成, 才能滚动页面.<br>
+添加passive: true后, 浏览器可以立刻触发滚动,无需等待回调函数.</p>
+<p>passive的默认值是false,但有三个例外: Window document document.body.这三个元素的passive值默认为true.</p>
+<p>如果想在这三个元素中调用preventDefault,则需要手动设置passive属性为false.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'touchmove'</span>, (e) =&gt; &#123;&#125;, &#123;<span class="attr">passive</span>: <span class="literal">false</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="完整代码"><a class="markdownIt-Anchor" href="#完整代码"></a> 完整代码</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">  &lt;title&gt;drop down&lt;/title&gt;</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">    body &#123;</span><br><span class="line">      margin: 0;</span><br><span class="line">      line-height: 1.5;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .img-container &#123;</span><br><span class="line">      position: relative;</span><br><span class="line">      height: 250px;</span><br><span class="line">      overflow: hidden;</span><br><span class="line">      background-color: cornflowerblue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    img &#123;</span><br><span class="line">      position: absolute;</span><br><span class="line">      top: 50%;</span><br><span class="line">      left: 50%;</span><br><span class="line">      transform: translate(-50%, -50%);</span><br><span class="line">      width: 100%;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .rebound &#123;</span><br><span class="line">      transition: 0.2s ease-out;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .article &#123;</span><br><span class="line">      margin: 8px;</span><br><span class="line">      height: 100vh;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div class=&quot;img-container&quot;&gt;</span><br><span class="line">    &lt;img class=&quot;img&quot; src=&quot;./2.png&quot;&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;article&quot;&gt;</span><br><span class="line">    Alice was beginning to get very tired of sitting by her sister on the bank, and of having</span><br><span class="line">    nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or</span><br><span class="line">    conversations in it, `and what is the use of a book,&apos; thought Alice `without pictures or conversation?&apos;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    const easeOutCubic = (t, b, c, d) =&gt; &#123;</span><br><span class="line">      t /= d;</span><br><span class="line">      t--;</span><br><span class="line">      return c * (t * t * t + 1) + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    const imgContEl = document.querySelector(&apos;.img-container&apos;)</span><br><span class="line">    const imgEl = document.querySelector(&apos;.img&apos;)</span><br><span class="line">    const imgHeight = imgContEl.clientHeight</span><br><span class="line">    let startY</span><br><span class="line">    window.addEventListener(&apos;touchstart&apos;, (e) =&gt; &#123;</span><br><span class="line">      const y = e.targetTouches[0].clientY</span><br><span class="line">      if (y &lt; imgHeight) &#123;</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line">      startY = y</span><br><span class="line">      imgContEl.classList.remove(&apos;rebound&apos;)</span><br><span class="line">      imgEl.classList.remove(&apos;rebound&apos;)</span><br><span class="line">    &#125;)</span><br><span class="line">    window.addEventListener(&apos;touchmove&apos;, (e) =&gt; &#123;</span><br><span class="line">      if (!startY) &#123;</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line">      e.preventDefault()</span><br><span class="line">      const y = e.targetTouches[0].clientY</span><br><span class="line">      const scrollTop = imgContEl.scrollTop</span><br><span class="line">      const moveDis = y - startY</span><br><span class="line">      if (window.scrollY &lt;= 0 &amp;&amp; moveDis &gt; 0) &#123;</span><br><span class="line">        const height = easeOutCubic(moveDis, imgHeight, 130, 300)</span><br><span class="line">        imgContEl.style.height = height + &apos;px&apos;</span><br><span class="line">        const scale = easeOutCubic(moveDis, 1, 0.2, 300)</span><br><span class="line">        imgEl.style.transform = `translate(-50%, -50%) scale($&#123;scale&#125;)`</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      passive: false</span><br><span class="line">    &#125;)</span><br><span class="line">    window.addEventListener(&apos;touchend&apos;, (e) =&gt; &#123;</span><br><span class="line">      startY = null</span><br><span class="line">      imgContEl.style.height = imgHeight + &apos;px&apos;</span><br><span class="line">      imgEl.style.transform = &apos;translate(-50%, -50%)&apos;</span><br><span class="line">      imgContEl.classList.add(&apos;rebound&apos;)</span><br><span class="line">      imgEl.classList.add(&apos;rebound&apos;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="为什么不用background-image和position实现"><a class="markdownIt-Anchor" href="#为什么不用background-image和position实现"></a> 为什么不用background-image和position实现</h2>
+<p>还有一种实现结构是利用背景配合background-position和background-size来定位和居中图片.<br>
+这样就不需要套一个元素, 操作更方便.<br>
+但这种方法有个缺点, 下拉时背景图像可能会抖动.<br>
+原因可能是元素尺寸变化不大时,有些浏览器不会实时计算背景图像的位移.</p>
+<p>拉到头时背景有轻微的抖动:<br>
+<img src="/img/b9f05227.gif" alt="ezgif.com-optimize (1).gif"><br>
+利用背景实现的下拉放大:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>drop down<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        body &#123;</span></span><br><span class="line"><span class="undefined">            margin: 0;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.img-container</span> &#123;</span></span><br><span class="line"><span class="undefined">            height: 250px;</span></span><br><span class="line"><span class="undefined">            background-image: url('./2.png');</span></span><br><span class="line"><span class="undefined">            background-size: 100% auto;</span></span><br><span class="line"><span class="undefined">            background-position: center;</span></span><br><span class="line"><span class="undefined">            background-repeat: no-repeat;</span></span><br><span class="line"><span class="undefined">            background-color: cornflowerblue;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.rebound</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">transition</span>: 0<span class="selector-class">.2s</span> <span class="selector-tag">ease-out</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.article</span> &#123;</span></span><br><span class="line"><span class="undefined">            height: 100vh;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"img-container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"article"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> easeOutCubic = <span class="function">(<span class="params">t, b, c, d</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="undefined">            t /= d;</span></span><br><span class="line"><span class="undefined">            t--;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> c * (t * t * t + <span class="number">1</span>) + b;</span></span><br><span class="line"><span class="undefined">        &#125;;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> imgContEl = <span class="built_in">document</span>.querySelector(<span class="string">'.img-container'</span>)</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> imgHeight = imgContEl.clientHeight</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> startX, startY</span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.addEventListener(<span class="string">'touchstart'</span>, (e) =&gt; &#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">const</span> y = e.targetTouches[<span class="number">0</span>].clientY</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">if</span> (y &lt; imgHeight) &#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">            startY = y</span></span><br><span class="line"><span class="actionscript">            imgContEl.classList.remove(<span class="string">'rebound'</span>)</span></span><br><span class="line"><span class="undefined">        &#125;)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.addEventListener(<span class="string">'touchmove'</span>, (e) =&gt; &#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">if</span> (!startY) &#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">            e.preventDefault()</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">const</span> y = e.targetTouches[<span class="number">0</span>].clientY</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">const</span> scrollTop = imgContEl.scrollTop</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">const</span> moveDis = y - startY</span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (<span class="built_in">window</span>.scrollY &lt;= <span class="number">0</span> &amp;&amp; moveDis &gt; <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">const</span> height = easeOutCubic(moveDis, imgHeight, <span class="number">130</span>, <span class="number">300</span>)</span></span><br><span class="line"><span class="actionscript">                imgContEl.style.height = height + <span class="string">'px'</span></span></span><br><span class="line"><span class="actionscript">                <span class="keyword">const</span> scale = easeOutCubic(moveDis, <span class="number">100</span>, <span class="number">20</span>, <span class="number">300</span>)</span></span><br><span class="line"><span class="javascript">                imgContEl.style.backgroundSize = <span class="string">`<span class="subst">$&#123;scale&#125;</span>% auto`</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;, &#123;</span></span><br><span class="line"><span class="actionscript">            passive: <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">        &#125;)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.addEventListener(<span class="string">'touchend'</span>, (e) =&gt; &#123;</span></span><br><span class="line"><span class="actionscript">            startY = <span class="literal">null</span></span></span><br><span class="line"><span class="actionscript">            imgContEl.style.height = imgHeight + <span class="string">'px'</span></span></span><br><span class="line"><span class="actionscript">            imgContEl.style.backgroundSize = <span class="string">'100% auto'</span></span></span><br><span class="line"><span class="actionscript">            imgContEl.classList.add(<span class="string">'rebound'</span>)</span></span><br><span class="line"><span class="undefined">        &#125;)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="https://juejin.im/post/5ad804c1f265da504547fe68" target="_blank" rel="noopener">关于passive event listener的一次踩坑 - 掘金</a><br>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener">EventTarget.addEventListener() - Web API 接口参考 | MDN</a><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/targetTouches" target="_blank" rel="noopener">TouchEvent.targetTouches - Web APIs | MDN</a><br>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Touch/clientX" target="_blank" rel="noopener">Touch.clientX - Web API 接口参考 | MDN</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+      
+        <a class="next" href="/2019/03/30/缓动函数(easing function)/">缓动函数(easing function)  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+  </main>
+
+  <!-- search -->      
+  
+
+  
+    
+      <script src="/js/main.js"></script>
+    
+  
+</body>
+</html>
