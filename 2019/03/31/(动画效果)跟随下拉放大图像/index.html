@@ -159,7 +159,7 @@ js代码:</p>
 <p>这和addEventListener的第三个参数有关, 这个参数除了传入Boolean之外,还可以传入对象,例如:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'touchmove'</span>,calback, &#123;</span><br><span class="line">  capture: <span class="literal">false</span>,</span><br><span class="line">  passive: <span class="literal">false</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>关键点就在于第三个参数中的passive属性.</p>
-<p>当passive为true是, 浏览器会忽略calback中所有的preventDefault.<br>
+<p>当passive为true时, 浏览器会忽略calback中所有的preventDefault调用.<br>
 这是一个优化.在这之前,浏览器需要在等待touchmove事件中的回调函数执行完成, 才能滚动页面.<br>
 添加passive: true后, 浏览器可以立刻触发滚动,无需等待回调函数.</p>
 <p>passive的默认值是false,但有三个例外: Window document document.body.这三个元素的passive值默认为true.</p>
@@ -188,6 +188,8 @@ js代码:</p>
   <!-- pagination -->
   
     <nav class="pagination">
+      
+        <a class="prev" href="/2019/03/31/阻止滚动穿透/">&lt;  阻止滚动穿透</a>
       
       
         <a class="next" href="/2019/03/30/缓动函数(easing function)/">缓动函数(easing function)  &gt;</a>

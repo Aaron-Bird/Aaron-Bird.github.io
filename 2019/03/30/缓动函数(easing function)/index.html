@@ -145,7 +145,7 @@
 <p>将ease-in映射到横向移动上,可以观察到开始很慢, 然后逐渐变快, 在结尾时速度最快.<br>
 <img src="/img/2a6f9e0a.PNG" alt="inv.PNG"></p>
 <p>具体的代码如下:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">easeInQuad</span>(<span class="params">currentTime, startValue, changeValue, duration</span>) </span>&#123;</span><br><span class="line">	currentTime /= duration;</span><br><span class="line">	<span class="keyword">return</span> changeValue * currentTime * currentTime + startValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">easeInQuad</span>(<span class="params">currentTime, startValue, changeValue, duration</span>) </span>&#123;</span><br><span class="line">  currentTime /= duration;</span><br><span class="line">  <span class="keyword">return</span> changeValue * currentTime * currentTime + startValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面代码的执行步骤为:</p>
 <ul>
 <li>将&quot;当前时间&quot;映射[0, 1]间(currentTime /= duration)</li>

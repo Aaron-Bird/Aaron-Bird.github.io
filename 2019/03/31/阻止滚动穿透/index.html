@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!--[if lte IE 8]>
+    <script type="text/javascript">  
+        var tags = ["header", "footer", "nav", "aside", "article", "section", "object", "main"];  
+        for (var i in tags) {  
+            document.createElement(tags[i]);  
+        }  
+    </script>   
+  <![endif]-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阻止滚动穿透</title>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <!-- js -->
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/blotter.min.js"></script>
+  <script type="text/javascript" src="/js/rollingDistortMaterial.js"></script> -->
+  <!-- css -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/icon.css">
+  
+    
+      <link rel="stylesheet" href="/css/index.css">
+    
+  
+</head>
+
+<body>
+  <!-- header -->
+  <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- main -->
+  <main id="main" class="main">
+    <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#body-scroll-lock"><span class="toc-text"> body-scroll-lock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-text"> 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text"> 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1 class="title">阻止滚动穿透</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-03-31T11:00:00.000Z">
+            2019-03-31
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>当滚动元素滚动到顶/底时, 如果其外层还有可滚动的元素,则会触发外层可滚动元素的滚动.<br>
+<img src="/img/b3d2bfc3.gif" alt="a.gif"></p>
+<p>这是个feature, 但有时这个feature会给开发者带来麻烦.<br>
+特别是safari, 如果某个可滚动元素设置了webkit-overflow-scrolling: touch,滑动到头的时候经常会被卡住.</p>
+<a id="more"></a>  
+<h2 id="body-scroll-lock"><a class="markdownIt-Anchor" href="#body-scroll-lock"></a> body-scroll-lock</h2>
+<p>用body-scroll-lock可以解决这个问题.当滚动到元素边界时,阻止继续滚动.<br>
+<a href="https://github.com/willmcpo/body-scroll-lock" target="_blank" rel="noopener">GitHub - willmcpo/body-scroll-lock: Body scroll locking that just works with everything 😏</a></p>
+<p class="codepen" data-height="265" data-theme-id="0" data-default-tab="html,result" data-user="aaronbird" data-slug-hash="vMYyQg" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="vMYyQg">
+  <span>See the Pen <a href="https://codepen.io/aaronbird/pen/vMYyQg/" target="_blank" rel="noopener">
+  vMYyQg</a> by aaronbird (<a href="https://codepen.io/aaronbird" target="_blank" rel="noopener">@aaronbird</a>)
+  on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<h2 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h2>
+<p>监控可滚动元素的touchmove事件, 判断手指的滑动方向和元素的滚动距离.<br>
+如果元素滚动到顶时用户继续下拉,则将scrollTop重置为零,同时调用event.preventDefault阻止页面滚动/刷新等默认动作.<br>
+如果元素滚动到底时用户继续上滑, 则将scrollTop重置为最大可滚动距离, 同时调用preventDefault.</p>
+<p>注意: 如果将tochmove事件挂在window document document.body这三个元素上,则必需设置addEventListener的第三个参数的passive属性为false.否则浏览器会忽略事件函数中调用的preventDefault.</p>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre class="highlight"><code class="js"><span class="keyword">const</span> fixScroll = <span class="function">(<span class="params">scrollEl</span>) =&gt;</span> {
+  <span class="keyword">let</span> startY
+  scrollEl.addEventListener(<span class="string">'touchstart'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>{
+    <span class="comment">// 如果多于1根手指点击屏幕,则不处理</span>
+    <span class="keyword">if</span> (event.targetTouches.length &gt; <span class="number">1</span>) {
+      <span class="keyword">return</span>
+    }
+    <span class="comment">// 储存手指的初始位置</span>
+    startY = event.targetTouches[<span class="number">0</span>].clientY
+  }, <span class="literal">false</span>)
+  scrollEl.addEventListener(<span class="string">'touchmove'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>{
+    <span class="keyword">if</span> (event.targetTouches.length &gt; <span class="number">1</span>) {
+      <span class="keyword">return</span>
+    }
+    <span class="comment">// 判断手指滑动方向, y大于0时向下滑动, 小于0时向上滑动</span>
+    <span class="keyword">const</span> y = event.targetTouches[<span class="number">0</span>].clientY - startY
+    <span class="comment">// 如果到顶时继续向下拉</span>
+    <span class="keyword">if</span> (scrollEl.scrollTop &lt;= <span class="number">0</span> &amp;&amp; y &gt; <span class="number">0</span>) {
+      <span class="comment">// 重置滚动距离为最小值</span>
+      scrollEl.scrollTop = <span class="number">0</span>
+      <span class="comment">// 阻止滚动</span>
+      event.preventDefault()
+    }
+    <span class="comment">// 如果到底时继续上滑  </span>
+    <span class="keyword">const</span> maxScrollTop = scrollEl.scrollHeight - scrollEl.clientHeight
+    <span class="keyword">if</span> (maxScrollTop - scrollEl.scrollTop &lt;= <span class="number">0</span> &amp;&amp; y &lt; <span class="number">0</span>) {
+      scrollEl.scrollTop = maxScrollTop
+      event.preventDefault()
+    }
+  }, {
+    <span class="attr">passive</span>: <span class="literal">false</span>
+  })
+}
+</code></pre>
+<p class="codepen" data-height="265" data-theme-id="0" data-default-tab="js,result" data-user="aaronbird" data-slug-hash="PgobLO" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="fix scroll 例子">
+  <span>See the Pen <a href="https://codepen.io/aaronbird/pen/PgobLO/" target="_blank" rel="noopener">
+  fix scroll 例子</a> by aaronbird (<a href="https://codepen.io/aaronbird" target="_blank" rel="noopener">@aaronbird</a>)
+  on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="https://stackoverflow.com/questions/41594997/ios-10-safari-prevent-scrolling-behind-a-fixed-overlay-and-maintain-scroll-posi" target="_blank" rel="noopener">javascript - iOS 10 Safari: Prevent scrolling behind a fixed overlay and maintain scroll position - Stack Overflow</a><br>
+<a href="https://xiaoiver.github.io/coding/2018/05/20/%E5%9C%A8-iOS-%E4%B8%8B%E4%BD%BF%E7%94%A8-iframe-%E7%9A%84%E7%A7%8D%E7%A7%8D%E9%97%AE%E9%A2%98.html" target="_blank" rel="noopener">在 iOS 下使用 iframe 的种种问题 - xiaOp的博客</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+      
+        <a class="next" href="/2019/03/31/(动画效果)跟随下拉放大图像/">(动画效果)跟随下拉放大图像  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+  </main>
+
+  <!-- search -->      
+  
+
+  
+    
+      <script src="/js/main.js"></script>
+    
+  
+</body>
+</html>
