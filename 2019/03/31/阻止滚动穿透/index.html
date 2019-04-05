@@ -74,7 +74,7 @@
   
     <div class="post-toc">
       <div class="post-toc-content">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#body-scroll-lock"><span class="toc-text"> body-scroll-lock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-text"> 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text"> 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#body-scroll-lock"><span class="toc-text"> body-scroll-lock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-text"> 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text"> 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位元素下的滚动穿透"><span class="toc-text"> 定位元素下的滚动穿透</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
       </div>
     </div>
   
@@ -134,37 +134,37 @@
 如果元素滚动到底时用户继续上滑, 则将scrollTop重置为最大可滚动距离, 同时调用preventDefault.</p>
 <p>注意: 如果将tochmove事件挂在window document document.body这三个元素上,则必需设置addEventListener的第三个参数的passive属性为false.否则浏览器会忽略事件函数中调用的preventDefault.</p>
 <h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> fixScroll = <span class="hljs-function">(<span class="hljs-params">scrollEl</span>) =&gt;</span> {
-  <span class="hljs-keyword">let</span> startY
-  scrollEl.addEventListener(<span class="hljs-string">'touchstart'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>{
-    <span class="hljs-comment">// 如果多于1根手指点击屏幕,则不处理</span>
-    <span class="hljs-keyword">if</span> (event.targetTouches.length &gt; <span class="hljs-number">1</span>) {
-      <span class="hljs-keyword">return</span>
+<pre class="highlight"><code class="js"><span class="keyword">const</span> fixScroll = <span class="function">(<span class="params">scrollEl</span>) =&gt;</span> {
+  <span class="keyword">let</span> startY
+  scrollEl.addEventListener(<span class="string">'touchstart'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>{
+    <span class="comment">// 如果多于1根手指点击屏幕,则不处理</span>
+    <span class="keyword">if</span> (event.targetTouches.length &gt; <span class="number">1</span>) {
+      <span class="keyword">return</span>
     }
-    <span class="hljs-comment">// 储存手指的初始位置</span>
-    startY = event.targetTouches[<span class="hljs-number">0</span>].clientY
-  }, <span class="hljs-literal">false</span>)
-  scrollEl.addEventListener(<span class="hljs-string">'touchmove'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>{
-    <span class="hljs-keyword">if</span> (event.targetTouches.length &gt; <span class="hljs-number">1</span>) {
-      <span class="hljs-keyword">return</span>
+    <span class="comment">// 储存手指的初始位置</span>
+    startY = event.targetTouches[<span class="number">0</span>].clientY
+  }, <span class="literal">false</span>)
+  scrollEl.addEventListener(<span class="string">'touchmove'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>{
+    <span class="keyword">if</span> (event.targetTouches.length &gt; <span class="number">1</span>) {
+      <span class="keyword">return</span>
     }
-    <span class="hljs-comment">// 判断手指滑动方向, y大于0时向下滑动, 小于0时向上滑动</span>
-    <span class="hljs-keyword">const</span> y = event.targetTouches[<span class="hljs-number">0</span>].clientY - startY
-    <span class="hljs-comment">// 如果到顶时继续向下拉</span>
-    <span class="hljs-keyword">if</span> (scrollEl.scrollTop &lt;= <span class="hljs-number">0</span> &amp;&amp; y &gt; <span class="hljs-number">0</span>) {
-      <span class="hljs-comment">// 重置滚动距离为最小值</span>
-      scrollEl.scrollTop = <span class="hljs-number">0</span>
-      <span class="hljs-comment">// 阻止滚动</span>
+    <span class="comment">// 判断手指滑动方向, y大于0时向下滑动, 小于0时向上滑动</span>
+    <span class="keyword">const</span> y = event.targetTouches[<span class="number">0</span>].clientY - startY
+    <span class="comment">// 如果到顶时继续向下拉</span>
+    <span class="keyword">if</span> (scrollEl.scrollTop &lt;= <span class="number">0</span> &amp;&amp; y &gt; <span class="number">0</span>) {
+      <span class="comment">// 重置滚动距离为最小值</span>
+      scrollEl.scrollTop = <span class="number">0</span>
+      <span class="comment">// 阻止滚动</span>
       event.preventDefault()
     }
-    <span class="hljs-comment">// 如果到底时继续上滑  </span>
-    <span class="hljs-keyword">const</span> maxScrollTop = scrollEl.scrollHeight - scrollEl.clientHeight
-    <span class="hljs-keyword">if</span> (maxScrollTop - scrollEl.scrollTop &lt;= <span class="hljs-number">0</span> &amp;&amp; y &lt; <span class="hljs-number">0</span>) {
+    <span class="comment">// 如果到底时继续上滑  </span>
+    <span class="keyword">const</span> maxScrollTop = scrollEl.scrollHeight - scrollEl.clientHeight
+    <span class="keyword">if</span> (maxScrollTop - scrollEl.scrollTop &lt;= <span class="number">0</span> &amp;&amp; y &lt; <span class="number">0</span>) {
       scrollEl.scrollTop = maxScrollTop
       event.preventDefault()
     }
   }, {
-    <span class="hljs-attr">passive</span>: <span class="hljs-literal">false</span>
+    <span class="attr">passive</span>: <span class="literal">false</span>
   })
 }
 </code></pre>
@@ -174,6 +174,14 @@
   on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<h2 id="定位元素下的滚动穿透"><a class="markdownIt-Anchor" href="#定位元素下的滚动穿透"></a> 定位元素下的滚动穿透</h2>
+<p>如果定位元素下有滚动元素,也会发生滚动穿透现象.<br>
+<img src="/img/a03413c5.gif" alt="1.gif"><br>
+如上图所示, 半透明的上层元素是一个fixed元素.即使在触发touchmove事件时调用event.stopPropagation,也不能阻止滚动穿透.</p>
+<p>另外要注意,即便用了fixScroll函数, 也必须在touchmove事件中调用event.stopPropagation.否者滑到底时会卡住.<br>
+<img src="/img/b923efbe.gif" alt="1.gif"></p>
+<p>原因是touchmove事件穿透到下层去了<br>
+<img src="/img/ec3b62ca.PNG" alt="2.PNG"></p>
 <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
 <p><a href="https://stackoverflow.com/questions/41594997/ios-10-safari-prevent-scrolling-behind-a-fixed-overlay-and-maintain-scroll-posi" target="_blank" rel="noopener">javascript - iOS 10 Safari: Prevent scrolling behind a fixed overlay and maintain scroll position - Stack Overflow</a><br>
 <a href="https://xiaoiver.github.io/coding/2018/05/20/%E5%9C%A8-iOS-%E4%B8%8B%E4%BD%BF%E7%94%A8-iframe-%E7%9A%84%E7%A7%8D%E7%A7%8D%E9%97%AE%E9%A2%98.html" target="_blank" rel="noopener">在 iOS 下使用 iframe 的种种问题 - xiaOp的博客</a></p>

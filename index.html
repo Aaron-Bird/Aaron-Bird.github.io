@@ -77,6 +77,59 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/04/05/(chrome兼容)阻止fixed元素导致地址栏上移/">
+                    (chrome兼容)阻止fixed元素导致地址栏上移
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-04-05T06:00:00.000Z">
+                  2019-04-05
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>移动端浏览器的地址栏是可动的,用户向上滑动页面时, 地址栏也会向上移动,直到隐藏.<br>
+如果想固定地址栏,可以使用如下样式:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">overflow-y</span>: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="表现"><a class="markdownIt-Anchor" href="#表现"></a> 表现</h2>
+<p>在chrome(android 73)中,上面这个办法可能会失效.<br>
+如果某个可滚动的绝对定位元素的尺寸和浏览器窗口一样大,可能会导致导航栏上移.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/04/05/(chrome兼容)阻止fixed元素导致地址栏上移/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/04/04/(Safari兼容)overflow和overflow-scrolling导致fixed元素不显示/">
                     (Safari兼容)overflow和overflow-scrolling导致fixed元素不显示
                   </a>               
@@ -561,66 +614,10 @@ deactivated在keep-alive组件被停用时调用.<br>
             </div>
         </div>
       
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/03/16/event loop/">
-                    event loop
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-16T04:00:00.000Z">
-                  2019-03-16
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>JavaScript支持处理并发事件,其并发模型基于event loop.<br>
-<img src="/img/8709b91c.jpg" alt="Untitled Diagram (2).jpg"></p>
-<h2 id="并发与并行"><a class="markdownIt-Anchor" href="#并发与并行"></a> 并发与并行</h2>
-<p>并发和并行是两个不同的概念,很容易被弄混.<br>
-并发(concurrency)指的是<strong>同一时间有能力应对多件事</strong>,而并行(Parallel )指的是<strong>同一时间有能力做多件事</strong>.</p>
-<p>举个例子:<br>
-妈妈一边打小明,一边和老王通电话.妈妈先打一下小明, 然后和老王聊一句.如此交替,这是并发.<br>
-小明的妈妈是个妖怪,长了两个脑袋.一个脑袋骂小明,同时另一个脑袋通电话.这即是并行,也是并发.<br>
-但如果妈妈的两个脑袋同时骂小明,那这就只能是并行了,不是并发.因为骂小明是同一个事件.</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/16/event loop/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
     
     <!-- pagination -->
 <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">></a>
 </nav>
 </div>
   </main>
