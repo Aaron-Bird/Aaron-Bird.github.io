@@ -13,7 +13,7 @@
   <![endif]-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>(Chrome兼容)修复定位元素导致的地址栏上移</title>
+  <title>(Android Chrome兼容)修复定位元素导致的地址栏上移</title>
   <!-- font -->
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <!-- js -->
@@ -84,7 +84,7 @@
     <article class="article">
       <!-- title -->
       
-          <h1 class="title">(Chrome兼容)修复定位元素导致的地址栏上移</h1> 
+          <h1 class="title">(Android Chrome兼容)修复定位元素导致的地址栏上移</h1> 
       
       <div class="post-meta">
         <!-- time -->
@@ -123,7 +123,8 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">overflow-y</span>: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="表现"><a class="markdownIt-Anchor" href="#表现"></a> 表现</h2>
 <p>在chrome(android 73)中,上面这个办法可能会失效.<br>
-如果某个可滚动的绝对定位元素的尺寸和浏览器窗口一样大,可能会导致导航栏上移.</p>
+如果某个可滚动的绝对定位元素的尺寸和浏览器窗口一样大,可能会导致导航栏上移.
+该bug仅能在android中复现, ios系统的chrome无此问题.</p>
 <a id="more"></a>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fixed"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fixed</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>; </span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">overflow-y</span>: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -147,7 +148,7 @@
   
     <nav class="pagination">
       
-        <a class="prev" href="/2019/04/06/(ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定/">&lt;  (ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定</a>
+        <a class="prev" href="/2019/04/06/(ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定/">&lt;  (Ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定</a>
       
       
         <a class="next" href="/2019/04/04/(Safari兼容)overflow和overflow-scrolling导致fixed元素不显示/">(Safari兼容)overflow和overflow-scrolling导致fixed元素不显示  &gt;</a>
