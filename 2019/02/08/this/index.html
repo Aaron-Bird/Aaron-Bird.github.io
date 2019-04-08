@@ -121,67 +121,69 @@
 this关键字指向当前execution context的ThisBinding</p>
 </blockquote>
 <h2 id="什么是execution-context执行环境执行上下文"><a class="markdownIt-Anchor" href="#什么是execution-context执行环境执行上下文"></a> 什么是execution context(执行环境/执行上下文)?</h2>
-<p>execution context的说明在 10.3  <a href="http://ecma-international.org/ecma-262/5.1/#sec-10.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<p>execution context的说明在 10.3<br>
+<a href="http://ecma-international.org/ecma-262/5.1/#sec-10.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br>
+<a href="https://www.w3.org/html/ig/zh/wiki/ES5/%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/ES5/可执行代码与执行环境#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83</a></p>
 <blockquote>
 <p>When control is transferred to ECMAScript executable code, control is entering an execution context. Active execution contexts logically form a stack. The top execution context on this logical stack is the running execution context. A new execution context is created whenever control is transferred from the executable code associated with the currently running execution context to executable code that is not associated with that execution context. The newly created execution context is pushed onto the stack and becomes the running execution context.</p>
 </blockquote>
 <blockquote>
-<p>当control转入ECMAScript executable code(可执行代码)时, control会进入一个execution context.所有活动的execution context在逻辑上形成栈结构,栈顶的execution context叫running execution context.当control从executable code移动到与当前running execution context无关的另一个executable code时,会创建一个新的execution context.然后将这个新创建的execution context推入栈中,使其成为新的running execution context</p>
+<p>当控制器进入ECMAScript executable code(可执行代码)时, 控制器会进入一个execution context(执行环境/执行上下文).所有活动的execution context在逻辑上形成栈结构,栈顶的execution context叫running execution context.当控制器从当前的executable code(与running execution context相关的)转移到另一个executable code(与running execution context无关的)时,会创建一个新的execution context.然后将这个新创建的execution context推入栈中,使其成为新的running execution context.</p>
 </blockquote>
 <a id="more"></a>  
 <p>由上可知,当进入函数时,控制器会创建一个执行环境,然后推入环境栈 ,例如</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{  
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello'</span>)  
+<pre class="highlight"><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>{  
+    <span class="built_in">console</span>.log(<span class="string">'hello'</span>)  
 }  
 a()  
 </code></pre>
 <p>在调用a函数之前,环境栈的结构为</p>
 <pre class="highlight"><code class="js">[  
     {   
-        <span class="hljs-attr">LexicalEnvironment</span>:  {   
-            Environment Record: Global <span class="hljs-built_in">Object</span>  
-            outer Lexical Environment: <span class="hljs-literal">null</span>  
+        <span class="attr">LexicalEnvironment</span>:  {   
+            Environment Record: Global <span class="built_in">Object</span>  
+            outer Lexical Environment: <span class="literal">null</span>  
         },  
-        <span class="hljs-attr">VariableEnvironment</span>: {   
-            Environment Record: Global <span class="hljs-built_in">Object</span>  
-            outer Lexical Environment: <span class="hljs-literal">null</span>  
+        <span class="attr">VariableEnvironment</span>: {   
+            Environment Record: Global <span class="built_in">Object</span>  
+            outer Lexical Environment: <span class="literal">null</span>  
         },  
-        <span class="hljs-attr">Thisbinding</span>: Global <span class="hljs-built_in">Object</span>  
+        <span class="attr">Thisbinding</span>: Global <span class="built_in">Object</span>  
     }  
 ]  
 </code></pre>
 <p>当执行a()后,环境栈的结构发生改变</p>
 <pre class="highlight"><code class="js">[  
     {  
-        <span class="hljs-attr">LexicalEnvironment</span>:  {   
+        <span class="attr">LexicalEnvironment</span>:  {   
             Environment Record: Declarative Environment Record  
             outer Lexical Environment: Global Environment  
         },  
-        <span class="hljs-attr">VariableEnvironment</span>: {   
+        <span class="attr">VariableEnvironment</span>: {   
             Environment Record: Declarative Environment Record  
             outer Lexical Environment: Global Environment  
         },  
-        <span class="hljs-attr">Thisbinding</span>: Global <span class="hljs-built_in">Object</span>  
+        <span class="attr">Thisbinding</span>: Global <span class="built_in">Object</span>  
     },  
     {   
-        <span class="hljs-attr">LexicalEnvironment</span>:  {   
-            Environment Record: Global <span class="hljs-built_in">Object</span>  
-            outer Lexical Environment: <span class="hljs-literal">null</span>  
+        <span class="attr">LexicalEnvironment</span>:  {   
+            Environment Record: Global <span class="built_in">Object</span>  
+            outer Lexical Environment: <span class="literal">null</span>  
         },  
-        <span class="hljs-attr">VariableEnvironment</span>: {   
-            Environment Record: Global <span class="hljs-built_in">Object</span>  
-            outer Lexical Environment: <span class="hljs-literal">null</span>  
+        <span class="attr">VariableEnvironment</span>: {   
+            Environment Record: Global <span class="built_in">Object</span>  
+            outer Lexical Environment: <span class="literal">null</span>  
         },  
-        <span class="hljs-attr">Thisbinding</span>: Global <span class="hljs-built_in">Object</span>  
+        <span class="attr">Thisbinding</span>: Global <span class="built_in">Object</span>  
     }  
 ]  
 </code></pre>
 <h2 id="什么是thisbinding"><a class="markdownIt-Anchor" href="#什么是thisbinding"></a> 什么是ThisBinding?</h2>
-<p>Execution Context有三个组件,LexicalEnvironment VariableEnvironment 和Thisbinding<br>
+<p>Execution Context有三个组件,LexicalEnvironment VariableEnvironment和Thisbinding<br>
 Thisbinding决定了当前执行环境中this关键字的值</p>
-<p>内部是如何设置thisBinding的?<br>
-当进入函数时, 控制器将Thisbinding指向调用者提供的参数thisArg<br>
-因此, this的指向取决于调用者传递的thisArg参数</p>
+<p>Js引擎在内部如何操作thisBinding?<br>
+this的指向取决于调用者传递的thisArg参数.<br>
+进入函数时, 控制器将Thisbinding指向调用者提供的参数(thisArg)</p>
 <p>thisArg参数从哪传进来的?<br>
 <a href="http://ecma-international.org/ecma-262/5.1/#sec-11.2.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br>
 thisArg由执行MemberExpression的返回结果决定</p>
@@ -275,12 +277,12 @@ CallExpression [ Expression ]
 <p>作为属性调用的ref是一个Reference, 基值为该属性所在的对象(以下记作对象O)<br>
 当ref是Reference时,根据步骤6 a,令thisValue值为该Reference的基值<br>
 运行函数内部代码时,函数内部的this指向对象O</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">var</span> obj = {  
-    <span class="hljs-attr">fun</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{  
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>)  
+<pre class="highlight"><code class="js"><span class="keyword">var</span> obj = {  
+    <span class="attr">fun</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{  
+        <span class="built_in">console</span>.log(<span class="keyword">this</span>)  
     }  
 }  
-obj.fun() <span class="hljs-comment">// {fun: ƒ}  </span>
+obj.fun() <span class="comment">// {fun: ƒ}  </span>
 </code></pre>
 <h2 id="访问标识符变量时内部的执行过程"><a class="markdownIt-Anchor" href="#访问标识符变量时内部的执行过程"></a> 访问标识符(变量)时,内部的执行过程</h2>
 <p><a href="http://ecma-international.org/ecma-262/5.1/#sec-11.1.2" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
@@ -326,10 +328,10 @@ b 返回GetIdentifierReference(outer,name,strict)</p>
 当ref是Reference且基值为undefined时,根据步骤2,抛出ReferenceError(GetValue(V) -&gt; IsUnresolvableReference(V))<br>
 当ref是Reference且基值为Environment Record时,根据步骤6 b, thisValue值为undefined/Object Environment Records(with语句)<br>
 运行函数内部代码时,函数内部的this指向全局对象</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun</span>(<span class="hljs-params"></span>) </span>{  
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>)  
+<pre class="highlight"><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>{  
+    <span class="built_in">console</span>.log(<span class="keyword">this</span>)  
 }  
-fun() <span class="hljs-comment">// Window  </span>
+fun() <span class="comment">// Window  </span>
 </code></pre>
 <h2 id="使用new调用函数时其内部的运行过程"><a class="markdownIt-Anchor" href="#使用new调用函数时其内部的运行过程"></a> 使用new调用函数时,其内部的运行过程</h2>
 <h3 id="运行过程"><a class="markdownIt-Anchor" href="#运行过程"></a> 运行过程</h3>
@@ -405,24 +407,24 @@ new per(2) // per {age: 2}
 因此,在构造函数中this指向一个新创建的对象<br>
 如果构造函数没有返回对象类型的值,则返回这个新创建的obj</p>
 <p>没有return,返回this指向的新建对象</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">per</span>(<span class="hljs-params">age = <span class="hljs-number">1</span></span>)</span>{  
-    <span class="hljs-keyword">this</span>.age = age;  
+<pre class="highlight"><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">per</span>(<span class="params">age = <span class="number">1</span></span>)</span>{  
+    <span class="keyword">this</span>.age = age;  
 }  
-<span class="hljs-keyword">new</span> per(<span class="hljs-number">10</span>) <span class="hljs-comment">// per {age: 10}  </span>
+<span class="keyword">new</span> per(<span class="number">10</span>) <span class="comment">// per {age: 10}  </span>
 </code></pre>
 <p>return值为对象时,返回对象</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">per</span>(<span class="hljs-params">age = <span class="hljs-number">1</span></span>)</span>{  
-    <span class="hljs-keyword">this</span>.age = age;  
-    <span class="hljs-keyword">return</span> {};  
+<pre class="highlight"><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">per</span>(<span class="params">age = <span class="number">1</span></span>)</span>{  
+    <span class="keyword">this</span>.age = age;  
+    <span class="keyword">return</span> {};  
 }  
-<span class="hljs-keyword">new</span> per(<span class="hljs-number">10</span>) <span class="hljs-comment">// {}  </span>
+<span class="keyword">new</span> per(<span class="number">10</span>) <span class="comment">// {}  </span>
 </code></pre>
 <p>return值不是对象,返回this指向的新建对象</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">per</span>(<span class="hljs-params">age = <span class="hljs-number">1</span></span>)</span>{  
-    <span class="hljs-keyword">this</span>.age = age;  
-    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;  
+<pre class="highlight"><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">per</span>(<span class="params">age = <span class="number">1</span></span>)</span>{  
+    <span class="keyword">this</span>.age = age;  
+    <span class="keyword">return</span> <span class="number">1</span>;  
 }  
-<span class="hljs-keyword">new</span> per(<span class="hljs-number">10</span>) <span class="hljs-comment">// per {age: 10}  </span>
+<span class="keyword">new</span> per(<span class="number">10</span>) <span class="comment">// per {age: 10}  </span>
 </code></pre>
 <h2 id="functionprototypeapply-thisarg-argarray"><a class="markdownIt-Anchor" href="#functionprototypeapply-thisarg-argarray"></a> Function.prototype.apply (thisArg, argArray)</h2>
 <p><a href="http://ecma-international.org/ecma-262/5.1/#sec-15.3.4.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
@@ -599,7 +601,7 @@ bind方法的length属性值为1<br>
         <a class="prev" href="/2019/02/08/scrolling box/">&lt;  scrolling box</a>
       
       
-        <a class="next" href="/2019/02/01/编译 Chromium(Windows)/">编译 Chromium(Windows)  &gt;</a>
+        <a class="next" href="/2019/02/01/vue-cli/">vue-cli  &gt;</a>
       
     </nav>    
   
