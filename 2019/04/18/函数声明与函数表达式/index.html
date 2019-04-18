@@ -118,6 +118,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a)&#125;</span><br><span class="line">)()</span><br></pre></td></tr></table></figure>
 <p>结果console输出的不是数值2,而是函数本身:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ƒ a()&#123;</span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a)&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>  
 <h2 id="原因"><a class="markdownIt-Anchor" href="#原因"></a> 原因</h2>
 <p>有两种声明函数的方式:</p>
 <ul>
