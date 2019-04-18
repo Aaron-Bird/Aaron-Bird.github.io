@@ -77,6 +77,67 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/04/18/函数声明与函数表达式/">
+                    函数声明与函数表达式
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-04-18T14:00:00.000Z">
+                  2019-04-18
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                偶然看到了一道题,问如下代码中的console输出什么:
+12345var a = 1;(function a()&#123;  a = 2;  console.log(a)&#125;)()
+结果console输出的不是数值2,而是函数本身:
+123ƒ a()&#123;a = 2;console.log(a)&#125;
+ 原因
+有两种声明函数的方式:
+
+函数声明
+
+123function foo() &#123;  console.log('I am foo')&#125;
+
+函数表达式
+
+1234567891011var bar = function foo() &#123;  ...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/04/18/函数声明与函数表达式/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/04/06/(ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定/">
                     (Ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定
                   </a>               
@@ -550,60 +611,6 @@ inner是一个fixed元素, 背景色为黄色.<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/03/20/圆形运算相关知识点/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/03/20/储存keep-alive内组件的滚动位置/">
-                    储存keep-alive内组件的滚动位置
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-19T23:00:00.000Z">
-                  2019-03-20
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/Vue/">
-                    <span>Vue</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>keep-alive一般被用来缓存组件实例.当从一个组件切换到另一个时, 这个组件不会被销毁, 而会被保存起来供下次调用时使用.<br>
-遗憾的是, 如果被keep-alive包裹的组件中有滚动元素,keep-alive不会储存滚动位置.<br>
-需要在滚动时储存位置, 然后在组件被激活时还原.</p>
-<p>keep-alive 组件有两个特殊的生命周期钩子:  activated和deactivated.<br>
-activated在keep-alive组件激活时调用.<br>
-deactivated在keep-alive组件被停用时调用.<br>
-<a href="https://cn.vuejs.org/v2/api/#activated" target="_blank" rel="noopener">API — Vue.js</a></p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/20/储存keep-alive内组件的滚动位置/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

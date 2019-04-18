@@ -74,7 +74,7 @@
   
     <div class="post-toc">
       <div class="post-toc-content">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是execution-context执行环境执行上下文"><span class="toc-text"> 什么是execution context(执行环境/执行上下文)?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是thisbinding"><span class="toc-text"> 什么是ThisBinding?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数调用的内部执行过程"><span class="toc-text"> 函数调用的内部执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fcall"><span class="toc-text"> F.[[call]]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问属性的内部执行过程"><span class="toc-text"> 访问属性的内部执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数作为属性调用时内部this指向"><span class="toc-text"> 函数作为属性调用时,内部this指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问标识符变量时内部的执行过程"><span class="toc-text"> 访问标识符(变量)时,内部的执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getidentifierreferencelex-name-strict"><span class="toc-text"> GetIdentifierReference(lex, name, strict)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数作为标识符调用时内部的this指向"><span class="toc-text"> 函数作为标识符调用时,内部的this指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用new调用函数时其内部的运行过程"><span class="toc-text"> 使用new调用函数时,其内部的运行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行过程"><span class="toc-text"> 运行过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fconstuct"><span class="toc-text"> F.[[constuct]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数内部this的指向"><span class="toc-text"> 构造函数内部this的指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functionprototypeapply-thisarg-argarray"><span class="toc-text"> Function.prototype.apply (thisArg, argArray)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用apply调用函数函数内部this的指向"><span class="toc-text"> 用apply调用函数,函数内部this的指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functionprototypecall-thisarg-arg1-arg2"><span class="toc-text"> Function.prototype.call (thisArg [ , arg1 [ , arg2, … ] ] )</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functionprototypebind-thisarg-arg1-arg2"><span class="toc-text"> Function.prototype.bind (thisArg [, arg1 [, arg2, …]])</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#153451-call"><span class="toc-text"> 15.3.4.5.1 [[Call]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#153452-construct"><span class="toc-text"> 15.3.4.5.2 [[Construct]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#153453-hasinstance-v"><span class="toc-text"> 15.3.4.5.3 [[HasInstance]] (V)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#execution-context执行环境执行上下文"><span class="toc-text"> execution context(执行环境/执行上下文)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thisbindingthis绑定"><span class="toc-text"> ThisBinding(this绑定)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数调用的内部执行过程"><span class="toc-text"> 函数调用的内部执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fcall"><span class="toc-text"> F.[[call]]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问属性的内部执行过程"><span class="toc-text"> 访问属性的内部执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数作为属性调用时内部this指向"><span class="toc-text"> 函数作为属性调用时,内部this指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问标识符变量时内部的执行过程"><span class="toc-text"> 访问标识符(变量)时,内部的执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getidentifierreferencelex-name-strict"><span class="toc-text"> GetIdentifierReference(lex, name, strict)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数作为标识符调用时内部的this指向"><span class="toc-text"> 函数作为标识符调用时,内部的this指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用new调用函数时其内部的运行过程"><span class="toc-text"> 使用new调用函数时,其内部的运行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行过程"><span class="toc-text"> 运行过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fconstuct"><span class="toc-text"> F.[[constuct]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数内部this的指向"><span class="toc-text"> 构造函数内部this的指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functionprototypeapply-thisarg-argarray"><span class="toc-text"> Function.prototype.apply (thisArg, argArray)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用apply调用函数函数内部this的指向"><span class="toc-text"> 用apply调用函数,函数内部this的指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functionprototypecall-thisarg-arg1-arg2"><span class="toc-text"> Function.prototype.call (thisArg [ , arg1 [ , arg2, … ] ] )</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functionprototypebind-thisarg-arg1-arg2"><span class="toc-text"> Function.prototype.bind (thisArg [, arg1 [, arg2, …]])</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#153451-call"><span class="toc-text"> 15.3.4.5.1 [[Call]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#153452-construct"><span class="toc-text"> 15.3.4.5.2 [[Construct]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#153453-hasinstance-v"><span class="toc-text"> 15.3.4.5.3 [[HasInstance]] (V)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
       </div>
     </div>
   
@@ -114,13 +114,13 @@
       </div>
       <!-- content -->
       <div class="article-content">
-      <p>ECMAScript文档关于this的定义<br>
+      <p>Es5关于this的定义如下:<br>
 <a href="http://ecma-international.org/ecma-262/5.1/#sec-11.1.1" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
 <blockquote>
 <p>The this keyword evaluates to the value of the ThisBinding of the current execution context.<br>
-this关键字指向当前execution context的ThisBinding</p>
+关键字&quot;this&quot;指向当前所在execution context(执行环境)的ThisBinding</p>
 </blockquote>
-<h2 id="什么是execution-context执行环境执行上下文"><a class="markdownIt-Anchor" href="#什么是execution-context执行环境执行上下文"></a> 什么是execution context(执行环境/执行上下文)?</h2>
+<h2 id="execution-context执行环境执行上下文"><a class="markdownIt-Anchor" href="#execution-context执行环境执行上下文"></a> execution context(执行环境/执行上下文)</h2>
 <p>execution context的说明在 10.3<br>
 <a href="http://ecma-international.org/ecma-262/5.1/#sec-10.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br>
 <a href="https://www.w3.org/html/ig/zh/wiki/ES5/%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/ES5/可执行代码与执行环境#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83</a></p>
@@ -132,101 +132,126 @@ this关键字指向当前execution context的ThisBinding</p>
 </blockquote>
 <a id="more"></a>  
 <p>由上可知,当进入函数时,控制器会创建一个执行环境,然后推入环境栈 ,例如</p>
-<pre class="highlight"><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>{  
-    <span class="built_in">console</span>.log(<span class="string">'hello'</span>)  
-}  
-a()  
-</code></pre>
-<p>在调用a函数之前,环境栈的结构为</p>
-<pre class="highlight"><code class="js">[  
-    {   
-        <span class="attr">LexicalEnvironment</span>:  {   
-            Environment Record: Global <span class="built_in">Object</span>  
-            outer Lexical Environment: <span class="literal">null</span>  
-        },  
-        <span class="attr">VariableEnvironment</span>: {   
-            Environment Record: Global <span class="built_in">Object</span>  
-            outer Lexical Environment: <span class="literal">null</span>  
-        },  
-        <span class="attr">Thisbinding</span>: Global <span class="built_in">Object</span>  
-    }  
-]  
-</code></pre>
-<p>当执行a()后,环境栈的结构发生改变</p>
-<pre class="highlight"><code class="js">[  
-    {  
-        <span class="attr">LexicalEnvironment</span>:  {   
-            Environment Record: Declarative Environment Record  
-            outer Lexical Environment: Global Environment  
-        },  
-        <span class="attr">VariableEnvironment</span>: {   
-            Environment Record: Declarative Environment Record  
-            outer Lexical Environment: Global Environment  
-        },  
-        <span class="attr">Thisbinding</span>: Global <span class="built_in">Object</span>  
-    },  
-    {   
-        <span class="attr">LexicalEnvironment</span>:  {   
-            Environment Record: Global <span class="built_in">Object</span>  
-            outer Lexical Environment: <span class="literal">null</span>  
-        },  
-        <span class="attr">VariableEnvironment</span>: {   
-            Environment Record: Global <span class="built_in">Object</span>  
-            outer Lexical Environment: <span class="literal">null</span>  
-        },  
-        <span class="attr">Thisbinding</span>: Global <span class="built_in">Object</span>  
-    }  
-]  
-</code></pre>
-<h2 id="什么是thisbinding"><a class="markdownIt-Anchor" href="#什么是thisbinding"></a> 什么是ThisBinding?</h2>
-<p>Execution Context有三个组件,LexicalEnvironment VariableEnvironment和Thisbinding<br>
-Thisbinding决定了当前执行环境中this关键字的值</p>
-<p>Js引擎在内部如何操作thisBinding?<br>
-this的指向取决于调用者传递的thisArg参数.<br>
-进入函数时, 控制器将Thisbinding指向调用者提供的参数(thisArg)</p>
-<p>thisArg参数从哪传进来的?<br>
-<a href="http://ecma-international.org/ecma-262/5.1/#sec-11.2.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br>
-thisArg由执行MemberExpression的返回结果决定</p>
-<p>函数的产生式为 CallExpression : MemberExpression Arguments<br>
-其中的MemberExpression是通常意义上的函数, Arguments是参数 ,该产生式会按照文档11.2.3的步骤执行<br>
-调用函数时,先获取MemberExpression的执行结果(以下称该结果为ref)<br>
-然后按照MemberExpression的返回结果设置thisValue<br>
-最后用thisValue作为参数调用函数的内部方法[[call]],最后按照文档10.4.3创建执行环境</p>
-<p>整个过程为:<br>
-解析 MemberExpression --&gt; &lt;11.2.3&gt; Function Calls --&gt; &lt;13.2.1&gt; 调用F.[[call]]  --&gt; &lt;10.4.3&gt;Entering Function Code</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hello'</span>)  </span><br><span class="line">&#125;  </span><br><span class="line">a()  </span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string">在调用a函数之前,环境栈的结构为  </span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js  </span><br><span class="line">[  </span><br><span class="line">    &#123;   </span><br><span class="line">        LexicalEnvironment:  &#123;   </span><br><span class="line">            Environment Record: Global <span class="built_in">Object</span>  </span><br><span class="line">            outer Lexical Environment: <span class="literal">null</span>  </span><br><span class="line">        &#125;,  </span><br><span class="line">        VariableEnvironment: &#123;   </span><br><span class="line">            Environment Record: Global <span class="built_in">Object</span>  </span><br><span class="line">            outer Lexical Environment: <span class="literal">null</span>  </span><br><span class="line">        &#125;,  </span><br><span class="line">        Thisbinding: Global <span class="built_in">Object</span>  </span><br><span class="line">    &#125;  </span><br><span class="line">]  </span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">当执行a()后,环境栈的结构发生改变    </span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js  </span><br><span class="line">[  </span><br><span class="line">    &#123;  </span><br><span class="line">        LexicalEnvironment:  &#123;   </span><br><span class="line">            Environment Record: Declarative Environment Record  </span><br><span class="line">            outer Lexical Environment: Global Environment  </span><br><span class="line">        &#125;,  </span><br><span class="line">        VariableEnvironment: &#123;   </span><br><span class="line">            Environment Record: Declarative Environment Record  </span><br><span class="line">            outer Lexical Environment: Global Environment  </span><br><span class="line">        &#125;,  </span><br><span class="line">        Thisbinding: Global <span class="built_in">Object</span>  </span><br><span class="line">    &#125;,  </span><br><span class="line">    &#123;   </span><br><span class="line">        LexicalEnvironment:  &#123;   </span><br><span class="line">            Environment Record: Global <span class="built_in">Object</span>  </span><br><span class="line">            outer Lexical Environment: <span class="literal">null</span>  </span><br><span class="line">        &#125;,  </span><br><span class="line">        VariableEnvironment: &#123;   </span><br><span class="line">            Environment Record: Global <span class="built_in">Object</span>  </span><br><span class="line">            outer Lexical Environment: <span class="literal">null</span>  </span><br><span class="line">        &#125;,  </span><br><span class="line">        Thisbinding: Global <span class="built_in">Object</span>  </span><br><span class="line">    &#125;  </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Execution Context有三个组件:</p>
+<ul>
+<li>LexicalEnvironment Component</li>
+<li>VariableEnvironment Component</li>
+<li>Thisbinding Component</li>
+</ul>
+<p>新建execution context时,起初LexicalEnvironment Component和VariableEnvironment Component都指向Lexical Environment. 在执行(execution context中的)代码时,  LexicalEnvironment Component不会发生变化, 而VariableEnvironment Component可能被改变.</p>
+<h2 id="thisbindingthis绑定"><a class="markdownIt-Anchor" href="#thisbindingthis绑定"></a> ThisBinding(this绑定)</h2>
+<p>Thisbinding决定了当前执行环境中,this关键字的值.</p>
+<p>而Thisbinding是什么则取决于如何调用函数.<br>
+进入函数时, 控制器将Thisbinding指向调用者提供的参数(thisArg).</p>
+<p>以调用函数为例, thisArg的传递过程如下:</p>
+<p>1 Function Calls</p>
+<p><a href="http://ecma-international.org/ecma-262/5.1/#sec-11.2.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br>
+<a href="https://www.w3.org/html/ig/zh/wiki/ES5/%E8%A1%A8%E8%BE%BE%E5%BC%8F#.E5.87.BD.E6.95.B0.E8.B0.83.E7.94.A8" target="_blank" rel="noopener">ES5/表达式 - HTML5 Chinese Interest Group Wiki</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">thisArg由执行MemberExpression的返回结果决定    </span><br><span class="line"></span><br><span class="line">函数的产生式为 CallExpression : MemberExpression Arguments      </span><br><span class="line">其中的MemberExpression是通常意义上的函数, Arguments是参数 ,该产生式会按照文档11.2.3的步骤执行      </span><br><span class="line">调用函数时,先获取MemberExpression的执行结果(以下称该结果为ref)    </span><br><span class="line">然后按照MemberExpression的返回结果设置thisValue     </span><br><span class="line">最后用thisValue作为参数调用函数的内部方法\[[call]],最后按照文档10.4.3创建执行环境     </span><br><span class="line"></span><br><span class="line">整个过程为:      </span><br><span class="line">解析 MemberExpression --&gt; &lt;11.2.3&gt; Function Calls --&gt; &lt;13.2.1&gt; 调用F.\[[call]]  --&gt; &lt;10.4.3&gt;Entering Function Code</span><br></pre></td></tr></table></figure>
 <h2 id="函数调用的内部执行过程"><a class="markdownIt-Anchor" href="#函数调用的内部执行过程"></a> 函数调用的内部执行过程</h2>
-<p><a href="http://ecma-international.org/ecma-262/5.1/#sec-11.2.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
-<blockquote>
+<p><a href="http://ecma-international.org/ecma-262/5.1/#sec-11.2.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br>
+<a href="https://www.w3.org/html/ig/zh/wiki/ES5/%E8%A1%A8%E8%BE%BE%E5%BC%8F#.E5.87.BD.E6.95.B0.E8.B0.83.E7.94.A8" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/ES5/表达式#.E5.87.BD.E6.95.B0.E8.B0.83.E7.94.A8</a></p>
 <p>The production CallExpression : MemberExpression Arguments is evaluated as follows:<br>
-1 Let ref be the result of evaluating MemberExpression.<br>
-2 Let func be GetValue(ref).<br>
-3 Let argList be the result of evaluating Arguments, producing an internal list of argument values (see 11.2.4).<br>
-4 If Type(func) is not Object, throw a TypeError exception.<br>
-5 If IsCallable(func) is false, throw a TypeError exception.<br>
-6 If Type(ref) is Reference, then<br>
-a If IsPropertyReference(ref) is true, then<br>
-i Let thisValue be GetBase(ref).<br>
-b Else, the base of ref is an Environment Record<br>
-i Let thisValue be the result of calling the ImplicitThisValue concrete method of GetBase(ref).<br>
-7 Else, Type(ref) is not Reference.<br>
-a Let thisValue be undefined.<br>
-8 Return the result of calling the [[Call]] internal method on func, providing thisValue as the this value and providing the list argList as the argument values.</p>
-</blockquote>
-<blockquote>
-<p>1 令ref为执行MemberExpression的结果<br>
-2 令func为调用GetValue(ref)的结果<br>
-3 令argList为执行 Arguments的结果<br>
-4 如果func不是Object,抛出TypeError<br>
-5 如果func没有内部属性[[call]],抛出TypeError<br>
-6 如果ref是Reference<br>
-a 如果ref的基值是Boolean String Number Object //作为属性调用 // Es6新增Symbol<br>
-i 令thisValue为调用GetBase(ref)的结果<br>
-否则, ref的基值是环境记录 //作为变量调用<br>
-i 令thisValue为调用GetBase(ref). ImplicitThisValue的结果 // ImplicitThisValue通常返回undefined,除非provideThis值为true(with语句)<br>
-否则,ref不是Reference<br>
-令thisValue为undefined // 进入函数时, thisVaule为undefined会让this指向window全局对象<br>
-8 return func.[[call]](thisValue, argList)</p>
-</blockquote>
+-1 Let ref be the result of evaluating MemberExpression.<br>
+-2 Let func be GetValue(ref).<br>
+-3 Let argList be the result of evaluating Arguments, producing an internal list of argument values (see 11.2.4).<br>
+-4 If Type(func) is not Object, throw a TypeError exception.</p>
+<ul>
+<li>
+<p>5 If IsCallable(func) is false, throw a TypeError exception.</p>
+</li>
+<li>
+<p>6 If Type(ref) is Reference, then</p>
+<ul>
+<li>a If IsPropertyReference(ref) is true, then
+<ul>
+<li>i Let thisValue be GetBase(ref).</li>
+</ul>
+</li>
+<li>b Else, the base of ref is an Environment Record
+<ul>
+<li>i Let thisValue be the result of calling the ImplicitThisValue concrete method of GetBase(ref).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>7 Else, Type(ref) is not Reference.</p>
+<ul>
+<li>a Let thisValue be undefined.</li>
+</ul>
+</li>
+<li>
+<p>8 Return the result of calling the [[Call]] internal method on func, providing thisValue as the this value and providing the list argList as the argument values.</p>
+</li>
+<li>
+<p>1 令ref为执行MemberExpression的结果</p>
+</li>
+<li>
+<p>2 令func为调用GetValue(ref)的结果</p>
+</li>
+<li>
+<p>3 令argList为执行 Arguments的结果</p>
+</li>
+<li>
+<p>4 如果func不是Object,抛出TypeError</p>
+</li>
+<li>
+<p>5 如果func没有内部属性[[call]],抛出TypeError</p>
+</li>
+<li>
+<p>6 如果ref是Reference</p>
+<ul>
+<li>a 如果ref的基值是Boolean String Number Object //作为属性调用(Es6新增Symbol)
+<ul>
+<li>i 令thisValue为调用GetBase(ref)的结果</li>
+</ul>
+</li>
+<li>b 否则, ref的基值是环境记录 //作为变量调用
+<ul>
+<li>i 令thisValue为调用GetBase(ref).ImplicitThisValue的结果</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>7  否则,ref不是Reference</p>
+<ul>
+<li>a 令thisValue为undefined // 进入函数时, thisVaule为undefined会让this指向window全局对象</li>
+</ul>
+</li>
+<li>
+<p>8 return func.[[call]](thisValue, argList)</p>
+</li>
+</ul>
+<p>部分过程:</p>
+<ul>
+<li>1 这里的MemberExpression指的是括号前的部分. 例如函数&quot;foo.bar()&quot;,只得就是括号前foo.bar的执行结果(返回一个Reference).</li>
+<li>2 内部方法GetValue(ref)会返回ref真正的值.例如: 如果ref是一个reference, 则会调用GetBase(ref)返回ref的BaseValue(基值).</li>
+<li>4 判断func是否是对象(函数也是对象)</li>
+<li>5 判断func是否是函数(是否有内部方法[[call]])</li>
+<li>6 如果ref是引用类型
+<ul>
+<li>a 如果函数被作为对象的属性调用, 例如 foo.bar()
+<ul>
+<li>i 将对象作为this</li>
+</ul>
+</li>
+<li>b 作为变量调用 例如 var foo = function() {}; foo()
+<ul>
+<li>i 将undefined作为this, ImplicitThisValue通常返回undefined,除非provideThis值为true(在with语句)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>7 如果ref不是引用类型, 例如 (function(){})()
+<ul>
+<li>a 将undefined作为this</li>
+</ul>
+</li>
+<li>8 调用函数对象的内部方法[[call]]</li>
+</ul>
 <h3 id="fcall"><a class="markdownIt-Anchor" href="#fcall"></a> F.[[call]]</h3>
 <blockquote>
 <p>When the [[Call]] internal method for a Function object F is called with a this value and a list of arguments, the following steps are taken:<br>
@@ -601,7 +626,7 @@ bind方法的length属性值为1<br>
         <a class="prev" href="/2019/02/08/scrolling box/">&lt;  scrolling box</a>
       
       
-        <a class="next" href="/2019/02/01/vue-cli/">vue-cli  &gt;</a>
+        <a class="next" href="/2019/02/01/编译 Chromium(Windows)/">编译 Chromium(Windows)  &gt;</a>
       
     </nav>    
   
