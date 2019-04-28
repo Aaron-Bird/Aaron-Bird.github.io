@@ -77,6 +77,68 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2018/03/25/git/">
+                    Git
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-03-25T06:49:00.000Z">
+                  2018-03-25
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Git/">
+                    <span>Git</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>开源的分布式版本控制系统</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰 Git教程</a><br>
+<a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E4%BA%8E%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6" target="_blank" rel="noopener">Git 官方文档</a><br>
+<a href="https://blog.miniasp.com/post/2014/09/15/Useful-tool-Git-BFG-Repo-Cleaner.aspx" target="_blank" rel="noopener">介紹好用工具：BFG Repo-Cleaner</a></p>
+<h2 id="设置-git-config"><a class="markdownIt-Anchor" href="#设置-git-config"></a> 设置 git config</h2>
+<h3 id="显示config"><a class="markdownIt-Anchor" href="#显示config"></a> 显示config</h3>
+<p>--list 打印设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --list --style #查看系统设置</span><br><span class="line">git config --list --global #查看当前用户设置</span><br><span class="line">git config --list --local #查看当前所在仓库设置</span><br></pre></td></tr></table></figure>
+<p>--get [config name] 打印单个参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打印所有者邮箱</span></span><br><span class="line">git config --get user.email </span><br><span class="line"><span class="comment">#打印所有者姓名</span></span><br><span class="line">git config --get user.name</span><br></pre></td></tr></table></figure>
+<p>--local 当前所在项目<br>
+--global 当前用户(常用)<br>
+--system 系统设置<br>
+设置生效的优先级 local &gt; global &gt; system</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2018/03/25/git/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2018/03/06/sublime-plugin/">
                     SublimeText 常用插件
                   </a>               
@@ -635,64 +697,6 @@ var creExp = function(eleSel,shape) {
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2017/12/24/three.js入门/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2017/12/22/html2canvas/">
-                    html2canvas
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2017-12-22T06:00:00.000Z">
-                  2017-12-22
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript-library/">
-                    <span>JavaScript library</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-              
-                <!-- content -->
-                
-
-var dwsnapshot = function(){
-    var ele = document.querySelector('.content-wrap');
-    html2canvas(ele,{
-        // width: 800,
-        scale: 2,
-    }).then(function(c) {
-        var aNode = document.createElement('a');
-        aNode.href = c.toDataURL("png", 1);
-        //别忘了设置download属性,否则会...
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2017/12/22/html2canvas/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
