@@ -103,16 +103,17 @@
             <!-- article -->
             
             <div class="content">
-              
-                <!-- content -->
-                puppeteer是一个Google出品的Node库,可以用它来操纵Chrome.
-puppeteer这个单词的发音为: [ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶的人&quot;.
- 安装
-安装puppeteer时会自动下载chrome,最好用全局代理安装.
-1yarn add puppeteer
- 例子
-新建index.js, 填入如下代码:
-1234567891011121314// 载入puppeteerconst puppeteer = require('puppeteer');// 打开浏览器// launch方法返回一个Promise对象puppeteer.lau...
+               
+                  <!-- excerpt -->
+                  <p>puppeteer是一个Google出品的Node库,可以用它来操纵Chrome.<br>
+puppeteer这个单词的发音为: [ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶的人&quot;.</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>安装puppeteer时会自动下载chrome,最好用全局代理安装.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add puppeteer</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h2>
+<p>新建index.js, 填入如下代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 载入puppeteer</span></span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开浏览器</span></span><br><span class="line"><span class="comment">// launch方法返回一个Promise对象</span></span><br><span class="line">puppeteer.launch(&#123;<span class="attr">headless</span>: <span class="literal">false</span>&#125;).then(<span class="keyword">async</span> browser =&gt; &#123;</span><br><span class="line">  <span class="comment">// 打开一个页面</span></span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</span><br><span class="line">  <span class="comment">// 打开百度</span></span><br><span class="line">  <span class="keyword">await</span> page.goto(<span class="string">'https://www.baidu.com'</span>);</span><br><span class="line">  <span class="keyword">await</span> page.screenshot(&#123;<span class="attr">path</span>: <span class="string">'baidu.png'</span>&#125;);</span><br><span class="line">  <span class="comment">// 关闭浏览器</span></span><br><span class="line">  <span class="comment">// await browser.close();</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最后,进入文件所在路径, 执行 node index.js 命令即可.</p>
               
             </div>
           </article>
