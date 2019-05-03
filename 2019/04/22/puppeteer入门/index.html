@@ -119,7 +119,7 @@
       <!-- content -->
       <div class="article-content">
       <p>puppeteer是一个Google出品的Node库,可以用它来操纵Chrome.<br>
-puppeteer这个单词的发音为: [ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶的人&quot;.</p>
+puppeteer这个单词的发音为[ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶的人&quot;.</p>
 <h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
 <p>安装puppeteer时会自动下载chrome,最好用全局代理安装.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add puppeteer</span><br></pre></td></tr></table></figure>
@@ -321,13 +321,7 @@ img.width/height获取到的是img标签的大小,可用HTML5新增的naturalWid
 <p>headless参数为true时可能会触发该bug</p>
 <p>例如:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">puppeteer.launch(&#123;headless: true&#125;)</span><br><span class="line">// or headless的默认值就是true</span><br><span class="line">puppeteer.launch()</span><br></pre></td></tr></table></figure>
-<p>解决办法:
-<del>此 bug 已经被官方修复,计划于2019/5月左右发布.<br>
-在此之前, 可以用如下命令安装修复后的版本:</del></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add puppeteer@next</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/GoogleChrome/puppeteer/issues/3471#issuecomment-481043459" target="_blank" rel="noopener">[umbrella] Fix Request Interception · Issue #3471 · GoogleChrome/puppeteer · GitHub</a><br>
-</p>
-<p>如果操作系统是windows7, 则使用如下参数创建 browser:</p>
+<p>解决办法,如果操作系统是windows7, 则使用如下参数创建 browser:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.launch(&#123;</span><br><span class="line">  headless: <span class="literal">true</span>,</span><br><span class="line">  args: [</span><br><span class="line">    <span class="comment">// 不使用任何代理</span></span><br><span class="line">    <span class="string">'--proxy-server="direct://"'</span>,</span><br><span class="line">    <span class="string">'--proxy-bypass-list=*'</span></span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p><a href="https://github.com/GoogleChrome/puppeteer/issues/2391#issuecomment-382055246" target="_blank" rel="noopener">Headless mode on Windows 7 causes timeout, never completes · Issue #2391 · GoogleChrome/puppeteer · GitHub</a></p>
 <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
@@ -340,6 +334,8 @@ img.width/height获取到的是img标签的大小,可用HTML5新增的naturalWid
   <!-- pagination -->
   
     <nav class="pagination">
+      
+        <a class="prev" href="/2019/05/03/不定宽元素的宽度计算/">&lt;  不定宽元素的宽度计算</a>
       
       
         <a class="next" href="/2019/04/18/函数声明与函数表达式/">函数声明与函数表达式  &gt;</a>
