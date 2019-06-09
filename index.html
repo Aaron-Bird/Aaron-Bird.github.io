@@ -77,6 +77,67 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/06/09/在 Vue 中使用 TinyMCE/">
+                    在 Vue 中使用 TinyMCE
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-06-08T16:00:00.000Z">
+                  2019-06-09
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>TinyMCE 是一个开源的(LGPL 授权协议)富文本编辑器.</p>
+<p>本文的软件环境如下:</p>
+<p>1 &quot;@tinymce/tinymce-vue&quot;: &quot;2.1.0&quot;<br>
+2 &quot;tinymce&quot;: &quot;^5.0.7&quot;<br>
+3 &quot;vue&quot;: &quot;^2.6.10&quot;</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>TinyMCE 官方提供了 tinymce-vue 供 Vue 用户使用.<br>
+<a href="https://github.com/tinymce/tinymce-vue" target="_blank" rel="noopener">GitHub - tinymce/tinymce-vue: Official TinyMCE Vue component</a></p>
+<p>但是 tinymce-vue   默认使用的是官方的 CDN,需要到官网注册帐号,否则会有个提示.<br>
+<a href="https://github.com/tinymce/tinymce-vue/pull/6" target="_blank" rel="noopener">feat: add prefer cdn url config by yugasun · Pull Request #6 · tinymce/tinymce-vue · GitHub</a><br>
+<img src="/img/1fc2cd81.PNG" alt="捕获.PNG"></p>
+<p>如果不想用官方的 CDN,可以手动载入TinyMCE.</p>
+<p>安装依赖:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add @tinymce/tinymce-vue@2.1.0</span><br><span class="line">yarn add tinymce@5.0.7</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/06/09/在 Vue 中使用 TinyMCE/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/05/03/不定宽元素的宽度计算/">
                     不定宽元素的宽度计算
                   </a>               
@@ -544,60 +605,6 @@ inner是一个fixed元素, 背景色为黄色.<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/03/30/缓动函数(easing function)/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
-                    -webkit-overflow-scrolling导致元素消失
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-24T09:00:00.000Z">
-                  2019-03-24
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/CSS/">
-                    <span>CSS</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>在ios系统的浏览器中, 如果想让可滚动元素(例如有overflow: scroll属性的元素)带有弹性效果, 往往会给可滚动元素添加-webkit-overflow-scrolling: touch属性.<br>
-但这个属性有个bug, 可能会导致其内部的某些元素不显示.看起来就好象给元素加上了visibility:hidden一样.</p>
-<p>为了修复这个bug, 需要给&quot;某些&quot;后代元素添加transform: translate3d(0,0,0)属性.</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: scroll;</span><br><span class="line">  -webkit-<span class="attribute">overflow</span>-scrolling: touch;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: translate3d(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里之所以称&quot;某些&quot;,是因为无法确定到底应该加到哪些元素之上.<br>
-因为translate3d会产生很多副作用, 例如会改变元素的z-index, 要依具体情况而定.<br>
-需注意的是这个方法也不一定总是有效.</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

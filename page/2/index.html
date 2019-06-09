@@ -77,6 +77,60 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
+                    -webkit-overflow-scrolling导致元素消失
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-24T09:00:00.000Z">
+                  2019-03-24
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>在ios系统的浏览器中, 如果想让可滚动元素(例如有overflow: scroll属性的元素)带有弹性效果, 往往会给可滚动元素添加-webkit-overflow-scrolling: touch属性.<br>
+但这个属性有个bug, 可能会导致其内部的某些元素不显示.看起来就好象给元素加上了visibility:hidden一样.</p>
+<p>为了修复这个bug, 需要给&quot;某些&quot;后代元素添加transform: translate3d(0,0,0)属性.</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: scroll;</span><br><span class="line">  -webkit-<span class="attribute">overflow</span>-scrolling: touch;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: translate3d(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里之所以称&quot;某些&quot;,是因为无法确定到底应该加到哪些元素之上.<br>
+因为translate3d会产生很多副作用, 例如会改变元素的z-index, 要依具体情况而定.<br>
+需注意的是这个方法也不一定总是有效.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/03/23/封装Swiper为Vue组件/">
                     封装Swiper为Vue组件
                   </a>               
@@ -577,67 +631,6 @@ deactivated在keep-alive组件被停用时调用.<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/02/24/height百分比值不生效/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/02/10/获取元素位置_尺寸的方法/">
-                    获取元素位置/尺寸的方法
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-02-09T16:00:00.000Z">
-                  2019-02-10
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <h2 id="clientwidth-offsetwidth-scrollwidth"><a class="markdownIt-Anchor" href="#clientwidth-offsetwidth-scrollwidth"></a> clientWidth offsetWidth scrollWidth</h2>
-<ul>
-<li>clientWidth|clientHeight 元素内容可视部分的宽度/高度,不包括 滚动条 border margin</li>
-<li>offsetWidth|offsetHeight 元素整体宽度/高度,包括滚动条和border,不包括margin</li>
-<li>scrollWidth|scrollHeight 元素内容实际宽度/高度,包含被隐藏的部分</li>
-</ul>
-<p>示例
-<img src="/img/5bd68899.png" alt="50424091-e23a4980-0899-11e9-8b18-e8b210cbf876.png"></p>
-<p>如上所示,两容器元素的宽/高均为200px, border为1px,padding为10px. 背景颜色为黄色, padding无颜色<br>
-两容器内均有一斜线为背景的子元素,其宽/高均为300px<br>
-容器1的overflow属性值为auto(可滚动).滚动条宽度为17px,颜色为蓝色<br>
-容器2的overflow的属性值为static(默认值,无滚动条)<br>
-clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidth值为203px(220px - 17px).没有滚动条时,clientWidth值为220px<br>
-在chrome中,padding-right不参与scrollWidth值的计算.而padding-bottom相反,参与scrollHeight值的计算.因此, 可滚动元素的scrollWidth为310px,scrollHeight为320px</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/02/10/获取元素位置_尺寸的方法/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
