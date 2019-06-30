@@ -108,8 +108,8 @@
                   <p><a href="https://www.ecma-international.org/ecma-262/9.0/index.html#sec-functiondeclarationinstantiation" target="_blank" rel="noopener">ECMAScript® 2018 Language Specification</a></p>
 <blockquote>
 <p>When an execution context is established for evaluating an ECMAScript function a new function Environment Record is created and bindings for each formal parameter are instantiated in that Environment Record.Each declaration in the function body is also instantiated.<br>
-当为了执行函数代码而建立 execution context(执行环境) 时, 会创建一个新的 function Environment Record(函数环境记录),所有 formal parameters(形参) 都会在这个执行环境中实例化.function body(函数体)中的所有声明也会被实例化.
-If the function's formal parameters do not include any default value initializers then the body declarations are instantiated in the same Environment Record as the parameters. If default value parameter initializers exist, a second Environment Record is created for the body declarations.
+当为了执行函数代码而建立 execution context(执行环境) 时, 会创建一个新的 function Environment Record(函数环境记录),所有 formal parameters(形参) 都会在这个执行环境中实例化.function body(函数体)中的所有声明也会被实例化.<br>
+If the function's formal parameters do not include any default value initializers then the body declarations are instantiated in the same Environment Record as the parameters. If default value parameter initializers exist, a second Environment Record is created for the body declarations.<br>
 如果形参没有默认值,则在同一个环境记录中实例化 body declarations(函数体内的声明).<br>
 如果形参有默认值,则会给 body declarations 创建一个新的环境记录.<br>
 Formal parameters and functions are initialized as part of FunctionDeclarationInstantiation. All other bindings are initialized during evaluation of the function body.<br>
