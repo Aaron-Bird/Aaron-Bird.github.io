@@ -103,7 +103,10 @@
       </div>
       <!-- content -->
       <div class="article-content">
-      <p>系统环境 Windows 7 x64<br>
+      <p>2019/7/13日注:<br>
+该文章内容已过时,部分配置及环境要求发生变动. 具体过程请参阅官方的编译指南.<br>
+<a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md" target="_blank" rel="noopener">https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md</a></p>
+<p>系统环境 Windows 7 x64<br>
 编译版本 Chromium 69.0.3482.0</p>
 <h2 id="安装visual-studio-community-2017"><a class="markdownIt-Anchor" href="#安装visual-studio-community-2017"></a> 安装Visual Studio Community 2017</h2>
 <p><a href="https://visualstudio.microsoft.com/vs/community" target="_blank" rel="noopener">Visual Studio Community 的下载地址</a></p>
@@ -164,7 +167,9 @@ C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
 输入如下gn args命令,在out\mybuild目录下创建编译所需配置文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gn args out\mybuild</span><br></pre></td></tr></table></figure>
 <p>执行如上命令后,会弹出一个记事本.在其中输入编译配置,保存后关闭记事本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">use_jumbo_build = true</span><br><span class="line">enable_nacl = false</span><br><span class="line">target_cpu = &quot;x64&quot;</span><br><span class="line">remove_webcore_debug_symbols = true</span><br><span class="line">symbol_level = 0</span><br><span class="line">is_debug = false</span><br><span class="line">ffmpeg_branding = &quot;Chrome&quot;</span><br><span class="line">proprietary_codecs = true</span><br><span class="line">is_component_build = false</span><br><span class="line">is_official_build = true</span><br><span class="line">dcheck_always_on = true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">use_jumbo_build = true</span><br><span class="line">enable_nacl = false</span><br><span class="line">target_cpu = &quot;x64&quot;</span><br><span class="line">remove_webcore_debug_symbols = true</span><br><span class="line">symbol_level = 0</span><br><span class="line">is_debug = false</span><br><span class="line">ffmpeg_branding = &quot;Chrome&quot;</span><br><span class="line">proprietary_codecs = true</span><br><span class="line">is_component_build = false</span><br><span class="line">dcheck_always_on = true</span><br><span class="line">is_official_build = true</span><br></pre></td></tr></table></figure>
+<p>2019/7/13 更新</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">use_jumbo_build = true</span><br><span class="line">enable_nacl = false</span><br><span class="line">target_cpu = &quot;x64&quot;</span><br><span class="line">symbol_level = 1</span><br><span class="line">blink_symbol_level=0</span><br><span class="line">is_debug = false</span><br><span class="line">ffmpeg_branding = &quot;Chrome&quot;</span><br><span class="line">proprietary_codecs = true</span><br><span class="line">is_component_build = false</span><br><span class="line">dcheck_always_on = true</span><br><span class="line">is_official_build = false</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.chromium.org/developers/gn-build-configuration" target="_blank" rel="noopener">更多配置参见官方gn配置文档</a></p>
 <h2 id="编译"><a class="markdownIt-Anchor" href="#编译"></a> 编译</h2>
 <p>使用ninja命令编译</p>
@@ -184,8 +189,18 @@ C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
 <p>2 运行ninja命令时报错</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception: C:\Program Files (x86)\Microsoft Visual Studio\2 missing - make sure VC++ tools are installed.</span><br></pre></td></tr></table></figure>
 <p>解决办法<br>
-确保安装了VC++ 2017 version 15.9 v14.16 latest v141 tool等工具
+确保安装了VC++ 2017 version 15.9 v14.16 latest v141 tool等工具<br>
 <img src="/img/fff35a59.png" alt="51023817-cab1cf00-15c2-11e9-998a-8807bb17a3c6.png"></p>
+<p>3<br>
+error Windows 10.0.18362.0 SDK or higher required.<br>
+解决办法<br>
+安装 Windows 10 SDK (10.0.18362.0)<br>
+<a href="https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk" target="_blank" rel="noopener">Windows 10 SDK - Windows app development</a></p>
+<p>4<br>
+resource whitelist generation only works on non-component builds with debug info enabled.
+See //tools/grit/grit_rule.gni:105:7: symbol_level &gt; 0 &amp;&amp; !strip_debug_info &amp;&amp; !is_component_build</p>
+<p>解决办法
+更改 ninja 配置  symbol_level = 0 -&gt; symbol_level = 1</p>
 <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
 <p><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md" target="_blank" rel="noopener">windows_build_instructions</a><br>
 <a href="https://www.chromium.org/developers/gn-build-configuration" target="_blank" rel="noopener">gn-build-configuration</a><br>
