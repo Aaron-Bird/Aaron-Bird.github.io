@@ -95,10 +95,21 @@
           </time>
         
         <!-- categories -->
-        <!---->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/software/">
+              <span>software</span>
+            </a>
+          
+        -->
         <!-- categories end -->
         <!-- tag -->
         <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Chromium/">
+            <span>Chromium</span>
+          </a>
         
       </div>
       <!-- content -->
@@ -180,6 +191,7 @@ C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
 <h2 id="增量更新及编译"><a class="markdownIt-Anchor" href="#增量更新及编译"></a> 增量更新及编译</h2>
 <p>在D:\chromium\src下执行如下命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rebase-update</span><br><span class="line">gclient sync</span><br><span class="line">ninja -j 1 -C out/mybuild chrome</span><br></pre></td></tr></table></figure>
+<p>注: git rebase-update 失败的话, 可以用 git pull 命令代替</p>
 <h2 id="error"><a class="markdownIt-Anchor" href="#error"></a> Error</h2>
 <p>1 运行gclient命令时报错</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Username for &apos;https://chrome-internal.googlesource.com&apos;:</span><br></pre></td></tr></table></figure>
@@ -205,7 +217,7 @@ See //tools/grit/grit_rule.gni:105:7: symbol_level &gt; 0 &amp;&amp; !strip_debu
 <p><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md" target="_blank" rel="noopener">windows_build_instructions</a><br>
 <a href="https://www.chromium.org/developers/gn-build-configuration" target="_blank" rel="noopener">gn-build-configuration</a><br>
 <a href="https://chromium.googlesource.com/chromium/src/+/HEAD/docs/user_data_dir.md#Windows" target="_blank" rel="noopener">chrome|chromium User Data Directory - Default Location</a><br>
-<a href="http://gclxry.com/chromium-build-args/" target="_blank" rel="noopener">Chromium代码编译选项介绍</a></p>
+<a href="https://gclxry.com/chromium-build-args/" target="_blank" rel="noopener">Chromium代码编译选项介绍</a></p>
 
       </div>
     </article>
@@ -214,10 +226,10 @@ See //tools/grit/grit_rule.gni:105:7: symbol_level &gt; 0 &amp;&amp; !strip_debu
   
     <nav class="pagination">
       
-        <a class="prev" href="/2019/02/01/vue-cli/">&lt;  vue-cli</a>
+        <a class="prev" href="/2019/02/08/this/">&lt;  this</a>
       
       
-        <a class="next" href="/2018/05/29/JavaScript-RegExp/">JavaScript 正则表达式  &gt;</a>
+        <a class="next" href="/2019/02/01/vue-cli/">vue-cli  &gt;</a>
       
     </nav>    
   

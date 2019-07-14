@@ -77,6 +77,79 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/03/03/移动端浏览器对audio标签的限制总结/">
+                    移动端浏览器对audio标签的限制总结
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-03T09:00:00.000Z">
+                  2019-03-03
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>往往在桌面写好的播放功能,到移动端各种出错.<br>
+这是因为在移动端,对于audio的使用有很多限制,特别是safari.<br>
+而且现在的各种框架, 极大加深了程序的复杂程度,使调试变得异常困难.</p>
+<h2 id="测试环境"><a class="markdownIt-Anchor" href="#测试环境"></a> 测试环境</h2>
+<p>本文测试环境为iPad ios12,没有条件进行iphone/桌面端safari环境下audio的表现</p>
+<h2 id="不支持autoplaypreload"><a class="markdownIt-Anchor" href="#不支持autoplaypreload"></a> 不支持autoplay/preload</h2>
+<p>大部分移动端浏览器都不允许网页自动播放/预加载音乐.<br>
+例如下面这个示例, 桌面浏览器可以自动播放,而移动浏览器没有任何反应.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span> <span class="attr">autoplay</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>除非用户点了播放按钮/手动触发了某个事件(这个事件里调用了audio.play()方法)<br>
+为啥这么设计?据说是怕网页偷跑流量.</p>
+<h2 id="只有用户手动触发的事件能调用playload"><a class="markdownIt-Anchor" href="#只有用户手动触发的事件能调用playload"></a> 只有用户手动触发的事件能调用play/load</h2>
+<p>既然autoplay不能用,那能不能用play方法来自动播放呢?
+很遗憾的是, 不行.
+例如下面这样,在移动端没效果:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> audioEl = <span class="built_in">document</span>.querySelector(<span class="string">'audio'</span>)</span></span><br><span class="line"><span class="undefined">  audioEl.play()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>先来看看水果的文档:</p>
+<blockquote>
+<p>In Safari on iOS (for all devices, including iPad), where the user may be on a cellular network and be charged per data unit, preload and autoplay are disabled. No data is loaded until the user initiates it. This means the JavaScript play() and load() methods are also inactive until the user initiates playback, unless the play() or load() method is triggered by user action. In other words, a user-initiated Play button works, but an onLoad=&quot;play()&quot; event does not.</p>
+</blockquote>
+<p><a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html" target="_blank" rel="noopener">iOS-Specific Considerations</a></p>
+<p>也就是说,只有当用户手动触发某个事件时,audio.play才能被调用.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">click由用户触发, 有效</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Play"</span> <span class="attr">onclick</span>=<span class="string">"document.myMovie.play()"</span>&gt;</span></span><br><span class="line">onload事件不是用户触发的,无效</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"document.myMovie.play()"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>因此,可以给外层元素绑定一个click事件.<br>
+只要用户点了这个元素,就能播放音乐.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> audioEl = <span class="built_in">document</span>.querySelector(<span class="string">'audio'</span>)</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> played = <span class="literal">false</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>).addEventListener(<span class="string">'click'</span>, ()=&gt; &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">if</span> (!played) &#123;</span></span><br><span class="line"><span class="undefined">      audioEl.play()</span></span><br><span class="line"><span class="actionscript">      played = <span class="literal">true</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/03/移动端浏览器对audio标签的限制总结/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/02/25/transform导致fixed失效/">
                     transform导致fixed失效
                   </a>               
@@ -439,8 +512,8 @@ clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidt
             <!-- title -->  
             <h2 class="title">
                          
-                  <a href="/2019/02/01/vue-cli/">
-                    vue-cli
+                  <a href="/2019/02/01/编译 Chromium(Windows)/">
+                    编译 Chromium(Windows)
                   </a>               
               
             </h2>
@@ -456,60 +529,10 @@ clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidt
               
                 <span class="icon-baseline-work_outline-24px"></span>
                 
-                  <a href="/categories/Vue/">
-                    <span>Vue</span>
+                  <a href="/categories/software/">
+                    <span>software</span>
                   </a>
                 
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
-<p>1 安装vue-cli</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line">//or</span><br><span class="line"> yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
-<p>2 安装node-gyp所需编译工具</p>
-<p>安装  <a href="https://visualstudio.microsoft.com/vs/community" target="_blank" rel="noopener">Visual Studio Community 2017</a><br>
-安装Python2.7(node-gyp不支持3.x)<br>
-打开cmd, 执行如下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set python python2.7</span><br><span class="line">npm config set msvs_version 2017</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<p>3 修改镜像地址为阿里源</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org/</span><br><span class="line">yarn config set registry https://registry.npm.taobao.org/</span><br><span class="line"></span><br><span class="line">// node-sass所需</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/02/01/vue-cli/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/02/01/编译 Chromium(Windows)/">
-                    编译 Chromium(Windows)
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-01-31T16:00:00.000Z">
-                  2019-02-01
-                </time>
-              
-              <!-- categories -->
               
             </div>
             <!-- article -->
@@ -565,6 +588,63 @@ C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/02/01/编译 Chromium(Windows)/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/02/01/vue-cli/">
+                    vue-cli
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-01-31T16:00:00.000Z">
+                  2019-02-01
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>1 安装vue-cli</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line">//or</span><br><span class="line"> yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
+<p>2 安装node-gyp所需编译工具</p>
+<p>安装  <a href="https://visualstudio.microsoft.com/vs/community" target="_blank" rel="noopener">Visual Studio Community 2017</a><br>
+安装Python2.7(node-gyp不支持3.x)<br>
+打开cmd, 执行如下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set python python2.7</span><br><span class="line">npm config set msvs_version 2017</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<p>3 修改镜像地址为阿里源</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org/</span><br><span class="line">yarn config set registry https://registry.npm.taobao.org/</span><br><span class="line"></span><br><span class="line">// node-sass所需</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/02/01/vue-cli/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
@@ -645,192 +725,6 @@ C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2018/05/29/JavaScript-RegExp/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2018/04/24/JavScript-event/">
-                    js事件
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2018-04-24T05:34:00.000Z">
-                  2018-04-24
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <h2 id="常用事件表"><a class="markdownIt-Anchor" href="#常用事件表"></a> 常用事件表</h2>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>触发</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>load</td>
-<td>页面(包括CSS样式 图片 JS等资源)完全加载后触发(window可用)</td>
-</tr>
-<tr>
-<td>DOMContentLoaded</td>
-<td>HTML文档被加载后触发,无需等待图片 js CSS资源加载(window和document可用)</td>
-</tr>
-<tr>
-<td>beforeunload</td>
-<td>窗口被关闭/刷新(可阻止)</td>
-</tr>
-<tr>
-<td>unload</td>
-<td>文档被卸载后(window)</td>
-</tr>
-<tr>
-<td>abort</td>
-<td>图像/视频/音频加载被中断</td>
-</tr>
-<tr>
-<td>error</td>
-<td>文档/图像加载错误</td>
-</tr>
-<tr>
-<td>resize</td>
-<td>调整窗口大小(window)</td>
-</tr>
-<tr>
-<td>scroll</td>
-<td>页面滚动(window) <br>可用document.documentElement.scrollTop获取滚动距离</td>
-</tr>
-<tr>
-<td>focusin</td>
-<td>获得焦点(冒泡)</td>
-</tr>
-<tr>
-<td>focus</td>
-<td>获得焦点(不冒泡)</td>
-</tr>
-<tr>
-<td>focusout</td>
-<td>失去焦点(冒泡)</td>
-</tr>
-<tr>
-<td>blur</td>
-<td>失去焦点(不冒泡)</td>
-</tr>
-<tr>
-<td>mouseover</td>
-<td>鼠标移动到元素上(冒泡)</td>
-</tr>
-<tr>
-<td>mouseenter</td>
-<td>鼠标移动到元素上(不冒泡)</td>
-</tr>
-<tr>
-<td>mouseout</td>
-<td>鼠标移出元素(冒泡)</td>
-</tr>
-<tr>
-<td>mouseleave</td>
-<td>鼠标移出元素(不冒泡)</td>
-</tr>
-<tr>
-<td>mousedown</td>
-<td>鼠标键按下</td>
-</tr>
-<tr>
-<td>mouseup</td>
-<td>鼠标键松开</td>
-</tr>
-<tr>
-<td>click</td>
-<td>鼠标单击</td>
-</tr>
-<tr>
-<td>dblclick</td>
-<td>鼠标双击</td>
-</tr>
-<tr>
-<td>mousemove</td>
-<td>鼠标移动</td>
-</tr>
-<tr>
-<td>contextmenu</td>
-<td>调出上下文菜单(鼠标单击右键)</td>
-</tr>
-<tr>
-<td>mousewheel</td>
-<td>鼠标滚轮滚动(非标准事件)</td>
-</tr>
-<tr>
-<td>keydown</td>
-<td>键盘任意键被按下/按住</td>
-</tr>
-<tr>
-<td>keypress</td>
-<td>键盘字符键被按下/按住</td>
-</tr>
-<tr>
-<td>keyup</td>
-<td>键盘任意键被松开</td>
-</tr>
-<tr>
-<td>input</td>
-<td>用于input/textarea元素,用户输入时触发</td>
-</tr>
-<tr>
-<td>change</td>
-<td>元素值发生变化(例如select更改选项,input输入框输入)</td>
-</tr>
-<tr>
-<td>submit</td>
-<td>提交按钮被点击</td>
-</tr>
-<tr>
-<td>reset</td>
-<td>重置按钮被点击</td>
-</tr>
-<tr>
-<td>copy</td>
-<td>用户复制内容</td>
-</tr>
-<tr>
-<td>haschange</td>
-<td>URL参数(#号后的内容)变化时触发(window可用)</td>
-</tr>
-</tbody>
-</table>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2018/04/24/JavScript-event/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
