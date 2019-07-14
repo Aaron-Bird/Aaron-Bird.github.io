@@ -111,6 +111,10 @@
             <span>leetcode</span>
           </a>
         
+          <a href="/tags/algorithm/">
+            <span>algorithm</span>
+          </a>
+        
       </div>
       <!-- content -->
       <div class="article-content">
@@ -133,10 +137,10 @@
 没必要考虑存在多个相同值的特殊情况, 只需遍历一遍,遍历时查找哈希表中是否有对应的差值.有则返回, 没有则将减数添加到哈希表里.<br>
 复杂度 n</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const twoSum = function(nums, target) &#123;</span><br><span class="line">  const map = &#123;&#125;;</span><br><span class="line">  </span><br><span class="line">  for (let i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">    const num = nums[i];</span><br><span class="line">    const difference =  target - num;</span><br><span class="line">    const differenceI = map[difference];</span><br><span class="line">    if (differenceI !== undefined) &#123;</span><br><span class="line">        return [differenceI, i]</span><br><span class="line">    &#125; </span><br><span class="line">    map[num] = i</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>另外, 如果需要大量的添加/删除属性,  Map 的性能更好一些.</p>
+<p>另外,也可以用 Map .不好说哪个性能更好.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> num = nums[i];</span><br><span class="line">    <span class="keyword">const</span> difference = target - num;</span><br><span class="line">    <span class="keyword">const</span> differenceI = map.get(difference);</span><br><span class="line">    <span class="keyword">if</span> (differenceI !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> [differenceI, i];</span><br><span class="line">    &#125;</span><br><span class="line">    map.set(num, i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<p><a href="https://leetcode.com/problems/two-sum/discuss/234005/Neat-JavaScript-Map-O(n)" target="_blank" rel="noopener">Loading...</a></p>
+<p><a href="https://leetcode.com/problems/two-sum/discuss/234005/Neat-JavaScript-Map-O(n)" target="_blank" rel="noopener">Neat-JavaScript-Map-O(n)</a></p>
 
       </div>
     </article>
