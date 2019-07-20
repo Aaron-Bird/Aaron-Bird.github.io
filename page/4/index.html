@@ -77,6 +77,86 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2018/05/29/JavaScript-RegExp/">
+                    JavaScript 正则表达式
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-05-28T17:20:00.000Z">
+                  2018-05-29
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="创建正则表达式"><a class="markdownIt-Anchor" href="#创建正则表达式"></a> 创建正则表达式</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regExp = <span class="regexp">/a+/</span></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> regExp = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'a+'</span>)</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> regExp = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/a+/</span>, <span class="string">'g'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="正则标志"><a class="markdownIt-Anchor" href="#正则标志"></a> 正则标志</h2>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>g</td>
+<td>全局匹配</td>
+</tr>
+<tr>
+<td>y</td>
+<td>粘滞匹配</td>
+</tr>
+<tr>
+<td>i</td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td>m</td>
+<td>匹配多行</td>
+</tr>
+</tbody>
+</table>
+<p>g标志返回多个符合正则的匹配结果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'foo bar'</span>.match(<span class="regexp">/\w+/g</span>)<span class="comment">// [ 'foo', 'bar' ]</span></span><br><span class="line"><span class="string">'foo bar'</span>.match(<span class="regexp">/\w+/</span>) <span class="comment">// [ 'foo', index: 0, input: 'foo bar' ]</span></span><br></pre></td></tr></table></figure>
+<p>注意, 未使用g标志时,调用RegExp.exec只返回首次匹配结果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regExp = <span class="regexp">/\w+/g</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="string">'foo bar'</span></span><br><span class="line"><span class="built_in">console</span>.log(regExp.exec(text)) <span class="comment">// [ 'foo', index: 0, input: 'foo bar' ]</span></span><br><span class="line"><span class="built_in">console</span>.log(re.lastIndex) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(regExp.exec(text)) <span class="comment">// [ 'bar', index: 4, input: 'foo bar' ]</span></span><br><span class="line"><span class="built_in">console</span>.log(re.lastIndex) <span class="comment">// 7</span></span><br><span class="line"><span class="comment">// 对比</span></span><br><span class="line">regExp = <span class="regexp">/\w+/</span></span><br><span class="line"><span class="built_in">console</span>.log(regExp.exec(text)) <span class="comment">// [ 'foo', index: 0, input: 'foo bar' ] </span></span><br><span class="line"><span class="built_in">console</span>.log(re.lastIndex) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(regExp.exec(text)) <span class="comment">// [ 'foo', index: 0, input: 'foo bar' ] </span></span><br><span class="line"><span class="built_in">console</span>.log(re.lastIndex) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2018/05/29/JavaScript-RegExp/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2018/04/24/JavScript-event/">
                     js事件
                   </a>               
@@ -783,72 +863,10 @@ popper是一个弹出框插件,如果载入popper.min.js时报错: Uncaught Synt
             </div>
         </div>
       
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2018/02/21/JavaScript-string/">
-                    JavaScript String
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2018-02-20T23:37:00.000Z">
-                  2018-02-21
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-              
-                <!-- content -->
-                 string
- 参考
-What's the point of new String(“x”) in JavaScript?
-MDN String
- 声明字符串
-
-字面量
-
-1234var word = 'hello';// 模板字符串(es6)var sen = `$&#123;word&#125; world`;console.log(word, sen); // hello hello world
-
-构造函数
-
-12var word = new String('hello')console.log(word) // String &#123;"hello"&#125;
-
-把Stri...
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2018/02/21/JavaScript-string/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
     
     <!-- pagination -->
 <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">></a>
 </nav>
 </div>
   </main>
