@@ -77,6 +77,62 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/03/16/event loop/">
+                    event loop
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-16T04:00:00.000Z">
+                  2019-03-16
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>JavaScript支持处理并发事件,其并发模型基于event loop.<br>
+<img src="/img/8709b91c.jpg" alt="Untitled Diagram (2).jpg"></p>
+<h2 id="并发与并行"><a class="markdownIt-Anchor" href="#并发与并行"></a> 并发与并行</h2>
+<p>并发和并行是两个不同的概念,很容易被弄混.<br>
+并发(concurrency)指的是<strong>同一时间有能力应对多件事</strong>,而并行(Parallel )指的是<strong>同一时间有能力做多件事</strong>.</p>
+<p>举个例子:<br>
+妈妈一边打小明,一边和老王通电话.妈妈先打一下小明, 然后和老王聊一句.如此交替,这是并发.<br>
+小明的妈妈是个妖怪,长了两个脑袋.一个脑袋骂小明,同时另一个脑袋通电话.这即是并行,也是并发.<br>
+但如果妈妈的两个脑袋同时骂小明,那这就只能是并行了,不是并发.因为骂小明是同一个事件.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/16/event loop/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/03/10/Js是一门_单线程_语言/">
                     Js是一门&#34;单线程&#34;语言
                   </a>               
@@ -612,94 +668,6 @@ clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidt
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/02/01/vue-cli/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/02/01/编译 Chromium(Windows)/">
-                    编译 Chromium(Windows)
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-01-31T16:00:00.000Z">
-                  2019-02-01
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/software/">
-                    <span>software</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>2019/7/13日注:<br>
-该文章内容已过时,部分配置及环境要求发生变动. 具体过程请参阅官方的编译指南.<br>
-<a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md" target="_blank" rel="noopener">https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md</a></p>
-<p>系统环境 Windows 7 x64<br>
-编译版本 Chromium 69.0.3482.0</p>
-<h2 id="安装visual-studio-community-2017"><a class="markdownIt-Anchor" href="#安装visual-studio-community-2017"></a> 安装Visual Studio Community 2017</h2>
-<p><a href="https://visualstudio.microsoft.com/vs/community" target="_blank" rel="noopener">Visual Studio Community 的下载地址</a></p>
-<p>安装时,勾选以下选项<br>
-如果已经安装了Visual Studio Community 2017, 可通过 工具 &gt; 获取工具和功能 打开该页面</p>
-<ul>
-<li>工作负载
-<ul>
-<li>使用 C++ 的桌面开发
-<ul>
-<li>用于 x86 和 x64 的 Visual C++ ATL</li>
-<li>用于 x86 和 x64 的 Visual C++ MFC</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>单个组件
-<ul>
-<li>SDK、库和框架
-<ul>
-<li>Windows 10 SDK (10.0.17134.0)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>语言包
-<ul>
-<li>英语</li>
-</ul>
-</li>
-</ul>
-<p>注意不要更改默认的安装位置, 如果改了编译时可能会出错,提示找不到Visual Studio<br>
-C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
-<h2 id="安装sdk-debugging-tools"><a class="markdownIt-Anchor" href="#安装sdk-debugging-tools"></a> 安装SDK Debugging Tools</h2>
-<p>1 安装Visual Studio后, 打开Control Panel → Programs → Programs and Features<br>
-2 右键 Windows Software Development Kit -&gt; 点击Change<br>
-3 选择Change -&gt; 点击 Next按钮 -&gt; 勾选Debugging Tools For Windows -&gt; 点击Change按钮</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/02/01/编译 Chromium(Windows)/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
