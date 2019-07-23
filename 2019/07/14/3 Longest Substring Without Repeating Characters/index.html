@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!--[if lte IE 8]>
+    <script type="text/javascript">  
+        var tags = ["header", "footer", "nav", "aside", "article", "section", "object", "main"];  
+        for (var i in tags) {  
+            document.createElement(tags[i]);  
+        }  
+    </script>   
+  <![endif]-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 Longest Substring Without Repeating Characters</title>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <!-- js -->
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/blotter.min.js"></script>
+  <script type="text/javascript" src="/js/rollingDistortMaterial.js"></script> -->
+  <!-- css -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/icon.css">
+  
+    
+      <link rel="stylesheet" href="/css/index.css">
+    
+  
+</head>
+
+<body>
+  <!-- header -->
+  <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- main -->
+  <main id="main" class="main">
+    <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-text"> 题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-text"> 解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化"><span class="toc-text"> 优化</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1 class="title">3 Longest Substring Without Repeating Characters</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-07-13T16:00:00.000Z">
+            2019-07-14
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/leetcode/">
+              <span>leetcode</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/leetcode/">
+            <span>leetcode</span>
+          </a>
+        
+          <a href="/tags/algorithm/">
+            <span>algorithm</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>Given a string, find the length of the longest substring without repeating characters.</p>
+<p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line">Input: &quot;abcabcbb&quot;</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The answer is &quot;abc&quot;, with the length of 3. </span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line">Input: &quot;bbbbb&quot;</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br><span class="line"></span><br><span class="line">Example 3:</span><br><span class="line">Input: &quot;pwwkew&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<p>遍历字符,用一个变量(a)记录遍历过的不重复子串.<br>
+如果遇到了重复的字符,则比较a的长度,判断是否比之前的长.然后移除a开头到重复的部分的字符.</p>
+<p>时间复杂度 O(n^2)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lengthOfLongestSubstring = <span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> maxLen = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> tempStr = <span class="string">''</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; s.length) &#123;</span><br><span class="line">        <span class="keyword">const</span> letter = s[i];</span><br><span class="line">        <span class="keyword">const</span> lastSameI = tempStr.indexOf(letter)</span><br><span class="line">        <span class="keyword">if</span> (lastSameI &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> tempStrLen = tempStr.length;</span><br><span class="line">            <span class="keyword">if</span> ( tempStrLen &gt; maxLen) &#123;</span><br><span class="line">                maxLen = tempStrLen;</span><br><span class="line">            &#125;</span><br><span class="line">            tempStr = tempStr.slice(lastSameI + <span class="number">1</span>);</span><br><span class="line">        &#125; </span><br><span class="line">        tempStr += letter;</span><br><span class="line">        i += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> tempStrLen = tempStr.length;</span><br><span class="line">    <span class="keyword">if</span> ( tempStrLen &gt; maxLen) &#123;</span><br><span class="line">        maxLen = tempStrLen;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>测试</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test</span></span><br><span class="line"><span class="built_in">console</span>.log(lengthOfLongestSubstring(<span class="string">"abc"</span>) === <span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(lengthOfLongestSubstring(<span class="string">"bbbb"</span>) === <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(lengthOfLongestSubstring(<span class="string">"wkew"</span>) === <span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(lengthOfLongestSubstring(<span class="string">"cabcbb"</span>) === <span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(lengthOfLongestSubstring(<span class="string">"dvdf"</span>) === <span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(lengthOfLongestSubstring(<span class="string">"tmmzuxt"</span>) === <span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(lengthOfLongestSubstring(<span class="string">"gububgvfk"</span>) === <span class="number">6</span>);</span><br><span class="line"><span class="built_in">console</span>.log(lengthOfLongestSubstring(<span class="string">" "</span>) === <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="优化"><a class="markdownIt-Anchor" href="#优化"></a> 优化</h2>
+<p>用哈希表实现.<br>
+遍历字符串,记录当前不重复子串的起始坐标.<br>
+根据上一个相同字符和子串起始坐标的相对位置来判断是否重复.</p>
+<p>时间复杂度 O(n)</p>
+<p>Object实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lengthOfLongestSubstring = <span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> maxLen = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span>; <span class="comment">// 当前子串的左侧位置</span></span><br><span class="line">    <span class="keyword">const</span> map = &#123;&#125;;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; s.length) &#123;</span><br><span class="line">        <span class="keyword">const</span> letter = s[i];</span><br><span class="line">        <span class="keyword">const</span> repeat = map[letter];</span><br><span class="line">        <span class="keyword">if</span> (repeat &gt;= <span class="number">0</span> &amp;&amp; repeat &gt;= left) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i - left &gt;= maxLen) &#123;</span><br><span class="line">                maxLen = i - left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 有重复, 重置左侧位置</span></span><br><span class="line">            left = repeat + <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        map[letter] = i</span><br><span class="line">        i += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 最后一位为不重复子串, 且当前的不重复子串 &gt; maxLen</span></span><br><span class="line">    <span class="keyword">if</span> (s.length - left &gt; maxLen) &#123;</span><br><span class="line">        maxLen = s.length - left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Map实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lengthOfLongestSubstring = <span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> maxLen = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">    <span class="keyword">while</span> (i &lt; s.length) &#123;</span><br><span class="line">        <span class="keyword">const</span> letter = s[i];</span><br><span class="line">        <span class="keyword">const</span> repeat = map.get(letter);</span><br><span class="line">        <span class="keyword">if</span> (repeat &gt;= <span class="number">0</span> &amp;&amp; repeat &gt;= left) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i - left &gt;= maxLen) &#123;</span><br><span class="line">                maxLen = i - left;</span><br><span class="line">            &#125;</span><br><span class="line">            left = repeat + <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        map.set(letter, i);</span><br><span class="line">        i += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (s.length - left &gt; maxLen) &#123;</span><br><span class="line">        maxLen = s.length - left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/2019/07/20/2 Add Two Numbers/">&lt;  2 Add Two Numbers</a>
+      
+      
+        <a class="next" href="/2019/07/14/Two Sum/">1. Two Sum  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+  </main>
+
+  <!-- search -->      
+  
+
+  
+    
+      <script src="/js/main.js"></script>
+    
+  
+</body>
+</html>
