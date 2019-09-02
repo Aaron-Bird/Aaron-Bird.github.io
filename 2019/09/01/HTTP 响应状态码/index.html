@@ -110,7 +110,7 @@
       <!-- content -->
       <div class="article-content">
       <p>HTTP 响应状态码(HTTP Response Status Code) 用于表示服务器对此次 HTTP 请求的响应结果(服务器是否正常, 是否返回了数据).<br>
-其由是一个3位整数(status-code)及一个解释短语组成,status-code 和解释短语间用空格隔开(例如最常见的表示请求成功的 200 OK).<br>
+其由是一个3位整数的<strong>状态码</strong>(status-code)及一个<strong>原因短语</strong>(reason-phrase)组成,状态码和原因短语间用空格隔开(例如最常见的表示请求成功的 200 OK).<br>
 <img src="/img/d4760d97.PNG" alt="1234.PNG"></p>
 <p>通常可以用 XMLHttpRequest.status 属性来获取返回的状态码.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xml.open(<span class="string">'GET'</span>, <span class="string">'https://httpstat.us/200'</span>);</span><br><span class="line">xml.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(xml.status) <span class="comment">// 200</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">xml.send();</span><br></pre></td></tr></table></figure>
