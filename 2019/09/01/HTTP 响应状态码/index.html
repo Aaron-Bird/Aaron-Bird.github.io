@@ -1,38 +1,31 @@
 
 <!DOCTYPE html>
 <html lang="zh-Hans">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP 响应状态码</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <!-- js -->
+    <script type="text/javascript" src="/./js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+     
+    <link rel="stylesheet" href="/css/index.css">
+     
+  </head>
 
-<head><meta name="generator" content="Hexo 3.8.0">
-  <!--[if lte IE 8]>
-    <script type="text/javascript">  
-        var tags = ["header", "footer", "nav", "aside", "article", "section", "object", "main"];  
-        for (var i in tags) {  
-            document.createElement(tags[i]);  
-        }  
-    </script>   
-  <![endif]-->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTTP 响应状态码</title>
-  <!-- font -->
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  <!-- js -->
-  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-  <!-- <script type="text/javascript" src="/js/blotter.min.js"></script>
-  <script type="text/javascript" src="/js/rollingDistortMaterial.js"></script> -->
-  <!-- css -->
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/icon.css">
-  
-    
-      <link rel="stylesheet" href="/css/index.css">
-    
-  
-</head>
-
-<body>
-  <!-- header -->
-  <header class="header">
+  <body>
+    <!-- header -->
+    <header class="header">
   <div class="logo">
     <!-- logo -->
     <div class="logo-wrap">
@@ -65,16 +58,16 @@
 </header>
 
 
-  <!-- main -->
-  <main id="main" class="main">
-    <!-- post -->
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
 
 <div class="post show-toc">
   <!-- table of content -->
   
     <div class="post-toc">
       <div class="post-toc-content">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2xx"><span class="toc-text"> 2xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#200-ok"><span class="toc-text"> 200 OK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#201-created"><span class="toc-text"> 201 created</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#202-accepted"><span class="toc-text"> 202 Accepted</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#203-non-authoritative-information"><span class="toc-text"> 203 Non-Authoritative Information</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#204-no-content"><span class="toc-text"> 204 No Content</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3xx"><span class="toc-text"> 3xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#301-moved-permanently"><span class="toc-text"> 301 Moved Permanently</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#304-not-modified"><span class="toc-text"> 304 Not Modified</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#307-temporary-redirect"><span class="toc-text"> 307 Temporary Redirect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#308-permanent-redirect"><span class="toc-text"> 308 Permanent Redirect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4xx"><span class="toc-text"> 4xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#401-unauthorized"><span class="toc-text"> 401 Unauthorized</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#403-forbidden"><span class="toc-text"> 403 Forbidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#404-not-found"><span class="toc-text"> 404  Not Found</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#405-method-not-allowed"><span class="toc-text"> 405 Method Not Allowed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#408-request-timeout"><span class="toc-text"> 408 Request Timeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#409-conflict"><span class="toc-text"> 409 Conflict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#410-gone"><span class="toc-text"> 410 Gone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#413-request-entity-too-large"><span class="toc-text"> 413 Request Entity Too Large</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#414-request-uri-too-long"><span class="toc-text"> 414 Request-URI Too Long</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#415-unsupported-media-type"><span class="toc-text"> 415 Unsupported Media Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#418-im-a-teapot"><span class="toc-text"> 418  I&#39;m a teapot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#451-unavailable-for-legal-reasons"><span class="toc-text"> 451  Unavailable For Legal Reasons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5xx"><span class="toc-text"> 5xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#500-internal-server-error"><span class="toc-text"> 500 Internal Server Error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#503-service-unavailable"><span class="toc-text"> 503 Service Unavailable</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2xx"><span class="toc-text"> 2xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#200-ok"><span class="toc-text"> 200 OK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#201-created"><span class="toc-text"> 201 created</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#202-accepted"><span class="toc-text"> 202 Accepted</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#203-non-authoritative-information"><span class="toc-text"> 203 Non-Authoritative Information</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#204-no-content"><span class="toc-text"> 204 No Content</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3xx"><span class="toc-text"> 3xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#301-moved-permanently"><span class="toc-text"> 301 Moved Permanently</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#302-found"><span class="toc-text"> 302 Found</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#304-not-modified"><span class="toc-text"> 304 Not Modified</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#307-temporary-redirect"><span class="toc-text"> 307 Temporary Redirect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#308-permanent-redirect"><span class="toc-text"> 308 Permanent Redirect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4xx"><span class="toc-text"> 4xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#401-unauthorized"><span class="toc-text"> 401 Unauthorized</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#403-forbidden"><span class="toc-text"> 403 Forbidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#404-not-found"><span class="toc-text"> 404  Not Found</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#405-method-not-allowed"><span class="toc-text"> 405 Method Not Allowed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#408-request-timeout"><span class="toc-text"> 408 Request Timeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#409-conflict"><span class="toc-text"> 409 Conflict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#410-gone"><span class="toc-text"> 410 Gone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#413-request-entity-too-large"><span class="toc-text"> 413 Request Entity Too Large</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#414-request-uri-too-long"><span class="toc-text"> 414 Request-URI Too Long</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#415-unsupported-media-type"><span class="toc-text"> 415 Unsupported Media Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#418-im-a-teapot"><span class="toc-text"> 418  I&#39;m a teapot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#451-unavailable-for-legal-reasons"><span class="toc-text"> 451  Unavailable For Legal Reasons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5xx"><span class="toc-text"> 5xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#500-internal-server-error"><span class="toc-text"> 500 Internal Server Error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#503-service-unavailable"><span class="toc-text"> 503 Service Unavailable</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
       </div>
     </div>
   
@@ -149,7 +142,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://httpstat.us/301'</span>, &#123;<span class="attr">method</span>: <span class="string">'POST'</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>由于历史原因, 用户代理可能会在后续请求时将 POST 请求更改为 GET.</p>
 <p><img src="/img/c33ec42b.PNG" alt="301p.PNG"></p>
-<p>302 Found</p>
+<h3 id="302-found"><a class="markdownIt-Anchor" href="#302-found"></a> 302 Found</h3>
 <p>临时重定向, 表示请求的资源被临时移动到其他地址.移动后的地址储存在响应头的 Location 部首中.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://httpstat.us/302'</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/img/c6da3b2b.PNG" alt="302.PNG"></p>
@@ -221,7 +214,7 @@
 <p>谷歌的愚人节彩蛋, 访问 teapot 页面会返回一个茶壶.<br>
 <img src="/img/5a37b796.PNG" alt="418.PNG"></p>
 <h3 id="451-unavailable-for-legal-reasons"><a class="markdownIt-Anchor" href="#451-unavailable-for-legal-reasons"></a> 451  Unavailable For Legal Reasons</h3>
-<p>因违反法律而无法提供.<br>
+<p>因违反法律而无法提供的内容会返回 451 状态码.<br>
 其数字 451 出自小说 &lt;&lt;华摄 451 度&gt;&gt;</p>
 <h2 id="5xx"><a class="markdownIt-Anchor" href="#5xx"></a> 5xx</h2>
 <h3 id="500-internal-server-error"><a class="markdownIt-Anchor" href="#500-internal-server-error"></a> 500 Internal Server Error</h3>
@@ -254,15 +247,24 @@
 
 
 
-  </main>
+    </main>
 
-  <!-- search -->      
-  
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
 
-  
-    
-      <script src="/js/main.js"></script>
-    
-  
-</body>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138513143-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-138513143-2');
+    </script>
+  </body>
 </html>
