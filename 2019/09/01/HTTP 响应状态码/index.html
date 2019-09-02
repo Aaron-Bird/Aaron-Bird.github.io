@@ -138,20 +138,20 @@
 <p>请求成功,但没有返回任何数据.该响应码传输的数据量最小,因此常用于统计用户的访问信息.</p>
 <h2 id="3xx"><a class="markdownIt-Anchor" href="#3xx"></a> 3xx</h2>
 <h3 id="301-moved-permanently"><a class="markdownIt-Anchor" href="#301-moved-permanently"></a> 301 Moved Permanently</h3>
-<p>永久重定向,表示请求的资源已经被永久移动到其他地址. 移动后的地址储存在响应头的 Location 部首中.</p>
+<p>永久重定向,表示请求的资源已经被永久移动到其他地址. 移动后的地址储存在响应头的 Location 首部中.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://httpstat.us/301'</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/img/54d1f201.PNG" alt="301.PNG"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://httpstat.us/301'</span>, &#123;<span class="attr">method</span>: <span class="string">'POST'</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>由于历史原因, 用户代理可能会在后续请求时将 POST 请求更改为 GET.</p>
 <p><img src="/img/c33ec42b.PNG" alt="301p.PNG"></p>
 <h3 id="302-found"><a class="markdownIt-Anchor" href="#302-found"></a> 302 Found</h3>
-<p>临时重定向, 表示请求的资源被临时移动到其他地址.移动后的地址储存在响应头的 Location 部首中.</p>
+<p>临时重定向, 表示请求的资源被临时移动到其他地址.移动后的地址储存在响应头的 Location 首部中.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://httpstat.us/302'</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/img/c6da3b2b.PNG" alt="302.PNG"></p>
 <p>和301一样由于历史原因, 用户代理可能会在后续请求时将 POST 请求更改为 GET.</p>
 <h3 id="304-not-modified"><a class="markdownIt-Anchor" href="#304-not-modified"></a> 304 Not Modified</h3>
 <p>资源未更新.</p>
-<p>当服务器返回的响应头中带有 If-None-Match 或 If-Modified-Since 部首时, 浏览器会根据这两个部首的字段值来判断用户所请求的资源是否有更新.</p>
+<p>当服务器返回的响应头中带有 If-None-Match 或 If-Modified-Since 首部时, 浏览器会根据这两个首部的字段值来判断用户所请求的资源是否有更新.</p>
 <p>如果资源发生了变化,则返回 200 状态码和对应的资源内容.<br>
 而资源没有更新时,仅返回 304 状态码,以表示未发生变化.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://aaron-bird.github.io/'</span>, &#123;</span><br><span class="line">  headers: &#123;</span><br><span class="line">	<span class="string">'if-modified-since'</span>: <span class="string">'Fri, 23 Aug 2019 02:20:54 GMT'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> <span class="built_in">console</span>.log(response.status)) <span class="comment">// 304</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">fetch(<span class="string">'https://aaron-bird.github.io/'</span>, &#123;</span><br><span class="line">  headers: &#123;</span><br><span class="line">	<span class="string">'if-none-match'</span>: <span class="string">'W/"5d5f4d86-8261"'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> <span class="built_in">console</span>.log(response.status)) <span class="comment">// 304</span></span><br></pre></td></tr></table></figure>
@@ -178,12 +178,12 @@
 <p><img src="/img/a748e323.PNG" alt="304.PNG"><br>
 一般来讲, 当请求头中同时存在  If-None-Match 和 If-Modified-Since 时, 应优先采用 If-None-Match .(但后端不一定要这样作).</p>
 <h3 id="307-temporary-redirect"><a class="markdownIt-Anchor" href="#307-temporary-redirect"></a> 307 Temporary Redirect</h3>
-<p>同302 临时重定向, 表示请求的资源被临时移动到其他地址.移动后的地址储存在响应头的 Location 部首中.</p>
+<p>同302 临时重定向, 表示请求的资源被临时移动到其他地址.移动后的地址储存在响应头的 Location 首部中.</p>
 <p>区别是明确规定了不允许用户代理在后去请求时将 POST 请求改为 GET 请求.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://httpstat.us/307'</span>, &#123;<span class="attr">method</span>: <span class="string">'POST'</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p><img src="/img/baa1a18b.PNG" alt="3011.PNG"></p>
 <h3 id="308-permanent-redirect"><a class="markdownIt-Anchor" href="#308-permanent-redirect"></a> 308 Permanent Redirect</h3>
-<p>同 301 永久重定向,  表示请求的资源已经被永久移动到其他地址. 移动后的地址储存在响应头的 Location 部首中.</p>
+<p>同 301 永久重定向,  表示请求的资源已经被永久移动到其他地址. 移动后的地址储存在响应头的 Location 首部中.</p>
 <p>区别是明确规定了不允许用户代理在后去请求时将 POST 请求改为 GET 请求.</p>
 <h2 id="4xx"><a class="markdownIt-Anchor" href="#4xx"></a> 4xx</h2>
 <h3 id="401-unauthorized"><a class="markdownIt-Anchor" href="#401-unauthorized"></a> 401 Unauthorized</h3>
@@ -193,7 +193,7 @@
 <h3 id="404-not-found"><a class="markdownIt-Anchor" href="#404-not-found"></a> 404  Not Found</h3>
 <p>未找到资源</p>
 <h3 id="405-method-not-allowed"><a class="markdownIt-Anchor" href="#405-method-not-allowed"></a> 405 Method Not Allowed</h3>
-<p>不支持该请求方法. 返回的响应头中会包含一个 Allow 部首, 表示可用的请求方法.</p>
+<p>不支持该请求方法. 返回的响应头中会包含一个 Allow 首部, 表示可用的请求方法.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://google.com/search'</span>, &#123;<span class="attr">method</span>: <span class="string">'PUT'</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p><img src="/img/6af7671c.PNG" alt="405.PNG"></p>
 <h3 id="408-request-timeout"><a class="markdownIt-Anchor" href="#408-request-timeout"></a> 408 Request Timeout</h3>
