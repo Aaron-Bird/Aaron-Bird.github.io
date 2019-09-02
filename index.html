@@ -77,6 +77,68 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/09/01/HTTP 响应状态码/">
+                    HTTP 响应状态码
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-08-31T16:00:00.000Z">
+                  2019-09-01
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/HTTP/">
+                    <span>HTTP</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>HTTP 响应状态码(HTTP Response Status Code) 用于表示服务器对此次 HTTP 请求的响应结果(服务器是否正常, 是否返回了数据).<br>
+其由是一个3位整数(status-code)及一个解释短语组成,status-code 和解释短语间用空格隔开(例如最常见的表示请求成功的 200 OK).<br>
+<img src="/img/d4760d97.PNG" alt="1234.PNG"></p>
+<p>通常可以用 XMLHttpRequest.status 属性来获取返回的状态码.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xml.open(<span class="string">'GET'</span>, <span class="string">'https://httpstat.us/200'</span>);</span><br><span class="line">xml.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(xml.status) <span class="comment">// 200</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">xml.send();</span><br></pre></td></tr></table></figure>
+<p>fetch 的话也一样</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://httpstat.us/200'</span>).then(<span class="function"><span class="params">response</span> =&gt;</span> <span class="built_in">console</span>.log(response.status))  <span class="comment">// 200</span></span><br></pre></td></tr></table></figure>
+<p>status-code 的第一个数字用于区分响应的类别,一共可分为 5 大类.</p>
+<ul>
+<li>1xx (Informational responses) 信息提示</li>
+<li>2xx (Successful responses) 请求成功</li>
+<li>3xx (Redirects) 重定向</li>
+<li>4xx (Client errors) 客户端错误</li>
+<li>5xx (Server errors) 服务端错误</li>
+</ul>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/09/01/HTTP 响应状态码/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/08/23/常用 POST 数据类型/">
                     常用 POST 数据类型
                   </a>               
@@ -554,57 +616,6 @@ puppeteer这个单词的发音为[ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶�
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/04/22/puppeteer入门/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/04/18/函数声明与函数表达式/">
-                    函数声明与函数表达式
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-04-18T14:00:00.000Z">
-                  2019-04-18
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>偶然看到了一道题,  问如下代码中的console输出什么:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a)&#125;</span><br><span class="line">)()</span><br></pre></td></tr></table></figure>
-<p>结果console输出的不是数值2,而是函数本身:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ƒ a()&#123;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/04/18/函数声明与函数表达式/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

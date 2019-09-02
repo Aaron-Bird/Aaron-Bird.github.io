@@ -77,8 +77,8 @@
             <!-- title -->  
             <h2 class="title">
                          
-                  <a href="/2019/02/01/vue-cli/">
-                    vue-cli
+                  <a href="/2019/02/08/this/">
+                    this
                   </a>               
               
             </h2>
@@ -86,16 +86,16 @@
             <div class="post-meta">
               
                 <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-01-31T16:00:00.000Z">
-                  2019-02-01
+                <time datetime="2019-02-07T16:00:00.000Z">
+                  2019-02-08
                 </time>
               
               <!-- categories -->
               
                 <span class="icon-baseline-work_outline-24px"></span>
                 
-                  <a href="/categories/Vue/">
-                    <span>Vue</span>
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
                   </a>
                 
               
@@ -105,23 +105,29 @@
             <div class="content">
                
                   <!-- excerpt -->
-                  <h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
-<p>1 安装vue-cli</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line">//or</span><br><span class="line"> yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
-<p>2 安装node-gyp所需编译工具</p>
-<p>安装  <a href="https://visualstudio.microsoft.com/vs/community" target="_blank" rel="noopener">Visual Studio Community 2017</a><br>
-安装Python2.7(node-gyp不支持3.x)<br>
-打开cmd, 执行如下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set python python2.7</span><br><span class="line">npm config set msvs_version 2017</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<p>3 修改镜像地址为阿里源</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org/</span><br><span class="line">yarn config set registry https://registry.npm.taobao.org/</span><br><span class="line"></span><br><span class="line">// node-sass所需</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br></pre></td></tr></table></figure>
+                  <p>Es5关于this的定义如下:<br>
+<a href="http://ecma-international.org/ecma-262/5.1/#sec-11.1.1" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<blockquote>
+<p>The this keyword evaluates to the value of the ThisBinding of the current execution context.<br>
+关键字&quot;this&quot;指向当前所在execution context(执行环境)的ThisBinding</p>
+</blockquote>
+<h2 id="execution-context执行环境执行上下文"><a class="markdownIt-Anchor" href="#execution-context执行环境执行上下文"></a> execution context(执行环境/执行上下文)</h2>
+<p>execution context的说明在 10.3<br>
+<a href="http://ecma-international.org/ecma-262/5.1/#sec-10.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br>
+<a href="https://www.w3.org/html/ig/zh/wiki/ES5/%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/ES5/可执行代码与执行环境#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83</a></p>
+<blockquote>
+<p>When control is transferred to ECMAScript executable code, control is entering an execution context. Active execution contexts logically form a stack. The top execution context on this logical stack is the running execution context. A new execution context is created whenever control is transferred from the executable code associated with the currently running execution context to executable code that is not associated with that execution context. The newly created execution context is pushed onto the stack and becomes the running execution context.</p>
+</blockquote>
+<blockquote>
+<p>当控制器进入ECMAScript executable code(可执行代码)时, 控制器会进入一个execution context(执行环境/执行上下文).所有活动的execution context在逻辑上形成栈结构,栈顶的execution context叫running execution context.当控制器从当前的executable code(与running execution context相关的)转移到另一个executable code(与running execution context无关的)时,会创建一个新的execution context.然后将这个新创建的execution context推入栈中,使其成为新的running execution context.</p>
+</blockquote>
               
             </div>
           </article>
           <!-- read-more -->
           <div class="read-more">
               <div class="wrapper">
-                <a href="/2019/02/01/vue-cli/">
+                <a href="/2019/02/08/this/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
@@ -210,6 +216,63 @@ C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/02/01/编译 Chromium(Windows)/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/02/01/vue-cli/">
+                    vue-cli
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-01-31T16:00:00.000Z">
+                  2019-02-01
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>1 安装vue-cli</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line">//or</span><br><span class="line"> yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
+<p>2 安装node-gyp所需编译工具</p>
+<p>安装  <a href="https://visualstudio.microsoft.com/vs/community" target="_blank" rel="noopener">Visual Studio Community 2017</a><br>
+安装Python2.7(node-gyp不支持3.x)<br>
+打开cmd, 执行如下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set python python2.7</span><br><span class="line">npm config set msvs_version 2017</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<p>3 修改镜像地址为阿里源</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org/</span><br><span class="line">yarn config set registry https://registry.npm.taobao.org/</span><br><span class="line"></span><br><span class="line">// node-sass所需</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/02/01/vue-cli/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
@@ -801,65 +864,6 @@ Js有两大数据类型,基本类型和引用类型<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2018/03/25/git/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2018/03/06/sublime-plugin/">
-                    SublimeText 常用插件
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2018-03-06T00:23:00.000Z">
-                  2018-03-06
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/SublimeText/">
-                    <span>SublimeText</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-              
-                <!-- content -->
-                Package Control - the Sublime Text package manager
- JavaScript
- LiveReload 实时预览
-设置, preferences &gt;  Package Settings &gt; LiveReload &gt; Settings -User
-{
-    &quot;enabled_plugins&quot;: [
-        &quot;SimpleReloadPluginDelay&quot;, 
-        &quot;SimpleRefreshDelay&quot;
-    ]
-}
-
- HTML-CSS-J...
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2018/03/06/sublime-plugin/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
