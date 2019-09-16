@@ -23,6 +23,7 @@
      
     <link rel="stylesheet" href="/css/index.css">
      
+  
     <meta name="google-site-verification" content="1ZDw40Leb3nAqZ6k_WQDEhiOrFjiRu8hykotZ6JBHDk">
   </head>
 
@@ -67,6 +68,63 @@
 
 <div class="index">
     
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/20/圆形运算相关知识点/">
+                    圆形运算相关知识点
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-20T05:00:00.000Z">
+                  2019-03-20
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="弧度"><a class="markdownIt-Anchor" href="#弧度"></a> 弧度</h2>
+<p>角度: 圆被平分为360分(人为定义),其中的一份为 1deg, 1deg =  π / 180</p>
+<p>弧度: 圆上弧长等于半径时的圆心角,  1rad ~ 57.2958deg<br>
+<img src="/img/7e45e675.png" alt="51987688-08c55300-24de-11e9-81ba-e4aa61fb0446.png"><br>
+整圆弧度 2π (2πr / r)</p>
+<h2 id="角弧度换算"><a class="markdownIt-Anchor" href="#角弧度换算"></a> 角弧度换算</h2>
+<p>弧度转角度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toAngle</span>(<span class="params">radian</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  (<span class="number">180</span> / <span class="built_in">Math</span>.PI)  * radian</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>角度转弧度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toRadian</span>(<span class="params">angle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">Math</span>.PI / <span class="number">180</span>) *  angle</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/20/圆形运算相关知识点/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
       
         <div class="item">
           <article class="article">
@@ -469,67 +527,6 @@ deactivated在keep-alive组件被停用时调用.<br>
             <!-- title -->  
             <h2 class="title">
                          
-                  <a href="/2019/02/10/获取元素位置_尺寸的方法/">
-                    获取元素位置/尺寸的方法
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-02-09T16:00:00.000Z">
-                  2019-02-10
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <h2 id="clientwidth-offsetwidth-scrollwidth"><a class="markdownIt-Anchor" href="#clientwidth-offsetwidth-scrollwidth"></a> clientWidth offsetWidth scrollWidth</h2>
-<ul>
-<li>clientWidth|clientHeight 元素内容可视部分的宽度/高度,不包括 滚动条 border margin</li>
-<li>offsetWidth|offsetHeight 元素整体宽度/高度,包括滚动条和border,不包括margin</li>
-<li>scrollWidth|scrollHeight 元素内容实际宽度/高度,包含被隐藏的部分</li>
-</ul>
-<p>示例
-<img src="/img/5bd68899.png" alt="50424091-e23a4980-0899-11e9-8b18-e8b210cbf876.png"></p>
-<p>如上所示,两容器元素的宽/高均为200px, border为1px,padding为10px. 背景颜色为黄色, padding无颜色<br>
-两容器内均有一斜线为背景的子元素,其宽/高均为300px<br>
-容器1的overflow属性值为auto(可滚动).滚动条宽度为17px,颜色为蓝色<br>
-容器2的overflow的属性值为static(默认值,无滚动条)<br>
-clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidth值为203px(220px - 17px).没有滚动条时,clientWidth值为220px<br>
-在chrome中,padding-right不参与scrollWidth值的计算.而padding-bottom相反,参与scrollHeight值的计算.因此, 可滚动元素的scrollWidth为310px,scrollHeight为320px</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/02/10/获取元素位置_尺寸的方法/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
                   <a href="/2019/02/10/JSONP/">
                     JSONP
                   </a>               
@@ -613,8 +610,8 @@ clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidt
             <!-- title -->  
             <h2 class="title">
                          
-                  <a href="/2019/02/08/scrolling box/">
-                    scrolling box
+                  <a href="/2019/02/10/获取元素位置_尺寸的方法/">
+                    获取元素位置/尺寸的方法
                   </a>               
               
             </h2>
@@ -622,8 +619,8 @@ clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidt
             <div class="post-meta">
               
                 <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-02-08T03:00:00.000Z">
-                  2019-02-08
+                <time datetime="2019-02-09T16:00:00.000Z">
+                  2019-02-10
                 </time>
               
               <!-- categories -->
@@ -641,17 +638,27 @@ clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidt
             <div class="content">
                
                   <!-- excerpt -->
-                  <p>当overflow为auto,且内部元素溢出时.元素沿padding edge向被内裁剪,在单侧显示滚动条<br>
-<img src="/img/38428d50.png" alt="48303328-e7d70c80-e543-11e8-8347-f1f7a8d54797.png"></p>
-<p>一般来说, 元素会从右/下侧被裁剪,具体数值取决于滚动条宽度
-<img src="/img/84b6a7cd.png" alt="206580fb.png"></p>
+                  <h2 id="clientwidth-offsetwidth-scrollwidth"><a class="markdownIt-Anchor" href="#clientwidth-offsetwidth-scrollwidth"></a> clientWidth offsetWidth scrollWidth</h2>
+<ul>
+<li>clientWidth|clientHeight 元素内容可视部分的宽度/高度,不包括 滚动条 border margin</li>
+<li>offsetWidth|offsetHeight 元素整体宽度/高度,包括滚动条和border,不包括margin</li>
+<li>scrollWidth|scrollHeight 元素内容实际宽度/高度,包含被隐藏的部分</li>
+</ul>
+<p>示例
+<img src="/img/5bd68899.png" alt="50424091-e23a4980-0899-11e9-8b18-e8b210cbf876.png"></p>
+<p>如上所示,两容器元素的宽/高均为200px, border为1px,padding为10px. 背景颜色为黄色, padding无颜色<br>
+两容器内均有一斜线为背景的子元素,其宽/高均为300px<br>
+容器1的overflow属性值为auto(可滚动).滚动条宽度为17px,颜色为蓝色<br>
+容器2的overflow的属性值为static(默认值,无滚动条)<br>
+clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidth值为203px(220px - 17px).没有滚动条时,clientWidth值为220px<br>
+在chrome中,padding-right不参与scrollWidth值的计算.而padding-bottom相反,参与scrollHeight值的计算.因此, 可滚动元素的scrollWidth为310px,scrollHeight为320px</p>
               
             </div>
           </article>
           <!-- read-more -->
           <div class="read-more">
               <div class="wrapper">
-                <a href="/2019/02/08/scrolling box/">
+                <a href="/2019/02/10/获取元素位置_尺寸的方法/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

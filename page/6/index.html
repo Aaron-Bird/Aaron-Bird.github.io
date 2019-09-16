@@ -23,6 +23,7 @@
      
     <link rel="stylesheet" href="/css/index.css">
      
+  
     <meta name="google-site-verification" content="1ZDw40Leb3nAqZ6k_WQDEhiOrFjiRu8hykotZ6JBHDk">
   </head>
 
@@ -67,6 +68,64 @@
 
 <div class="index">
     
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2017/12/22/html2canvas/">
+                    html2canvas
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-12-22T06:00:00.000Z">
+                  2017-12-22
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript-library/">
+                    <span>JavaScript library</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                
+
+var dwsnapshot = function(){
+    var ele = document.querySelector('.content-wrap');
+    html2canvas(ele,{
+        // width: 800,
+        scale: 2,
+    }).then(function(c) {
+        var aNode = document.createElement('a');
+        aNode.href = c.toDataURL("png", 1);
+        //别忘了设置download属性,否则会...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2017/12/22/html2canvas/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
       
         <div class="item">
           <article class="article">
@@ -600,70 +659,6 @@ margin-left为负时向左移动,后面的元素也跟着移动
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2017/11/30/负外边距的影响/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2017/11/29/元素居中/">
-                    元素居中
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2017-11-29T01:21:00.000Z">
-                  2017-11-29
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/CSS/">
-                    <span>CSS</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-              
-                <!-- content -->
-                 参考
-Centering in CSS: A Complete Guide
-position:absolute和margin:auto连用居中的原理
- 水平居中
- 行内(内联)元素水平居中
-.box{text-align: center;}
-
-
-    .box-1 {width:200px;border:1px solid;}
-
-
-    inline element
-
-&lt;style&gt;
-    .box-1 {width:200px;border:1px solid;}
-&lt;/style&gt;
-&lt;div class=&quot;box-1&quot; styl...
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2017/11/29/元素居中/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
