@@ -128,7 +128,7 @@
 <p>注: 在vue-cli2中,使用init命令新建项目</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vue init &lt;template-name&gt; &lt;projectName&gt;</span><br><span class="line">// template-name 为模板名称,一般用webpack模板</span><br></pre></td></tr></table></figure>
 <p>如希望在vue-cli3中使用init命令,则需安装桥接工具</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 安装@vue/cli-init</span><br><span class="line">yarn global  @vue/cli-init</span><br><span class="line">// 创建项目</span><br><span class="line">vue init webpack myApp</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 安装@vue/cli-init</span><br><span class="line">yarn global add @vue/cli-init</span><br><span class="line">// 创建项目</span><br><span class="line">vue init webpack myApp</span><br></pre></td></tr></table></figure>
 <h2 id="创建项目"><a class="markdownIt-Anchor" href="#创建项目"></a> 创建项目</h2>
 <p>用vue create 命令新建项目</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create hello-world</span><br></pre></td></tr></table></figure>
@@ -174,7 +174,7 @@ In dedicated config files选项把配置保存到单独的文件(如 .eslintrc.j
 <p>更改 vue.config.js|.eslintrc.js 等配置文件后要手动重启,配置才能生效<br>
 如希望自动重启vue-cli,可以借助nodemon</p>
 <p>先安装nodemon</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add modemon --dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add nodemon --dev</span><br></pre></td></tr></table></figure>
 <p>示例<br>
 然后修改package.json的配置<br>
 vue-cli3</p>
@@ -218,7 +218,7 @@ Prettier的规则应放在根目录下.prettierrc.js文件中(没有的话需自
 <p>但要是在group.vue里用如下方式载入bg.jpg,则会报错提示找不到图片</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'common/img/bg.jpg'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 <p>这是因为vue-html-loader和css-loader会将&quot;非根路径&quot;转化为&quot;相对路径&quot;,如需将其视为模块,则需要在路径前加上~号</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'~common/img/bg.jpg'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'~common/img/bg.jpg'</span>);</span><br><span class="line">&#125;</span><br><span class="line">// or</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'~@/common/img/bg.jpg'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 <p>另外,在&lt;script&gt;标签中import载入的的CSS内,不需要这样做</p>
 <p><a href="https://segmentfault.com/a/1190000008107976" target="_blank" rel="noopener">Vue2 模板中的图片地址如何使用 webpack 定义的别名? - 前端开发 - SegmentFault 思否</a></p>
 <h2 id="url部署路径"><a class="markdownIt-Anchor" href="#url部署路径"></a> URL部署路径</h2>
@@ -283,10 +283,10 @@ Prettier的规则应放在根目录下.prettierrc.js文件中(没有的话需自
   
     <nav class="pagination">
       
-        <a class="prev" href="/2019/02/08/this/">&lt;  this</a>
+        <a class="prev" href="/2019/02/01/编译 Chromium(Windows)/">&lt;  编译 Chromium(Windows)</a>
       
       
-        <a class="next" href="/2019/02/01/编译 Chromium(Windows)/">编译 Chromium(Windows)  &gt;</a>
+        <a class="next" href="/2018/05/29/JavaScript-RegExp/">JavaScript 正则表达式  &gt;</a>
       
     </nav>    
   

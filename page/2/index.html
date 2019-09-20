@@ -130,6 +130,64 @@ puppeteer这个单词的发音为[ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶�
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/04/22/puppeteer/">
+                    puppeteer
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-04-21T16:00:00.000Z">
+                  2019-04-22
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Node-js/">
+                    <span>Node.js</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>puppeteer 是一个 Google 出品的 Node 库,可以用它来操纵 Chrome.<br>
+puppeteer 这个单词的发音为 [ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶的人&quot;.</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>安装 puppeteer 时会自动下载 chrome,需要有全局代理.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add puppeteer</span><br></pre></td></tr></table></figure>
+<p>如果无法下载 puppeteer, 可以在根目录下新建文件 .yarnrc, 填入如下内容:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">puppeteer_download_host &quot;https://storage.googleapis.com.cnpmjs.org&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h2>
+<p>新建 index.js, 填入如下代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 载入puppeteer</span></span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开浏览器</span></span><br><span class="line"><span class="comment">// launch方法返回一个Promise对象</span></span><br><span class="line">puppeteer.launch(&#123;<span class="attr">headless</span>: <span class="literal">false</span>&#125;).then(<span class="keyword">async</span> browser =&gt; &#123;</span><br><span class="line">  <span class="comment">// 打开一个页面</span></span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</span><br><span class="line">  <span class="comment">// 打开百度</span></span><br><span class="line">  <span class="keyword">await</span> page.goto(<span class="string">'https://www.baidu.com'</span>);</span><br><span class="line">  <span class="keyword">await</span> page.screenshot(&#123;<span class="attr">path</span>: <span class="string">'baidu.png'</span>&#125;);</span><br><span class="line">  <span class="comment">// 关闭浏览器</span></span><br><span class="line">  <span class="comment">// await browser.close();</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最后,进入文件所在路径, 执行 node index.js 命令即可.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/04/22/puppeteer/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/04/18/函数声明与函数表达式/">
                     函数声明与函数表达式
                   </a>               
@@ -538,65 +596,6 @@ inner是一个fixed元素, 背景色为黄色.<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/03/23/封装Swiper为Vue组件/">
-                    封装Swiper为Vue组件
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-23T07:00:00.000Z">
-                  2019-03-23
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/Vue/">
-                    <span>Vue</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <h2 id="载入"><a class="markdownIt-Anchor" href="#载入"></a> 载入</h2>
-<p>安装swiper</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add swiper@<span class="number">4.5</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
-<p>另外, 也可以使用cdn载入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// css</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css&quot;&gt;</span><br><span class="line">// js</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="结构"><a class="markdownIt-Anchor" href="#结构"></a> 结构</h2>
-<p>一个swiper所需的html结构如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div class=&quot;swiper-container&quot;&gt;</span><br><span class="line">    &lt;!-- Additional required wrapper --&gt;</span><br><span class="line">    &lt;!-- swiper通过更改swiper-wrapper的transform属性来轮播内容 --&gt;</span><br><span class="line">    &lt;div class=&quot;swiper-wrapper&quot;&gt;</span><br><span class="line">        &lt;!-- Slides 单个内容--&gt;</span><br><span class="line">        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 1&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 2&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 3&lt;/div&gt;</span><br><span class="line">        ...</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>class属性值swiper-wrapper和swiper-slide是必有的,没找到可以更改这两个class的设置项.</p>
-<p>创建swiper</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mySwiper = <span class="keyword">new</span> Swiper (<span class="string">'.swiper-container'</span>, &#123; params...&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://idangero.us/swiper/get-started/" target="_blank" rel="noopener">https://idangero.us/swiper/get-started/</a></p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/23/封装Swiper为Vue组件/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
