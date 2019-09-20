@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://Aaron-Bird.github.io/2019/04/22/puppeteer%20%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2019-09-20T02:56:05.820Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://Aaron-Bird.github.io/2019/02/01/vue-cli/</loc>
     
     <lastmod>2019-09-19T01:53:04.132Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://Aaron-Bird.github.io/2019/09/16/Mocha/</loc>
     
     <lastmod>2019-09-17T02:37:28.405Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://Aaron-Bird.github.io/2019/04/22/puppeteer/</loc>
-    
-    <lastmod>2019-09-17T02:37:18.571Z</lastmod>
     
   </url>
   
