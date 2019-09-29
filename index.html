@@ -12,6 +12,8 @@
     <![endif]-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="1ZDw40Leb3nAqZ6k_WQDEhiOrFjiRu8hykotZ6JBHDk">
+
     <title></title>
     <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -20,11 +22,10 @@
     <!-- css -->
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/katex/katex.min.css">
      
     <link rel="stylesheet" href="/css/index.css">
      
-  
-    <meta name="google-site-verification" content="1ZDw40Leb3nAqZ6k_WQDEhiOrFjiRu8hykotZ6JBHDk">
   </head>
 
   <body>
@@ -68,6 +69,54 @@
 
 <div class="index">
     
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/09/29/常用的 LaTeX 符号公式/">
+                    常用的 LaTeX 符号公式
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-09-28T16:00:00.000Z">
+                  2019-09-29
+                </time>
+              
+              <!-- categories -->
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="希腊字符"><a class="markdownIt-Anchor" href="#希腊字符"></a> 希腊字符</h2>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span></span></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\theta</span><br></pre></td></tr></table></figure>
+<h2 id="空格"><a class="markdownIt-Anchor" href="#空格"></a> 空格</h2>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mtext> </mtext><mn>2</mn></mrow><annotation encoding="application/x-tex">1 \ 2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace"> </span><span class="mord">2</span></span></span></span></span></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 \ 2</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/09/29/常用的 LaTeX 符号公式/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
       
         <div class="item">
           <article class="article">
@@ -552,63 +601,6 @@ FunctionDeclarationInstantiation 使用 func 和 argumentsList 作为参数,依�
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/06/09/在 Vue 中使用 TinyMCE/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/05/03/不定宽元素的宽度计算/">
-                    不定宽元素的宽度计算
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-05-03T14:00:00.000Z">
-                  2019-05-03
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/CSS/">
-                    <span>CSS</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>本文所讨论的中心点为: 如果&quot;不定宽元素&quot;内有&quot;宽度为百分数的 img&quot;, 浏览器将如何计算容器和 img 的实际宽度.</p>
-<p>注意:<br>
-1 除非提及,本文所有代码以 Chrome75 的效果为准.<br>
-2 本文中的&quot;不定宽元素&quot;是一个自造词,详见&quot;不定宽元素&quot;一节.<br>
-另外,本文是 stackoverflow 上这个<a href="https://stackoverflow.com/questions/55949254/why-are-the-results-of-img-width-different-in-some-browsers-who-is-correct" target="_blank" rel="noopener">讨论</a>的总结,推荐直接去看原文.</p>
-<p>举例:<br>
-有一个浮动元素(以下记为container):</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span> style=<span class="string">"float: left"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>container 中有一些图片, 当图片的 width 值为百分比时,浏览器如何计算 container 和 img 的宽度?</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      body &#123;</span><br><span class="line">        margin: <span class="number">0</span>;</span><br><span class="line">        font-size: <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=<span class="string">"container"</span> style=<span class="string">"position:absolute;"</span>&gt;</span><br><span class="line">      &lt;!-- #img1的宽度为300x200px --&gt;</span><br><span class="line">      &lt;img id=<span class="string">"img1"</span> src=<span class="string">"https://i.imgur.com/fH2hTRa.jpg"</span> style=<span class="string">"width: 100%"</span> /&gt;</span><br><span class="line">      &lt;!-- #img2的宽度为200x100px --&gt;</span><br><span class="line">      &lt;img id=<span class="string">"img2"</span> src=<span class="string">"https://i.imgur.com/Ed0juok.jpg"</span> style=<span class="string">"width: 50%"</span> /&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>body&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/05/03/不定宽元素的宽度计算/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
