@@ -63,12 +63,126 @@
 </header>
 
 
+  
     <!-- main -->
     <main id="main" class="main">
       
 
 <div class="index">
     
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/02/24/height百分比值不生效/">
+                    height百分比值不生效
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-02-24T14:00:00.000Z">
+                  2019-02-24
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>有时候要给父元素定一个最小高度,然后让子元素与父元素等高.<br>
+往往第一反应是设置min-height和height: 100%,但这么作通常不会生效.</p>
+<p><img src="/img/2c27ab03.PNG" alt="1.PNG"><br>
+如上图所示,外层容器的高度为min-height: 100px,内部黄色子元素的高度为height: 50%.<br>
+可以观察到,子元素的height: 50%并未生效.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/02/24/height百分比值不生效/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/02/10/获取元素位置_尺寸的方法/">
+                    获取元素位置/尺寸的方法
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-02-09T16:00:00.000Z">
+                  2019-02-10
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="clientwidth-offsetwidth-scrollwidth"><a class="markdownIt-Anchor" href="#clientwidth-offsetwidth-scrollwidth"></a> clientWidth offsetWidth scrollWidth</h2>
+<ul>
+<li>clientWidth|clientHeight 元素内容可视部分的宽度/高度,不包括 滚动条 border margin</li>
+<li>offsetWidth|offsetHeight 元素整体宽度/高度,包括滚动条和border,不包括margin</li>
+<li>scrollWidth|scrollHeight 元素内容实际宽度/高度,包含被隐藏的部分</li>
+</ul>
+<p>示例
+<img src="/img/5bd68899.png" alt="50424091-e23a4980-0899-11e9-8b18-e8b210cbf876.png"></p>
+<p>如上所示,两容器元素的宽/高均为200px, border为1px,padding为10px. 背景颜色为黄色, padding无颜色<br>
+两容器内均有一斜线为背景的子元素,其宽/高均为300px<br>
+容器1的overflow属性值为auto(可滚动).滚动条宽度为17px,颜色为蓝色<br>
+容器2的overflow的属性值为static(默认值,无滚动条)<br>
+clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidth值为203px(220px - 17px).没有滚动条时,clientWidth值为220px<br>
+在chrome中,padding-right不参与scrollWidth值的计算.而padding-bottom相反,参与scrollHeight值的计算.因此, 可滚动元素的scrollWidth为310px,scrollHeight为320px</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/02/10/获取元素位置_尺寸的方法/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
       
         <div class="item">
           <article class="article">
@@ -745,126 +859,6 @@ parseInt(string, radix)</p>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2018/04/16/JavaScript-Number/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2018/04/09/javascript-function/">
-                    JavaScipt function
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2018-04-09T08:49:00.000Z">
-                  2018-04-09
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>函数也是对象,所有函数都是Function的实例.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.constructor === <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Function</span>.__proto__</span><br></pre></td></tr></table></figure>
-<h2 id="创建函数"><a class="markdownIt-Anchor" href="#创建函数"></a> 创建函数</h2>
-<p>有两种方法创建函数,函数声明和函数表达式</p>
-<ul>
-<li>函数声明</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">word</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br><span class="line">say(<span class="string">'hi'</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>函数表达式</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> say = <span class="function"><span class="keyword">function</span>(<span class="params">word</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br><span class="line">say(<span class="string">'hi'</span>);</span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2018/04/09/javascript-function/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2018/04/08/JavaScript-Object/">
-                    JavaScript 对象
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2018-04-08T06:49:00.000Z">
-                  2018-04-08
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>JavaScript是一门面向对象的语言(Object Oriented,简称OO)<br>
-什么是对象?对象是一组无序属性的集合</p>
-<p>在JavaScript中,一切都是对象?不对,除了6类基本类型外都是对象<br>
-Js有两大数据类型,基本类型和引用类型<br>
-基本类型是保存在栈内存中的简单数据,有String Number Boolean null undefined Symbol,按值访问<br>
-引用类型是保存在堆内存中的对象,有Object Array Function Date等,按引用访问</p>
-<p>基本类型不是对象,那为什么他们有属性?<br>
-调用基本类型的属性时,会临时创建一个对象,调用对象属性,然后销毁对象.下次调用属性时,再创建一个新的对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'lalala'</span>;</span><br><span class="line">str.valueOf();</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="built_in">String</span>(str);</span><br><span class="line">temp.valueOf(); <span class="comment">// "lalala"</span></span><br><span class="line">temp = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-<p>因此不能给基本类型添加属性.完成操作后,新创建的对象被销毁了</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str.t = <span class="number">1</span>;</span><br><span class="line">str.t <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-<p>注 typeof对null返回&quot;object&quot;是个bug
-<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof" target="_blank" rel="noopener">参考</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// "object"</span></span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2018/04/08/JavaScript-Object/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

@@ -63,12 +63,135 @@
 </header>
 
 
+  
     <!-- main -->
     <main id="main" class="main">
       
 
 <div class="index">
     
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/06/29/FunctionDeclarationInstantiation/">
+                    FunctionDeclarationInstantiation
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-06-28T16:00:00.000Z">
+                  2019-06-29
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p><a href="https://www.ecma-international.org/ecma-262/9.0/index.html#sec-functiondeclarationinstantiation" target="_blank" rel="noopener">ECMAScript® 2018 Language Specification</a></p>
+<blockquote>
+<p>When an execution context is established for evaluating an ECMAScript function a new function Environment Record is created and bindings for each formal parameter are instantiated in that Environment Record.Each declaration in the function body is also instantiated.<br>
+当为了执行函数代码而建立 execution context(执行环境) 时, 会创建一个新的 function Environment Record(函数环境记录),所有 formal parameters(形参) 都会在这个执行环境中实例化.function body(函数体)中的所有声明也会被实例化.<br>
+If the function's formal parameters do not include any default value initializers then the body declarations are instantiated in the same Environment Record as the parameters. If default value parameter initializers exist, a second Environment Record is created for the body declarations.<br>
+如果形参没有默认值,则在同一个环境记录中实例化 body declarations(函数体内的声明).<br>
+如果形参有默认值,则会给 body declarations 创建一个新的环境记录.<br>
+Formal parameters and functions are initialized as part of FunctionDeclarationInstantiation. All other bindings are initialized during evaluation of the function body.<br>
+形参和函数 会在在执行内部方法 FunctionDeclarationInstantiation 时被初始化.而其它的 bindings(绑定) 要等到执行函数代码时,才会被初始化.</p>
+</blockquote>
+<blockquote>
+<p>FunctionDeclarationInstantiation is performed as follows using arguments func and argumentsList. func is the function object for which the execution context is being established.<br>
+FunctionDeclarationInstantiation 使用 func 和 argumentsList 作为参数,依照如下步骤执行.func 是函数自身, arguments是调用函数时传递的参数(实参列表).</p>
+</blockquote>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/06/29/FunctionDeclarationInstantiation/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/06/09/在 Vue 中使用 TinyMCE/">
+                    在 Vue 中使用 TinyMCE
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-06-08T16:00:00.000Z">
+                  2019-06-09
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>TinyMCE 是一个开源的(LGPL 授权协议)富文本编辑器.</p>
+<p>本文的软件环境如下:</p>
+<p>1 &quot;@tinymce/tinymce-vue&quot;: &quot;2.1.0&quot;<br>
+2 &quot;tinymce&quot;: &quot;^5.0.7&quot;<br>
+3 &quot;vue&quot;: &quot;^2.6.10&quot;</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>TinyMCE 官方提供了 tinymce-vue 供 Vue 用户使用.<br>
+<a href="https://github.com/tinymce/tinymce-vue" target="_blank" rel="noopener">GitHub - tinymce/tinymce-vue: Official TinyMCE Vue component</a></p>
+<p>但是 tinymce-vue   默认使用的是官方的 CDN,需要到官网注册帐号,否则会有个提示.<br>
+<a href="https://github.com/tinymce/tinymce-vue/pull/6" target="_blank" rel="noopener">feat: add prefer cdn url config by yugasun · Pull Request #6 · tinymce/tinymce-vue · GitHub</a><br>
+<img src="/img/1fc2cd81.PNG" alt="捕获.PNG"></p>
+<p>如果不想用官方的 CDN,可以手动载入TinyMCE.</p>
+<p>安装依赖:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add @tinymce/tinymce-vue@2.1.0</span><br><span class="line">yarn add tinymce@5.0.7</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/06/09/在 Vue 中使用 TinyMCE/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
       
         <div class="item">
           <article class="article">
@@ -492,112 +615,6 @@ inner是一个fixed元素, 背景色为黄色.<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/03/31/(动画效果)跟随下拉放大图像/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/03/30/缓动函数(easing function)/">
-                    缓动函数(easing function)
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-30T06:00:00.000Z">
-                  2019-03-30
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>网页设计经常会用到各种动画效果.<br>
-现实世界的大多数运动都是变速的.与变速运动相比,匀速运动就显得很生硬,给人一种不自然的感觉.</p>
-<p>css可以用timing-function参数来实现变速运动.<br>
-但不是所有的动画都能用css来解决, 例如下拉刷新, 要用js来根据touchmove的距离来绘制动画效果.<br>
-这时就可以用缓动公式来实现各种动画效果.</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/30/缓动函数(easing function)/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
-                    -webkit-overflow-scrolling导致元素消失
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-24T09:00:00.000Z">
-                  2019-03-24
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/CSS/">
-                    <span>CSS</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>在ios系统的浏览器中, 如果想让可滚动元素(例如有overflow: scroll属性的元素)带有弹性效果, 往往会给可滚动元素添加-webkit-overflow-scrolling: touch属性.<br>
-但这个属性有个bug, 可能会导致其内部的某些元素不显示.看起来就好象给元素加上了visibility:hidden一样.</p>
-<p>为了修复这个bug, 需要给&quot;某些&quot;后代元素添加transform: translate3d(0,0,0)属性.</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: scroll;</span><br><span class="line">  -webkit-<span class="attribute">overflow</span>-scrolling: touch;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: translate3d(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里之所以称&quot;某些&quot;,是因为无法确定到底应该加到哪些元素之上.<br>
-因为translate3d会产生很多副作用, 例如会改变元素的z-index, 要依具体情况而定.<br>
-需注意的是这个方法也不一定总是有效.</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

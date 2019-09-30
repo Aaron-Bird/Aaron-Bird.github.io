@@ -90,6 +90,16 @@ ol {
   list-style-position: inside;
   margin-left: 1px;
 }
+strong {
+  font-weight: 700;
+  background: #eee;
+  display: inline-block;
+  border-radius: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
 table {
   width: 100%;
   margin: 1rem 0;
