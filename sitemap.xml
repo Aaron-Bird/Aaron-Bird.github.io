@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://Aaron-Bird.github.io/2020/01/05/Cookie/</loc>
+    
+    <lastmod>2020-01-05T12:55:39.012Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://Aaron-Bird.github.io/2018/01/16/SASS/</loc>
+    
+    <lastmod>2019-12-05T04:18:45.582Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://Aaron-Bird.github.io/2019/10/15/5%20Longest%20Palindromic%20Substring/</loc>
     
     <lastmod>2019-10-15T08:20:51.587Z</lastmod>
@@ -383,13 +397,6 @@
     <loc>https://Aaron-Bird.github.io/2018/02/21/JavaScript-string/</loc>
     
     <lastmod>2018-02-20T23:41:24.574Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://Aaron-Bird.github.io/2018/01/16/SASS/</loc>
-    
-    <lastmod>2018-02-04T11:30:27.328Z</lastmod>
     
   </url>
   
