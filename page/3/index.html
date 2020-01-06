@@ -76,108 +76,6 @@
             <!-- title -->  
             <h2 class="title">
                          
-                  <a href="/2019/03/31/阻止滚动穿透/">
-                    阻止滚动穿透
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-31T11:00:00.000Z">
-                  2019-03-31
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>当滚动元素滚动到顶/底时, 如果其外层还有可滚动的元素,则会触发外层可滚动元素的滚动.<br>
-<img src="/img/b3d2bfc3.gif" alt="a.gif"></p>
-<p>这是个feature, 但有时这个feature会给开发者带来麻烦.<br>
-特别是safari, 如果某个可滚动元素设置了-webkit-overflow-scrolling: touch,滑动到头的时候经常会被卡住.</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/31/阻止滚动穿透/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/03/31/(动画效果)跟随下拉放大图像/">
-                    (动画效果)跟随下拉放大图像
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-31T06:00:00.000Z">
-                  2019-03-31
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p><img src="/img/702feb54.gif" alt="a.gif"></p>
-<h2 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h2>
-<p>监控用户touch事件, 根据移动距离修改图像的高度及缩放尺寸.<br>
-图像的放大要配合修改height和scale来进行,不能单独使用scale.因为缩放并不会占用文本流位置,这会导致图像覆盖下面的内容.</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/31/(动画效果)跟随下拉放大图像/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
                   <a href="/2019/03/30/缓动函数(easing function)/">
                     缓动函数(easing function)
                   </a>               
@@ -607,6 +505,131 @@ deactivated在keep-alive组件被停用时调用.<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/03/10/Js是一门_单线程_语言/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/03/03/移动端浏览器对audio标签的限制总结/">
+                    移动端浏览器对audio标签的限制总结
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-03T09:00:00.000Z">
+                  2019-03-03
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>往往在桌面写好的播放功能,到移动端各种出错.<br>
+这是因为在移动端,对于audio的使用有很多限制,特别是safari.<br>
+而且现在的各种框架, 极大加深了程序的复杂程度,使调试变得异常困难.</p>
+<h2 id="测试环境"><a class="markdownIt-Anchor" href="#测试环境"></a> 测试环境</h2>
+<p>本文测试环境为iPad ios12,没有条件进行iphone/桌面端safari环境下audio的表现</p>
+<h2 id="不支持autoplaypreload"><a class="markdownIt-Anchor" href="#不支持autoplaypreload"></a> 不支持autoplay/preload</h2>
+<p>大部分移动端浏览器都不允许网页自动播放/预加载音乐.<br>
+例如下面这个示例, 桌面浏览器可以自动播放,而移动浏览器没有任何反应.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span> <span class="attr">autoplay</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>除非用户点了播放按钮/手动触发了某个事件(这个事件里调用了audio.play()方法)<br>
+为啥这么设计?据说是怕网页偷跑流量.</p>
+<h2 id="只有用户手动触发的事件能调用playload"><a class="markdownIt-Anchor" href="#只有用户手动触发的事件能调用playload"></a> 只有用户手动触发的事件能调用play/load</h2>
+<p>既然autoplay不能用,那能不能用play方法来自动播放呢?
+很遗憾的是, 不行.
+例如下面这样,在移动端没效果:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> audioEl = <span class="built_in">document</span>.querySelector(<span class="string">'audio'</span>)</span></span><br><span class="line"><span class="undefined">  audioEl.play()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>先来看看水果的文档:</p>
+<blockquote>
+<p>In Safari on iOS (for all devices, including iPad), where the user may be on a cellular network and be charged per data unit, preload and autoplay are disabled. No data is loaded until the user initiates it. This means the JavaScript play() and load() methods are also inactive until the user initiates playback, unless the play() or load() method is triggered by user action. In other words, a user-initiated Play button works, but an onLoad=&quot;play()&quot; event does not.</p>
+</blockquote>
+<p><a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html" target="_blank" rel="noopener">iOS-Specific Considerations</a></p>
+<p>也就是说,只有当用户手动触发某个事件时,audio.play才能被调用.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">click由用户触发, 有效</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Play"</span> <span class="attr">onclick</span>=<span class="string">"document.myMovie.play()"</span>&gt;</span></span><br><span class="line">onload事件不是用户触发的,无效</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"document.myMovie.play()"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>因此,可以给外层元素绑定一个click事件.<br>
+只要用户点了这个元素,就能播放音乐.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> audioEl = <span class="built_in">document</span>.querySelector(<span class="string">'audio'</span>)</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> played = <span class="literal">false</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>).addEventListener(<span class="string">'click'</span>, ()=&gt; &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">if</span> (!played) &#123;</span></span><br><span class="line"><span class="undefined">      audioEl.play()</span></span><br><span class="line"><span class="actionscript">      played = <span class="literal">true</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/03/移动端浏览器对audio标签的限制总结/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/02/25/transform导致fixed失效/">
+                    transform导致fixed失效
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-02-25T12:00:00.000Z">
+                  2019-02-25
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>transform是个超级常用的属性, 需要居中/动画/开启cpu加速时经常会用到.<br>
+但这个属性也有很多副作用, 例如把后边的元素盖住了,或者是后代absolute元素被overflow:hidden剪裁.<br>
+除此之外还有个影响, 让拥有固定定位(fixed)属性的子元素变的像个绝对定位(absolute)元素.</p>
+<p><img src="/img/6cb4441c.PNG" alt="1.PNG"></p>
+<p>如上图所示, 黑色子元素为固定定位元素(fixed), 由于黄色父元素transfrom属性的影响, 表现的像个绝对定位元素(absolute).</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/02/25/transform导致fixed失效/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

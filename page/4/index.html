@@ -76,131 +76,6 @@
             <!-- title -->  
             <h2 class="title">
                          
-                  <a href="/2019/03/03/移动端浏览器对audio标签的限制总结/">
-                    移动端浏览器对audio标签的限制总结
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-03T09:00:00.000Z">
-                  2019-03-03
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/Vue/">
-                    <span>Vue</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>往往在桌面写好的播放功能,到移动端各种出错.<br>
-这是因为在移动端,对于audio的使用有很多限制,特别是safari.<br>
-而且现在的各种框架, 极大加深了程序的复杂程度,使调试变得异常困难.</p>
-<h2 id="测试环境"><a class="markdownIt-Anchor" href="#测试环境"></a> 测试环境</h2>
-<p>本文测试环境为iPad ios12,没有条件进行iphone/桌面端safari环境下audio的表现</p>
-<h2 id="不支持autoplaypreload"><a class="markdownIt-Anchor" href="#不支持autoplaypreload"></a> 不支持autoplay/preload</h2>
-<p>大部分移动端浏览器都不允许网页自动播放/预加载音乐.<br>
-例如下面这个示例, 桌面浏览器可以自动播放,而移动浏览器没有任何反应.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span> <span class="attr">autoplay</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>除非用户点了播放按钮/手动触发了某个事件(这个事件里调用了audio.play()方法)<br>
-为啥这么设计?据说是怕网页偷跑流量.</p>
-<h2 id="只有用户手动触发的事件能调用playload"><a class="markdownIt-Anchor" href="#只有用户手动触发的事件能调用playload"></a> 只有用户手动触发的事件能调用play/load</h2>
-<p>既然autoplay不能用,那能不能用play方法来自动播放呢?
-很遗憾的是, 不行.
-例如下面这样,在移动端没效果:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> audioEl = <span class="built_in">document</span>.querySelector(<span class="string">'audio'</span>)</span></span><br><span class="line"><span class="undefined">  audioEl.play()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>先来看看水果的文档:</p>
-<blockquote>
-<p>In Safari on iOS (for all devices, including iPad), where the user may be on a cellular network and be charged per data unit, preload and autoplay are disabled. No data is loaded until the user initiates it. This means the JavaScript play() and load() methods are also inactive until the user initiates playback, unless the play() or load() method is triggered by user action. In other words, a user-initiated Play button works, but an onLoad=&quot;play()&quot; event does not.</p>
-</blockquote>
-<p><a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html" target="_blank" rel="noopener">iOS-Specific Considerations</a></p>
-<p>也就是说,只有当用户手动触发某个事件时,audio.play才能被调用.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">click由用户触发, 有效</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Play"</span> <span class="attr">onclick</span>=<span class="string">"document.myMovie.play()"</span>&gt;</span></span><br><span class="line">onload事件不是用户触发的,无效</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"document.myMovie.play()"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>因此,可以给外层元素绑定一个click事件.<br>
-只要用户点了这个元素,就能播放音乐.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span> <span class="attr">src</span>=<span class="string">"./music/1.mp3"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> audioEl = <span class="built_in">document</span>.querySelector(<span class="string">'audio'</span>)</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> played = <span class="literal">false</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>).addEventListener(<span class="string">'click'</span>, ()=&gt; &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">if</span> (!played) &#123;</span></span><br><span class="line"><span class="undefined">      audioEl.play()</span></span><br><span class="line"><span class="actionscript">      played = <span class="literal">true</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/03/移动端浏览器对audio标签的限制总结/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/02/25/transform导致fixed失效/">
-                    transform导致fixed失效
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-02-25T12:00:00.000Z">
-                  2019-02-25
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/CSS/">
-                    <span>CSS</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>transform是个超级常用的属性, 需要居中/动画/开启cpu加速时经常会用到.<br>
-但这个属性也有很多副作用, 例如把后边的元素盖住了,或者是后代absolute元素被overflow:hidden剪裁.<br>
-除此之外还有个影响, 让拥有固定定位(fixed)属性的子元素变的像个绝对定位(absolute)元素.</p>
-<p><img src="/img/6cb4441c.PNG" alt="1.PNG"></p>
-<p>如上图所示, 黑色子元素为固定定位元素(fixed), 由于黄色父元素transfrom属性的影响, 表现的像个绝对定位元素(absolute).</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/02/25/transform导致fixed失效/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
                   <a href="/2019/02/24/height百分比值不生效/">
                     height百分比值不生效
                   </a>               
@@ -241,67 +116,6 @@
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/02/24/height百分比值不生效/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/02/10/获取元素位置_尺寸的方法/">
-                    获取元素位置/尺寸的方法
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-02-09T16:00:00.000Z">
-                  2019-02-10
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <h2 id="clientwidth-offsetwidth-scrollwidth"><a class="markdownIt-Anchor" href="#clientwidth-offsetwidth-scrollwidth"></a> clientWidth offsetWidth scrollWidth</h2>
-<ul>
-<li>clientWidth|clientHeight 元素内容可视部分的宽度/高度,不包括 滚动条 border margin</li>
-<li>offsetWidth|offsetHeight 元素整体宽度/高度,包括滚动条和border,不包括margin</li>
-<li>scrollWidth|scrollHeight 元素内容实际宽度/高度,包含被隐藏的部分</li>
-</ul>
-<p>示例
-<img src="/img/5bd68899.png" alt="50424091-e23a4980-0899-11e9-8b18-e8b210cbf876.png"></p>
-<p>如上所示,两容器元素的宽/高均为200px, border为1px,padding为10px. 背景颜色为黄色, padding无颜色<br>
-两容器内均有一斜线为背景的子元素,其宽/高均为300px<br>
-容器1的overflow属性值为auto(可滚动).滚动条宽度为17px,颜色为蓝色<br>
-容器2的overflow的属性值为static(默认值,无滚动条)<br>
-clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidth值为203px(220px - 17px).没有滚动条时,clientWidth值为220px<br>
-在chrome中,padding-right不参与scrollWidth值的计算.而padding-bottom相反,参与scrollHeight值的计算.因此, 可滚动元素的scrollWidth为310px,scrollHeight为320px</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/02/10/获取元素位置_尺寸的方法/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
@@ -385,6 +199,67 @@ clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidt
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/02/10/JSONP/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2019/02/10/获取元素位置_尺寸的方法/">
+                    获取元素位置/尺寸的方法
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-02-09T16:00:00.000Z">
+                  2019-02-10
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="clientwidth-offsetwidth-scrollwidth"><a class="markdownIt-Anchor" href="#clientwidth-offsetwidth-scrollwidth"></a> clientWidth offsetWidth scrollWidth</h2>
+<ul>
+<li>clientWidth|clientHeight 元素内容可视部分的宽度/高度,不包括 滚动条 border margin</li>
+<li>offsetWidth|offsetHeight 元素整体宽度/高度,包括滚动条和border,不包括margin</li>
+<li>scrollWidth|scrollHeight 元素内容实际宽度/高度,包含被隐藏的部分</li>
+</ul>
+<p>示例
+<img src="/img/5bd68899.png" alt="50424091-e23a4980-0899-11e9-8b18-e8b210cbf876.png"></p>
+<p>如上所示,两容器元素的宽/高均为200px, border为1px,padding为10px. 背景颜色为黄色, padding无颜色<br>
+两容器内均有一斜线为背景的子元素,其宽/高均为300px<br>
+容器1的overflow属性值为auto(可滚动).滚动条宽度为17px,颜色为蓝色<br>
+容器2的overflow的属性值为static(默认值,无滚动条)<br>
+clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidth值为203px(220px - 17px).没有滚动条时,clientWidth值为220px<br>
+在chrome中,padding-right不参与scrollWidth值的计算.而padding-bottom相反,参与scrollHeight值的计算.因此, 可滚动元素的scrollWidth为310px,scrollHeight为320px</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/02/10/获取元素位置_尺寸的方法/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
@@ -724,6 +599,266 @@ C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2018/05/29/JavaScript-RegExp/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2018/04/24/JavScript-event/">
+                    js事件
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-04-24T05:34:00.000Z">
+                  2018-04-24
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="常用事件表"><a class="markdownIt-Anchor" href="#常用事件表"></a> 常用事件表</h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>触发</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>load</td>
+<td>页面(包括CSS样式 图片 JS等资源)完全加载后触发(window可用)</td>
+</tr>
+<tr>
+<td>DOMContentLoaded</td>
+<td>HTML文档被加载后触发,无需等待图片 js CSS资源加载(window和document可用)</td>
+</tr>
+<tr>
+<td>beforeunload</td>
+<td>窗口被关闭/刷新(可阻止)</td>
+</tr>
+<tr>
+<td>unload</td>
+<td>文档被卸载后(window)</td>
+</tr>
+<tr>
+<td>abort</td>
+<td>图像/视频/音频加载被中断</td>
+</tr>
+<tr>
+<td>error</td>
+<td>文档/图像加载错误</td>
+</tr>
+<tr>
+<td>resize</td>
+<td>调整窗口大小(window)</td>
+</tr>
+<tr>
+<td>scroll</td>
+<td>页面滚动(window) <br>可用document.documentElement.scrollTop获取滚动距离</td>
+</tr>
+<tr>
+<td>focusin</td>
+<td>获得焦点(冒泡)</td>
+</tr>
+<tr>
+<td>focus</td>
+<td>获得焦点(不冒泡)</td>
+</tr>
+<tr>
+<td>focusout</td>
+<td>失去焦点(冒泡)</td>
+</tr>
+<tr>
+<td>blur</td>
+<td>失去焦点(不冒泡)</td>
+</tr>
+<tr>
+<td>mouseover</td>
+<td>鼠标移动到元素上(冒泡)</td>
+</tr>
+<tr>
+<td>mouseenter</td>
+<td>鼠标移动到元素上(不冒泡)</td>
+</tr>
+<tr>
+<td>mouseout</td>
+<td>鼠标移出元素(冒泡)</td>
+</tr>
+<tr>
+<td>mouseleave</td>
+<td>鼠标移出元素(不冒泡)</td>
+</tr>
+<tr>
+<td>mousedown</td>
+<td>鼠标键按下</td>
+</tr>
+<tr>
+<td>mouseup</td>
+<td>鼠标键松开</td>
+</tr>
+<tr>
+<td>click</td>
+<td>鼠标单击</td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>鼠标双击</td>
+</tr>
+<tr>
+<td>mousemove</td>
+<td>鼠标移动</td>
+</tr>
+<tr>
+<td>contextmenu</td>
+<td>调出上下文菜单(鼠标单击右键)</td>
+</tr>
+<tr>
+<td>mousewheel</td>
+<td>鼠标滚轮滚动(非标准事件)</td>
+</tr>
+<tr>
+<td>keydown</td>
+<td>键盘任意键被按下/按住</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td>键盘字符键被按下/按住</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td>键盘任意键被松开</td>
+</tr>
+<tr>
+<td>input</td>
+<td>用于input/textarea元素,用户输入时触发</td>
+</tr>
+<tr>
+<td>change</td>
+<td>元素值发生变化(例如select更改选项,input输入框输入)</td>
+</tr>
+<tr>
+<td>submit</td>
+<td>提交按钮被点击</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>重置按钮被点击</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>用户复制内容</td>
+</tr>
+<tr>
+<td>haschange</td>
+<td>URL参数(#号后的内容)变化时触发(window可用)</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2018/04/24/JavScript-event/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/2018/04/16/JavaScript-Number/">
+                    JavaScript Number
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-04-16T11:39:00.000Z">
+                  2018-04-16
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="number-parseint-parsefloat"><a class="markdownIt-Anchor" href="#number-parseint-parsefloat"></a> Number parseInt parseFloat</h2>
+<p>这三种方法都可以将值转为数字,但处理方式各不相同</p>
+<h3 id="number"><a class="markdownIt-Anchor" href="#number"></a> Number</h3>
+<p>Number(value)</p>
+<ul>
+<li>value 任意值,如果无法转为数字,则返回NaN</li>
+</ul>
+<p>如果传入对象,会先调用对象的valueOf方法.如果valueOf的返回值不是基本类型,再调用对象的toString方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line">o.valueOf = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">11</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log( <span class="built_in">Number</span>(o) ) <span class="comment">// 11</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;;</span><br><span class="line">o1.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">11</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log( <span class="built_in">Number</span>(o1) );</span><br></pre></td></tr></table></figure>
+<p>注 一元加操作符的转换方式和Number相同</p>
+<h3 id="parseint"><a class="markdownIt-Anchor" href="#parseint"></a> parseInt</h3>
+<p>接受字符串,返回整数<br>
+parseInt(string, radix)</p>
+<ul>
+<li>string 字符串,如果传入参数不是字符串(包括数字),则先使用toString将其转为字符串.</li>
+<li>radix 参数string的基数,接受以下数值:
+<ul>
+<li>0或未指定: 0x开头字符串以16进制解析,其他字符串以10进制解析</li>
+<li>2~36: 将字符串以2~36进制解析</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0x11'</span>) <span class="comment">// 17</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0X11'</span>) <span class="comment">// 17</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'11'</span>,<span class="number">2</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'11'</span>, <span class="number">16</span>) <span class="comment">// 17</span></span><br><span class="line"><span class="comment">// 第二个参数传入0/2~36之外的数值会返回NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'11'</span>, <span class="number">1</span>) <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<p>如果string的第一个非空格字符&quot;不是正/负号或数字&quot;,则返回NaN</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'.11'</span>) <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<p>parseInt不支持科学计数法,会将&quot;Infinity&quot;和&quot;e表示法&quot;当作普通字符处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'Infinity'</span>) <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">0.0000001</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 实际运行过程</span></span><br><span class="line"><span class="comment">// 先调用toString方法转为字符串.</span></span><br><span class="line"><span class="comment">// 0.0000001小数点后有6个以上的0,因此自动转为科学计数法格式</span></span><br><span class="line"><span class="keyword">var</span> s = (<span class="number">0.0000001</span>).toString(); <span class="comment">// "1e-7"</span></span><br><span class="line"><span class="comment">// parseInt不支持科学计数法,e及后边的数字被自动忽略了,因此返回1</span></span><br><span class="line"><span class="built_in">parseInt</span>(s); <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// Number和ParseFloat没有这种问题</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2018/04/16/JavaScript-Number/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
