@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="1ZDw40Leb3nAqZ6k_WQDEhiOrFjiRu8hykotZ6JBHDk">
+
+    <title>Sequelize</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/katex/katex.min.css">
+     
+    <link rel="stylesheet" href="/css/index.css">
+     
+  </head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hello-world"><span class="toc-text"> hello world</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建表"><span class="toc-text"> 创建表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新增数据"><span class="toc-text"> 新增数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create"><span class="toc-text"> create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bulkcreate"><span class="toc-text"> bulkCreate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findorcreate"><span class="toc-text"> findOrCreate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改数据"><span class="toc-text"> 修改数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#update"><span class="toc-text"> update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#updsert"><span class="toc-text"> updsert</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询数据"><span class="toc-text"> 查询数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#findall"><span class="toc-text"> findAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findandcountall"><span class="toc-text"> findAndCountAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findbypk"><span class="toc-text"> findByPk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findone"><span class="toc-text"> findOne</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#count"><span class="toc-text"> count</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除数据"><span class="toc-text"> 删除数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#destroy"><span class="toc-text"> destroy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#model"><span class="toc-text"> Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#option-参数"><span class="toc-text"> option 参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#where"><span class="toc-text"> where</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order"><span class="toc-text"> order</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1 class="title">Sequelize</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-03-07T16:00:00.000Z">
+            2020-03-08
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Sequelize/">
+              <span>Sequelize</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Node/">
+            <span>Node</span>
+          </a>
+        
+          <a href="/tags/Sequelize/">
+            <span>Sequelize</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>Sequelize 是基于 Node 的 ORM 库, 支持的数据库有 Postgres | MySQL | MariaDB, SQLite | Microsoft SQL Server.<br>
+Sequelize 将数据库键值对映射成对象, 将增删改查操作映射成方法,抹平了不同数据库间的语法区别.</p>
+<h2 id="hello-world"><a class="markdownIt-Anchor" href="#hello-world"></a> hello world</h2>
+<p>安装 Sequelize</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add sequelize</span><br><span class="line">yarn add sqlite3</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>hello world</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">const Sequelize = require(&quot;sequelize&quot;);</span><br><span class="line"></span><br><span class="line">// 创建数据库连接</span><br><span class="line">const db = new Sequelize(&#123;</span><br><span class="line">  dialect: &quot;sqlite&quot;,</span><br><span class="line">  storage: &quot;./db.sqlite&quot;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 创建表</span><br><span class="line">const userTable = db.define(&quot;user&quot;, &#123;</span><br><span class="line">  name: Sequelize.STRING,</span><br><span class="line">  age: &#123;</span><br><span class="line">    // data type</span><br><span class="line">    type: Sequelize.INTEGER,</span><br><span class="line">    // 默认值</span><br><span class="line">    defaultValue: 18</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">(async () =&gt; &#123;</span><br><span class="line">  // 同步数据库</span><br><span class="line">  await db.sync();</span><br><span class="line">  // 写入内容</span><br><span class="line">  await userTable.create(&#123;</span><br><span class="line">    name: &quot;anna&quot;,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  // 关闭数据库</span><br><span class="line">  db.close();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="创建表"><a class="markdownIt-Anchor" href="#创建表"></a> 创建表</h2>
+<p>Sequelize 会自动添加 createdAt 和 updatedAt, 分别对应创建时间和更新时间.可通过设置 timestamps: false 禁止自动添加 createdAt 和 updatedAt.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.define(&quot;user&quot;, &#123;&#125;, &#123;&quot;timestamps&quot;: false&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="新增数据"><a class="markdownIt-Anchor" href="#新增数据"></a> 新增数据</h2>
+<h3 id="create"><a class="markdownIt-Anchor" href="#create"></a> create</h3>
+<p>新增数据, 创建一个 model 并调用 save.  <a href="https://sequelize.org/master/class/lib/model.js~Model.html#static-method-create" target="_blank" rel="noopener">Model | Sequelize</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const anna = await userTable.create(&#123;</span><br><span class="line">  name: &quot;anna&quot;,</span><br><span class="line">  age: 20</span><br><span class="line">&#125;);</span><br><span class="line">console.log(anna.name, anna.age);</span><br></pre></td></tr></table></figure>
+<p>可通过修改这个返回的 model 来更新表中所对应的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">anna.age = 25;</span><br><span class="line">await anna.save(); // 调用 save 方法来同步修改</span><br></pre></td></tr></table></figure>
+<h3 id="bulkcreate"><a class="markdownIt-Anchor" href="#bulkcreate"></a> bulkCreate</h3>
+<p>批量新增, 返回一个数组,包含一组表示映射关系的 model.  <a href="https://sequelize.org/master/class/lib/model.js~Model.html#static-method-bulkCreate" target="_blank" rel="noopener">Model | Sequelize</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const user = [</span><br><span class="line">  &#123; name: &quot;anna&quot;, age: 20 &#125;,</span><br><span class="line">  &#123; name: &quot;bob&quot;, age: 25 &#125;</span><br><span class="line">];</span><br><span class="line">const userList = await userTable.bulkCreate(user);</span><br><span class="line">for (let i of result) &#123;</span><br><span class="line">  console.log(i.userList); // anna bob;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="findorcreate"><a class="markdownIt-Anchor" href="#findorcreate"></a> findOrCreate</h3>
+<p>没有找到对应值则新增,有则不修改. 返回一个数组, 其中包含一个表示映射关系的 model,和一个表示是否是新增数据的布尔值.<br>
+查找 name: &quot;anna&quot; 是否存在, 没有则用 defaults 中的值新建.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const [anna, isCreate] = await userTable.findOrCreate(&#123;</span><br><span class="line">  defaults: &#123;</span><br><span class="line">    name: &quot;david&quot;,</span><br><span class="line">    age: 20</span><br><span class="line">  &#125;,</span><br><span class="line">  where: &#123; name: &quot;david&quot; &#125;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(anna.name, isCreate); // david true</span><br></pre></td></tr></table></figure>
+<h2 id="修改数据"><a class="markdownIt-Anchor" href="#修改数据"></a> 修改数据</h2>
+<h3 id="update"><a class="markdownIt-Anchor" href="#update"></a> update</h3>
+<p>更新数据, 必须提供属性 where.  <a href="https://sequelize.org/master/class/lib/model.js~Model.html#static-method-update" target="_blank" rel="noopener">Model | Sequelize</a><br>
+返回一个数组,包含两个数值.第一个数值为修改行数, 第二个值为实际影响的行数(? 仅支持 postgres )</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const updateInfo = await userTable.update(</span><br><span class="line">  &#123; name: &quot;ava&quot;, age: 22 &#125;,</span><br><span class="line">  &#123; where: [&#123; name: &quot;anna&quot; &#125;] &#125; // 将 name 值 anna 更改为 ava</span><br><span class="line">);</span><br><span class="line">console.log(updateInfo) // [ 1 ]</span><br></pre></td></tr></table></figure>
+<h3 id="updsert"><a class="markdownIt-Anchor" href="#updsert"></a> updsert</h3>
+<p>符合条件则修改该行数据, 未找到则新增一行数据.  <a href="https://sequelize.org/master/class/lib/model.js~Model.html#static-method-upsert" target="_blank" rel="noopener">Model | Sequelize</a><br>
+返回一个布尔值, 表示该操作是新增还是修改.(不同数据库的返回值各不相同, sqlite 不返回任何值, 详见官方文档).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">await userTable.upsert(</span><br><span class="line">  &#123; name: &quot;noah&quot;, age: 25 &#125;,</span><br><span class="line">  &#123; where: [&#123; name: &quot;noah&quot; &#125;] &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="查询数据"><a class="markdownIt-Anchor" href="#查询数据"></a> 查询数据</h2>
+<h3 id="findall"><a class="markdownIt-Anchor" href="#findall"></a> findAll</h3>
+<p>获取多行数据,可用 where 参数设置查询条件.</p>
+<p>返回所有数据:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll();</span><br><span class="line">for (let i of findList) &#123;</span><br><span class="line">  console.log(i.name); anna  ava liam</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 where 设置过滤条件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll(</span><br><span class="line">  &#123; where: [&#123; name: &quot;anna&quot; &#125;] &#125;</span><br><span class="line">);</span><br><span class="line">for (let i of findList) &#123;</span><br><span class="line">  console.log(i.name); anna</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可通过 limit 设置返回的行数<br>
+只返回一条记录:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll(</span><br><span class="line">  &#123; limit: 1 &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>设置排序,其中的 ASC 表示升序, DESC表示降序<br>
+按 name 降序. 如果 name 值相同, 则相同值按 age 升序排列:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll(</span><br><span class="line">  &#123; order: [</span><br><span class="line">    [&apos;name&apos;, &apos;DESC&apos;],</span><br><span class="line">    [&apos;age&apos;, &apos;ASC&apos;]</span><br><span class="line">  ]&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>设置偏移量(起始位置):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">await userTable.findAll(&#123; offset: 2&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="findandcountall"><a class="markdownIt-Anchor" href="#findandcountall"></a> findAndCountAll</h3>
+<p>类似 findAll, 同样支持 where offset limit order 等参数.</p>
+<p>区别为除了返回匹配到的数据之外,还返回所匹配的行数.<br>
+其返回一个对象, 其包含两个属性: count 和 rows.<br>
+count 为匹配数据的总数, 受 where 影响, 但不受 offset limit 影响.<br>
+rows 为匹配到的数据(即 findAll 的返回值).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let findInfo = await userTable.findAndCountAll();</span><br><span class="line">console.log(findInfo.count) // 5</span><br><span class="line"></span><br><span class="line">// 使用 where 后, count 减少</span><br><span class="line">findInfo = await userTable.findAndCountAll(&#123;where: &#123;name: &apos;ava&apos;&#125;&#125;);</span><br><span class="line">console.log(findInfo.count); // 1</span><br><span class="line"></span><br><span class="line">// 不受 limit 影响,仍然返回了所匹配数据的总数</span><br><span class="line">findInfo = await userTable.findAndCountAll(&#123; limit: 1&#125;);</span><br><span class="line">console.log(findInfo.count); // 1</span><br></pre></td></tr></table></figure>
+<p>通过 limit offset  实现分页功能:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * currentPage 当前页码, 从 1 开始</span><br><span class="line"> * pageSize 每页展示数量</span><br><span class="line"> * return &#123;</span><br><span class="line"> *  count, 总数</span><br><span class="line"> *  rows 表数据</span><br><span class="line"> *  &#125;</span><br><span class="line"> */</span><br><span class="line">async function pagation(currentPage, pageSize) &#123;</span><br><span class="line">  return await userTable.findAndCountAll(&#123;</span><br><span class="line">    offset: (currentPage - 1) * pageSize,</span><br><span class="line">    limit: pageSize</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">// 获取第 2 页的数据, 每页 3 个</span><br><span class="line">const result = await pagation(2, 3);</span><br><span class="line">console.log(result.count);</span><br><span class="line">for (let i of result.rows) &#123;</span><br><span class="line">  console.log(i.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="findbypk"><a class="markdownIt-Anchor" href="#findbypk"></a> findByPk</h3>
+<p>通过主键获取数据, 未找到时返回 null.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const model = await userTable.findByPk(1);</span><br><span class="line">console.log(model.name); // anna</span><br></pre></td></tr></table></figure>
+<h3 id="findone"><a class="markdownIt-Anchor" href="#findone"></a> findOne</h3>
+<p>返回找到的第一行记录,相当于 findAll({limit: 1})</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const model = await userTable.findOne();</span><br><span class="line">console.log(model.name); // anna</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const model = await userTable.findOne(&#123;</span><br><span class="line">  where: &#123;name: &apos;ava&apos;&#125;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(model.name); // ava</span><br></pre></td></tr></table></figure>
+<h3 id="count"><a class="markdownIt-Anchor" href="#count"></a> count</h3>
+<p>返回匹配的记录行数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const count = await userTable.count();</span><br><span class="line">console.log(count); // 10</span><br></pre></td></tr></table></figure>
+<p>使用 where 参数过滤匹配条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const count = await userTable.count(&#123;</span><br><span class="line">  where: &#123;name: &apos;anna&apos;&#125;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(count); // 1</span><br></pre></td></tr></table></figure>
+<h2 id="删除数据"><a class="markdownIt-Anchor" href="#删除数据"></a> 删除数据</h2>
+<h3 id="destroy"><a class="markdownIt-Anchor" href="#destroy"></a> destroy</h3>
+<p>删除匹配的记录, 必须提供 where 参数.<br>
+返回一个数值,表示删了几行.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const count = await userTable.destroy(&#123;</span><br><span class="line">  where: [&#123; name: &quot;anna&quot; &#125;]</span><br><span class="line">&#125;);</span><br><span class="line">console.log(count); // 1</span><br></pre></td></tr></table></figure>
+<h2 id="model"><a class="markdownIt-Anchor" href="#model"></a> Model</h2>
+<p>Model 实例是对表行的映射</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 创建 model</span><br><span class="line">const liam = userTable.build(&#123;</span><br><span class="line">  name: &quot;liam&quot;,</span><br><span class="line">  age: 20</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 调用 save 将操作同步到数据库中</span><br><span class="line">await liam.save();</span><br><span class="line"></span><br><span class="line">// 修改 model</span><br><span class="line">liam.age = 30;</span><br><span class="line"></span><br><span class="line">// 删除 model</span><br><span class="line">await liam.destroy();</span><br><span class="line"></span><br><span class="line">await liam.save();</span><br></pre></td></tr></table></figure>
+<h2 id="option-参数"><a class="markdownIt-Anchor" href="#option-参数"></a> option 参数</h2>
+<h3 id="where"><a class="markdownIt-Anchor" href="#where"></a> where</h3>
+<p><a href="https://demopark.github.io/sequelize-docs-Zh-CN/querying.html#where" target="_blank" rel="noopener">Querying - 查询 | sequelize-docs-Zh-CN</a></p>
+<p>获取字段 name 值为 anna 的所有记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll(</span><br><span class="line">  &#123; where: [&#123; name: &quot;anna&quot; &#125;] &#125;</span><br><span class="line">);</span><br><span class="line">for (let i of findList) &#123;</span><br><span class="line">  console.log(i.name); anna</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取 name 为 ava , 并且 age 为 22 的所有记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll(</span><br><span class="line">  &#123; where: [&#123; name: &quot;ava&quot; &#125;, &#123;age: 22&#125;] &#125;</span><br><span class="line">);</span><br><span class="line">for (let i of findList) &#123;</span><br><span class="line">  console.log(i.name);  ava 22</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>where 还支持运算符操作  <a href="https://demopark.github.io/sequelize-docs-Zh-CN/querying.html#%E6%93%8D%E4%BD%9C%E7%AC%A6" target="_blank" rel="noopener">Querying - 查询 | sequelize-docs-Zh-CN</a></p>
+<p>先载入 Op 对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const Op = Sequelize.Op;</span><br></pre></td></tr></table></figure>
+<p>或操作,返回所有 name 值为 anna 或 ava 的记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    [Op.or]: [&#123; name: &quot;anna&quot; &#125;, &#123; name: &quot;ava&quot; &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>另一种写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">   name: &#123;</span><br><span class="line">     [Op.or]: [&apos;anna&apos;, &apos;ava&apos;]</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>返回所有年龄在范围 [20, 25] 内的记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    age: &#123;</span><br><span class="line">      [Op.in]: [20, 25]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>返回 name 值包含 an 字母的记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const findList = await userTable.findAll(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    name: &#123;</span><br><span class="line">      [Op.like]: &apos;%an%&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="order"><a class="markdownIt-Anchor" href="#order"></a> order</h3>
+<p><a href="https://demopark.github.io/sequelize-docs-Zh-CN/querying.html#%E6%8E%92%E5%BA%8F" target="_blank" rel="noopener">Querying - 查询 | sequelize-docs-Zh-CN</a></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="https://demopark.github.io/sequelize-docs-Zh-CN/" target="_blank" rel="noopener">Sequelize Docs 中文版 | sequelize-docs-Zh-CN</a><br>
+<a href="https://sequelize.org/master/class/lib/model.js~Model.html" target="_blank" rel="noopener">Model | Sequelize</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+      
+        <a class="next" href="/2020/03/05/child_process/">child_process  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138513143-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-138513143-2');
+    </script>
+  </body>
+</html>
