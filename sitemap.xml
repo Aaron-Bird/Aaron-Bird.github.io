@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://Aaron-Bird.github.io/2020/03/08/Sequelize/</loc>
+    <loc>https://Aaron-Bird.github.io/2019/02/01/vue-cli/</loc>
     
-    <lastmod>2020-03-18T08:46:07.782Z</lastmod>
+    <lastmod>2020-03-25T17:36:55.678Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://Aaron-Bird.github.io/2020/01/14/puppeteer%20(2)%20%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%89%A7%E8%A1%8C%20Js%20%E4%BB%A3%E7%A0%81/</loc>
     
-    <lastmod>2020-03-15T10:48:08.663Z</lastmod>
+    <lastmod>2020-03-18T11:04:39.515Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://Aaron-Bird.github.io/2020/03/08/Sequelize/</loc>
+    
+    <lastmod>2020-03-18T08:46:07.782Z</lastmod>
     
   </url>
   
@@ -61,13 +68,6 @@
     <loc>https://Aaron-Bird.github.io/2019/10/15/5%20Longest%20Palindromic%20Substring/</loc>
     
     <lastmod>2019-10-15T08:20:51.587Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://Aaron-Bird.github.io/2019/02/01/vue-cli/</loc>
-    
-    <lastmod>2019-09-19T01:53:04.132Z</lastmod>
     
   </url>
   
