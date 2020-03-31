@@ -76,6 +76,53 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/08/23/常用 POST 数据类型/">
+                    常用 POST 数据类型
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-08-22T16:00:00.000Z">
+                  2019-08-23
+                </time>
+              
+              <!-- categories -->
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>Content-Type 接受 MIME类型 作为参数值.<br>
+传送数据时, 浏览器通过 Content-Type 来告诉服务器发送的数据格式是什么.
+发送POST数据时, 常用的 MIME类型 有以下几种:</p>
+<h2 id="applicationjson"><a class="markdownIt-Anchor" href="#applicationjson"></a> application/json</h2>
+<p>Content-Type: application/json 中的 application 表示 POST 数据为 &quot;应用程序特有的格式&quot;, json 表示子类为 &quot;JSON&quot;.</p>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">'http://jsonplaceholder.typicode.com/posts'</span>;</span><br><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xml.open(<span class="string">'POST'</span>, url);</span><br><span class="line">xml.withCredentials = <span class="literal">true</span>;</span><br><span class="line">xml.setRequestHeader(<span class="string">'content-type'</span>, <span class="string">'application/json'</span>);</span><br><span class="line">xml.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xml.status &gt;= <span class="number">200</span> &amp;&amp; xml.status &lt; <span class="number">300</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xml.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> data = &#123; <span class="attr">foo</span>: <span class="string">'bar'</span> &#125;;</span><br><span class="line">xml.send(<span class="built_in">JSON</span>.stringify(data));</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/08/23/常用 POST 数据类型/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/07/24/3 Longest Substring Without Repeating Characters/">
                     3 Longest Substring Without Repeating Characters
                   </a>               
@@ -559,56 +606,6 @@ puppeteer 这个单词的发音为 [ˌpʌpɪˈtɪə], 意思是&quot;操纵木�
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/04/18/函数声明与函数表达式/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/04/06/(ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定/">
-                    (Ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-04-06T04:00:00.000Z">
-                  2019-04-06
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/CSS/">
-                    <span>CSS</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <h2 id="表现"><a class="markdownIt-Anchor" href="#表现"></a> 表现</h2>
-<p>可滚动(oveflow:scroll)元素滚动时, 其内的固定定位(position: fixed)元素无法保持在原有位置,直到滚动结束才能恢复.<br>
-该bug仅能在ios上的夸克中触发,android则无此问题.</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/04/06/(ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

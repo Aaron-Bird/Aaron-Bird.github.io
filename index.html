@@ -76,6 +76,64 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2020/03/29/URL/">
+                    URL
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-03-28T16:00:00.000Z">
+                  2020-03-29
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="document"><a class="markdownIt-Anchor" href="#document"></a> document</h2>
+<h3 id="documenturl"><a class="markdownIt-Anchor" href="#documenturl"></a> document.URL</h3>
+<p>返回当前文档的 URL 地址,只读.<br>
+<s>只能在 HTML 文档中使用.</s></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/URL" target="_blank" rel="noopener">Document.URL - Web APIs | MDN</a></p>
+<h3 id="documentdocumenturi"><a class="markdownIt-Anchor" href="#documentdocumenturi"></a> document.documentURI</h3>
+<p>返回当前文档的 URL 地址,只读.<br>
+在 DOM3 规范中定义为可写, DOM4 改为只读.<br>
+<s>没有文档类型限制,可用于任何文档.</s></p>
+<p>IE 不支持此属性</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/documentURI" target="_blank" rel="noopener">Document.documentURI - Web APIs | MDN</a></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2020/03/29/URL/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2020/03/08/Sequelize/">
                     Sequelize
                   </a>               
@@ -580,53 +638,6 @@ Cookie 是保存在浏览器上的一段数据,常用来识别用户身份.当�
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/09/01/HTTP 响应状态码/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/08/23/常用 POST 数据类型/">
-                    常用 POST 数据类型
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-08-22T16:00:00.000Z">
-                  2019-08-23
-                </time>
-              
-              <!-- categories -->
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>Content-Type 接受 MIME类型 作为参数值.<br>
-传送数据时, 浏览器通过 Content-Type 来告诉服务器发送的数据格式是什么.
-发送POST数据时, 常用的 MIME类型 有以下几种:</p>
-<h2 id="applicationjson"><a class="markdownIt-Anchor" href="#applicationjson"></a> application/json</h2>
-<p>Content-Type: application/json 中的 application 表示 POST 数据为 &quot;应用程序特有的格式&quot;, json 表示子类为 &quot;JSON&quot;.</p>
-<p>示例:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">'http://jsonplaceholder.typicode.com/posts'</span>;</span><br><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xml.open(<span class="string">'POST'</span>, url);</span><br><span class="line">xml.withCredentials = <span class="literal">true</span>;</span><br><span class="line">xml.setRequestHeader(<span class="string">'content-type'</span>, <span class="string">'application/json'</span>);</span><br><span class="line">xml.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xml.status &gt;= <span class="number">200</span> &amp;&amp; xml.status &lt; <span class="number">300</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xml.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> data = &#123; <span class="attr">foo</span>: <span class="string">'bar'</span> &#125;;</span><br><span class="line">xml.send(<span class="built_in">JSON</span>.stringify(data));</span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/08/23/常用 POST 数据类型/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
