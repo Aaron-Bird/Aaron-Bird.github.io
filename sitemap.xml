@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://Aaron-Bird.github.io/2019/06/29/FunctionDeclarationInstantiation/</loc>
+    
+    <lastmod>2020-04-01T10:20:01.512Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://Aaron-Bird.github.io/2019/02/08/this/</loc>
     
     <lastmod>2020-04-01T10:09:44.935Z</lastmod>
@@ -138,13 +145,6 @@
     <loc>https://Aaron-Bird.github.io/2019/07/07/white-space/</loc>
     
     <lastmod>2019-07-07T14:14:15.486Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://Aaron-Bird.github.io/2019/06/29/FunctionDeclarationInstantiation/</loc>
-    
-    <lastmod>2019-06-29T13:13:54.751Z</lastmod>
     
   </url>
   
