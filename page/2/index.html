@@ -368,10 +368,10 @@ If the function's formal parameters do not include any default value initializer
 如果形参有默认值,则会给 body declarations 创建一个新的环境记录.  
 
 Formal parameters and functions are initialized as part of FunctionDeclarationInstantiation. All other bindings are initialized during evaluation of the function body.  
-形参和函数 会在在执行内部方法 FunctionDeclarationInstantiation 时被初始化.而其它的 bindings(绑定) 要等到执行函数代码时,才会被初始化.
+形参和函数会在执行内部方法 FunctionDeclarationInstantiation 时被初始化.而其它的 bindings(绑定) 要等到执行函数代码时,才会被初始化.
 
 FunctionDeclarationInstantiation is performed as follows using arguments func and argumentsList. func is the function object for which the execution context is being established.  
-FunctionDeclarationInstantiation 使用 func 和 argumentsList 作为参数,依照如下步骤执行.func 是函数自身, arguments 是调用函数时传递的参数(实参列表).
+FunctionDeclarationInstantiation 使用 func 和 argumentsList 作为参数,依照如下步骤执行.func 是为其建立execution context (函数 执行环境/上下文)的对象, arguments 是调用函数时传递的参数(实参列表).
 </pre>
               
             </div>
