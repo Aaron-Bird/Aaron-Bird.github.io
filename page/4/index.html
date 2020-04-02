@@ -650,10 +650,10 @@ clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidt
 <h2 id="execution-context执行环境执行上下文"><a class="markdownIt-Anchor" href="#execution-context执行环境执行上下文"></a> execution context(执行环境/执行上下文)</h2>
 <p>execution context 的说明在 10.3<br>
 <a href="http://ecma-international.org/ecma-262/5.1/#sec-10.3" target="_blank" rel="noopener">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br>
-<a href="https://www.w3.org/html/ig/zh/wiki/ES5/%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/ES5/可执行代码与执行环境#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83</a></p>
+<a href="https://www.w3.org/html/ig/zh/wiki/ES5/%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83" target="_blank" rel="noopener">ES5 可执行代码与执行环境</a></p>
 <blockquote>
 <p>When control is transferred to ECMAScript executable code, control is entering an execution context. Active execution contexts logically form a stack. The top execution context on this logical stack is the running execution context. A new execution context is created whenever control is transferred from the executable code associated with the currently running execution context to executable code that is not associated with that execution context. The newly created execution context is pushed onto the stack and becomes the running execution context.</p>
-<p>当控制器进入 ECMAScript executable code(可执行代码)时, 控制器会进入一个 execution context(执行环境/执行上下文).所有活动的 execution context 在逻辑上形成栈结构,栈顶的 execution context 叫 running execution context.当控制器从当前的 executable code(与 running execution context 相关的)转移到另一个 executable code(与 running execution context 无关的)时,会创建一个新的 execution context.然后将这个新创建的 execution context 推入栈中,使其成为新的 running execution context.</p>
+<p>当控制器进入 ECMAScript executable code(可执行代码)时, 控制器会进入一个 execution context(执行环境/执行上下文).所有活动的 execution context 在逻辑上组成一个栈结构,栈顶的 execution context 叫 running execution context.当控制器从当前的 executable code(与 running execution context 相关的)转移到另一个 executable code(与 running execution context 无关的)时,会创建一个新的 execution context.然后将这个新创建的 execution context 推入栈中,使其成为新的 running execution context.</p>
 </blockquote>
               
             </div>
