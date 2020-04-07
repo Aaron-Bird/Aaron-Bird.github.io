@@ -147,7 +147,7 @@
 <p>可以在类上调用静态属性/方法,不能在类的实例上调用静态方法.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> staticProperty = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">static</span> staticMethod() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.staticProperty;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(T.staticMethod()); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 <h2 id="私有属性方法"><a class="markdownIt-Anchor" href="#私有属性方法"></a> 私有属性/方法</h2>
-<p>当前私有属性/方法位于 Stage-3 阶段,需要用 Babel 配合才能使用.<br>
+<p>当前私有属性/方法位于 Stage-3 阶段,需 配合 Babel 才能在浏览器环境中使用.<br>
 也可以在 node.js(&gt;13.2.0) 中用 harmony 参数开启私有方法的支持.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node --harmony index.js</span><br></pre></td></tr></table></figure>
 <p>私有属性/方法只能在 class 内部调用,在外面调用会报错</p>
@@ -180,7 +180,7 @@
 <h2 id="class-的本质"><a class="markdownIt-Anchor" href="#class-的本质"></a> class 的本质</h2>
 <p>class 是构造函数的语法糖,本质上也是个对象.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> T); <span class="comment">// function</span></span><br></pre></td></tr></table></figure>
-<p>class 内的静态属性/方法(static 开头)绑在类对象上, 而普通方法绑在父类对象的 prototype 属性上.</p>
+<p>class 内的静态属性/方法(static 开头)绑在 class 对象上, 而普通方法绑在 class 对象的 prototype 属性上.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> foo() &#123;&#125;</span><br><span class="line">  bar() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.dir(T);</span><br></pre></td></tr></table></figure>
 <p><img src="/img/8cf975c8.PNG" alt="捕获.PNG"></p>
 <p>相当于:</p>
