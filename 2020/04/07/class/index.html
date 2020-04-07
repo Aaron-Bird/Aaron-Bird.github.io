@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="1ZDw40Leb3nAqZ6k_WQDEhiOrFjiRu8hykotZ6JBHDk">
+
+    <title>class</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/katex/katex.min.css">
+     
+    <link rel="stylesheet" href="/css/index.css">
+     
+  </head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建-class"><span class="toc-text"> 创建 class</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#class-declarations"><span class="toc-text"> class declarations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#class-expression"><span class="toc-text"> class expression</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constructor"><span class="toc-text"> constructor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态属性方法"><span class="toc-text"> 静态属性/方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#私有属性方法"><span class="toc-text"> 私有属性/方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#super-关键字"><span class="toc-text"> super 关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class-的本质"><span class="toc-text"> class 的本质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#子类继承"><span class="toc-text"> 子类继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1 class="title">class</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-04-06T16:00:00.000Z">
+            2020-04-07
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>Es6 开始引入了 class 关键字,其本质是基于构造函数和原型链继承的语法糖.</p>
+<h2 id="创建-class"><a class="markdownIt-Anchor" href="#创建-class"></a> 创建 class</h2>
+<p>有两种方法创建 class, class declartions(类声明) 和 class expression(类表达式).</p>
+<h3 id="class-declarations"><a class="markdownIt-Anchor" href="#class-declarations"></a> class declarations</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Foo &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>class declarations 必须有类名,否则会报错 SyntaxError.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class &#123;&#125; // SyntaxError: Unexpected token &#123;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>和 let const 一样, class 不会被提升到作用域顶部, 也会形成 temporal dead zone(暂时性死区, 就是没创建前不能用).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(Foo); // ReferenceError: Foo is not defined</span><br><span class="line">class Foo &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>因为 temporal dead zone 的影响, 未声明 class 前就用 typeof 的话会报错.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typeof Foo; // &quot;undefined&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">typeof Foo; // ReferenceError: Foo is not defined</span><br><span class="line">class Foo &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>class 内默认为 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode" target="_blank" rel="noopener">strict mode</a>(严格模式)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Foo &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    i = 1;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">new Foo(); // ReferenceError: i is not defined</span><br></pre></td></tr></table></figure>
+<h3 id="class-expression"><a class="markdownIt-Anchor" href="#class-expression"></a> class expression</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let Foo = class &#123;&#125;;</span><br><span class="line">// or</span><br><span class="line">let Bar = class Foo &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>class expression 可以没有类名. 如果有类名, 则这个类名只能在类中使用,不能在类外面使用.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let Foo = class Bar &#123;</span><br><span class="line">  static printBar() &#123;</span><br><span class="line">    console.log(Bar);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Foo.printBar(); // class Bar &#123; ...</span><br><span class="line">// 访问不到</span><br><span class="line">console.log(Bar); // ReferenceError: Bar is not defined</span><br></pre></td></tr></table></figure>
+<p>const 和 let 声明的 class 不会被提升到作用域顶部.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(Foo); // ReferenceError: Foo is not defined</span><br><span class="line">let Foo = class &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>但如果用了 var, class expression 会被提升.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(Foo); // undefined</span><br><span class="line">var Foo = class &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="constructor"><a class="markdownIt-Anchor" href="#constructor"></a> constructor</h2>
+<p>constrcutor 方法是 class 内的特有方法, 用于初始化对象.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  constructor(name, age) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age) &#123;</span><br><span class="line">  if (!(this instanceof Person)) &#123;</span><br><span class="line">    throw TypeError(</span><br><span class="line">      &quot;TypeError: Class constructor Foo cannot be invoked without &apos;new&apos;&quot;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  this.name = name;</span><br><span class="line">  this.age = age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当用 new 关键字调用 Person 时,会自动执行内部的 constructor 函数,然后返回一个对象.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let anna = new Person(&quot;anna&quot;, 18); // Person &#123;name: &quot;anna&quot;, age: 18&#125;</span><br><span class="line">console.log(anna.name);</span><br></pre></td></tr></table></figure>
+<h2 id="静态属性方法"><a class="markdownIt-Anchor" href="#静态属性方法"></a> 静态属性/方法</h2>
+<p>可以在类上调用静态属性/方法,不能在类的实例上调用静态方法.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> staticProperty = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">static</span> staticMethod() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.staticProperty;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(T.staticMethod()); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h2 id="私有属性方法"><a class="markdownIt-Anchor" href="#私有属性方法"></a> 私有属性/方法</h2>
+<p>当前私有属性/方法位于 Stage-3 阶段,需要用 Babel 配合才能使用.<br>
+也可以在 node.js(&gt;13.2.0) 中用 harmony 参数开启私有方法的支持.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node --harmony index.js</span><br></pre></td></tr></table></figure>
+<p>私有属性/方法只能在 class 内部调用,在外面调用会报错</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 私有属性</span></span><br><span class="line">  #privateProperty = 1;</span><br><span class="line">  <span class="comment">// 私有方法</span></span><br><span class="line">  #privateMethod() &#123;</span><br><span class="line">    return this.#privateProperty;</span><br><span class="line">  &#125;</span><br><span class="line">  getPrivatePorperty() &#123;</span><br><span class="line">    return this.#privateMethod();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">t = <span class="keyword">new</span> T();</span><br><span class="line"><span class="built_in">console</span>.log(t.getPrivatePorperty()); <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 在外调用私有属性会报错</span></span><br><span class="line">console.log(t.#privateProperty) SyntaxError: Private field '#privateProperty' must be declared in an enclosing class</span><br></pre></td></tr></table></figure>
+<h2 id="super-关键字"><a class="markdownIt-Anchor" href="#super-关键字"></a> super 关键字</h2>
+<p>super 关键字用于子类继承</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(foo, bar) &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = foo;</span><br><span class="line">    <span class="keyword">this</span>.bar = bar;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(foo, bar) &#123;</span><br><span class="line">    <span class="keyword">super</span>(foo, bar);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Child(<span class="number">1</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>相当于</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">foo, bar</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.foo = foo;</span><br><span class="line">  <span class="keyword">this</span>.bar = bar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">foo, bar</span>) </span>&#123;</span><br><span class="line">  Parent.call(<span class="keyword">this</span>, foo, bar);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(Child, Parent);</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(Child.prototype, Parent.prototype);</span><br><span class="line"></span><br><span class="line">c = <span class="keyword">new</span> Child(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(c);</span><br></pre></td></tr></table></figure>
+<p>如果子类中有 constructor 方法,则需要在 constructor 中手动调用 super.
+在子类的 constructor 调用 super 之前,不可以访问 this.</p>
+<p>正确的例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Child();</span><br></pre></td></tr></table></figure>
+<p>错误的例子, 在调用 super 前访问了 this.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Child(); <span class="comment">// ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor</span></span><br></pre></td></tr></table></figure>
+<p>错误的例子, 没有调用 super</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Child(); <span class="comment">// ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor</span></span><br></pre></td></tr></table></figure>
+<p>没有 constructor 方法的话, 相当于默认自动在 constructor 调用了 super.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>注意: super 是个关键字, 而非函数内的属性.不可以用如下方式调用 super</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">super</span>) <span class="comment">//  SyntaxError: 'super' keyword unexpected here</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ci = <span class="keyword">new</span> Child();</span><br></pre></td></tr></table></figure>
+<p>在子类的方法内调用 super 上的方法时, 调用的是父类对象的 prototype 属性上的方法(以下称: 方法 a).但此时方法 a 内的 this 指向子类实例.</p>
+<p>constructor 内调用 super</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  constractor() &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">"p"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 调用的是这个</span></span><br><span class="line">  printName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"parent function"</span>);</span><br><span class="line">    <span class="comment">// 但是这个 this 会指向子类实例</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name); <span class="comment">// c</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">"c"</span>;</span><br><span class="line">    <span class="keyword">super</span>.printName(); <span class="comment">// parent function // c</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 这个不会被调用</span></span><br><span class="line">  printName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"child function"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ci = <span class="keyword">new</span> Child();</span><br></pre></td></tr></table></figure>
+<p>普通方法内调用 super 方法, 和 constructor 一样</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  constractor() &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">"p"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 调用的是这个</span></span><br><span class="line">  printName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"parent function"</span>);</span><br><span class="line">    <span class="comment">// 但是这个 this 会指向子类实例</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name); <span class="comment">// c</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">"c"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 这个不会被调用</span></span><br><span class="line">  printName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"child function"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">  s() &#123;</span><br><span class="line">    <span class="keyword">super</span>.printName(); <span class="comment">// parent function // c</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ci = <span class="keyword">new</span> Child();</span><br><span class="line">ci.s();</span><br></pre></td></tr></table></figure>
+<p>静态方法内的 super 指向父类对象, 所以没法访问到 prototype 上的方法(对象会去 __proto__ 上找).
+但此时方法内的 this 指向 子类对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  name = <span class="string">"p"</span>;</span><br><span class="line">  <span class="keyword">static</span> printName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"parent function"</span>); <span class="comment">// parent function</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name); <span class="comment">// Child</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  name = <span class="string">"c"</span>;</span><br><span class="line">  <span class="keyword">static</span> printName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"child function"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> s() &#123;</span><br><span class="line">    <span class="keyword">super</span>.printName();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.s();</span><br></pre></td></tr></table></figure>
+<h2 id="class-的本质"><a class="markdownIt-Anchor" href="#class-的本质"></a> class 的本质</h2>
+<p>class 是构造函数的语法糖,本质上也是个对象.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> T); <span class="comment">// function</span></span><br></pre></td></tr></table></figure>
+<p>class 内的静态属性/方法(static 开头)绑在类对象上, 而普通方法绑在父类对象的 prototype 属性上.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> foo() &#123;&#125;</span><br><span class="line">  bar() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.dir(T);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/8cf975c8.PNG" alt="捕获.PNG"></p>
+<p>相当于:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">T</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">T.foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">T.prototype.bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>class 中的普通属性和私有属性绑定在 class 生成的实例对象(以下称为: 对象 a)上, 对象 a 可以通过 __proto__ 访问 class 的 prototype 属性,因此可以通过 对象 a 调用 class 的普通方法,但不能通过 对象 a 调用 class 的静态方法.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;</span><br><span class="line">  foo = <span class="number">1</span>;</span><br><span class="line">  #bar = 2;</span><br><span class="line">  getFoo() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.foo;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> t = <span class="keyword">new</span> T();</span><br><span class="line"><span class="built_in">console</span>.log(t); <span class="comment">// T &#123;foo: 1, #bar: 2&#125;</span></span><br><span class="line">t.__proto__; <span class="comment">// &#123;constructor: ƒ, getFoo: ƒ&#125;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/32b22e04.PNG" alt="捕获.PNG"></p>
+<h3 id="子类继承"><a class="markdownIt-Anchor" href="#子类继承"></a> 子类继承</h3>
+<p>通过子类生成实例时,父类和子类上的对象都会绑定在新生成实例对象上.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  name = <span class="string">"p"</span>;</span><br><span class="line">  foo = <span class="string">"bar"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  name = <span class="string">"c"</span>;</span><br><span class="line">&#125;</span><br><span class="line">t = <span class="keyword">new</span> Child();</span><br><span class="line"><span class="built_in">console</span>.log(t); <span class="comment">// &#123;name: "c", foo: "bar"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>相当于:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">"p"</span>;</span><br><span class="line">  <span class="keyword">this</span>.foo = <span class="string">"bar"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  Parent.call(<span class="keyword">this</span>);</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">"c"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(Child, Parent);</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(Child.prototype, Parent.prototype);</span><br><span class="line">t = <span class="keyword">new</span> Child();</span><br><span class="line"><span class="built_in">console</span>.log(t); <span class="comment">// &#123;name: "c", foo: "bar"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>子类实例 的方法绑定在 __proto__ 上, 也就是子类的 prototype 属性上.<br>
+子类的 prototype.__proto__ 属性指向父类的 prototype, 从而实现了方法的继承.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  name() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"p"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  foo() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  name() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"c"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">t = <span class="keyword">new</span> Child();</span><br><span class="line">t.__proto__.name(); <span class="comment">// c</span></span><br><span class="line">t.__proto__.__proto__.name(); <span class="comment">// p</span></span><br><span class="line"></span><br><span class="line">t.__proto__ === Child.prototype; <span class="comment">// true</span></span><br><span class="line">Child.prototype.__proto__ === Parent.prototype; <span class="comment">// true</span></span><br><span class="line">Child.__proto__ === Parent; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/fa5bdf49.png" alt="164d3695.png"></p>
+<p>相当于</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Parent.prototype.name = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"p"</span>);</span><br><span class="line">&#125;;</span><br><span class="line">Parent.prototype.foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Child.prototype.name = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"c"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(Child, Parent);</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(Child.prototype, Parent.prototype);</span><br><span class="line">t = <span class="keyword">new</span> Child();</span><br><span class="line">t.__proto__.name(); <span class="comment">// c</span></span><br><span class="line">t.__proto__.__proto__.name(); <span class="comment">// p</span></span><br><span class="line"></span><br><span class="line">t.__proto__ === Child.prototype; <span class="comment">// true</span></span><br><span class="line">Child.prototype.__proto__ === Parent.prototype; <span class="comment">// true</span></span><br><span class="line">Child.__proto__ === Parent; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="https://v8.dev/features/class-fields" target="_blank" rel="noopener">Public and private class fields · V8</a><br>
+<a href="https://es6.ruanyifeng.com/#docs/class" target="_blank" rel="noopener">ES6 入门教程</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+      
+        <a class="next" href="/2020/03/29/URL/">URL  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138513143-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-138513143-2');
+    </script>
+  </body>
+</html>

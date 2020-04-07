@@ -76,6 +76,60 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2020/04/07/class/">
+                    class
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-04-06T16:00:00.000Z">
+                  2020-04-07
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>Es6 开始引入了 class 关键字,其本质是基于构造函数和原型链继承的语法糖.</p>
+<h2 id="创建-class"><a class="markdownIt-Anchor" href="#创建-class"></a> 创建 class</h2>
+<p>有两种方法创建 class, class declartions(类声明) 和 class expression(类表达式).</p>
+<h3 id="class-declarations"><a class="markdownIt-Anchor" href="#class-declarations"></a> class declarations</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Foo &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>class declarations 必须有类名,否则会报错 SyntaxError.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class &#123;&#125; // SyntaxError: Unexpected token &#123;</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2020/04/07/class/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2020/03/29/URL/">
                     URL
                   </a>               
@@ -576,68 +630,6 @@ Cookie 是保存在浏览器上的一段数据,常用来识别用户身份.当�
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/09/16/Mocha/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/09/01/HTTP 响应状态码/">
-                    HTTP 响应状态码
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-08-31T16:00:00.000Z">
-                  2019-09-01
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/HTTP/">
-                    <span>HTTP</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>HTTP 响应状态码(HTTP Response Status Code) 用于表示服务器对此次 HTTP 请求的响应结果(服务器是否正常, 是否返回了数据).<br>
-其由是一个3位整数的<strong>状态码</strong>(status-code)及一个<strong>原因短语</strong>(reason-phrase)组成,状态码和原因短语间用空格隔开(例如最常见的表示请求成功的 200 OK).<br>
-<img src="/img/d4760d97.PNG" alt="1234.PNG"></p>
-<p>通常可以用 XMLHttpRequest.status 属性来获取返回的状态码.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xml.open(<span class="string">'GET'</span>, <span class="string">'https://httpstat.us/200'</span>);</span><br><span class="line">xml.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(xml.status) <span class="comment">// 200</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">xml.send();</span><br></pre></td></tr></table></figure>
-<p>fetch 的话也一样</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://httpstat.us/200'</span>).then(<span class="function"><span class="params">response</span> =&gt;</span> <span class="built_in">console</span>.log(response.status))  <span class="comment">// 200</span></span><br></pre></td></tr></table></figure>
-<p>status-code 的第一个数字用于区分响应的类别,一共可分为 5 大类.</p>
-<ul>
-<li>1xx (Informational responses) 信息提示</li>
-<li>2xx (Successful responses) 请求成功</li>
-<li>3xx (Redirects) 重定向</li>
-<li>4xx (Client errors) 客户端错误</li>
-<li>5xx (Server errors) 服务端错误</li>
-</ul>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/09/01/HTTP 响应状态码/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
