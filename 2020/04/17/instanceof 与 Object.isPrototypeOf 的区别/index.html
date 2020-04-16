@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="1ZDw40Leb3nAqZ6k_WQDEhiOrFjiRu8hykotZ6JBHDk">
+
+    <title>instanceof 与 Object.isPrototypeOf 的区别</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/katex/katex.min.css">
+     
+    <link rel="stylesheet" href="/css/index.css">
+     
+  </head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text"> 示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1 class="title">instanceof 与 Object.isPrototypeOf 的区别</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-04-16T16:00:00.000Z">
+            2020-04-17
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>Aobj instanceof Bfunction // Bfunction.prototype 是否在 Aobj.__proto__ (A 的原型链)上 ?<br>
+Aobj.isPrototypeOf(Bobj) // Aobj 是否在 Bobj.__proto__ (B 的原型链)上?</p>
+<p>instanceof 用于判断&quot;左侧的对象&quot;是否是&quot;右侧的构造函数&quot;生成的实例.</p>
+<p>相当于:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">instance</span>(<span class="params">Aobj, Bfunction</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> proto = Aobj.__proto__;</span><br><span class="line">  <span class="keyword">while</span> (proto) &#123;</span><br><span class="line">    <span class="keyword">if</span> (proto === Bfunction.prototype) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      proto = proto.__proto__;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grandson</span> <span class="keyword">extends</span> <span class="title">Child</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Child();</span><br><span class="line">instance(c, Parent); <span class="comment">// true</span></span><br><span class="line">instance(&#123;&#125;, Parent); <span class="comment">// false</span></span><br><span class="line">instance(c, <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = <span class="keyword">new</span> Grandson();</span><br><span class="line">instance(g, Parent); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>而 isPrototypeOf 用于判断&quot;左侧的对象&quot;是否在&quot;右侧的对象&quot;的原型链上, 即&quot;右侧的对象&quot;是否会继承&quot;左侧的对象&quot;上的属性和方法.</p>
+<p>相当于</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPrototype</span>(<span class="params">Aobj, Bobj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> proto = Bobj.__proto__;</span><br><span class="line">  <span class="keyword">while</span> (proto) &#123;</span><br><span class="line">    <span class="keyword">if</span> (proto === Aobj) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      proto = proto.__proto__;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grandson</span> <span class="keyword">extends</span> <span class="title">Child</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">isPrototype(Parent, Grandson); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="示例"><a class="markdownIt-Anchor" href="#示例"></a> 示例</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grandson</span> <span class="keyword">extends</span> <span class="title">Child</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Parent <span class="keyword">instanceof</span> Child; <span class="comment">// false</span></span><br><span class="line">Child <span class="keyword">instanceof</span> Parent; <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">Parent.isPrototypeOf(Child); <span class="comment">// true</span></span><br><span class="line">Child.isPrototypeOf(Parent); <span class="comment">// false</span></span><br><span class="line">Parent.isPrototypeOf(Grandson); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">Parent.prototype.isPrototypeOf(Child.prototype); <span class="comment">// true</span></span><br><span class="line">Child.prototype.isPrototypeOf(Parent.prototype); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Child();</span><br><span class="line">c <span class="keyword">instanceof</span> Child; <span class="comment">// true</span></span><br><span class="line">c <span class="keyword">instanceof</span> Parent; <span class="comment">// true</span></span><br><span class="line">c.isPrototypeOf(Child); <span class="comment">// false</span></span><br><span class="line">c.isPrototypeOf(Parent); <span class="comment">// false</span></span><br><span class="line">Child.isPrototypeOf(c); <span class="comment">// false</span></span><br><span class="line">Parent.prototype.isPrototypeOf(c.__proto__); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">Child.__proto__ === Parent; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf" target="_blank" rel="noopener">Object.prototype.isPrototypeOf() - JavaScript | MDN</a><br>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">instanceof - JavaScript | MDN</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+      
+        <a class="next" href="/2020/04/07/class/">class  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138513143-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-138513143-2');
+    </script>
+  </body>
+</html>

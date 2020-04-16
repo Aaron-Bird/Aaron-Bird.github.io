@@ -76,6 +76,64 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/04/22/puppeteer入门/">
+                    puppeteer入门
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-04-21T16:00:00.000Z">
+                  2019-04-22
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Puppeteer/">
+                    <span>Puppeteer</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>puppeteer 是一个 Google 出品的 Node 库,可以用它来操纵 Chrome.<br>
+puppeteer 这个单词的发音为 [ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶的人&quot;.</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>安装 puppeteer 时会自动下载 chrome,需要有全局代理.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add puppeteer</span><br></pre></td></tr></table></figure>
+<p>如果无法下载 puppeteer, 可以在根目录下新建文件 .yarnrc, 填入如下内容:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">puppeteer_download_host &quot;https://storage.googleapis.com.cnpmjs.org&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h2>
+<p>新建 index.js, 填入如下代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 载入puppeteer</span></span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开浏览器</span></span><br><span class="line"><span class="comment">// launch方法返回一个Promise对象</span></span><br><span class="line">puppeteer.launch(&#123;<span class="attr">headless</span>: <span class="literal">false</span>&#125;).then(<span class="keyword">async</span> browser =&gt; &#123;</span><br><span class="line">  <span class="comment">// 打开一个页面</span></span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</span><br><span class="line">  <span class="comment">// 打开百度</span></span><br><span class="line">  <span class="keyword">await</span> page.goto(<span class="string">'https://www.baidu.com'</span>);</span><br><span class="line">  <span class="keyword">await</span> page.screenshot(&#123;<span class="attr">path</span>: <span class="string">'baidu.png'</span>&#125;);</span><br><span class="line">  <span class="comment">// 关闭浏览器</span></span><br><span class="line">  <span class="comment">// await browser.close();</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最后,进入文件所在路径, 执行 node index.js 命令即可.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/04/22/puppeteer入门/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/04/18/函数声明与函数表达式/">
                     函数声明与函数表达式
                   </a>               
@@ -543,63 +601,6 @@ inner是一个fixed元素, 背景色为黄色.<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/03/23/封装Swiper为Vue组件/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/03/20/圆形运算相关知识点/">
-                    圆形运算相关知识点
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-20T05:00:00.000Z">
-                  2019-03-20
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <h2 id="弧度"><a class="markdownIt-Anchor" href="#弧度"></a> 弧度</h2>
-<p>角度: 圆被平分为360分(人为定义),其中的一份为 1deg, 1deg =  π / 180</p>
-<p>弧度: 圆上弧长等于半径时的圆心角,  1rad ~ 57.2958deg<br>
-<img src="/img/7e45e675.png" alt="51987688-08c55300-24de-11e9-81ba-e4aa61fb0446.png"><br>
-整圆弧度 2π (2πr / r)</p>
-<h2 id="角弧度换算"><a class="markdownIt-Anchor" href="#角弧度换算"></a> 角弧度换算</h2>
-<p>弧度转角度</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toAngle</span>(<span class="params">radian</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  (<span class="number">180</span> / <span class="built_in">Math</span>.PI)  * radian</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>角度转弧度</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toRadian</span>(<span class="params">angle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">Math</span>.PI / <span class="number">180</span>) *  angle</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/20/圆形运算相关知识点/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

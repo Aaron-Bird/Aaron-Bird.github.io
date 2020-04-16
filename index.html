@@ -76,6 +76,58 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2020/04/17/instanceof 与 Object.isPrototypeOf 的区别/">
+                    instanceof 与 Object.isPrototypeOf 的区别
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-04-16T16:00:00.000Z">
+                  2020-04-17
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>Aobj instanceof Bfunction // Bfunction.prototype 是否在 Aobj.__proto__ (A 的原型链)上 ?<br>
+Aobj.isPrototypeOf(Bobj) // Aobj 是否在 Bobj.__proto__ (B 的原型链)上?</p>
+<p>instanceof 用于判断&quot;左侧的对象&quot;是否是&quot;右侧的构造函数&quot;生成的实例.</p>
+<p>相当于:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">instance</span>(<span class="params">Aobj, Bfunction</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> proto = Aobj.__proto__;</span><br><span class="line">  <span class="keyword">while</span> (proto) &#123;</span><br><span class="line">    <span class="keyword">if</span> (proto === Bfunction.prototype) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      proto = proto.__proto__;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grandson</span> <span class="keyword">extends</span> <span class="title">Child</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Child();</span><br><span class="line">instance(c, Parent); <span class="comment">// true</span></span><br><span class="line">instance(&#123;&#125;, Parent); <span class="comment">// false</span></span><br><span class="line">instance(c, <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = <span class="keyword">new</span> Grandson();</span><br><span class="line">instance(g, Parent); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2020/04/17/instanceof 与 Object.isPrototypeOf 的区别/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2020/04/07/class/">
                     class
                   </a>               
@@ -578,58 +630,6 @@ Cookie 是保存在浏览器上的一段数据,常用来识别用户身份.当�
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/09/29/常用的 LaTeX 符号公式/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/09/16/Mocha/">
-                    Mocha
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-09-15T16:00:00.000Z">
-                  2019-09-16
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/unit-testing/">
-                    <span>unit testing</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>Mocha 是一个功能丰富的 JavaScript 串行测试框架.支持多种运行环境,可以在 Node.js 和 浏览器 中运行.<br>
-通过 Mocha, 可以便捷的测试异步函数, 捕获错误, 生成测试报告.</p>
-<p><a href="https://mochajs.org/" target="_blank" rel="noopener">官网文档</a></p>
-<p>下面是针对 sum 函数创建的一个测试案例:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sum = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> num = a + b;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseFloat</span>(num.toPrecision(<span class="number">15</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'sum 函数'</span>, () =&gt; &#123; <span class="comment">// 测试套件</span></span><br><span class="line">    it(<span class="string">'0.1 + 0.2 = 0.3'</span>, () =&gt; &#123; <span class="comment">// 测试用例</span></span><br><span class="line">      expect(sum(<span class="number">0.1</span>, <span class="number">0.2</span>)).to.equal(<span class="number">0.3</span>); <span class="comment">// 断言</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/09/16/Mocha/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
