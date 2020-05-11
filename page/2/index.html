@@ -76,6 +76,62 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/10/15/5 Longest Palindromic Substring/">
+                    5 Longest Palindromic Substring
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-10-14T16:00:00.000Z">
+                  2019-10-15
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/leetcode/">
+                    <span>leetcode</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.<br>
+给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<p>从左向右依次遍历字符串.<br>
+以当前字符(假设回文数为基数长度)或当前字符和下一个字符(假设回文数为偶数长度)为回文数中心, 向左右两侧搜索.</p>
+<p>时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/10/15/5 Longest Palindromic Substring/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/09/29/常用的 LaTeX 符号公式/">
                     常用的 LaTeX 符号公式
                   </a>               
@@ -542,67 +598,6 @@ FunctionDeclarationInstantiation 使用 func 和 argumentsList 作为参数,依�
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/06/29/FunctionDeclarationInstantiation/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/06/09/在 Vue 中使用 TinyMCE/">
-                    在 Vue 中使用 TinyMCE
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-06-08T16:00:00.000Z">
-                  2019-06-09
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/Vue/">
-                    <span>Vue</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>TinyMCE 是一个开源的(LGPL 授权协议)富文本编辑器.</p>
-<p>本文的软件环境如下:</p>
-<p>1 &quot;@tinymce/tinymce-vue&quot;: &quot;2.1.0&quot;<br>
-2 &quot;tinymce&quot;: &quot;^5.0.7&quot;<br>
-3 &quot;vue&quot;: &quot;^2.6.10&quot;</p>
-<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
-<p>TinyMCE 官方提供了 tinymce-vue 供 Vue 用户使用.<br>
-<a href="https://github.com/tinymce/tinymce-vue" target="_blank" rel="noopener">GitHub - tinymce/tinymce-vue: Official TinyMCE Vue component</a></p>
-<p>但是 tinymce-vue   默认使用的是官方的 CDN,需要到官网注册帐号,否则会有个提示.<br>
-<a href="https://github.com/tinymce/tinymce-vue/pull/6" target="_blank" rel="noopener">feat: add prefer cdn url config by yugasun · Pull Request #6 · tinymce/tinymce-vue · GitHub</a><br>
-<img src="/img/1fc2cd81.PNG" alt="捕获.PNG"></p>
-<p>如果不想用官方的 CDN,可以手动载入TinyMCE.</p>
-<p>安装依赖:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add @tinymce/tinymce-vue@2.1.0</span><br><span class="line">yarn add tinymce@5.0.7</span><br></pre></td></tr></table></figure>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/06/09/在 Vue 中使用 TinyMCE/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

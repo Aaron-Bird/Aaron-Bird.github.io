@@ -76,6 +76,60 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
+                    -webkit-overflow-scrolling导致元素消失
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-24T09:00:00.000Z">
+                  2019-03-24
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>在ios系统的浏览器中, 如果想让可滚动元素(例如有overflow: scroll属性的元素)带有弹性效果, 往往会给可滚动元素添加-webkit-overflow-scrolling: touch属性.<br>
+但这个属性有个bug, 可能会导致其内部的某些元素不显示.看起来就好象给元素加上了visibility:hidden一样.</p>
+<p>为了修复这个bug, 需要给&quot;某些&quot;后代元素添加transform: translate3d(0,0,0)属性.</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: scroll;</span><br><span class="line">  -webkit-<span class="attribute">overflow</span>-scrolling: touch;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: translate3d(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里之所以称&quot;某些&quot;,是因为无法确定到底应该加到哪些元素之上.<br>
+因为translate3d会产生很多副作用, 例如会改变元素的z-index, 要依具体情况而定.<br>
+需注意的是这个方法也不一定总是有效.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/03/24/-webkit-overflow-scrolling导致元素消失/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/03/23/封装Swiper为Vue组件/">
                     封装Swiper为Vue组件
                   </a>               
@@ -576,89 +630,6 @@ deactivated在keep-alive组件被停用时调用.<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/02/24/height百分比值不生效/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/02/10/JSONP/">
-                    JSONP
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-02-09T16:00:00.000Z">
-                  2019-02-10
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>JSONP(JSON with Padding)是在早期浏览器不允许跨域的背景下,诞生的 一种通信方式</p>
-<h2 id="什么是跨域"><a class="markdownIt-Anchor" href="#什么是跨域"></a> 什么是跨域</h2>
-<p>前端获取数据一般都通过XMLHttpRequest发送请求,但有一定的限制<br>
-在CORS之前, 浏览器不允许通过XMLHttpRequest向不同于当前域名/端口/协议的地址发送请求<br>
-另外,这种(向不同域名)发送请求的行为通常称为&quot;跨域&quot;</p>
-<p>例如</p>
-<table>
-<thead>
-<tr>
-<th>当前域名</th>
-<th><a href="http://www.example.com/foo" target="_blank" rel="noopener">http://www.example.com/foo</a></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>允许</td>
-<td><a href="http://www.example.com" target="_blank" rel="noopener">http://www.example.com</a></td>
-</tr>
-<tr>
-<td>允许</td>
-<td><a href="http://www.example.com/api/foo" target="_blank" rel="noopener">http://www.example.com/api/foo</a></td>
-</tr>
-<tr>
-<td>禁止</td>
-<td><a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></td>
-</tr>
-<tr>
-<td>禁止</td>
-<td><a href="http://bar.example.com" target="_blank" rel="noopener">http://bar.example.com</a></td>
-</tr>
-<tr>
-<td>禁止</td>
-<td><a href="https://www.example.com:4000" target="_blank" rel="noopener">https://www.example.com:4000</a></td>
-</tr>
-</tbody>
-</table>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/02/10/JSONP/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
