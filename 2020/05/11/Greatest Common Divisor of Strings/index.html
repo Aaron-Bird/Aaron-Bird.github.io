@@ -126,9 +126,9 @@
 <p>对于字符串 S 和 T，只有在 S = T + ... + T（T 与自身连接 1 次或多次）时，我们才认定 “T 能除尽 S”。</p>
 <p>返回最长字符串 X，要求满足 X 能除尽 str1 且 X 能除尽 str2。</p>
 <h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
-<p>先判断是否存在子串 x.
+<p>先判断是否存在子字符串(以下称为子串) x 满足 x 能同时除尽 str1 和 str2.<br>
 如果存在子串 x,则最长子串的长度一定是 str1 和 str2 长度的最大公约数.</p>
-<p>如果存在子字符串(以下称为子串) x 能同时除尽 str1 和 str2.<br>
+<p>如果存在子串 x 能同时除尽 str1 和 str2.<br>
 则 str1 和 str2 一定是 x 的重复序列. str1 + str2 一定等于 str2 + str1.</p>
 <blockquote>
 <p>ABABAB + ABAB == ABAB + ABABAB</p>
