@@ -76,6 +76,68 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2019/06/29/FunctionDeclarationInstantiation/">
+                    FunctionDeclarationInstantiation
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-06-28T16:00:00.000Z">
+                  2019-06-29
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p><a href="https://www.ecma-international.org/ecma-262/9.0/index.html#sec-functiondeclarationinstantiation" target="_blank" rel="noopener">ECMAScript® 2018 Language Specification</a></p>
+<pre style="white-space: pre-wrap">
+When an execution context is established for evaluating an ECMAScript function a new function Environment Record is created and bindings for each formal parameter are instantiated in that Environment Record.Each declaration in the function body is also instantiated.  
+当为了执行函数代码而建立 execution context(执行环境) 时, 会创建一个新的 function Environment Record(函数环境记录),所有 formal parameters(形参) 都会在这个执行环境中实例化.function body(函数体)中的所有声明也会被实例化.  
+
+If the function's formal parameters do not include any default value initializers then the body declarations are instantiated in the same Environment Record as the parameters. If default value parameter initializers exist, a second Environment Record is created for the body declarations.  
+如果形参没有默认值,则在同一个环境记录中实例化 body declarations(函数体内的声明).  
+如果形参有默认值,则会给 body declarations 创建一个新的环境记录.  
+
+Formal parameters and functions are initialized as part of FunctionDeclarationInstantiation. All other bindings are initialized during evaluation of the function body.  
+形参和函数会在执行内部方法 FunctionDeclarationInstantiation 时被初始化.而其它的 bindings(绑定) 要等到执行函数代码时,才会被初始化.
+
+FunctionDeclarationInstantiation is performed as follows using arguments func and argumentsList. func is the function object for which the execution context is being established.  
+FunctionDeclarationInstantiation 使用 func 和 argumentsList 作为参数,依照如下步骤执行.func 是为其建立execution context (函数 执行环境/上下文)的对象, arguments 是调用函数时传递的参数(实参列表).
+</pre>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2019/06/29/FunctionDeclarationInstantiation/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/06/09/在 Vue 中使用 TinyMCE/">
                     在 Vue 中使用 TinyMCE
                   </a>               
@@ -554,58 +616,6 @@ inner是一个fixed元素, 背景色为黄色.<br>
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/03/31/(动画效果)跟随下拉放大图像/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/03/30/缓动函数(easing function)/">
-                    缓动函数(easing function)
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-03-30T06:00:00.000Z">
-                  2019-03-30
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p>网页设计经常会用到各种动画效果.<br>
-现实世界的大多数运动都是变速的.与变速运动相比,匀速运动就显得很生硬,给人一种不自然的感觉.</p>
-<p>css可以用timing-function参数来实现变速运动.<br>
-但不是所有的动画都能用css来解决, 例如下拉刷新, 要用js来根据touchmove的距离来绘制动画效果.<br>
-这时就可以用缓动公式来实现各种动画效果.</p>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/03/30/缓动函数(easing function)/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>

@@ -76,6 +76,58 @@
             <!-- title -->  
             <h2 class="title">
                          
+                  <a href="/2020/01/05/Cookie/">
+                    Cookie
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-01-04T16:00:00.000Z">
+                  2020-01-05
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/HTTP/">
+                    <span>HTTP</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>HTTP 协议是&quot;无状态的&quot;,但需要通过某些标记来判断用户身份,Cookie 为此而生.<br>
+Cookie 是保存在浏览器上的一段数据,常用来识别用户身份.当浏览器向服务器发出 HTTP 请求时,会自动携带 Cookie.<br>
+修改 Cookie 的方法有两种, 在服务器发送响应数据时设置 response headers,或在浏览器中执行 Js.<br>
+浏览器 Cookie 可以储存的数据有条数和大小限制.一般限制为50条以下 , 大小不超过4096bytes.</p>
+<p>Cookie 有大小限制,且浏览器会自动发送 Cookie,最好不要把 Cookie 当作 LocalStore 使用.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/2020/01/05/Cookie/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
                   <a href="/2019/10/15/5 Longest Palindromic Substring/">
                     5 Longest Palindromic Substring
                   </a>               
@@ -536,68 +588,6 @@
           <div class="read-more">
               <div class="wrapper">
                 <a href="/2019/07/07/white-space/">
-                  READ MORE
-                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
-                </a>
-              </div>
-            </div>
-        </div>
-      
-        <div class="item">
-          <article class="article">
-            <!-- title -->  
-            <h2 class="title">
-                         
-                  <a href="/2019/06/29/FunctionDeclarationInstantiation/">
-                    FunctionDeclarationInstantiation
-                  </a>               
-              
-            </h2>
-            <!-- post info  -->
-            <div class="post-meta">
-              
-                <span class="icon-baseline-query_builder-24px"></span>
-                <time datetime="2019-06-28T16:00:00.000Z">
-                  2019-06-29
-                </time>
-              
-              <!-- categories -->
-              
-                <span class="icon-baseline-work_outline-24px"></span>
-                
-                  <a href="/categories/JavaScript/">
-                    <span>JavaScript</span>
-                  </a>
-                
-              
-            </div>
-            <!-- article -->
-            
-            <div class="content">
-               
-                  <!-- excerpt -->
-                  <p><a href="https://www.ecma-international.org/ecma-262/9.0/index.html#sec-functiondeclarationinstantiation" target="_blank" rel="noopener">ECMAScript® 2018 Language Specification</a></p>
-<pre style="white-space: pre-wrap">
-When an execution context is established for evaluating an ECMAScript function a new function Environment Record is created and bindings for each formal parameter are instantiated in that Environment Record.Each declaration in the function body is also instantiated.  
-当为了执行函数代码而建立 execution context(执行环境) 时, 会创建一个新的 function Environment Record(函数环境记录),所有 formal parameters(形参) 都会在这个执行环境中实例化.function body(函数体)中的所有声明也会被实例化.  
-
-If the function's formal parameters do not include any default value initializers then the body declarations are instantiated in the same Environment Record as the parameters. If default value parameter initializers exist, a second Environment Record is created for the body declarations.  
-如果形参没有默认值,则在同一个环境记录中实例化 body declarations(函数体内的声明).  
-如果形参有默认值,则会给 body declarations 创建一个新的环境记录.  
-
-Formal parameters and functions are initialized as part of FunctionDeclarationInstantiation. All other bindings are initialized during evaluation of the function body.  
-形参和函数会在执行内部方法 FunctionDeclarationInstantiation 时被初始化.而其它的 bindings(绑定) 要等到执行函数代码时,才会被初始化.
-
-FunctionDeclarationInstantiation is performed as follows using arguments func and argumentsList. func is the function object for which the execution context is being established.  
-FunctionDeclarationInstantiation 使用 func 和 argumentsList 作为参数,依照如下步骤执行.func 是为其建立execution context (函数 执行环境/上下文)的对象, arguments 是调用函数时传递的参数(实参列表).
-</pre>
-              
-            </div>
-          </article>
-          <!-- read-more -->
-          <div class="read-more">
-              <div class="wrapper">
-                <a href="/2019/06/29/FunctionDeclarationInstantiation/">
                   READ MORE
                   <span class="icon-baseline-keyboard_arrow_right-24px"></span>
                 </a>
