@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap入门</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%BD%E5%85%A5%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text"> 载入&#x2F;环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E6%A0%BC%E7%B3%BB%E7%BB%9F"><span class="toc-text"> 网格系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#col-breakpoint-auto"><span class="toc-text"> col-{breakpoint}-auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#w-100"><span class="toc-text"> w-100</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-items-startcenterend"><span class="toc-text"> align-items-{start|center|end}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-self-startcenterend"><span class="toc-text"> align-self-{start|center|end}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#justify-content-startcenterendaroundbetween"><span class="toc-text"> justify-content-{start|center|end|around|between}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order-breakpoint-index"><span class="toc-text"> order-{breakpoint}-{index}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#offset-breakpoint-index"><span class="toc-text"> offset-{breakpoint}-{index}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97"><span class="toc-text"> 嵌套</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0"><span class="toc-text"> 隐藏元素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#media-object-%E5%AA%92%E4%BD%93%E5%AF%B9%E8%B1%A1"><span class="toc-text"> media object 媒体对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97-2"><span class="toc-text"> 嵌套</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list"><span class="toc-text"> list</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">Bootstrap入门</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-03-01T09:34:00.000Z">
+            2018-03-01
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Bootstrap/">
+              <span>Bootstrap</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+          <a href="/tags/Bootstrap/">
+            <span>Bootstrap</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>Bootstrap是一个基于HMTL/CSS/JavaScript的前端CSS框架,支持响应式,移动端优先,自带大量jQuery插件.</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/bootstrap/default.asp">Bootstrap 3 Tutorial</a><br />
+<a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/4.0/layout/overview/">Overview · Bootstrap</a></p>
+<h2 id="载入环境搭建"><a class="markdownIt-Anchor" href="#载入环境搭建"></a> 载入/环境搭建</h2>
+<p>可在官网下载Bootstrap<br />
+<a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/4.0/getting-started/download/">下载地址</a></p>
+<p>注意<br />
+bootstrap依赖jquery.应在导入bootstrap.js前导入jquery.js<br />
+popper是一个弹出框插件,如果载入popper.min.js时报错: Uncaught SyntaxError: Unexpected token export.则使用umd路径下的popper.min.js代替(即umd/popper.min.js)<br />
+<a target="_blank" rel="noopener" href="https://github.com/FezVrasta/popper.js/issues/429">参考</a></p>
+<p>载入bootstrap的范例 :</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;css/bootstrap.min.css&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/jquery-3.3.1.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/bootstrap.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>也可以使用官方CDN载入Bootstrap<br />
+使用CDN载入Bootstrap的范例:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcss.com/popper.js/1.13.0/umd/popper.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="网格系统"><a class="markdownIt-Anchor" href="#网格系统"></a> 网格系统</h2>
+<p>网格系统是Bootstrap的一种排版模式,基于flexbox.其能够根据网页总宽度变化,自动调解单个元素宽度<br />
+一个完整的网格系统由一系列class名为container/row/column的元素组成<br />
+基本的网格系统范例:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>container 创建网格系统的容器</li>
+<li>row 行(或栏),必须放在container/container-fluid内</li>
+<li>col-* 列,网页内容应放在列中,每一行最多有12列</li>
+</ul>
+<p>规则</p>
+<ul>
+<li>Containers可以水平/垂直居中网页内容,&quot;.container&quot;为固定宽度(见下表).&quot;.container-fluid&quot;为总宽度,相当于 .container-fluid{width:100%;}</li>
+<li>列(col-)应该放在行(row)中.而且,只有列(col-)可以被直接放在行(row)中(作为行的子元素)</li>
+<li>每个列都有padding-left/padding-right属性(官方称其为gutter),以此分隔两个列中的内容</li>
+<li>可在行中使用&quot;.no-gutters&quot;来删除行的margin/列的padding(即gutter)样式</li>
+<li>列的宽度相对于父元素计算,格式为百分比.每行中最多有12列,大于12的列会自动换行</li>
+<li>(没有指明宽度的)列会自动等分行,例如,一行中有四个&quot;col-sm&quot;,则这四个列的宽度皆为25%  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>网格宽度基于最小宽度查询.共有五个等级(见下表).例如col-md适用于大于576px的网页窗口(包括col-lg/col-xl,不包括col-/col-sm)</li>
+<li>You can use predefined grid classes (like .col-4) or Sass mixins for more semantic markup. ?</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Class prefix</th>
+<th>窗口宽度</th>
+<th>最大容器宽度(container)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col-</td>
+<td>&lt;576px</td>
+<td>none</td>
+</tr>
+<tr>
+<td>col-sm-</td>
+<td>≥576px</td>
+<td>540px</td>
+</tr>
+<tr>
+<td>col-md-</td>
+<td>≥768px</td>
+<td>720px</td>
+</tr>
+<tr>
+<td>col-lg-</td>
+<td>≥992px</td>
+<td>960px</td>
+</tr>
+<tr>
+<td>col-xl-</td>
+<td>≥1200px</td>
+<td>1140px</td>
+</tr>
+</tbody>
+</table>
+<h3 id="col-breakpoint-auto"><a class="markdownIt-Anchor" href="#col-breakpoint-auto"></a> col-{breakpoint}-auto</h3>
+<p>自动根据内容宽度调整column宽度</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-auto&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-auto&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-auto&quot;</span>&gt;</span>Lorem ipsum dolor sit amet</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="w-100"><a class="markdownIt-Anchor" href="#w-100"></a> w-100</h3>
+<p>通过插入一个带有&quot;.w-100&quot;的空元素,强制其后的column换行</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>也可以在特定的尺寸下强制换行</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;w-100 d-none d-md&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="align-items-startcenterend"><a class="markdownIt-Anchor" href="#align-items-startcenterend"></a> align-items-{start|center|end}</h3>
+<p>控制row中所有column的垂直对齐方式</p>
+<ul>
+<li>align-items-start 对齐行顶</li>
+<li>align-items-center 垂直居中</li>
+<li>align-items-end 对齐行底</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row align-items-center&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="align-self-startcenterend"><a class="markdownIt-Anchor" href="#align-self-startcenterend"></a> align-self-{start|center|end}</h3>
+<p>控制行row中单个column的对齐方式</p>
+<ul>
+<li>align-self-start 对齐行顶</li>
+<li>align-self-center 垂直居中</li>
+<li>align-self-end 对齐行底</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col align-self-start&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col align-self-center&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col  align-self-end&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="justify-content-startcenterendaroundbetween"><a class="markdownIt-Anchor" href="#justify-content-startcenterendaroundbetween"></a> justify-content-{start|center|end|around|between}</h3>
+<p>控制colum的水平对齐方式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row justify-content-between&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-auto&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-auto&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-auto&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="order-breakpoint-index"><a class="markdownIt-Anchor" href="#order-breakpoint-index"></a> order-{breakpoint}-{index}</h3>
+<p>重新排序column的显示顺序</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-9 order-sm-2&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-3 order-sm-1&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>bootstrap3及以下使用col-*-pull-*和col-*-push-*代替order<br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/39559733/why-is-my-bootstrap-push-pull-divs-not-working">html - Why is my Bootstrap push &amp; pull divs not working? - Stack Overflow</a></p>
+<h3 id="offset-breakpoint-index"><a class="markdownIt-Anchor" href="#offset-breakpoint-index"></a> offset-{breakpoint}-{index}</h3>
+<p>向右移动column</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--向右移动50%--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-6 offset-sm-6&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-6&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>bootstrap3及以下使用col-*-offset-*代替offset</p>
+<h3 id="嵌套"><a class="markdownIt-Anchor" href="#嵌套"></a> 嵌套</h3>
+<p>row可以嵌套在column中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-6&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-6&quot;</span>&gt;</span>1-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-6&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="隐藏元素"><a class="markdownIt-Anchor" href="#隐藏元素"></a> 隐藏元素</h3>
+<p><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/4.0/utilities/display/#hiding-elements">Display property · Bootstrap</a></p>
+<h2 id="media-object-媒体对象"><a class="markdownIt-Anchor" href="#media-object-媒体对象"></a> media object 媒体对象</h2>
+<p>Bootstrap提供了一种方法对齐media object(图像/视频)和文本.可用于评论/推文/like button等格式内容<br />
+创建media object只需要两个class,使用&quot;.media&quot;作为媒体和文本的容器,将文本放在&quot;.media-body&quot;中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;mr-3&quot;</span> <span class="attr">src</span>=<span class="string">&quot;img/64x64.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Generic placeholder image&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media-body&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;mt-0&quot;</span>&gt;</span>Media heading<span class="tag">&lt;/<span class="name">h5</span>&gt;</span> </span><br><span class="line">        Lorem ipsum dolor sit amet, consectetur adipisicing elit</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>和row类似,可用align-self-{start|center|end} 调整媒体对象/文本的垂直对齐方式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 垂直居中图像 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;mr-3 align-self-center&quot;</span> <span class="attr">src</span>=<span class="string">&quot;img/64x64.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Generic placeholder image&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media-body&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;mt-0&quot;</span>&gt;</span>Media heading<span class="tag">&lt;/<span class="name">h5</span>&gt;</span> </span><br><span class="line">        Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;mr-3&quot;</span> <span class="attr">src</span>=<span class="string">&quot;img/64x64.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Generic placeholder image&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media-body align-self-center&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 垂直居中文本 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;align-self-center&quot;</span>&gt;</span>Media heading<span class="tag">&lt;/<span class="name">h5</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="嵌套-2"><a class="markdownIt-Anchor" href="#嵌套-2"></a> 嵌套</h3>
+<p>&quot;.media&quot;可以互相嵌套</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;mr-3&quot;</span> <span class="attr">src</span>=<span class="string">&quot;img/64x64.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Generic placeholder image&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media-body&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;mt-0&quot;</span>&gt;</span>Media heading<span class="tag">&lt;/<span class="name">h5</span>&gt;</span> </span><br><span class="line">        Lorem ipsum dolor sit amet, consectetur adipisicing elit. </span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media mt-3&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;mr-3&quot;</span> <span class="attr">src</span>=<span class="string">&quot;img/64x64.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Generic placeholder image&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media-body&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;mt-0&quot;</span>&gt;</span>Media heading<span class="tag">&lt;/<span class="name">h5</span>&gt;</span> </span><br><span class="line">                Lorem ipsum dolor sit amet, consectetur adipisicing elit. </span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="list"><a class="markdownIt-Anchor" href="#list"></a> list</h3>
+<p>在列表中使用&quot;.media&quot;,首先要在ul/ol上添加&quot;.list-unstyled&quot;删除默认列表样式,然后为li添加&quot;.media&quot;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;list-unstyled&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;media&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;mr-3&quot;</span> <span class="attr">src</span>=<span class="string">&quot;img/64x64.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Generic placeholder image&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media-body&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;mt-0&quot;</span>&gt;</span>Media heading<span class="tag">&lt;/<span class="name">h5</span>&gt;</span> </span><br><span class="line">            Lorem ipsum dolor sit amet, consectetur adipisicing elit. </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;media&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;mr-3&quot;</span> <span class="attr">src</span>=<span class="string">&quot;img/64x64.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Generic placeholder image&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;media-body&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;mt-0&quot;</span>&gt;</span>Media heading<span class="tag">&lt;/<span class="name">h5</span>&gt;</span> </span><br><span class="line">            Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/javaScript-jQuery-%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E5%AF%B9%E7%85%A7/">&lt;  javaScript jQuery 常用属性对照</a>
+      
+      
+        <a class="next" href="/article/JavaScript-string/">JavaScript String  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

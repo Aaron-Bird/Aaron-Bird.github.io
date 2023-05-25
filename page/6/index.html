@@ -1,0 +1,872 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      
+
+<div class="index">
+    
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/scrolling%20box/">
+                    scrolling box
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-02-08T03:00:00.000Z">
+                  2019-02-08
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>当overflow为auto,且内部元素溢出时.元素沿padding edge向被内裁剪,在单侧显示滚动条<br />
+<img src="/img/38428d50.png" alt="48303328-e7d70c80-e543-11e8-8347-f1f7a8d54797.png" /></p>
+<p>一般来说, 元素会从右/下侧被裁剪,具体数值取决于滚动条宽度<br />
+<img src="/img/84b6a7cd.png" alt="206580fb.png" /></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/scrolling%20box/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/this/">
+                    this
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-02-07T16:00:00.000Z">
+                  2019-02-08
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>Es5 关于 this 的定义如下:<br />
+<a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-11.1.1">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<blockquote>
+<p>The this keyword evaluates to the value of the ThisBinding of the current execution context.<br />
+关键字&quot;this&quot;指向当前所在 execution context(执行环境)的 ThisBinding</p>
+</blockquote>
+<h2 id="execution-context执行环境执行上下文"><a class="markdownIt-Anchor" href="#execution-context执行环境执行上下文"></a> execution context(执行环境/执行上下文)</h2>
+<p>execution context 的说明在 10.3<br />
+<a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-10.3">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br />
+<a target="_blank" rel="noopener" href="https://www.w3.org/html/ig/zh/wiki/ES5/%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83">ES5 可执行代码与执行环境</a></p>
+<blockquote>
+<p>When control is transferred to ECMAScript executable code, control is entering an execution context. Active execution contexts logically form a stack. The top execution context on this logical stack is the running execution context. A new execution context is created whenever control is transferred from the executable code associated with the currently running execution context to executable code that is not associated with that execution context. The newly created execution context is pushed onto the stack and becomes the running execution context.</p>
+<p>当控制器进入 ECMAScript executable code(可执行代码)时, 控制器会进入一个 execution context(执行环境/执行上下文).所有活动的 execution context 在逻辑上组成一个栈结构,栈顶的 execution context 叫 running execution context.当控制器从当前的 executable code(与 running execution context 相关的)转移到另一个 executable code(与 running execution context 无关的)时,会创建一个新的 execution context.然后将这个新创建的 execution context 推入栈中,使其成为新的 running execution context.</p>
+</blockquote>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/this/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/vue-cli/">
+                    vue-cli
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-01-31T16:00:00.000Z">
+                  2019-02-01
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Vue/">
+                    <span>Vue</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>1 安装 vue-cli</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line">//or</span><br><span class="line"> yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
+<p>2 安装 node-gyp 所需编译工具</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/vs/community">Visual Studio Community 2017</a><br />
+安装 Python2.7(node-gyp 不支持 3.x)<br />
+打开 cmd, 执行如下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set python python2.7</span><br><span class="line">npm config set msvs_version 2017</span><br></pre></td></tr></table></figure>
+<p>3 修改镜像地址为阿里源</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org/</span><br><span class="line">yarn config set registry https://registry.npm.taobao.org/</span><br><span class="line"></span><br><span class="line">// node-sass所需</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/vue-cli/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E7%BC%96%E8%AF%91%20Chromium(Windows)/">
+                    编译 Chromium(Windows)
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-01-31T16:00:00.000Z">
+                  2019-02-01
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/software/">
+                    <span>software</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>2019/7/13日注:<br />
+该文章内容已过时,部分配置及环境要求发生变动. 具体过程请参阅官方的编译指南.<br />
+<a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md">https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md</a></p>
+<p>系统环境 Windows 7 x64<br />
+编译版本 Chromium 69.0.3482.0</p>
+<h2 id="安装visual-studio-community-2017"><a class="markdownIt-Anchor" href="#安装visual-studio-community-2017"></a> 安装Visual Studio Community 2017</h2>
+<p><a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/vs/community">Visual Studio Community 的下载地址</a></p>
+<p>安装时,勾选以下选项<br />
+如果已经安装了Visual Studio Community 2017, 可通过 工具 &gt; 获取工具和功能 打开该页面</p>
+<ul>
+<li>工作负载
+<ul>
+<li>使用 C++ 的桌面开发
+<ul>
+<li>用于 x86 和 x64 的 Visual C++ ATL</li>
+<li>用于 x86 和 x64 的 Visual C++ MFC</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>单个组件
+<ul>
+<li>SDK、库和框架
+<ul>
+<li>Windows 10 SDK (10.0.17134.0)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>语言包
+<ul>
+<li>英语</li>
+</ul>
+</li>
+</ul>
+<p>注意不要更改默认的安装位置, 如果改了编译时可能会出错,提示找不到Visual Studio<br />
+C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
+<h2 id="安装sdk-debugging-tools"><a class="markdownIt-Anchor" href="#安装sdk-debugging-tools"></a> 安装SDK Debugging Tools</h2>
+<p>1 安装Visual Studio后, 打开Control Panel → Programs → Programs and Features<br />
+2 右键 Windows Software Development Kit -&gt; 点击Change<br />
+3 选择Change -&gt; 点击 Next按钮 -&gt; 勾选Debugging Tools For Windows -&gt; 点击Change按钮</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E7%BC%96%E8%AF%91%20Chromium(Windows)/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/JavaScript-RegExp/">
+                    JavaScript 正则表达式
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-05-28T17:20:00.000Z">
+                  2018-05-29
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="创建正则表达式"><a class="markdownIt-Anchor" href="#创建正则表达式"></a> 创建正则表达式</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regExp = <span class="regexp">/a+/</span></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> regExp = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&#x27;a+&#x27;</span>)</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> regExp = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="regexp">/a+/</span>, <span class="string">&#x27;g&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="正则标志"><a class="markdownIt-Anchor" href="#正则标志"></a> 正则标志</h2>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>g</td>
+<td>全局匹配</td>
+</tr>
+<tr>
+<td>y</td>
+<td>粘滞匹配</td>
+</tr>
+<tr>
+<td>i</td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td>m</td>
+<td>匹配多行</td>
+</tr>
+</tbody>
+</table>
+<p>g标志返回多个符合正则的匹配结果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;foo bar&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/\w+/g</span>)<span class="comment">// [ &#x27;foo&#x27;, &#x27;bar&#x27; ]</span></span><br><span class="line"><span class="string">&#x27;foo bar&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/\w+/</span>) <span class="comment">// [ &#x27;foo&#x27;, index: 0, input: &#x27;foo bar&#x27; ]</span></span><br></pre></td></tr></table></figure>
+<p>注意, 未使用g标志时,调用RegExp.exec只返回首次匹配结果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regExp = <span class="regexp">/\w+/g</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="string">&#x27;foo bar&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">// [ &#x27;foo&#x27;, index: 0, input: &#x27;foo bar&#x27; ]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(re.<span class="property">lastIndex</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">// [ &#x27;bar&#x27;, index: 4, input: &#x27;foo bar&#x27; ]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(re.<span class="property">lastIndex</span>) <span class="comment">// 7</span></span><br><span class="line"><span class="comment">// 对比</span></span><br><span class="line">regExp = <span class="regexp">/\w+/</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">// [ &#x27;foo&#x27;, index: 0, input: &#x27;foo bar&#x27; ] </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(re.<span class="property">lastIndex</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">// [ &#x27;foo&#x27;, index: 0, input: &#x27;foo bar&#x27; ] </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(re.<span class="property">lastIndex</span>) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/JavaScript-RegExp/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/JavScript-event/">
+                    js事件
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-04-24T05:34:00.000Z">
+                  2018-04-24
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="常用事件表"><a class="markdownIt-Anchor" href="#常用事件表"></a> 常用事件表</h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>触发</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>load</td>
+<td>页面(包括CSS样式 图片 JS等资源)完全加载后触发(window可用)</td>
+</tr>
+<tr>
+<td>DOMContentLoaded</td>
+<td>HTML文档被加载后触发,无需等待图片 js CSS资源加载(window和document可用)</td>
+</tr>
+<tr>
+<td>beforeunload</td>
+<td>窗口被关闭/刷新(可阻止)</td>
+</tr>
+<tr>
+<td>unload</td>
+<td>文档被卸载后(window)</td>
+</tr>
+<tr>
+<td>abort</td>
+<td>图像/视频/音频加载被中断</td>
+</tr>
+<tr>
+<td>error</td>
+<td>文档/图像加载错误</td>
+</tr>
+<tr>
+<td>resize</td>
+<td>调整窗口大小(window)</td>
+</tr>
+<tr>
+<td>scroll</td>
+<td>页面滚动(window) <br>可用document.documentElement.scrollTop获取滚动距离</td>
+</tr>
+<tr>
+<td>focusin</td>
+<td>获得焦点(冒泡)</td>
+</tr>
+<tr>
+<td>focus</td>
+<td>获得焦点(不冒泡)</td>
+</tr>
+<tr>
+<td>focusout</td>
+<td>失去焦点(冒泡)</td>
+</tr>
+<tr>
+<td>blur</td>
+<td>失去焦点(不冒泡)</td>
+</tr>
+<tr>
+<td>mouseover</td>
+<td>鼠标移动到元素上(冒泡)</td>
+</tr>
+<tr>
+<td>mouseenter</td>
+<td>鼠标移动到元素上(不冒泡)</td>
+</tr>
+<tr>
+<td>mouseout</td>
+<td>鼠标移出元素(冒泡)</td>
+</tr>
+<tr>
+<td>mouseleave</td>
+<td>鼠标移出元素(不冒泡)</td>
+</tr>
+<tr>
+<td>mousedown</td>
+<td>鼠标键按下</td>
+</tr>
+<tr>
+<td>mouseup</td>
+<td>鼠标键松开</td>
+</tr>
+<tr>
+<td>click</td>
+<td>鼠标单击</td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>鼠标双击</td>
+</tr>
+<tr>
+<td>mousemove</td>
+<td>鼠标移动</td>
+</tr>
+<tr>
+<td>contextmenu</td>
+<td>调出上下文菜单(鼠标单击右键)</td>
+</tr>
+<tr>
+<td>mousewheel</td>
+<td>鼠标滚轮滚动(非标准事件)</td>
+</tr>
+<tr>
+<td>keydown</td>
+<td>键盘任意键被按下/按住</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td>键盘字符键被按下/按住</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td>键盘任意键被松开</td>
+</tr>
+<tr>
+<td>input</td>
+<td>用于input/textarea元素,用户输入时触发</td>
+</tr>
+<tr>
+<td>change</td>
+<td>元素值发生变化(例如select更改选项,input输入框输入)</td>
+</tr>
+<tr>
+<td>submit</td>
+<td>提交按钮被点击</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>重置按钮被点击</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>用户复制内容</td>
+</tr>
+<tr>
+<td>haschange</td>
+<td>URL参数(#号后的内容)变化时触发(window可用)</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/JavScript-event/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/JavaScript-Number/">
+                    JavaScript Number
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-04-16T11:39:00.000Z">
+                  2018-04-16
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="number-parseint-parsefloat"><a class="markdownIt-Anchor" href="#number-parseint-parsefloat"></a> Number parseInt parseFloat</h2>
+<p>这三种方法都可以将值转为数字,但处理方式各不相同</p>
+<h3 id="number"><a class="markdownIt-Anchor" href="#number"></a> Number</h3>
+<p>Number(value)</p>
+<ul>
+<li>value 任意值,如果无法转为数字,则返回NaN</li>
+</ul>
+<p>如果传入对象,会先调用对象的valueOf方法.如果valueOf的返回值不是基本类型,再调用对象的toString方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line">o.<span class="property">valueOf</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">return</span> <span class="number">11</span>&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title class_">Number</span>(o) ) <span class="comment">// 11</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;;</span><br><span class="line">o1.<span class="property">toString</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">return</span> <span class="number">11</span>&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title class_">Number</span>(o1) ); </span><br></pre></td></tr></table></figure>
+<p>注 一元加操作符的转换方式和Number相同</p>
+<h3 id="parseint"><a class="markdownIt-Anchor" href="#parseint"></a> parseInt</h3>
+<p>接受字符串,返回整数<br />
+parseInt(string, radix)</p>
+<ul>
+<li>string 字符串,如果传入参数不是字符串(包括数字),则先使用toString将其转为字符串.</li>
+<li>radix 参数string的基数,接受以下数值:
+<ul>
+<li>0或未指定: 0x开头字符串以16进制解析,其他字符串以10进制解析</li>
+<li>2~36: 将字符串以2~36进制解析</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;0x11&#x27;</span>) <span class="comment">// 17</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;0X11&#x27;</span>) <span class="comment">// 17</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;11&#x27;</span>,<span class="number">2</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;11&#x27;</span>, <span class="number">16</span>) <span class="comment">// 17</span></span><br><span class="line"><span class="comment">// 第二个参数传入0/2~36之外的数值会返回NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;11&#x27;</span>, <span class="number">1</span>) <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<p>如果string的第一个非空格字符&quot;不是正/负号或数字&quot;,则返回NaN</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;.11&#x27;</span>) <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<p>parseInt不支持科学计数法,会将&quot;Infinity&quot;和&quot;e表示法&quot;当作普通字符处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;Infinity&#x27;</span>) <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">0.0000001</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 实际运行过程</span></span><br><span class="line"><span class="comment">// 先调用toString方法转为字符串.</span></span><br><span class="line"><span class="comment">// 0.0000001小数点后有6个以上的0,因此自动转为科学计数法格式</span></span><br><span class="line"><span class="keyword">var</span> s = (<span class="number">0.0000001</span>).<span class="title function_">toString</span>(); <span class="comment">// &quot;1e-7&quot;</span></span><br><span class="line"><span class="comment">// parseInt不支持科学计数法,e及后边的数字被自动忽略了,因此返回1</span></span><br><span class="line"><span class="built_in">parseInt</span>(s); <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// Number和ParseFloat没有这种问题</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/JavaScript-Number/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/javascript-function/">
+                    JavaScipt function
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-04-09T08:49:00.000Z">
+                  2018-04-09
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>函数也是对象,所有函数都是Function的实例.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="property">constructor</span> === <span class="title class_">Function</span> <span class="comment">// true</span></span><br><span class="line"><span class="title class_">Function</span>.<span class="property">__proto__</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建函数"><a class="markdownIt-Anchor" href="#创建函数"></a> 创建函数</h2>
+<p>有两种方法创建函数,函数声明和函数表达式</p>
+<ul>
+<li>函数声明</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">say</span>(<span class="params">word</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(word);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">say</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数表达式</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> say = <span class="keyword">function</span>(<span class="params">word</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(word);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">say</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/javascript-function/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/JavaScript-Object/">
+                    JavaScript 对象
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-04-08T06:49:00.000Z">
+                  2018-04-08
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>JavaScript是一门面向对象的语言(Object Oriented,简称OO)<br />
+什么是对象?对象是一组无序属性的集合</p>
+<p>在JavaScript中,一切都是对象?不对,除了6类基本类型外都是对象<br />
+Js有两大数据类型,基本类型和引用类型<br />
+基本类型是保存在栈内存中的简单数据,有String Number Boolean null undefined Symbol,按值访问<br />
+引用类型是保存在堆内存中的对象,有Object Array Function Date等,按引用访问</p>
+<p>基本类型不是对象,那为什么他们有属性?<br />
+调用基本类型的属性时,会临时创建一个对象,调用对象属性,然后销毁对象.下次调用属性时,再创建一个新的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;lalala&#x27;</span>;</span><br><span class="line">str.<span class="title function_">valueOf</span>();</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="title class_">String</span>(str);</span><br><span class="line">temp.<span class="title function_">valueOf</span>(); <span class="comment">// &quot;lalala&quot;</span></span><br><span class="line">temp = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<p>因此不能给基本类型添加属性.完成操作后,新创建的对象被销毁了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str.<span class="property">t</span> = <span class="number">1</span>;</span><br><span class="line">str.<span class="property">t</span> <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>注 typeof对null返回&quot;object&quot;是个bug<br />
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof">参考</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// &quot;object&quot;</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/JavaScript-Object/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/gulp/">
+                    gulp 4.0
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2018-03-25T13:19:00.000Z">
+                  2018-03-25
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/gulp/">
+                    <span>gulp</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>前端自动化工具</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">gulp getting started</a><br />
+<a target="_blank" rel="noopener" href="https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulptaskname-fn">gulp api</a><br />
+<a target="_blank" rel="noopener" href="https://github.com/onface/gulp-book">gulp 入门指南</a></p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 安装gulp-cli</span><br><span class="line">npm install --global gulp-cli</span><br><span class="line">// 创建package.js.会提示输入项目信息,可直接按回车跳过.</span><br><span class="line">npm init</span><br><span class="line">// 安装gulp</span><br><span class="line">npm install --save-dev gulp@next</span><br></pre></td></tr></table></figure>
+<p>注:<br />
+本文安装的gulp版本为4.0<br />
+目前(2018/1)<br />
+使用 npm install --save-dev gulp 命令安装的gulp版本为3.9<br />
+而 npm install --save-dev gulp@next (多了@next)命令安装的gulp版本为4.0<br />
+相较于gulp3,gulp4的语法有一些改动<br />
+如果想查看版本信息,可用gulp -v查询</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;gulp -v</span><br><span class="line">[14:37:58] CLI version 2.0.0</span><br><span class="line">[14:37:58] Local version 4.0.0</span><br></pre></td></tr></table></figure>
+<p>测试是否安装成功<br />
+在项目根目录下新建gulpfile.js文件,填入以下内容</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;default&#x27;</span>, defaultTask);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">defaultTask</span>(<span class="params">done</span>) &#123;</span><br><span class="line">  <span class="comment">// place code for your default task here</span></span><br><span class="line">  <span class="title function_">done</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后打开cmd,在项目根目录运行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp</span><br></pre></td></tr></table></figure>
+<p>如果出现下列提示,则安装成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Using gulpfile ~/my-project/gulpfile.js</span><br><span class="line">[11:15:51] Starting &#x27;default&#x27;...</span><br><span class="line">[11:15:51] Finished &#x27;default&#x27; after 103 μs</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/gulp/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+    
+    <!-- pagination -->
+<nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">&gt;</a>
+</nav>
+</div>
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>编译 Chromium(Windows)</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85visual-studio-community-2017"><span class="toc-text"> 安装Visual Studio Community 2017</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85sdk-debugging-tools"><span class="toc-text"> 安装SDK Debugging Tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85depot_tools"><span class="toc-text"> 安装depot_tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDchromium%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-text"> 下载chromium源代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E7%BC%96%E8%AF%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text"> 生成编译配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-text"> 编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E5%8F%8A%E7%BC%96%E8%AF%91"><span class="toc-text"> 增量更新及编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#error"><span class="toc-text"> Error</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">编译 Chromium(Windows)</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-01-31T16:00:00.000Z">
+            2019-02-01
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/software/">
+              <span>software</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Chromium/">
+            <span>Chromium</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>2019/7/13日注:<br />
+该文章内容已过时,部分配置及环境要求发生变动. 具体过程请参阅官方的编译指南.<br />
+<a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md">https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md</a></p>
+<p>系统环境 Windows 7 x64<br />
+编译版本 Chromium 69.0.3482.0</p>
+<h2 id="安装visual-studio-community-2017"><a class="markdownIt-Anchor" href="#安装visual-studio-community-2017"></a> 安装Visual Studio Community 2017</h2>
+<p><a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/vs/community">Visual Studio Community 的下载地址</a></p>
+<p>安装时,勾选以下选项<br />
+如果已经安装了Visual Studio Community 2017, 可通过 工具 &gt; 获取工具和功能 打开该页面</p>
+<ul>
+<li>工作负载
+<ul>
+<li>使用 C++ 的桌面开发
+<ul>
+<li>用于 x86 和 x64 的 Visual C++ ATL</li>
+<li>用于 x86 和 x64 的 Visual C++ MFC</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>单个组件
+<ul>
+<li>SDK、库和框架
+<ul>
+<li>Windows 10 SDK (10.0.17134.0)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>语言包
+<ul>
+<li>英语</li>
+</ul>
+</li>
+</ul>
+<p>注意不要更改默认的安装位置, 如果改了编译时可能会出错,提示找不到Visual Studio<br />
+C盘不够大的话可以更改下载缓存位置到其他硬盘分区</p>
+<h2 id="安装sdk-debugging-tools"><a class="markdownIt-Anchor" href="#安装sdk-debugging-tools"></a> 安装SDK Debugging Tools</h2>
+<p>1 安装Visual Studio后, 打开Control Panel → Programs → Programs and Features<br />
+2 右键 Windows Software Development Kit -&gt; 点击Change<br />
+3 选择Change -&gt; 点击 Next按钮 -&gt; 勾选Debugging Tools For Windows -&gt; 点击Change按钮</p>
+<span id="more"></span>
+<h2 id="安装depot_tools"><a class="markdownIt-Anchor" href="#安装depot_tools"></a> 安装depot_tools</h2>
+<p><a target="_blank" rel="noopener" href="https://storage.googleapis.com/chrome-infra/depot_tools.zip">depot_tools 的下载地址</a><br />
+解压depot_tools.zip,这里以解压到路径D:\depot_tools为例<br />
+1 将D:\depot_tools添加到系统变量Path中(一定要放在最前,特别是之前安装了Python和Git)<br />
+2 添加系统变量DEPOT_TOOLS_WIN_TOOLCHAIN,将值设置为0<br />
+3 进入depot_tools文件夹,使用cmd运行gclient命令</p>
+<p>注意:应使用系统自带的cmd运行gclient命令,别的shell(cygwin, PowerShell)可能会出错　　<br />
+如果gclient运行时报错,可使用gclient sync继续运行</p>
+<h2 id="下载chromium源代码"><a class="markdownIt-Anchor" href="#下载chromium源代码"></a> 下载chromium源代码</h2>
+<p>创建chromium文件夹并进入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir chromium &amp;&amp; cd chromium</span><br></pre></td></tr></table></figure>
+<p>注: 本文将chromium文件夹创建在D盘下,即路径 D:\chromium</p>
+<p>输入如下命令,下载chromium代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch --no-history chromium</span><br></pre></td></tr></table></figure>
+<p>下载完成后会自动创建src文件夹<br />
+用cd命令进入src目录, 以下操作皆在该文件夹进行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd src</span><br></pre></td></tr></table></figure>
+<h2 id="生成编译配置文件"><a class="markdownIt-Anchor" href="#生成编译配置文件"></a> 生成编译配置文件</h2>
+<p>Chromium使用Ninja作为编译工具,使用GN生成.ninja配置文件<br />
+输入如下gn args命令,在out\mybuild目录下创建编译所需配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gn args out\mybuild</span><br></pre></td></tr></table></figure>
+<p>执行如上命令后,会弹出一个记事本.在其中输入编译配置,保存后关闭记事本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">use_jumbo_build = true</span><br><span class="line">enable_nacl = false</span><br><span class="line">target_cpu = &quot;x64&quot;</span><br><span class="line">remove_webcore_debug_symbols = true</span><br><span class="line">symbol_level = 0</span><br><span class="line">is_debug = false</span><br><span class="line">ffmpeg_branding = &quot;Chrome&quot;</span><br><span class="line">proprietary_codecs = true</span><br><span class="line">is_component_build = false</span><br><span class="line">dcheck_always_on = true</span><br><span class="line">is_official_build = true</span><br></pre></td></tr></table></figure>
+<p>2019/7/13 更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">use_jumbo_build = true</span><br><span class="line">enable_nacl = false</span><br><span class="line">target_cpu = &quot;x64&quot;</span><br><span class="line">symbol_level = 1</span><br><span class="line">blink_symbol_level=0</span><br><span class="line">is_debug = false</span><br><span class="line">ffmpeg_branding = &quot;Chrome&quot;</span><br><span class="line">proprietary_codecs = true</span><br><span class="line">is_component_build = false</span><br><span class="line">dcheck_always_on = true</span><br><span class="line">is_official_build = false</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.chromium.org/developers/gn-build-configuration">更多配置参见官方gn配置文档</a></p>
+<h2 id="编译"><a class="markdownIt-Anchor" href="#编译"></a> 编译</h2>
+<p>使用ninja命令编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ninja -j 1 -C out/mybuild chrome</span><br></pre></td></tr></table></figure>
+<p>参数 -j N为使用进程数,默认为6</p>
+<p>低配电脑使用多进程可能会出错,建议使用参数-j 1编译,即单个进程</p>
+<p>如果编译中出错,重新执行ninja -j 1 -C out/mybuild chrome命令即可继续编译</p>
+<h2 id="增量更新及编译"><a class="markdownIt-Anchor" href="#增量更新及编译"></a> 增量更新及编译</h2>
+<p>在D:\chromium\src下执行如下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rebase-update</span><br><span class="line">gclient sync</span><br><span class="line">ninja -j 1 -C out/mybuild chrome</span><br></pre></td></tr></table></figure>
+<p>注: git rebase-update 失败的话, 可以用 git pull 命令代替</p>
+<h2 id="error"><a class="markdownIt-Anchor" href="#error"></a> Error</h2>
+<p>1 运行gclient命令时报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Username for &#x27;https://chrome-internal.googlesource.com&#x27;:</span><br></pre></td></tr></table></figure>
+<p>解决办法<br />
+确保已设置系统变量DEPOT_TOOLS_WIN_TOOLCHAIN ,且变量值为0<br />
+<a target="_blank" rel="noopener" href="https://groups.google.com/a/chromium.org/forum/#!topic/chromium-dev/SZhK4uYufGw">参考</a></p>
+<p>2 运行ninja命令时报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception: C:\Program Files (x86)\Microsoft Visual Studio\2 missing - make sure VC++ tools are installed.</span><br></pre></td></tr></table></figure>
+<p>解决办法<br />
+确保安装了VC++ 2017 version 15.9 v14.16 latest v141 tool等工具<br />
+<img src="/img/fff35a59.png" alt="51023817-cab1cf00-15c2-11e9-998a-8807bb17a3c6.png" /></p>
+<p>3<br />
+error Windows 10.0.18362.0 SDK or higher required.<br />
+解决办法<br />
+安装 Windows 10 SDK (10.0.18362.0)<br />
+<a target="_blank" rel="noopener" href="https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk">Windows 10 SDK - Windows app development</a></p>
+<p>4<br />
+resource whitelist generation only works on non-component builds with debug info enabled.<br />
+See //tools/grit/grit_rule.gni:105:7: symbol_level &gt; 0 &amp;&amp; !strip_debug_info &amp;&amp; !is_component_build</p>
+<p>解决办法<br />
+更改 ninja 配置  symbol_level = 0 -&gt; symbol_level = 1</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md">windows_build_instructions</a><br />
+<a target="_blank" rel="noopener" href="https://www.chromium.org/developers/gn-build-configuration">gn-build-configuration</a><br />
+<a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/HEAD/docs/user_data_dir.md#Windows">chrome|chromium User Data Directory - Default Location</a><br />
+<a target="_blank" rel="noopener" href="https://gclxry.com/chromium-build-args/">Chromium代码编译选项介绍</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/vue-cli/">&lt;  vue-cli</a>
+      
+      
+        <a class="next" href="/article/JavaScript-RegExp/">JavaScript 正则表达式  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

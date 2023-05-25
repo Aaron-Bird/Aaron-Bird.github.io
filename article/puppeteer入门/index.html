@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>puppeteer入门</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text"> 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-text"> 例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#browser%E5%AF%B9%E8%B1%A1"><span class="toc-text"> browser对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-text"> 启动浏览器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F"><span class="toc-text"> 开启无痕模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="toc-text"> 新建标签页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="toc-text"> 获取所有标签页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%B5%8F%E8%A7%88%E5%99%A8%E9%BB%98%E8%AE%A4%E7%9A%84user-agent"><span class="toc-text"> 获取浏览器默认的user-agent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page%E5%AF%B9%E8%B1%A1"><span class="toc-text"> Page对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E7%BD%91%E7%AB%99"><span class="toc-text"> 访问网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96cookies"><span class="toc-text"> 获取Cookies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEcookies"><span class="toc-text"> 设置Cookies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4cookie"><span class="toc-text"> 删除cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96dom"><span class="toc-text"> 获取Dom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96dom%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-text"> 获取Dom元素的文本内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-text"> 获取属性值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%82%E5%81%9C"><span class="toc-text"> 暂停</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page%E4%BA%8B%E4%BB%B6"><span class="toc-text"> Page事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A6%E6%88%AArequest%E8%AF%B7%E6%B1%82"><span class="toc-text"> 拦截request请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD"><span class="toc-text"> 拦截图片加载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text"> 其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%9B%BE%E5%83%8F"><span class="toc-text"> 下载图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chrome-%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0"><span class="toc-text"> Chrome 启动参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#error"><span class="toc-text"> error</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">puppeteer入门</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-04-21T16:00:00.000Z">
+            2019-04-22
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Puppeteer/">
+              <span>Puppeteer</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Puppeteer/">
+            <span>Puppeteer</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>puppeteer 是一个 Google 出品的 Node 库,可以用它来操纵 Chrome.<br />
+puppeteer 这个单词的发音为 [ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶的人&quot;.</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>安装 puppeteer 时会自动下载 chrome,需要有全局代理.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add puppeteer</span><br></pre></td></tr></table></figure>
+<p>如果无法下载 puppeteer, 可以在根目录下新建文件 .yarnrc, 填入如下内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">puppeteer_download_host &quot;https://storage.googleapis.com.cnpmjs.org&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h2>
+<p>新建 index.js, 填入如下代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 载入puppeteer</span></span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开浏览器</span></span><br><span class="line"><span class="comment">// launch方法返回一个Promise对象</span></span><br><span class="line">puppeteer.<span class="title function_">launch</span>(&#123;<span class="attr">headless</span>: <span class="literal">false</span>&#125;).<span class="title function_">then</span>(<span class="keyword">async</span> browser =&gt; &#123;</span><br><span class="line">  <span class="comment">// 打开一个页面</span></span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="comment">// 打开百度</span></span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(<span class="string">&#x27;https://www.baidu.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">screenshot</span>(&#123;<span class="attr">path</span>: <span class="string">&#x27;baidu.png&#x27;</span>&#125;);</span><br><span class="line">  <span class="comment">// 关闭浏览器</span></span><br><span class="line">  <span class="comment">// await browser.close();</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最后,进入文件所在路径, 执行 node index.js 命令即可.</p>
+<span id="more"></span>
+<h2 id="browser对象"><a class="markdownIt-Anchor" href="#browser对象"></a> browser对象</h2>
+<h3 id="启动浏览器"><a class="markdownIt-Anchor" href="#启动浏览器"></a> 启动浏览器</h3>
+<p>可以用puppeteer.launch([options])方法来打开一个chrome浏览器.<br />
+该方法返回一个Promise对象, 包含一个Browser对象作为参数.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">puppeteer.<span class="title function_">launch</span>().<span class="title function_">then</span>(<span class="keyword">async</span> browser =&gt; &#123; &#125;);</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>();</span><br></pre></td></tr></table></figure>
+<p>常用参数:</p>
+<ul>
+<li>headless 是否启用&quot;无头模式&quot;(隐藏浏览器界面), 默认为true</li>
+<li>executablePath 指定chrome.exe文件的路径(不使用内置的chromium)</li>
+<li>args 启动chrome的参数</li>
+<li>devtools 是否自动打开DevTools工具,默认为false</li>
+</ul>
+<p>参数实例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);  </span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">executablePath</span>: <span class="string">&#x27;C:/chromium/chrome.exe&#x27;</span>,</span><br><span class="line">    <span class="attr">args</span>: [</span><br><span class="line">      <span class="string">&#x27;--disable-web-security&#x27;</span>, <span class="comment">// 允许跨域</span></span><br><span class="line">      <span class="string">&#x27;--proxy-server=127.0.0.1:1080&#x27;</span>, <span class="comment">// 代理</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://zhaoqize.github.io/puppeteer-api-zh_CN/#?product=Puppeteer&amp;version=v1.14.0&amp;show=api-puppeteerlaunchoptions">官方文档 puppeteer.launch</a></p>
+<p>另外, launch方法的defaultViewport参数似乎不起作用,原因未知.使用 --window-size 代替</p>
+<h3 id="开启无痕模式"><a class="markdownIt-Anchor" href="#开启无痕模式"></a> 开启无痕模式</h3>
+<p>browser.createIncognitoBrowserContext()方法可以进入chrome的进入无痕模式.<br />
+该方法返回一个Promise对象, 包含一个Browser对象作为参数.</p>
+<p>例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;<span class="attr">headless</span>: <span class="literal">false</span>&#125;);</span><br><span class="line">  <span class="comment">// 启动无痕模式</span></span><br><span class="line">  <span class="keyword">const</span> context = <span class="keyword">await</span> browser.<span class="title function_">createIncognitoBrowserContext</span>();</span><br><span class="line">  <span class="comment">// 新建标签页</span></span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> context.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="comment">// 打开目标url</span></span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(<span class="string">&#x27;https://example.com&#x27;</span>);</span><br><span class="line">  <span class="comment">// 关闭无痕模式</span></span><br><span class="line">  <span class="keyword">await</span> context.<span class="title function_">close</span>();</span><br><span class="line">  <span class="comment">// 关闭浏览器</span></span><br><span class="line">  <span class="keyword">await</span> browser.<span class="title function_">close</span>();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="新建标签页"><a class="markdownIt-Anchor" href="#新建标签页"></a> 新建标签页</h3>
+<p>使用browser.newPage()方法新建标签页.<br />
+该方法返回一个Promise,包含一个Page对象作为参数.</p>
+<p>例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="获取所有标签页"><a class="markdownIt-Anchor" href="#获取所有标签页"></a> 获取所有标签页</h3>
+<p>使用browser.pages()方法获取所有可见的标签页.<br />
+该方法返回一个Promise对象,包含一个Array作为参数.</p>
+<p>例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">await</span> browser.<span class="title function_">pages</span>());</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="获取浏览器默认的user-agent"><a class="markdownIt-Anchor" href="#获取浏览器默认的user-agent"></a> 获取浏览器默认的user-agent</h3>
+<p>使用browser.pages()方法获取所有可见的标签页.<br />
+返回: Promise(string)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">await</span> browser.<span class="title function_">userAgent</span>());</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="page对象"><a class="markdownIt-Anchor" href="#page对象"></a> Page对象</h2>
+<p>Page对象表示一个标签页</p>
+<h3 id="访问网站"><a class="markdownIt-Anchor" href="#访问网站"></a> 访问网站</h3>
+<p>使用page.goto(url[, options])方法访问指定的url.<br />
+返回: Promise(Response)</p>
+<p>常用的options:</p>
+<ul>
+<li>timeout 超时时间</li>
+<li>watiUntil 何时完成页面加载
+<ul>
+<li>load 触发load事件(默认)</li>
+<li>domcontentloaded 触发DOMContentLoaded事件</li>
+<li>referer Request headers头的referer参数, 优先级高于page.setExtraHTTPHeaders()</li>
+</ul>
+</li>
+</ul>
+<p>例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">args</span>: [</span><br><span class="line">      <span class="comment">// 自动打开调试工具</span></span><br><span class="line">      <span class="string">&#x27;--auto-open-devtools-for-tabs&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="comment">// 暂停一会</span></span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">waitFor</span>(<span class="number">1000</span>);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(<span class="string">&#x27;https://www.example.com&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">waitUntil</span>: <span class="string">&#x27;domcontentloaded&#x27;</span>,</span><br><span class="line">    <span class="attr">referer</span>: <span class="string">&#x27;https://www.test.com&#x27;</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="获取cookies"><a class="markdownIt-Anchor" href="#获取cookies"></a> 获取Cookies</h3>
+<p>使用page.cookies([url])获取页面的cookies.<br />
+该方法返回: Promise(Array)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(<span class="string">&#x27;https://www.baidu.com&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">await</span> page.<span class="title function_">cookies</span>());</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>page.cookies返回的cookies如下.其中的name为cookie名, value为cookie值:<br />
+<img src="/img/8fe94847.PNG" alt="捕获.PNG" /></p>
+<p>可以用如下方法将其转换为string格式:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cookiesStr = cookies.<span class="title function_">map</span>(<span class="function"><span class="params">cookie</span> =&gt;</span> <span class="string">`<span class="subst">$&#123;cookie.name&#125;</span>=<span class="subst">$&#123;cookie.value&#125;</span>`</span>).<span class="title function_">join</span>(<span class="string">&quot;;&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="设置cookies"><a class="markdownIt-Anchor" href="#设置cookies"></a> 设置Cookies</h3>
+<p>1 设置单个cookies值<br />
+使用page.setCookie(...cookies)设置cookies值.<br />
+返回: Promise(undefined)</p>
+<p>例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>();</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(<span class="string">&#x27;https://www.example.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">setCookie</span>(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;foo&#x27;</span>,</span><br><span class="line">    <span class="attr">value</span>: <span class="string">&#x27;bar&#x27;</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;foo1&#x27;</span>,</span><br><span class="line">    <span class="attr">value</span>: <span class="string">&#x27;bar2&#x27;</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// or</span></span><br><span class="line">  <span class="keyword">await</span> page.<span class="property">setCookie</span>.<span class="title function_">apply</span>(page, [&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;foo2&#x27;</span>,</span><br><span class="line">    <span class="attr">value</span>: <span class="string">&#x27;bar2&#x27;</span></span><br><span class="line">  &#125;]);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">await</span> page.<span class="title function_">cookies</span>());</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://zhaoqize.github.io/puppeteer-api-zh_CN/#?product=Puppeteer&amp;version=v1.15.0&amp;show=api-pagesetcookiecookies">官方文档 setCookie</a></p>
+<p>注意,chrome浏览器地址栏中的&quot;查看Cookie&quot;很不靠谱.修改/删除cookie后,显示的可能还是原来的cookie.<br />
+推荐使用document.cookie方法来查看cookie有没有更新.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">devtools</span>: <span class="literal">true</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(<span class="string">&#x27;https://www.baidu.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">waitFor</span>(<span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">setCookie</span>(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;BIDUPSID&#x27;</span>,</span><br><span class="line">    <span class="attr">value</span>: <span class="string">&#x27;123&#x27;</span>,</span><br><span class="line">    <span class="attr">domain</span>: <span class="string">&#x27;.baidu.com&#x27;</span>,</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">    <span class="attr">httpOnly</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">secure</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">session</span>: <span class="literal">false</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 在标签页环境(上下文)中执行命令</span></span><br><span class="line">  page.evaluate(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="property">cookie</span>));</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="删除cookie"><a class="markdownIt-Anchor" href="#删除cookie"></a> 删除cookie</h3>
+<p>page.deleteCookie(...cookies)<br />
+返回: Promise(undefined)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">devtools</span>: <span class="literal">true</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(<span class="string">&#x27;https://www.baidu.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">deleteCookie</span>(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;BAIDUID&#x27;</span>,</span><br><span class="line">    <span class="attr">domain</span>: <span class="string">&#x27;.baidu.com&#x27;</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">  page.evaluate(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="property">cookie</span>));</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="获取dom"><a class="markdownIt-Anchor" href="#获取dom"></a> 获取Dom</h3>
+<p>使用page.$(selector)获取单个的Dom元素, 相当于document.querySelector<br />
+返回: Promise(ElementHandle || null)</p>
+<p>使用page.$$(selector)获取多个的Dom元素, 相当于document.querySelectorAll<br />
+返回: Promise(Array(ElementHandle))</p>
+<p>ElementHandle是一个Object对象,而非DOM元素.其储存了对应DOM元素的信息.</p>
+<h3 id="获取dom元素的文本内容"><a class="markdownIt-Anchor" href="#获取dom元素的文本内容"></a> 获取Dom元素的文本内容</h3>
+<p>方法1:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bodyElHandle = <span class="keyword">await</span> page.$(<span class="string">&#x27;body&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> text = <span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">bodyEl</span> =&gt;</span> bodyEl.<span class="property">innerText</span>, bodyElHandle);</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">const</span> text = <span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">bodyEl</span> =&gt;</span> bodyEl.<span class="property">textContent</span>, bodyElHandle);</span><br></pre></td></tr></table></figure>
+<p>方法2:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bodyElHandle = <span class="keyword">await</span> page.$(<span class="string">&#x27;body&#x27;</span>);</span><br><span class="line"><span class="comment">// getProperty返回JSHandle对象,而非属性值    </span></span><br><span class="line"><span class="keyword">const</span> prop = <span class="keyword">await</span> bodyElHandle.<span class="title function_">getProperty</span>(<span class="string">&#x27;innerText&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> text = <span class="keyword">await</span> (prop.<span class="title function_">jsonValue</span>());</span><br></pre></td></tr></table></figure>
+<p>方法3:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> text = <span class="keyword">await</span> page.$eval(<span class="string">&#x27;body&#x27;</span>, <span class="function"><span class="params">el</span> =&gt;</span> el.<span class="property">innerText</span>);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/puppeteer/issues/3051">参考</a></p>
+<p>获取多个元素的文本内容:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> text = <span class="keyword">await</span> page.$$eval(<span class="string">&#x27;div&#x27;</span>, <span class="function">(<span class="params">els</span>) =&gt;</span> els.<span class="title function_">map</span>(<span class="function"><span class="params">el</span> =&gt;</span> el.<span class="property">innerText</span>));  </span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/puppeteer/issues/628">参考</a></p>
+<p>或:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> elHandles = <span class="keyword">await</span> page.$$(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> text = <span class="keyword">await</span> page.evaluate(<span class="function">(<span class="params">...els</span>)=&gt;</span> els.<span class="title function_">map</span>(<span class="function"><span class="params">el</span> =&gt;</span> el.<span class="property">innerText</span>) , ...elHandles);</span><br></pre></td></tr></table></figure>
+<p>注意, 不可以直接把page.$$()方法返回的Array直接作为参数传递给page.evaluate,会报错.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> elHandles = <span class="keyword">await</span> page.$$(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> text = <span class="keyword">await</span> page.evaluate(<span class="function">(<span class="params">els</span>) =&gt;</span> els.<span class="title function_">map</span>(<span class="function"><span class="params">el</span> =&gt;</span> el.<span class="property">innerText</span>), elHandles);</span><br><span class="line"><span class="comment">// TypeError: Converting circular structure to JSON Are you passing a nested JSHandle?</span></span><br></pre></td></tr></table></figure>
+<p>这是因为 puppeteer 的很多方法都不支持传入&quot;包含或嵌套JSHandle/ElementHandle的对象&quot;作为参数, 例如page.evaluate page.$eval等</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 数组els的结构为 [ElementHandle, ElementHandle]   </span></span><br><span class="line"><span class="keyword">const</span> elHandles = <span class="keyword">await</span> page.$$(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> text = <span class="keyword">await</span> page.$eval(<span class="string">&#x27;body&#x27;</span>, <span class="function">(<span class="params">body, els</span>) =&gt;</span> body.<span class="property">innerText</span>, elHandles);</span><br><span class="line"><span class="comment">// TypeError: Converting circular structure to JSON Are you passing a nested JSHandle?</span></span><br></pre></td></tr></table></figure>
+<p>另外,不可以直接返回DOM对象本身</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="keyword">await</span> page.$eval(<span class="string">&#x27;body&#x27;</span>, <span class="function"><span class="params">el</span> =&gt;</span> el);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(el); <span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这是因为DOM对象不能被转化成JSON</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">stringify</span>(<span class="variable language_">document</span>.<span class="property">body</span>); <span class="comment">//  &#123;&#125;  </span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/51280984/how-to-use-eval-function">参考</a></p>
+<h3 id="获取属性值"><a class="markdownIt-Anchor" href="#获取属性值"></a> 获取属性值</h3>
+<p>同上</p>
+<h3 id="暂停"><a class="markdownIt-Anchor" href="#暂停"></a> 暂停</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 暂停一秒</span><br><span class="line">page.waitFor(1000)</span><br></pre></td></tr></table></figure>
+<h2 id="page事件"><a class="markdownIt-Anchor" href="#page事件"></a> Page事件</h2>
+<p>类似DOM的addEventListener,page对象也支持响应多种事件.<br />
+可以用page.on(事件名, 回调函数)方法来向页面添加事件.</p>
+<h3 id="拦截request请求"><a class="markdownIt-Anchor" href="#拦截request请求"></a> 拦截request请求</h3>
+<p>可用page.on('request', callback)方法来拦截request请求</p>
+<p>必须启用&quot;请求拦截器&quot;,才能使request.abort, request.continue 和 request.respond 方法生效.<br />
+否则会报错: Request Interception is not enabled!</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开启请求拦截器,该方法返回一个Promise</span></span><br><span class="line"><span class="keyword">await</span> page.<span class="title function_">setRequestInterception</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">devtools</span>: <span class="literal">true</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">&#x27;https://www.baidu.com/&#x27;</span>;</span><br><span class="line">  <span class="comment">// 开启请求拦截</span></span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">setRequestInterception</span>(<span class="literal">true</span>);</span><br><span class="line">  <span class="comment">// 设置request事件及回调函数</span></span><br><span class="line">  page.<span class="title function_">on</span>(<span class="string">&#x27;request&#x27;</span>, <span class="keyword">async</span> (request) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 除了 https://www.baidu.com/ 之外, 不加载别的url  </span></span><br><span class="line">    <span class="keyword">if</span> (request.<span class="title function_">url</span>() === url) &#123;</span><br><span class="line">      request.<span class="title function_">continue</span>();</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    request.<span class="title function_">abort</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">waitFor</span>(<span class="number">500</span>)</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(url)</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>注意上面代码request.continue()后的return.<br />
+如果对request重复调用不同的handle,则会触发错误: Request is already handled!<br />
+例如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (request.<span class="title function_">url</span>() === url) &#123;</span><br><span class="line">  request.<span class="title function_">continue</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用continue后没有退出,又调用了abort</span></span><br><span class="line">request.<span class="title function_">abort</span>();</span><br></pre></td></tr></table></figure>
+<p>启用拦截请求器会禁用页面缓存(版本 1.9 之后).<br />
+如希望在开启拦截的同时使用缓存, 则需使用 1.9 之前的版本.或用 Network.setBlockedURLs 代替 setRequestInterception.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/puppeteer/puppeteer/issues/2905">https://github.com/puppeteer/puppeteer/issues/2905</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> page.<span class="property">_client</span>.<span class="title function_">send</span>(<span class="string">&#x27;Network.setBlockedURLs&#x27;</span>, &#123; <span class="attr">urls</span>: [...blackList, <span class="string">&#x27;.jpg&#x27;</span>, <span class="string">&#x27;.png&#x27;</span>] &#125;);</span><br></pre></td></tr></table></figure>
+<p>看起来  Network.setBlockedURLs 有些链接没办法阻止,例如js添加的iframe,具体原因未知</p>
+<h3 id="拦截图片加载"><a class="markdownIt-Anchor" href="#拦截图片加载"></a> 拦截图片加载</h3>
+<p>在request事件中,可用request.resourceType()方法获取request请求的文件类型,从而判断是否需要拦截该请求.<br />
+该方法返回String, 可能返回的值有: document，stylesheet，image，media，font，script，texttrack，xhr，fetch，eventsource，websocket，manifest，other.</p>
+<p>例子, 不加载图片:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">devtools</span>: <span class="literal">true</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">&#x27;https://www.baidu.com/&#x27;</span>;</span><br><span class="line">  <span class="comment">// 开启请求拦截</span></span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">setRequestInterception</span>(<span class="literal">true</span>);</span><br><span class="line">  page.<span class="title function_">on</span>(<span class="string">&#x27;request&#x27;</span>, <span class="keyword">async</span> (request) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 如果文件类型为image,则中断加载</span></span><br><span class="line">    <span class="keyword">if</span> (request.<span class="title function_">resourceType</span>() === <span class="string">&#x27;image&#x27;</span>) &#123;</span><br><span class="line">      request.<span class="title function_">abort</span>();</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 正常加载其他类型的文件</span></span><br><span class="line">    request.<span class="title function_">continue</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">waitFor</span>(<span class="number">1000</span>)</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(url)</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>也可以拦截url请求, 然后返回别的图片:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line"><span class="comment">// 载入图像, readFileSync是一个同步函数,其作用是获取指定的文件,返回一个Buffer对象</span></span><br><span class="line"><span class="keyword">const</span> __IMAGE__ = fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;./img/success.jpg&#x27;</span>);</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">devtools</span>: <span class="literal">true</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">&#x27;https://www.baidu.com/&#x27;</span>;</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">setRequestInterception</span>(<span class="literal">true</span>);</span><br><span class="line">  page.<span class="title function_">on</span>(<span class="string">&#x27;request&#x27;</span>, <span class="keyword">async</span> (request) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 拦截图像资源的请求</span></span><br><span class="line">    <span class="keyword">if</span> (request.<span class="title function_">resourceType</span>() === <span class="string">&#x27;image&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// 返回替换的图像</span></span><br><span class="line">      request.<span class="title function_">respond</span>(&#123;</span><br><span class="line">        <span class="comment">// http状态码</span></span><br><span class="line">        <span class="attr">state</span>: <span class="number">200</span>,</span><br><span class="line">        <span class="comment">// 返回的文件类型</span></span><br><span class="line">        <span class="attr">contentType</span>: <span class="string">&#x27;image/jpeg&#x27;</span>,</span><br><span class="line">        <span class="comment">// 返回文件的具体内容, 接受String或Buffer作为参数</span></span><br><span class="line">        <span class="attr">body</span>: __IMAGE__</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//不处理其他资源的请用</span></span><br><span class="line">    request.<span class="title function_">continue</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">waitFor</span>(<span class="number">1000</span>)</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(url)</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://zhaoqize.github.io/puppeteer-api-zh_CN/#?product=Puppeteer&amp;version=v1.15.0&amp;show=api-requestrespondresponse">文档 request.respond</a></p>
+<p>注意: request.respond方法不支持返回dataURL类型的数据.</p>
+<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
+<h3 id="下载图像"><a class="markdownIt-Anchor" href="#下载图像"></a> 下载图像</h3>
+<p>puppeteer没有直接提供一个API来导出图像,需要用别的方法下载图片.</p>
+<p>方法1,用axios下载图像:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">&#x27;axios&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">dwImage</span> = <span class="keyword">async</span> (<span class="params">url, headers</span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 下载图片</span></span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> axios.<span class="title function_">get</span>(url, &#123;</span><br><span class="line">    headers,</span><br><span class="line">    <span class="attr">responseType</span>: <span class="string">&#x27;arraybuffer&#x27;</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 储存图片</span></span><br><span class="line">  fs.<span class="title function_">writeFileSync</span>(<span class="string">&#x27;./logo.png&#x27;</span>, response.<span class="property">data</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">devtools</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">args</span>: [</span><br><span class="line">      <span class="string">&#x27;--proxy-server=&quot;direct://&quot;&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;--proxy-bypass-list=*&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">&#x27;https://www.baidu.com/&#x27;</span>;</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(url);</span><br><span class="line">  <span class="comment">// 获取logo的src地址</span></span><br><span class="line">  <span class="keyword">const</span> imageUrl = <span class="keyword">await</span> page.$eval(<span class="string">&#x27;#lg img&#x27;</span>, <span class="function">(<span class="params">imgEl</span>) =&gt;</span> imgEl.<span class="property">src</span>);</span><br><span class="line">  <span class="title function_">dwImage</span>(imageUrl, &#123;</span><br><span class="line">    <span class="attr">referer</span>: url,</span><br><span class="line">    <span class="string">&#x27;user-agent&#x27;</span>: <span class="keyword">await</span> browser.<span class="title function_">userAgent</span>()</span><br><span class="line">  &#125;);</span><br><span class="line">  browser.<span class="title function_">close</span>();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>方法2,使用canvas导出dataURL:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// get dataURL from image element</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getDataURLFromImg</span> = <span class="keyword">async</span> (<span class="params">imgEl</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(imgEl);</span><br><span class="line">  <span class="keyword">const</span> canvas = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line">  <span class="comment">// naturalWidth返回图像的原始尺寸</span></span><br><span class="line">  canvas.<span class="property">width</span> = imgEl.<span class="property">naturalWidth</span>;</span><br><span class="line">  canvas.<span class="property">height</span> = imgEl.<span class="property">naturalHeight</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> ctx = canvas.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line">  ctx.<span class="title function_">drawImage</span>(imgEl, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> canvas.<span class="title function_">toDataURL</span>(<span class="string">&#x27;image/jpeg&#x27;</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// dataURL to Buffer</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">parseDataURL</span> = (<span class="params">dataURL</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> matches = dataURL.<span class="title function_">match</span>(<span class="regexp">/^data:(.+);base64,(.+)$/</span>);</span><br><span class="line">  <span class="keyword">if</span> (matches.<span class="property">length</span> !== <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Could not parse data URL.&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">mime</span>: matches[<span class="number">1</span>],</span><br><span class="line">    <span class="attr">buffer</span>: <span class="title class_">Buffer</span>.<span class="title function_">from</span>(matches[<span class="number">2</span>], <span class="string">&#x27;base64&#x27;</span>)</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">dwImage</span> = <span class="keyword">async</span> (<span class="params">elementHandle, page, path</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> dataURL = <span class="keyword">await</span> page.evaluate(getDataURLFromImg, elementHandle)</span><br><span class="line">  <span class="keyword">const</span> &#123;</span><br><span class="line">    buffer</span><br><span class="line">  &#125; = <span class="title function_">parseDataURL</span>(dataURL);</span><br><span class="line">  fs.<span class="title function_">writeFileSync</span>(path, buffer, <span class="string">&#x27;base64&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">devtools</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">args</span>: [</span><br><span class="line">      <span class="string">&#x27;--proxy-server=&quot;direct://&quot;&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;--proxy-bypass-list=*&#x27;</span>,</span><br><span class="line">      <span class="comment">// img标签可以跨域,但是canvas不行.</span></span><br><span class="line">      <span class="comment">//关闭跨域限制</span></span><br><span class="line">      <span class="string">&#x27;-–disable-web-security&#x27;</span>,</span><br><span class="line">    ]</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">&#x27;https://www.baidu.com/&#x27;</span>;</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(url);</span><br><span class="line">  <span class="comment">// 获取logo的src地址</span></span><br><span class="line">  <span class="keyword">const</span> imgElHandle = <span class="keyword">await</span> page.$(<span class="string">&#x27;#lg img&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">dwImage</span>(imgElHandle, page, <span class="string">&#x27;./logo.jpg&#x27;</span>);</span><br><span class="line">  browser.<span class="title function_">close</span>();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://intoli.com/blog/saving-images/">参考</a></p>
+<p>方法2的一些注意事项:<br />
+1 canvas不支持跨域<br />
+虽然可以用drawImage加载跨域的图像, 但用toDataURL导出dataURL时会报错: Tainted canvases may not be exported.<br />
+需要在启动browser时允许跨域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">  <span class="attr">args</span>: [</span><br><span class="line">    <span class="string">&#x27;-–disable-web-security&#x27;</span>,</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果服务器端允许,也可以通过配置img的crossorigin属性来支持跨域.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">imgEl.<span class="title function_">setAttribute</span>(<span class="string">&#x27;crossorigin&#x27;</span>, <span class="string">&#x27;Anonymous&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/CORS_settings_attributes">MDN CORS settings attributes</a></p>
+<p>2 toDataURL导出图像的默认格式为png<br />
+调用toDataURL时,如果不传入第一个参数,则默认导出格式为&quot;image/png&quot;,这可能会导致图片变大.<br />
+如果不需要导出png,则可以设置为jpg/webp</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">canvas.<span class="title function_">toDataURL</span>(<span class="string">&#x27;image/jpeg&#x27;</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL">MDN toDataUR</a></p>
+<p>3 获取图像的原始大小<br />
+img.width/height获取到的是img标签的大小,可用HTML5新增的naturalWidth和naturalHeight获取img图像的原始大小.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">canvas.<span class="property">width</span> = imgEl.<span class="property">naturalWidth</span>;</span><br><span class="line">canvas.<span class="property">height</span> = imgEl.<span class="property">naturalHeight</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="chrome-启动参数"><a class="markdownIt-Anchor" href="#chrome-启动参数"></a> Chrome 启动参数</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--disable-web-security</td>
+<td>禁用同源策略(允许跨域)</td>
+</tr>
+<tr>
+<td>--proxy-server=127.0.0.1:1080</td>
+<td>设置代理</td>
+</tr>
+<tr>
+<td>--proxy-server='direct://'</td>
+<td>禁用代理</td>
+</tr>
+<tr>
+<td>--proxy-bypass-list=*</td>
+<td>不走代理的链接</td>
+</tr>
+<tr>
+<td>--no-sandbox</td>
+<td>禁用沙箱</td>
+</tr>
+<tr>
+<td>--disable-gpu</td>
+<td>禁用GUP</td>
+</tr>
+<tr>
+<td>--ignore-certificate-errors</td>
+<td>忽略证书错误</td>
+</tr>
+<tr>
+<td>--auto-open-devtools-for-tabs</td>
+<td>自动打开调试工具</td>
+</tr>
+<tr>
+<td>--remote-debugging-port=9222</td>
+<td>开启远程调试</td>
+</tr>
+<tr>
+<td>--disable-translate</td>
+<td>禁用翻译提示</td>
+</tr>
+<tr>
+<td>--disable-background-timer-throttling</td>
+<td>禁用后台标签性能限制</td>
+</tr>
+<tr>
+<td>--disable-site-isolation-trials</td>
+<td>禁用网站隔离</td>
+</tr>
+<tr>
+<td>--disable-renderer-backgrounding</td>
+<td>禁止降低后台网页进程的渲染优先级</td>
+</tr>
+<tr>
+<td>--headless</td>
+<td>无头模式启动</td>
+</tr>
+<tr>
+<td>--user-data-dir=./karma-chrome</td>
+<td>设置用户资料的储存位置</td>
+</tr>
+<tr>
+<td>window-size=1920,1080</td>
+<td>窗口尺寸,相当于设置window.outerWidth/outerHeight </br>注: chromium的窗口分辨率存在限制,在非无头模式下,不能大于浏览器实际分辨率</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>更多配置参数详解 <a target="_blank" rel="noopener" href="https://peter.sh/experiments/chromium-command-line-switches/#proxy-bypass-list">List of Chromium Command Line Switches « Peter Beverloo</a></p>
+<h2 id="error"><a class="markdownIt-Anchor" href="#error"></a> error</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">UnhandledPromiseRejectionWarning</span>: <span class="title class_">TimeoutError</span>: <span class="title class_">Navigation</span> <span class="title class_">Timeout</span> <span class="title class_">Exceeded</span>: 30000ms exceeded</span><br></pre></td></tr></table></figure>
+<p>headless参数为true时可能会触发该bug</p>
+<p>例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">puppeteer.launch(&#123;headless: true&#125;)</span><br><span class="line">// or headless的默认值就是true</span><br><span class="line">puppeteer.launch()</span><br></pre></td></tr></table></figure>
+<p>解决办法,如果操作系统是windows7, 则使用如下参数创建 browser:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">  <span class="attr">headless</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">args</span>: [</span><br><span class="line">    <span class="comment">// 不使用任何代理</span></span><br><span class="line">    <span class="string">&#x27;--proxy-server=&quot;direct://&quot;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;--proxy-bypass-list=*&#x27;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/puppeteer/issues/2391#issuecomment-382055246">Headless mode on Windows 7 causes timeout, never completes · Issue #2391 · GoogleChrome/puppeteer · GitHub</a></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://zhaoqize.github.io/puppeteer-api-zh_CN/#?product=Puppeteer&amp;version=v1.15.0&amp;show=outline">官方文档</a><br />
+<a target="_blank" rel="noopener" href="https://zhaoqize.github.io/puppeteer-api-zh_CN/">中文文档</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E4%B8%8D%E5%AE%9A%E5%AE%BD%E5%85%83%E7%B4%A0%E7%9A%84%E5%AE%BD%E5%BA%A6%E8%AE%A1%E7%AE%97/">&lt;  不定宽元素的宽度计算</a>
+      
+      
+        <a class="next" href="/article/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/">函数声明与函数表达式  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#document"><span class="toc-text"> document</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#documenturl"><span class="toc-text"> document.URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#documentdocumenturi"><span class="toc-text"> document.documentURI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nodebaseuri"><span class="toc-text"> node.baseURI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#url-documenturi-baseuri-locationhref-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> URL documentURI baseURI location.href 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#documentdomain"><span class="toc-text"> document.domain</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windowlocation"><span class="toc-text"> window.location</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#locationhref"><span class="toc-text"> location.href</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationorigin"><span class="toc-text"> location.origin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationprotocol"><span class="toc-text"> location.protocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationhost"><span class="toc-text"> location.host</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationhostname"><span class="toc-text"> location.hostname</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationport"><span class="toc-text"> location.port</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationpathname"><span class="toc-text"> location.pathname</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationhash"><span class="toc-text"> location.hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationsearch"><span class="toc-text"> location.search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationassign"><span class="toc-text"> location.assign()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationreplace"><span class="toc-text"> location.replace()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationreload"><span class="toc-text"> location.reload()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locationancestororigins"><span class="toc-text"> location.ancestorOrigins</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#url-%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text"> URL 的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">URL</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-03-28T16:00:00.000Z">
+            2020-03-29
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="document"><a class="markdownIt-Anchor" href="#document"></a> document</h2>
+<h3 id="documenturl"><a class="markdownIt-Anchor" href="#documenturl"></a> document.URL</h3>
+<p>返回当前文档的 URL 地址,只读.<br />
+<s>只能在 HTML 文档中使用.</s></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/URL">Document.URL - Web APIs | MDN</a></p>
+<h3 id="documentdocumenturi"><a class="markdownIt-Anchor" href="#documentdocumenturi"></a> document.documentURI</h3>
+<p>返回当前文档的 URL 地址,只读.<br />
+在 DOM3 规范中定义为可写, DOM4 改为只读.<br />
+<s>没有文档类型限制,可用于任何文档.</s></p>
+<p>IE 不支持此属性</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/documentURI">Document.documentURI - Web APIs | MDN</a></p>
+<span id="more"></span>
+<h3 id="nodebaseuri"><a class="markdownIt-Anchor" href="#nodebaseuri"></a> node.baseURI</h3>
+<p>返回当前元素所在文档的 URL 地址,只读.<br />
+可用于任何 Dom 元素.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;div&quot;</span>).<span class="property">baseURI</span>; <span class="comment">// http://127.0.0.1/index.html</span></span><br></pre></td></tr></table></figure>
+<p>该属性通常等于 document.location.href,受 &lt;base&gt; 元素影响.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;htttp://example.com&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="property">location</span>.<span class="property">href</span>); <span class="comment">// http://127.0.0.1/index.html</span></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="property">baseURI</span>); <span class="comment">// htttp://example.com</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>IE 不支持此属性</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Node/baseURI">Node.baseURI - Web APIs | MDN</a></p>
+<h3 id="url-documenturi-baseuri-locationhref-的区别"><a class="markdownIt-Anchor" href="#url-documenturi-baseuri-locationhref-的区别"></a> URL documentURI baseURI location.href 的区别</h3>
+<p>通常以下四者的返回值相同,都返回字符串格式的文档地址:</p>
+<ul>
+<li>document.URL</li>
+<li>document.documentURI</li>
+<li>window.location.href</li>
+<li>node.baseURI</li>
+</ul>
+<p>四者的区别如下:</p>
+<p>1 只有 document 拥有 URL/location/documentURI 属性,而 baseURI 可用于任何 Dom 元素.</p>
+<p>2 URL documentURI baseURI 三者为只读属性, 不能修改.而 location.href 可以被修改.</p>
+<p>3 node.baseURI 受 base 元素的 href 值影响, 而另外三者不受影响.</p>
+<p>4 关于 document.URL 和 document.documentURI 的区别.<br />
+很多文档都提到 URL 只能用于 HTML 文档, 而 document.documentURI 可用于任意文档.<br />
+但没有找到任何可正常运行的相关示例.例如下面这个例子,在 chrome 中无论是 URL 还是 documentURI 都能正常工作.<br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/19770749/some-cases-when-document-documenturi-is-available-but-not-document-url">html - Some cases when document.documentURI is available but not document.URL - Stack Overflow</a></p>
+<p>5 document.URL 属于比较老的 api, 作为代替应该尽量使用 window.location.href 而非 document.URL.</p>
+<h3 id="documentdomain"><a class="markdownIt-Anchor" href="#documentdomain"></a> document.domain</h3>
+<p>获取/设置当前文档 URL 的 domain 部分.<br />
+通常情况下等于 document.location.hostname. ?<br />
+更改 document.domain 值不会更新文档的 URL.</p>
+<p>设置 document.domain 时有规则限制.<br />
+可以更改子域的 domain 值为父域, 但不能更改父域的 domain 值为子域.</p>
+<p>修改子域为父域,成功.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">domain</span>; <span class="comment">// &quot;sub.test.t&quot;</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">domain</span> = <span class="string">&quot;test.t&quot;</span>; <span class="comment">// test.t</span></span><br></pre></td></tr></table></figure>
+<p>修改父域为子域, 报错.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">domain</span>; <span class="comment">// &quot;test.t&quot;</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">domain</span> = <span class="string">&quot;sub.test.t&quot;</span>;</span><br><span class="line"><span class="comment">// DOMException: Failed to set the &#x27;domain&#x27; property on &#x27;Document&#x27;: &#x27;sub.test.t&#x27; is not a suffix of &#x27;test.t&#x27;.</span></span><br></pre></td></tr></table></figure>
+<p>也不能修改 domain 的顶级域名.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">domain</span>; <span class="comment">// &quot;test.t&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">domain</span> = <span class="string">&quot;test.org&quot;</span>;</span><br><span class="line"><span class="comment">// OMException: Failed to set the &#x27;domain&#x27; property on &#x27;Document&#x27;: &#x27;test.org&#x27; is not a suffix of &#x27;test.t&#x27;.</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">domain</span> = <span class="string">&quot;org&quot;</span>;</span><br><span class="line"><span class="comment">// OMException: Failed to set the &#x27;domain&#x27; property on &#x27;Document&#x27;: &#x27;org&#x27; is not a suffix of &#x27;test.t&#x27;.</span></span><br></pre></td></tr></table></figure>
+<p>document.domain 可用于绕过同源策略, 解除跨域操作 iframe 的限制.<br />
+如下是在 test.t/index.html 中获取 iframe(sub.test.t/foo.html) 内 window.foo 属性的例子:</p>
+<p>test.t/index.html 的代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;http://sub.test.t:5500/foo.html&quot;</span> <span class="attr">frameborder</span>=<span class="string">&quot;0&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="property">domain</span>); <span class="comment">// &quot;test.t&quot;</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 注意: 两边都需要手动设置 domain 为相同的值, 否则会报错 DOMException: Blocked a frame with origin.</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 即便 当前的 domain 默认值就是 &quot;test.t&quot;</span></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="property">domain</span> = <span class="string">&quot;test.t&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 注意: 该 script 会先于 iframe 中的 script 执行</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 因此把后续操作放在 onload 事件里, 等待 iframe 加载后在执行下面的 js 代码</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 否则  console.log(iframeWin.foo); 的输出值会是 undefined</span></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> iframeEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;iframe&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> iframeWin = iframeEl.<span class="property">contentWindow</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(iframeWin.<span class="property">foo</span>); <span class="comment">// bar</span></span></span><br><span class="line"><span class="language-javascript">  &#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>sub.test.t/foo.html 的代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  foo page</span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="property">domain</span> = <span class="string">&quot;test.t&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="property">foo</span> = <span class="string">&quot;bar&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="windowlocation"><a class="markdownIt-Anchor" href="#windowlocation"></a> window.location</h2>
+<p>返回 Location 对象, 包含当前文档的 URL 信息.<br />
+可以通过操作 Location 来跳转到目标的 URL.</p>
+<p>除了 window.location 之外, 还有一个类似的属性 document.location,二者都返回相同的对象.<br />
+现代的大部分浏览器都将 document.location 指向 window.location.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">location</span> === location; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>推荐使用 window.location, document.location 的存在属于历史遗留问题.<br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/2431375/11196543">What's the difference between window.location and document.location in JavaScript? - Stack Overflow</a></p>
+<h3 id="locationhref"><a class="markdownIt-Anchor" href="#locationhref"></a> location.href</h3>
+<p>读取/设置当前文档的 URL</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = <span class="string">&quot;http://example.com&quot;</span>;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">location</span> = <span class="string">&quot;http://example.com&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="locationorigin"><a class="markdownIt-Anchor" href="#locationorigin"></a> location.origin</h3>
+<p>返回 Location 对象的 URL origin, 只读.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="property">origin</span>; <span class="comment">// &quot;http://test.t:5500&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="locationprotocol"><a class="markdownIt-Anchor" href="#locationprotocol"></a> location.protocol</h3>
+<p>读取/设置 Location 对象的 URL protocol.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="property">protocol</span>; <span class="comment">// &quot;http:&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="locationhost"><a class="markdownIt-Anchor" href="#locationhost"></a> location.host</h3>
+<p>读取/设置 Location 对象的 URL hostname 和 port</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="property">host</span> <span class="comment">// &quot;test.t:8000&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="locationhostname"><a class="markdownIt-Anchor" href="#locationhostname"></a> location.hostname</h3>
+<p>读取/设置 Location 对象的 主机名称</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="property">hostname</span> <span class="comment">// &quot;test.t:8000&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="locationport"><a class="markdownIt-Anchor" href="#locationport"></a> location.port</h3>
+<p>读取/设置 Location 对象的端口,如果未显示设置端口号.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="property">port</span> <span class="comment">// &quot;test.t:8000&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="locationpathname"><a class="markdownIt-Anchor" href="#locationpathname"></a> location.pathname</h3>
+<p>读取/设置 Location 对象的 URL 路径</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="property">pathname</span> <span class="comment">// &quot;/index.html&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="locationhash"><a class="markdownIt-Anchor" href="#locationhash"></a> location.hash</h3>
+<p>获取/设置文档 URL 的 fragment identifier(片段标识符,由 # 号开头的一组字符)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">location</span>.<span class="property">href</span>; <span class="comment">// &quot;http://test.t/index.html#foo&quot;</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">location</span>.<span class="property">hash</span>; <span class="comment">// &quot;#foo&quot;</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fragment_identifier">Fragment_identifier</a></p>
+<h3 id="locationsearch"><a class="markdownIt-Anchor" href="#locationsearch"></a> location.search</h3>
+<p>获取/设置文档 URL 的 query string (查询字符串,由 ? 号开头的一组字符)</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Query_string">Query_string</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="property">href</span>; <span class="comment">// &quot;http://test.t/index.html?foo=bar&quot;</span></span><br><span class="line">location.<span class="property">search</span>; <span class="comment">// &quot;?foo=bar&quot;</span></span><br></pre></td></tr></table></figure>
+<p>如果不需要支持 IE, 可以通过 URLSearchParams 来解析 query string.</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams">URLSearchParams</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(location.<span class="property">href</span>); <span class="comment">// &quot;http://test.t/index.html?a=1&quot;</span></span><br><span class="line"><span class="keyword">const</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(location.<span class="property">search</span>);</span><br><span class="line"><span class="comment">// 获取</span></span><br><span class="line">params.<span class="title function_">get</span>(<span class="string">&quot;a&quot;</span>); <span class="comment">// &quot;1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 新增</span></span><br><span class="line"><span class="comment">// URLSearchParams 不同于 Object, 其允许用 append 添加多个相同的 key</span></span><br><span class="line">params.<span class="title function_">append</span>(<span class="string">&quot;b&quot;</span>, <span class="number">2</span>);</span><br><span class="line">params.<span class="title function_">append</span>(<span class="string">&quot;b&quot;</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 转字符串, 可用于 URL</span></span><br><span class="line"><span class="comment">// console.log(params.toString()) // a=1&amp;b=2&amp;b=3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有相同 key 的值</span></span><br><span class="line">params.<span class="title function_">getAll</span>(<span class="string">&quot;b&quot;</span>); <span class="comment">// [&quot;2&quot;, &quot;3&quot;]</span></span><br><span class="line">params.<span class="title function_">get</span>(<span class="string">&quot;b&quot;</span>); <span class="comment">// &quot;2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改</span></span><br><span class="line"><span class="comment">// 使用 set 修改键值, 如果不存在对应的键, 则会新增一个对应的键值.</span></span><br><span class="line">params.<span class="title function_">set</span>(<span class="string">&quot;c&quot;</span>, <span class="number">3</span>);</span><br><span class="line">params.<span class="title function_">getAll</span>(<span class="string">&quot;c&quot;</span>); <span class="comment">// [&quot;3&quot;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断是否存在对应的 key</span></span><br><span class="line">params.<span class="title function_">has</span>(<span class="string">&quot;c&quot;</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line">params.<span class="title function_">delete</span>(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">params.<span class="title function_">toString</span>(); <span class="comment">// &quot;a=1&amp;c=3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有的键值对, 返回一个 iterator</span></span><br><span class="line"><span class="keyword">const</span> entries = params.<span class="title function_">entries</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> entries) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, value); <span class="comment">// a 1 c 3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有的 key, 返回一个 iterator</span></span><br><span class="line"><span class="keyword">const</span> keys = params.<span class="title function_">keys</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> keys) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key); <span class="comment">// a c</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有的 value, 返回一个 iterator</span></span><br><span class="line"><span class="keyword">const</span> values = params.<span class="title function_">values</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> values) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// 1 3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 排序</span></span><br><span class="line">params.<span class="title function_">append</span>(<span class="string">&quot;e&quot;</span>, <span class="number">5</span>);</span><br><span class="line">params.<span class="title function_">append</span>(<span class="string">&quot;d&quot;</span>, <span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(params.<span class="title function_">toString</span>()); <span class="comment">// a=1&amp;c=3&amp;e=5&amp;d=4</span></span><br><span class="line"><span class="comment">// 按 key 排序</span></span><br><span class="line">params.<span class="title function_">sort</span>(); <span class="comment">// a=1&amp;c=3&amp;d=4&amp;e=5</span></span><br></pre></td></tr></table></figure>
+<p>如果需要兼容 IE, 可参考: <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript">url - How can I get query string values in JavaScript? - Stack Overflow</a></p>
+<h3 id="locationassign"><a class="markdownIt-Anchor" href="#locationassign"></a> location.assign()</h3>
+<p>跳转到对应的 URL</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="title function_">assign</span>(<span class="string">&quot;https://example.com&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="locationreplace"><a class="markdownIt-Anchor" href="#locationreplace"></a> location.replace()</h3>
+<p>从历史记录中删除当前页, 并跳转到对应的 URL</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="title function_">assign</span>(<span class="string">&quot;https://example.com&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="locationreload"><a class="markdownIt-Anchor" href="#locationreload"></a> location.reload()</h3>
+<p>重新加载当前的 URL</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="title function_">reload</span>();</span><br></pre></td></tr></table></figure>
+<p>部分浏览器( 如 firefox) 可传入一个布尔值来控制是否从使用浏览器缓存. 为 true 时不使用浏览器缓存, 强制从服务器获取数据.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不使用浏览器缓存</span></span><br><span class="line">location.<span class="title function_">reload</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<p>不过这个参数在 chrome 上似乎是无效的.HTML5 规范文档没有提及.</p>
+<p>该参数在 chromium 中失效的讨论:<br />
+<a target="_blank" rel="noopener" href="https://groups.google.com/a/chromium.org/forum/#!topic/chromium-discuss/T3uNqzSiM0Y">window.location.reload(true) reloads from cache</a></p>
+<h3 id="locationancestororigins"><a class="markdownIt-Anchor" href="#locationancestororigins"></a> location.ancestorOrigins</h3>
+<p>返回一个 DOMStringList 对象, 包含了从 parent browsing context  (父浏览器上下文)一直到 top-level browsing context (最顶层的浏览器上下文)的 origin.<br />
+如果当前的上下文就是 top-level browsing context, 则返回一个空的 DOMStringList.</p>
+<p>下面是一个三层结构的示例, 在 index.html 用 iframe 加载 foo.html.<br />
+再在 foo.html 中 用 iframe 加载 bar.html.<br />
+最后在 bar.html 中调用 location.ancestorOrigins.</p>
+<p>test.t/index.html 的代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;http://sub.test.t/foo.html&quot;</span> <span class="attr">frameborder</span>=<span class="string">&quot;0&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>sub.test.t/foo.html 的代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;http://bar.sub.test.t/bar.html&quot;</span> <span class="attr">frameborder</span>=<span class="string">&quot;0&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>bar.sub.test.t/bar.html 的代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(location.<span class="property">ancestorOrigins</span>); <span class="comment">// &#123;0: &quot;http://sub.test.t&quot;, 1: &quot;http://test.t&quot;&#125;</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="url-的结构"><a class="markdownIt-Anchor" href="#url-的结构"></a> URL 的结构</h2>
+<p><img src="/img/b3cefdc2.PNG" alt="捕获.PNG" /></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/history.html#location">HTML Standard</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/class/">&lt;  class</a>
+      
+      
+        <a class="next" href="/article/Sequelize/">Sequelize  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

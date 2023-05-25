@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scrolling box</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%BB%9A%E5%8A%A8%E6%9D%A1%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="toc-text"> 显示滚动条的条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scroll-area"><span class="toc-text"> scroll area</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%AA%E8%BD%B4%E6%9C%80%E5%A4%A7%E6%BB%9A%E5%8A%A8%E8%B7%9D%E7%A6%BB"><span class="toc-text"> 横轴最大滚动距离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%B5%E8%BD%B4%E6%9C%80%E5%A4%A7%E6%BB%9A%E5%8A%A8%E8%B7%9D%E7%A6%BB"><span class="toc-text"> 纵轴最大滚动距离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6"><span class="toc-text"> 滚动事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scrolltop-scrollleft"><span class="toc-text"> scrollTop scrollLeft</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scrollheight-scrollwidth"><span class="toc-text"> scrollHeight scrollWidth</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scrollintoview"><span class="toc-text"> scrollIntoView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E5%8A%A8%E7%94%BB"><span class="toc-text"> 滚动动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text"> 示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">scrolling box</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-02-08T03:00:00.000Z">
+            2019-02-08
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>当overflow为auto,且内部元素溢出时.元素沿padding edge向被内裁剪,在单侧显示滚动条<br />
+<img src="/img/38428d50.png" alt="48303328-e7d70c80-e543-11e8-8347-f1f7a8d54797.png" /></p>
+<p>一般来说, 元素会从右/下侧被裁剪,具体数值取决于滚动条宽度<br />
+<img src="/img/84b6a7cd.png" alt="206580fb.png" /></p>
+<span id="more"></span>
+<p>如上图,外层元素width为200px,padding为40px,border为10px.内有一宽高为300px的子元素<br />
+<img src="/img/adc48ac9.gif" alt="50391437-f12cd900-077f-11e9-848e-8b8fc392e9a2.gif" /><br />
+设置scroll属性后, 元素被从右/下方裁剪掉17px.并添加滚动条,  滚动条宽度为17px<br />
+被裁剪后,外层元素的实际显示宽度由200px变成了183px.再加上滚动条17px,总宽度跟原来相比没有发生变化</p>
+<h2 id="显示滚动条的条件"><a class="markdownIt-Anchor" href="#显示滚动条的条件"></a> 显示滚动条的条件</h2>
+<p>子元素不超出父元素也可能产生滚动条,具体取决于 内部元素宽度 + 滚动条宽度 是否大于容器宽度<br />
+<img src="/img/2d8f1b78.png" alt="48303337-09d08f00-e544-11e8-8b69-68487f767245.png" /></p>
+<p>如上图,左侧内部子元素宽度为220px,未超出容器宽度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">40 + 220 + 17 = 277 </span><br></pre></td></tr></table></figure>
+<p>右侧内部子元素宽度为224px,加上滚动条宽度,总宽度超出容器1px</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">40 + 224 + 17 = 281</span><br></pre></td></tr></table></figure>
+<h2 id="scroll-area"><a class="markdownIt-Anchor" href="#scroll-area"></a> scroll area</h2>
+<p>scroll area 是scroll box的实际内容区域,有以下4条边</p>
+<ul>
+<li>top edge: 等于scroll box的top padding edge</li>
+<li>left edge: 等于scroll box的left padding edge</li>
+<li>right edge: 等于 max(right padding edge, 位于最右的后代元素的right margin edge)</li>
+<li>bottom edge: 等于 max(bottom padding edge, 位于最下的后代元素的right margin edge)<br />
+<img src="/img/7ada1682.png" alt="48303349-22d94000-e544-11e8-89ed-38731ae001f5.png" /></li>
+</ul>
+<h2 id="横轴最大滚动距离"><a class="markdownIt-Anchor" href="#横轴最大滚动距离"></a> 横轴最大滚动距离</h2>
+<p>scroll area用于scroll box可滚动范围的计算,计算方式为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scroll area width - padding area width</span><br></pre></td></tr></table></figure>
+<p><img src="/img/a20fb0b6.png" alt="48303342-16ed7e00-e544-11e8-90a0-b52dcf8c404e.png" /><br />
+如上图, a到b为最大滚动距离</p>
+<p>元素的scroll area宽度为340px(40px + 300px), padding edge width为263px(40px + 200px + 40px - 17px)<br />
+因此,横向的最大滚动距离为77px(340px - 263px)</p>
+<h2 id="纵轴最大滚动距离"><a class="markdownIt-Anchor" href="#纵轴最大滚动距离"></a> 纵轴最大滚动距离</h2>
+<p>对于padding-bottom属性,chrome和firefox/ie的表现不同.<br />
+firefox/ie会忽略padding-bottom,好象其不存在一样<br />
+而chrome会显示padding-bottom,哪怕内部子元素低于padding-bottom也一样<br />
+<img src="/img/9f620ec5.png" alt="48303355-32f11f80-e544-11e8-9141-059883b72ecb.png" /><br />
+<img src="/img/f263ff8e.png" alt="48303358-37b5d380-e544-11e8-8c92-3832cce0648f.png" /></p>
+<p>chrome的计算方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(40 + 300 + 40) - (280 - 17) = 117</span><br></pre></td></tr></table></figure>
+<p>firefox的计算方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(40 + 300) - (280 - 17) = 77</span><br></pre></td></tr></table></figure>
+<h2 id="滚动事件"><a class="markdownIt-Anchor" href="#滚动事件"></a> 滚动事件</h2>
+<p>1 当元素滚动时,会触发scroll事件<br />
+ie9+</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">container.<span class="title function_">addEventListener</span>(<span class="string">&#x27;scroll&#x27;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> target = event.<span class="property">target</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(target.<span class="property">scrollTop</span>, target.<span class="property">scrollLeft</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>ie5+</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">container.<span class="property">onscroll</span> =  <span class="keyword">function</span> (<span class="params">event</span>) &#123; </span><br><span class="line">    event = event || <span class="variable language_">window</span>.<span class="property">event</span>;   </span><br><span class="line">    <span class="keyword">var</span> target = event.<span class="property">target</span> || event.<span class="property">srcElement</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(target.<span class="property">scrollTop</span>, target.<span class="property">scrollLeft</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>ie5+</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">container.<span class="title function_">attachEvent</span>(<span class="string">&#x27;onscroll&#x27;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> target = event.<span class="property">target</span> || event.<span class="property">srcElement</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(target.<span class="property">scrollTop</span>, target.<span class="property">scrollLeft</span>);</span><br><span class="line">&#125;)     </span><br></pre></td></tr></table></figure>
+<p>注意attachEvent的事件名为onscroll</p>
+<p>2 当元素大小发生变化时,触发滚动事件<br />
+是否触发滚动事件,取决于原滚动条位置是否大于当前的最大滚动距离,计算方式为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">max(0, min(x, element scrolling area width - element padding edge width))    </span><br><span class="line">max(0, min(y, element scrolling area height - element padding edge height))  </span><br></pre></td></tr></table></figure>
+<p><img src="/img/94d62a96.gif" alt="48303376-53b97500-e544-11e8-8a4f-3f5d324a6820.gif" /><br />
+如上图,元素初始width值为200时,最大滚动距离为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(40 + 300) - (40 + 200 + 40 - 17) = 77</span><br></pre></td></tr></table></figure>
+<p>当width值变为201时,最大滚动距离为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(40 + 300) - (40 + 201 + 40 - 17) = 76</span><br></pre></td></tr></table></figure>
+<p>max(0, min(77, 76)) = 76<br />
+如果之前x轴滚动距离为77, 则触发滚动事件</p>
+<p>如果width值由200变为199,则width值为199时的最大滚动距离为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(40 + 300) - (40 + 199 + 40 - 17) = 78</span><br></pre></td></tr></table></figure>
+<p>max(0, min(77, 78)) = 77<br />
+<img src="/img/fd57cf4c.gif" alt="48303377-57e59280-e544-11e8-98df-b98283238bc6.gif" /><br />
+因此,当元素尺寸变小时,不会触发滚动事件</p>
+<p>如果需要在变小时触发滚动事件,可以将子元素大小修改为百分比<br />
+<img src="/img/ba19c244.gif" alt="48303379-63d15480-e544-11e8-9d8d-de1a6d83014e.gif" /><br />
+如上图,滚动元素内子元素大小为200%<br />
+当滚动元素width值为200时,最大滚动距离为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(40 + (200 - 17) * 200%) - (40 + 200 + 40 -17) = 143</span><br></pre></td></tr></table></figure>
+<p>当width值变为199时,最大滚动距离为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(40 + (199 - 17) * 200%) - (40 + 199 + 40 -17) = 142</span><br></pre></td></tr></table></figure>
+<p>max(0, min(143, 142)) = 142<br />
+触发滚动事件</p>
+<h2 id="scrolltop-scrollleft"><a class="markdownIt-Anchor" href="#scrolltop-scrollleft"></a> scrollTop scrollLeft</h2>
+<p>scrollTop可用于获取/设置元素的纵向动距离<br />
+scrollLeft可用于获取/设置元素的横向动距离</p>
+<p>获取滚动距离</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.<span class="property">scrollTop</span></span><br></pre></td></tr></table></figure>
+<p>设置滚动距离</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.<span class="property">scrollTop</span> = <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+<p>scrollTop/scrollLeft接受整数值,当值</p>
+<ul>
+<li>小于0时,设置为0</li>
+<li>当值超出最大滚动值时,设置为最大滚动值</li>
+</ul>
+<p>注 overflow值为hidden也可以滚动</p>
+<h2 id="scrollheight-scrollwidth"><a class="markdownIt-Anchor" href="#scrollheight-scrollwidth"></a> scrollHeight scrollWidth</h2>
+<p>Element.scrollHeight 是一个只读属性,返回内部元素的实际高度<br />
+Element.scrollWidth 是一个只读属性,返回内部元素的实际宽度</p>
+<p>Chrome</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">container.<span class="property">scrollHeight</span> <span class="comment">// 380</span></span><br><span class="line">container.<span class="property">scrollWidth</span> <span class="comment">// 340</span></span><br></pre></td></tr></table></figure>
+<p>Firefox</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">container.<span class="property">scrollHeight</span> <span class="comment">// 340</span></span><br><span class="line">container.<span class="property">scrollWidth</span> <span class="comment">// 340</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/890a38aa.png" alt="48303381-76e42480-e544-11e8-872e-08b09f26406c.png" /></p>
+<p>因为Firefox不计算padding-bottom,因此高度比Chrome小了40px<br />
+而Chorme添加滚动条后会计算padding-bottom,因此滚动时高度是380px,不滚动时高度是340px</p>
+<h2 id="scrollintoview"><a class="markdownIt-Anchor" href="#scrollintoview"></a> scrollIntoView</h2>
+<p>Element.scrollIntoView()用于将元素滚动到页面可视区域内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.<span class="title function_">scrollIntoView</span>(&#123;<span class="attr">behavior</span>: <span class="string">&#x27;smooth&#x27;</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/b9654391.gif" alt="48303387-9a0ed400-e544-11e8-801b-9684dadb0d47.gif" /></p>
+<p>具体参数见 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollIntoView">MDN</a><br />
+兼容性见 <a target="_blank" rel="noopener" href="https://caniuse.com/#search=scrollIntoView">CanIuse</a></p>
+<h2 id="滚动动画"><a class="markdownIt-Anchor" href="#滚动动画"></a> 滚动动画</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 播放纵向滚动条滚动动画</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; 可滚动元素</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; 目标位置</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; 持续时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">scroll</span>(<span class="params">element, scrollTop, duration</span>) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计算当前时间点,滚动条scrollTop位置(easeInOut)</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &#123;<span class="type">Number</span>&#125; t 调用时的时间</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &#123;<span class="type">Number</span>&#125; b 初始位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &#123;<span class="type">Number</span>&#125; c 移动距离</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &#123;<span class="type">Number</span>&#125; d 总时间</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@returns</span> &#123;<span class="type">Number</span>&#125; 滚动条scrollTop高度</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">easeInOut</span>(<span class="params">t, b, c, d</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (t == <span class="number">0</span>) <span class="keyword">return</span> b;</span><br><span class="line">        <span class="keyword">if</span> (t == d) <span class="keyword">return</span> b + c;</span><br><span class="line">        <span class="keyword">if</span> ((t /= d / <span class="number">2</span>) &lt; <span class="number">1</span>) <span class="keyword">return</span> c / <span class="number">2</span> * <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">2</span>, <span class="number">10</span> * (t - <span class="number">1</span>)) + b;</span><br><span class="line">        <span class="keyword">return</span> c / <span class="number">2</span> * (-<span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">2</span>, -<span class="number">10</span> * --t) + <span class="number">2</span>) + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取元素最大可滚动高度</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &#123;<span class="type">Element</span>&#125; element 文档对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@returns</span> &#123;<span class="type">Number</span>&#125; 最大可滚动高度值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getMaxScrollTop</span>(<span class="params">element</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = element.<span class="property">scrollTop</span>;</span><br><span class="line">        element.<span class="property">scrollTop</span> = <span class="number">10000000</span>;</span><br><span class="line">        <span class="keyword">var</span> maxScrollTop = element.<span class="property">scrollTop</span>;</span><br><span class="line">        element.<span class="property">scrollTop</span> = temp;</span><br><span class="line">        <span class="keyword">return</span> maxScrollTop;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> startPosition = element.<span class="property">scrollTop</span>;</span><br><span class="line">    <span class="keyword">var</span> endPosition = scrollTop;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> maxScrollTop = <span class="title function_">getMaxScrollTop</span>(element);</span><br><span class="line">    <span class="keyword">if</span> (scrollTop &gt; maxScrollTop) scrollTop = maxScrollTop;</span><br><span class="line">    <span class="keyword">if</span> (scrollTop &lt; <span class="number">0</span>) scrollTop = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (startPosition === endPosition) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> startTime = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">    <span class="keyword">var</span> endTime = startTime + duration;</span><br><span class="line">    <span class="keyword">var</span> moveDistance = endPosition - startPosition;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">animate</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> currentTime = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">        <span class="keyword">if</span> (currentTime &gt;= endTime) &#123;</span><br><span class="line">            element.<span class="property">scrollTop</span> = endPosition;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> scrollTop = <span class="title function_">easeInOut</span>(currentTime - startTime, startPosition, moveDistance, duration);</span><br><span class="line">        element.<span class="property">scrollTop</span> = scrollTop;</span><br><span class="line">        <span class="built_in">setTimeout</span>(animate, <span class="number">16.6</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">animateByRAF</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> currentTime = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">        <span class="keyword">if</span> (currentTime &gt;= endTime) &#123;</span><br><span class="line">            element.<span class="property">scrollTop</span> = endPosition;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> scrollTop = <span class="title function_">easeInOut</span>(currentTime - startTime, startPosition, moveDistance, duration);</span><br><span class="line">        element.<span class="property">scrollTop</span> = scrollTop;</span><br><span class="line">        <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(animateByRAF);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span>) &#123;</span><br><span class="line">       <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(animateByRAF);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_">animate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">scroll</span>(<span class="variable language_">document</span>.<span class="property">documentElement</span>, <span class="number">1000</span>, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>也可以用jQuery的animate函数实现滚动动画</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;html, body&#x27;</span>).<span class="title function_">animate</span>(&#123;</span><br><span class="line">    <span class="attr">scrollTop</span>: <span class="number">500</span>;,</span><br><span class="line">&#125;, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="示例"><a class="markdownIt-Anchor" href="#示例"></a> 示例</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding-top</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding-left</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">overflow</span>: scroll;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding</span>: <span class="number">40px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">border</span>: <span class="number">10px</span> solid;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background</span>: <span class="number">#ff0</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-clip</span>: content-box;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.child</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.child</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&#x27;data:image/svg+xml,%3Csvg width=\&#x27;6\&#x27; height=\&#x27;6\&#x27; viewBox=\&#x27;0 0 6 6\&#x27; xmlns=\&#x27;http://www.w3.org/2000/svg\&#x27;%3E%3Cg fill=\&#x27;%23ff0000\&#x27; fill-opacity=\&#x27;0.4\&#x27; fill-rule=\&#x27;evenodd\&#x27;%3E%3Cpath d=\&#x27;M5 0h1L0 6V5zM6 5v1H5z\&#x27;/%3E%3C/g%3E%3C/svg%3E&#x27;</span>);</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        ::-webkit-scrollbar &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">17px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">height</span>: <span class="number">17px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background</span>: transparent;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        ::-webkit-scrollbar-thumb &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-color</span>: blue;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        ::-webkit-scrollbar-corner &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;child&quot;</span> <span class="attr">id</span>=<span class="string">&quot;child&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pre</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span> <span class="attr">id</span>=<span class="string">&quot;info&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pre</span> <span class="attr">id</span>=<span class="string">&quot;container-width&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;des-width&quot;</span>&gt;</span>-1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;ins-width&quot;</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript">;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;container&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> child = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;child&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> info = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;info&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> containerWidth = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;container-width&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> insWidth = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;ins-width&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> desWidth = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;des-width&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        info.<span class="property">innerText</span> += <span class="string">&#x27;scrollTop &#x27;</span> + container.<span class="property">scrollTop</span> + <span class="string">&#x27;\n&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        info.<span class="property">innerText</span> += <span class="string">&#x27;scrollLeft &#x27;</span> + container.<span class="property">scrollLeft</span>;</span></span><br><span class="line"><span class="language-javascript">        containerWidth.<span class="property">innerText</span> = container.<span class="property">offsetWidth</span> - <span class="number">100</span>;</span></span><br><span class="line"><span class="language-javascript">        container.<span class="title function_">addEventListener</span>(<span class="string">&#x27;scroll&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> target = event.<span class="property">target</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(target.<span class="property">scrollTop</span>, target.<span class="property">scrollLeft</span>)</span></span><br><span class="line"><span class="language-javascript">            info.<span class="property">innerText</span> = <span class="string">&#x27;&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">            info.<span class="property">innerText</span> += <span class="string">&#x27;scrollTop &#x27;</span> + container.<span class="property">scrollTop</span> + <span class="string">&#x27;\n&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">            info.<span class="property">innerText</span> += <span class="string">&#x27;scrollLeft &#x27;</span> + container.<span class="property">scrollLeft</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">        insWidth.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> width = container.<span class="property">offsetWidth</span> - <span class="number">100</span>;</span></span><br><span class="line"><span class="language-javascript">            width++;</span></span><br><span class="line"><span class="language-javascript">            container.<span class="property">style</span>.<span class="property">width</span> = width + <span class="string">&#x27;px&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">            containerWidth.<span class="property">innerText</span> = width;</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">        desWidth.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> width = container.<span class="property">offsetWidth</span> - <span class="number">100</span>;</span></span><br><span class="line"><span class="language-javascript">            width--;</span></span><br><span class="line"><span class="language-javascript">            container.<span class="property">style</span>.<span class="property">width</span> = width + <span class="string">&#x27;px&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">            containerWidth.<span class="property">innerText</span> = width;</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/TR/cssom-view-1/#scroll-an-element">W3C scroll-an-element</a><br />
+<a target="_blank" rel="noopener" href="https://www.w3.org/TR/cssom-view-1/#scrolling-box">W3C scrolling-box</a><br />
+<a target="_blank" rel="noopener" href="https://blog.crimx.com/2017/07/15/element-onresize/">巧妙监测元素尺寸变化</a>  <br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/13471910/css-applying-padding-to-box-with-scroll-bottom-padding-doesnt-work">css - applying padding to box with scroll, bottom-padding doesn't work<br />
+</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E4%BD%8D%E7%BD%AE_%E5%B0%BA%E5%AF%B8%E7%9A%84%E6%96%B9%E6%B3%95/">&lt;  获取元素位置/尺寸的方法</a>
+      
+      
+        <a class="next" href="/article/this/">this  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

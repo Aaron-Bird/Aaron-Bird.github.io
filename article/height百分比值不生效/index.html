@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>height百分比值不生效</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-text"> 原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text"> 解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">height百分比值不生效</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-02-24T14:00:00.000Z">
+            2019-02-24
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>有时候要给父元素定一个最小高度,然后让子元素与父元素等高.<br />
+往往第一反应是设置min-height和height: 100%,但这么作通常不会生效.</p>
+<p><img src="/img/2c27ab03.PNG" alt="1.PNG" /><br />
+如上图所示,外层容器的高度为min-height: 100px,内部黄色子元素的高度为height: 50%.<br />
+可以观察到,子元素的height: 50%并未生效.</p>
+<span id="more"></span>  
+<p>对应代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;child&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">1px</span> solid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.child</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="原因"><a class="markdownIt-Anchor" href="#原因"></a> 原因</h2>
+<p>先看一下CSS2.1对height百分比值计算的描述:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The percentage is calculated with respect to the height of the generated box&#x27;s containing block. If the height of the containing block is not specified explicitly (i.e., it depends on content height), and this element is not absolutely positioned, the value computes to &#x27;auto&#x27;.</span><br><span class="line"></span><br><span class="line">百分比值相对于父元素的高度计算.</span><br><span class="line">如果没有&quot;明确定义&quot;父元素的高度,并且该元素没有被&quot;绝对定位&quot;,则最终的计算结果为auto.</span><br></pre></td></tr></table></figure>
+<p>关键就在于规范中的&quot;specified explicitly&quot;.<br />
+min/max-height的作用是把元素高度限制在一个范围之内,而非一个具体的值.<br />
+所以,height: 50%没有生效,最终的计算结果是height: auto.</p>
+<h2 id="解决办法"><a class="markdownIt-Anchor" href="#解决办法"></a> 解决办法</h2>
+<p>1 如果要让子元素和父元素等高,则可以给子元素添加min-height: inherit属性.<br />
+注意:是ｍin-height,而非height.<br />
+<img src="/img/6d9bb060.PNG" alt="2.PNG" /></p>
+<p>2 如果子元素和父元素不等高(例如50%),则可以给父元素添加height: 1px来解决.　<br />
+<img src="/img/c35cf574.PNG" alt="3.PNG" /></p>
+<p>这是个糟糕的方法,height: 1px实际上把高度给锁死了.<br />
+当子元素超过min-height时,父元素并不会自动变高.<br />
+既然不能变高,那就没必要给父元素设置min-height了.<br />
+<img src="/img/25e4270a.PNG" alt="4.PNG" /></p>
+<p>3 利用表的特点,为父元素和子元素分别添加display:table和table-cell属性.<br />
+说到table,最常想到的就是display:table + display:table-cell + vertical-align: middle 居中多行文字.<br />
+这里只用了前两个属性, 让子元素自动撑开与父元素等高.<br />
+<img src="/img/2758aad6.PNG" alt="5.PNG" /></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000015396792">css - min-height和height的疑问？ - SegmentFault 思否</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/8468066/child-inside-parent-with-min-height-100-not-inheriting-height/24481020#">css - Child inside parent with min-height: 100% not inheriting height - Stack Overflow</a><br />
+<a target="_blank" rel="noopener" href="http://www.cnblogs.com/rockyren/p/4094425.html">height与min-height的百分比问题和铺满屏幕的布局方法 - 进击的面包君 - 博客园</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/transform%E5%AF%BC%E8%87%B4fixed%E5%A4%B1%E6%95%88/">&lt;  transform导致fixed失效</a>
+      
+      
+        <a class="next" href="/article/JSONP/">JSONP  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

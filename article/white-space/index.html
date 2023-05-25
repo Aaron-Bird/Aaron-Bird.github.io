@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>white-space</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-text"> 属性值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#soft-break-line"><span class="toc-text"> soft break line</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-text"> 示例代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">white-space</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-07-06T16:00:00.000Z">
+            2019-07-07
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>CSS 属性 white-space 用于控制空白字符/换行符的显示方式.</p>
+<h2 id="属性值"><a class="markdownIt-Anchor" href="#属性值"></a> 属性值</h2>
+<p><img src="/img/bc83e6a0.PNG" alt="捕获.PNG" /></p>
+<p>normal(默认值)<br />
+将多个空白字符/换行符合并为单个空白字符(空格).<br />
+当前行放不下时会自动换行, 内容的起始/结束的位置有空白字符时,不会保留这些空白字符.</p>
+<p>空白字符包括空格和制表符.</p>
+<span id="more"></span>
+<p>nowrap<br />
+合并空白字符/换行符.<br />
+不会自动换行,不会保留内容起始/结束位置的空白字符.</p>
+<p>pre<br />
+保留所有的空白字符/换行符.<br />
+不会自动换行,保留内容起始/结束位置的空白字符.<br />
+pre 是 preserve 的缩写.</p>
+<p>pre-line<br />
+自动合并空白字符,保留换行符.<br />
+会自动换行, 不会保留内容起始/结束位置的空白字符.</p>
+<p>pre-wrap<br />
+保留空白字符/换行符.<br />
+会自动换行.当空白字符的长度超出容器时,会将其挂在(hang)行尾,不会自动换行.</p>
+<p><img src="/img/5c7faeed.PNG" alt="捕获.PNG" /></p>
+<p>break-spaces<br />
+CSS3 新增, Chrome76 开始支持该属性.<br />
+类似 pre-wrap,但放不下的空白字符会自动换行.</p>
+<p><img src="/img/58d2c8ef.PNG" alt="捕获.PNG" /></p>
+<p><a target="_blank" rel="noopener" href="https://www.chromestatus.com/feature/4842781306519552">white-space: break-spaces - Chrome Platform Status</a></p>
+<p><img src="/img/42777dd9.PNG" alt="捕获.PNG" /></p>
+<p>合并换行符: normal nowrap<br />
+保留换行符: pre pre-wrap pre-line break-spaces<br />
+合并空白字符: normal nowrap pre-line<br />
+保留空白字符: pre pre-wrap break-spaces<br />
+自动换行: normal pre-wrap pre-line break-spaces<br />
+不会自动换行: nowrap pre<br />
+删除起始/结束的空白字符: normal pre-line nowrap<br />
+保留起始/结束的空白字符: pre pre-wrap break-spaces</p>
+<h2 id="soft-break-line"><a class="markdownIt-Anchor" href="#soft-break-line"></a> soft break line</h2>
+<blockquote>
+<p>When inline-level content is laid out into lines, it is broken across line boxes. Such a break is called a line break. When a line is broken due to explicit line-breaking controls (such as a preserved newline character), or due to the start or end of a block, it is a forced line break. When a line is broken due to content wrapping (i.e. when the UA creates unforced line breaks in order to fit the content within the measure), it is a soft wrap break. The process of breaking inline-level content into lines is called line breaking.<br />
+当 inline 元素内容按行排列时,会从 line box (行框)中的某些位置断开,这种断开称为 <strong>line break</strong>(换行). 当行框因为某些换行控制符(如回车)/块的开始或结束而换行时,称这种换行为 <strong>forced line break</strong>. 当行框因内容而中断换行时(为了让内容不超出容器尺寸),称这种换行为 <strong>soft wrap break</strong>.将 inline 元素内容分行的过程叫 <strong>line breaking</strong>.</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://drafts.csswg.org/css-text-3/#line-breaking">CSS Text Module Level 3</a></p>
+<h2 id="示例代码"><a class="markdownIt-Anchor" href="#示例代码"></a> 示例代码</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;white-space: normal&quot;</span>&gt;</span></span><br><span class="line">  Oh    dear, what nonsense I&#x27;m talking!&#x27;</span><br><span class="line">  Just then her head struck against the roof of the hall: in fact she was                                 now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;white-space: nowrap&quot;</span>&gt;</span></span><br><span class="line">  Oh    dear, what nonsense I&#x27;m talking!&#x27;</span><br><span class="line">  Just then her head struck against the roof of the hall: in fact she was                                 now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;white-space: pre&quot;</span>&gt;</span></span><br><span class="line">  Oh    dear, what nonsense I&#x27;m talking!&#x27;</span><br><span class="line">  Just then her head struck against the roof of the hall: in fact she was                                 now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;white-space: pre-line;&quot;</span>&gt;</span></span><br><span class="line">  Oh    dear, what nonsense I&#x27;m talking!&#x27;</span><br><span class="line">  Just then her head struck against the roof of the hall: in fact she was                                 now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;white-space: pre-wrap;&quot;</span>&gt;</span></span><br><span class="line">  Oh    dear, what nonsense I&#x27;m talking!&#x27;</span><br><span class="line">  Just then her head struck against the roof of the hall: in fact she was                                 now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;white-space: break-spaces;&quot;</span>&gt;</span></span><br><span class="line">  Oh    dear, what nonsense I&#x27;m talking!&#x27;</span><br><span class="line">  Just then her head struck against the roof of the hall: in fact she was                                 now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"><span class="selector-tag">div</span> &#123;<span class="attribute">border</span>: <span class="number">1px</span> solid;&#125;&lt;/<span class="selector-tag">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://drafts.csswg.org/css-text-3/#white-space-property">white-space: CSS Text Module Level 3</a><br />
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space">white-space - CSS: Cascading Style Sheets | MDN</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/Two%20Sum/">&lt;  1. Two Sum</a>
+      
+      
+        <a class="next" href="/article/FunctionDeclarationInstantiation/">FunctionDeclarationInstantiation  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

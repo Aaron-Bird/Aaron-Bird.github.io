@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>child_process</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#child_processspawn"><span class="toc-text"> child_process.spawn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#child_processexec"><span class="toc-text"> child_process.exec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#child_processexecfile"><span class="toc-text"> child_process.execFile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#child_processfork"><span class="toc-text"> child_process.fork</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#inspect-%E5%AF%BC%E8%87%B4%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text"> inspect 导致端口被占用的解决办法</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">child_process</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-03-04T16:00:00.000Z">
+            2020-03-05
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Node/">
+              <span>Node</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Node/">
+            <span>Node</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>本文环境:</p>
+<ul>
+<li>windows</li>
+<li>node v12.16.1</li>
+</ul>
+<p>本文使用的模块:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cp = <span class="built_in">require</span>(<span class="string">&quot;child_process&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> iconv = <span class="built_in">require</span>(<span class="string">&quot;iconv-lite&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>child_process 模块提供了 4 种方法创建子进程:</p>
+<ul>
+<li>child_process.spawn</li>
+<li>child_process.execFile</li>
+<li>child_process.exec</li>
+<li>child_process.fork</li>
+</ul>
+<p>除此之外, 还用 3 种同步方法:</p>
+<ul>
+<li>child_process.spawnSync</li>
+<li>child_process.execFileSync</li>
+<li>child_process.execSync</li>
+</ul>
+<span id="more"></span>
+<h2 id="child_processspawn"><a class="markdownIt-Anchor" href="#child_processspawn"></a> child_process.spawn</h2>
+<p>使用 spawn 执行 cmd 命令:<br />
+在 window 下需要使用 iconv.decode 将其输出解码为 gbk, 否则会乱码.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">spawn</span>(<span class="string">&quot;ping&quot;</span>, [<span class="string">&quot;www.baidu.com&quot;</span>]);</span><br><span class="line">child.<span class="property">stdout</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  process.<span class="property">stdout</span>.<span class="title function_">write</span>(iconv.<span class="title function_">decode</span>(data, <span class="string">&quot;gbk&quot;</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/ba771746.PNG" alt="1.PNG" /></p>
+<p>使用 spawn 执行 cmd/bat 脚本文件<br />
+子进程 echo.bat 代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">&quot;bat 启动&quot;</span></span><br></pre></td></tr></table></figure>
+<p>主进程代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// spawn</span></span><br><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">spawn</span>(<span class="string">&quot;cmd.exe&quot;</span>, [<span class="string">&quot;/c&quot;</span>, <span class="string">&quot;echo.bat&quot;</span>]);</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="comment">// const child = cp.spawn(&quot;echo.bat&quot;);</span></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="comment">// 绝对路径</span></span><br><span class="line"><span class="comment">// const child = cp.spawn(path.join(__dirname, &quot;echo.bat&quot;));</span></span><br><span class="line"></span><br><span class="line">child.<span class="property">stdout</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    process.<span class="property">stdout</span>.<span class="title function_">write</span>(iconv.<span class="title function_">decode</span>(data, <span class="string">&#x27;gbk&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;exit&quot;</span>, <span class="function"><span class="params">code</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`退出码 <span class="subst">$&#123;code&#125;</span>`</span>);![<span class="number">3.</span><span class="variable constant_">PNG</span>](<span class="regexp">/img/</span>22a0f95f.<span class="property">PNG</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/41d7052d.PNG" alt="2.PNG" /></p>
+<p>注意: spawn 不支持诸如 ./ 的路径.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">spawn</span>(<span class="string">&quot;./echo.bat&quot;</span>);</span><br><span class="line"></span><br><span class="line">child.<span class="property">stderr</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(iconv.<span class="title function_">decode</span>(data, <span class="string">&quot;gbk&quot;</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/d1209a71.PNG" alt="捕获.PNG" /></p>
+<p>使用 stderr 捕获错误<br />
+子进程 error.bat 代码:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printt www.baidu.com</span><br></pre></td></tr></table></figure>
+<p>主进程代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// spawn</span></span><br><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">spawn</span>(<span class="string">&quot;cmd.exe&quot;</span>, [<span class="string">&quot;/c&quot;</span>, <span class="string">&quot;error.bat&quot;</span>]);</span><br><span class="line"></span><br><span class="line">child.<span class="property">stderr</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stderr: &quot;</span>, iconv.<span class="title function_">decode</span>(data, <span class="string">&quot;gbk&quot;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;exit&quot;</span>, <span class="function"><span class="params">code</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`退出码 <span class="subst">$&#123;code&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/ce42e66a.PNG" alt="4.PNG" /></p>
+<p>正常退出时退出码为 0, 出错退出时退出码为 1.</p>
+<p>使用 spawn 运行 js 文件<br />
+子进程 child.js 的代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;子进程 启动&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>主进程代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">spawn</span>(<span class="string">&quot;node&quot;</span>, [<span class="string">&quot;./child.js&quot;</span>]);</span><br><span class="line">child.<span class="property">stdout</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>(data)); <span class="comment">// 子进程启动</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>让 spawn 支持 ipc 通信<br />
+子进程代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;子进程启动&quot;</span>);</span><br><span class="line"><span class="comment">// 发送消息</span></span><br><span class="line">process.<span class="title function_">send</span>(<span class="string">&quot;foo&quot;</span>);</span><br><span class="line"><span class="comment">// 接收消息</span></span><br><span class="line">process.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="function"><span class="params">message</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;子进程收到消息: &quot;</span>, message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>主进程代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">spawn</span>(<span class="string">&quot;node&quot;</span>, [<span class="string">&quot;./child.js&quot;</span>], &#123;</span><br><span class="line">  <span class="comment">// 建立通信管道</span></span><br><span class="line">  <span class="attr">stdio</span>: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="string">&quot;ipc&quot;</span>],</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 发送消息</span></span><br><span class="line">child.<span class="title function_">send</span>(<span class="string">&quot;bar&quot;</span>);</span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="function"><span class="params">message</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;父进程收到消息: &quot;</span>, message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>输出结果,代码运行完成后不会自动退出.</p>
+<p><img src="/img/211f9fd8.PNG" alt="5.PNG" /></p>
+<p><a target="_blank" rel="noopener" href="http://nodejs.cn/api/child_process.html#child_process_options_stdio">options.stdio | Node.js API 文档</a><br />
+<a target="_blank" rel="noopener" href="https://blog.yasking.org/a/electron-fork-not-running.html">Electron 中使用 fork()函数的坑</a></p>
+<h2 id="child_processexec"><a class="markdownIt-Anchor" href="#child_processexec"></a> child_process.exec</h2>
+<p>child_process.exec 在内部调用 child_process.execFile</p>
+<p>exec 执行 cmd 命令:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">exec</span>(<span class="string">&quot;ping www.baidu.com&quot;</span>, &#123; <span class="attr">encoding</span>: <span class="string">&quot;buffer&quot;</span> &#125;);</span><br><span class="line">child.<span class="property">stdout</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  process.<span class="property">stdout</span>.<span class="title function_">write</span>(<span class="string">`<span class="subst">$&#123;iconv.decode(data, <span class="string">&quot;gbk&quot;</span>)&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意:<br />
+exec 或默认设置 encoding 为 utf-8, 这可能会导致控制台乱码.<br />
+为了避免输出乱码, 需要设置 encoding: 'buffer', 同时用 iconv.decode 解码为 gbk.</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuyaqi1993/article/details/78723797">Node.js 调用 cmd 输出中文乱码_JavaScript_liuyaqi1993 的博客-CSDN 博客</a></p>
+<p>exec 不需要把执行命令的参数拆开来写, 直接用空格分开即可.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp.<span class="title function_">spawn</span>(<span class="string">&quot;ping&quot;</span>, [<span class="string">&quot;www.baidu.com&quot;</span>]);</span><br><span class="line"></span><br><span class="line">cp.<span class="title function_">exec</span>(<span class="string">&quot;ping www.baidu.com&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>输出错误信息:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">exec</span>(<span class="string">&quot;pingt www.baidu.com&quot;</span>, &#123; <span class="attr">encoding</span>: <span class="string">&quot;buffer&quot;</span> &#125;);</span><br><span class="line">child.<span class="property">stderr</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  process.<span class="property">stdout</span>.<span class="title function_">write</span>(<span class="string">`stderr: <span class="subst">$&#123;iconv.decode(data, <span class="string">&quot;gbk&quot;</span>)&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;close&quot;</span>, <span class="function"><span class="params">code</span> =&gt;</span> &#123;</span><br><span class="line">  process.<span class="property">stdout</span>.<span class="title function_">write</span>(<span class="string">`退出码 <span class="subst">$&#123;code&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/0baab902.PNG" alt="6.PNG" /></p>
+<p>exec 方法的第三个参数接收一个回调函数, 这个函数会在子进程运行结束后被调用.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cp.<span class="title function_">exec</span>(</span><br><span class="line">  <span class="string">&quot;ping www.baidu.com&quot;</span>,</span><br><span class="line">  &#123; <span class="attr">encoding</span>: <span class="string">&quot;buffer&quot;</span> &#125;,</span><br><span class="line">  <span class="function">(<span class="params">error, stdout, stderr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`stdout: <span class="subst">$&#123;iconv.decode(stdout, <span class="string">&quot;gbk&quot;</span>)&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>使用 exec 运行 js 文件:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">exec</span>(<span class="string">&quot;node child.js&quot;</span>);</span><br><span class="line">child.<span class="property">stdout</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>exec execFile fork 对于 stdout 和 stderr 接收的数据有大小限制(spawn 没有这个限制) ,可通过 maxBuffer 控制, 默认值为 1024 x 1024.<br />
+超过 maxBuffer 限制会导致如下错误:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">RangeError</span> [<span class="variable constant_">ERR_CHILD_PROCESS_STDIO_MAXBUFFER</span>]: stdout maxBuffer length exceeded</span><br></pre></td></tr></table></figure>
+<p>该错误须通过调用 exec 时传入的回调函数获取, child.stderr 无法抓取到该错误.<br />
+子进程 child.js 内容:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;def&quot;</span>); <span class="comment">// 没有被执行</span></span><br></pre></td></tr></table></figure>
+<p>主进程代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">exec</span>(</span><br><span class="line">  <span class="string">&quot;node child.js&quot;</span>,</span><br><span class="line">  &#123; <span class="attr">maxBuffer</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  <span class="function">(<span class="params">err, stdout, stderr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;callback stdout&quot;</span>, stdout);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;callback stderr&quot;</span>, stderr);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;callback err&quot;</span>, err); <span class="comment">// RangeError</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line">child.<span class="property">stdout</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stdout&quot;</span>, data); <span class="comment">// abc</span></span><br><span class="line">&#125;);</span><br><span class="line">child.<span class="property">stderr</span>.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 没有获取到错误信息</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stderr&quot;</span>, data);</span><br><span class="line">&#125;);</span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;code&quot;</span>, <span class="function"><span class="params">code</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;code&quot;</span>, code); <span class="comment">// null</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/afc92dc6.PNG" alt="7.PNG" /></p>
+<h2 id="child_processexecfile"><a class="markdownIt-Anchor" href="#child_processexecfile"></a> child_process.execFile</h2>
+<p>child_process.execFile 在内部调用 child_process.spawn 方法</p>
+<p>child_process.execFile 类似 child_process.exec, 区别如下:<br />
+1 execFile 不会衍生 shell 进程,效率稍微比 exec 高<br />
+2 execFile 在 windows 下不支持 I/O 重定向和文件通配等行为,例如下列命令 execFile 就无法执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cp.<span class="title function_">execFile</span>(<span class="string">&quot;dir&quot;</span>, &#123; <span class="attr">encoding</span>: <span class="string">&quot;buffer&quot;</span> &#125;, <span class="function">(<span class="params">err, stdout</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(iconv.<span class="title function_">decode</span>(stdout, <span class="string">&quot;gbk&quot;</span>));</span><br><span class="line">&#125;); <span class="comment">// Error: spawn dir ENOENT</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以通过设置 shell: true 使其正常工作</span></span><br><span class="line">cp.<span class="title function_">execFile</span>(<span class="string">&quot;dir&quot;</span>, &#123; <span class="attr">encoding</span>: <span class="string">&quot;buffer&quot;</span>, <span class="attr">shell</span>: <span class="literal">true</span> &#125;, <span class="function">(<span class="params">err, stdout</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(iconv.<span class="title function_">decode</span>(stdout, <span class="string">&quot;gbk&quot;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">cp.<span class="title function_">exec</span>(<span class="string">&quot;dir&quot;</span>, &#123; <span class="attr">encoding</span>: <span class="string">&quot;buffer&quot;</span> &#125;, <span class="function">(<span class="params">err, stdout</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(iconv.<span class="title function_">decode</span>(stdout, <span class="string">&quot;gbk&quot;</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在 windows 环境下没必要使用 execFile</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/46445805/exec-vs-execfile-nodejs">node.js - exec vs execFile nodeJs - Stack Overflow</a></p>
+<h2 id="child_processfork"><a class="markdownIt-Anchor" href="#child_processfork"></a> child_process.fork</h2>
+<p>child_process.exec 方法专门用于生成 node 进程, 在内部调用 child_process.exec 方法.</p>
+<p>子进程 child.js 代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;子进程启动&quot;</span>);</span><br><span class="line"><span class="comment">// 发送消息</span></span><br><span class="line">process.<span class="title function_">send</span>(<span class="string">&quot;foo&quot;</span>);</span><br><span class="line"><span class="comment">// 接收消息</span></span><br><span class="line">process.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="function"><span class="params">message</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;子进程收到消息: &quot;</span>, message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>主进程 index.js 代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">fork</span>(<span class="string">&quot;./child.js&quot;</span>);</span><br><span class="line"><span class="comment">// 发送消息</span></span><br><span class="line">child.<span class="title function_">send</span>(<span class="string">&quot;bar&quot;</span>);</span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="function"><span class="params">message</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;父进程收到消息: &quot;</span>, message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/281d2cfa.PNG" alt="11.PNG" /></p>
+<h3 id="inspect-导致端口被占用的解决办法"><a class="markdownIt-Anchor" href="#inspect-导致端口被占用的解决办法"></a> inspect 导致端口被占用的解决办法</h3>
+<p>使用 fork 时, 子进程会默认使用主进程的 execArgv 参数.当子进程启动时, 主进程的 inspect 已经占用了 9229 端口,使子进程无法启动.</p>
+<p>例如使用如下命令启动 inde.js:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node --inspect index.js</span><br></pre></td></tr></table></figure>
+<p>主进程代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">fork</span>(<span class="string">&quot;./child.js&quot;</span>);</span><br><span class="line"><span class="comment">// 发送消息</span></span><br><span class="line">child.<span class="title function_">send</span>(<span class="string">&quot;bar&quot;</span>);</span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="function"><span class="params">message</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;父进程收到消息: &quot;</span>, message);</span><br><span class="line">&#125;);</span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;exit&quot;</span>, <span class="function"><span class="params">code</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;退出码: &quot;</span>, code));</span><br></pre></td></tr></table></figure>
+<p>端口被占用,无法启动<br />
+<img src="/img/5755a46a.PNG" alt="1.PNG" /></p>
+<p>解决办法 1,更换端口:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">fork</span>(<span class="string">&quot;./child.js&quot;</span>, [], &#123;</span><br><span class="line">  <span class="attr">execArgv</span>: [<span class="string">&quot;--inspect=9555&quot;</span>],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>inspect 的非默认端口需要在 chrome://inspect 页面的 configure 选项中手动添加</p>
+<p>或是覆盖掉原来的 execArgv:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">fork</span>(<span class="string">&quot;./child.js&quot;</span>, [], &#123;</span><br><span class="line">  <span class="attr">execArgv</span>: [],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/16840623/how-to-debug-node-js-child-forked-process">debugging - How to debug Node.JS child forked process? - Stack Overflow</a></p>
+<p>另外测试时发现 --inspect 启动相对较慢, 有些 debugger 似乎被忽略掉了. 最好用 --inspect-brk 代替.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;子进程启动&quot;</span>);</span><br><span class="line"><span class="comment">// 发送消息</span></span><br><span class="line"><span class="keyword">debugger</span>; <span class="comment">// 没有办法在这停下来</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">debugger</span>; <span class="comment">// 这个倒是没有问题</span></span><br><span class="line">&#125;, <span class="number">5000</span>);</span><br></pre></td></tr></table></figure>
+<p>用 --inspect-brk 代替, 保证遇到 debugger 能停下来等待调试.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">fork</span>(<span class="string">&quot;./child.js&quot;</span>, [], &#123;</span><br><span class="line">  <span class="attr">execArgv</span>: [<span class="string">&quot;--inspect-brk=9555&quot;</span>],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>用 ndb 调试多进程比用 inspect 调试好很多. 如果使用 ndb 调试, 务必要保证 execArgv 里没有 --inspect, 否则遇到 debugger 关键字时不会自动停下来.</p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/Sequelize/">&lt;  Sequelize</a>
+      
+      
+        <a class="next" href="/article/puppeteer%20(2)%20%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%89%A7%E8%A1%8C%20Js%20%E4%BB%A3%E7%A0%81/">puppeteer (2) 在页面环境下执行 Js 代码  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

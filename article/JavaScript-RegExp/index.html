@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript 正则表达式</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text"> 创建正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E6%A0%87%E5%BF%97"><span class="toc-text"> 正则标志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%A6%E5%8F%B7"><span class="toc-text"> 正则表达式符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#regexp%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="toc-text"> RegExp对象方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#exec"><span class="toc-text"> exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-text"> test</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="toc-text"> String对象方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#match"><span class="toc-text"> match</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#search"><span class="toc-text"> search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#replace"><span class="toc-text"> replace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#split"><span class="toc-text"> split</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">JavaScript 正则表达式</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-05-28T17:20:00.000Z">
+            2018-05-29
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="创建正则表达式"><a class="markdownIt-Anchor" href="#创建正则表达式"></a> 创建正则表达式</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regExp = <span class="regexp">/a+/</span></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> regExp = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&#x27;a+&#x27;</span>)</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> regExp = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="regexp">/a+/</span>, <span class="string">&#x27;g&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="正则标志"><a class="markdownIt-Anchor" href="#正则标志"></a> 正则标志</h2>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>g</td>
+<td>全局匹配</td>
+</tr>
+<tr>
+<td>y</td>
+<td>粘滞匹配</td>
+</tr>
+<tr>
+<td>i</td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td>m</td>
+<td>匹配多行</td>
+</tr>
+</tbody>
+</table>
+<p>g标志返回多个符合正则的匹配结果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;foo bar&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/\w+/g</span>)<span class="comment">// [ &#x27;foo&#x27;, &#x27;bar&#x27; ]</span></span><br><span class="line"><span class="string">&#x27;foo bar&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/\w+/</span>) <span class="comment">// [ &#x27;foo&#x27;, index: 0, input: &#x27;foo bar&#x27; ]</span></span><br></pre></td></tr></table></figure>
+<p>注意, 未使用g标志时,调用RegExp.exec只返回首次匹配结果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regExp = <span class="regexp">/\w+/g</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="string">&#x27;foo bar&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">// [ &#x27;foo&#x27;, index: 0, input: &#x27;foo bar&#x27; ]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(re.<span class="property">lastIndex</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">// [ &#x27;bar&#x27;, index: 4, input: &#x27;foo bar&#x27; ]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(re.<span class="property">lastIndex</span>) <span class="comment">// 7</span></span><br><span class="line"><span class="comment">// 对比</span></span><br><span class="line">regExp = <span class="regexp">/\w+/</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">// [ &#x27;foo&#x27;, index: 0, input: &#x27;foo bar&#x27; ] </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(re.<span class="property">lastIndex</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">// [ &#x27;foo&#x27;, index: 0, input: &#x27;foo bar&#x27; ] </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(re.<span class="property">lastIndex</span>) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>m标志匹配多行.如果使用m标志,正则表达式中的^和$将匹配每一行的开始与结束(而非整个字符串的开始和结束)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;a\nb\nc&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/^\w$/gm</span>) <span class="comment">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27; ]</span></span><br><span class="line"><span class="string">&#x27;a\nb\nc&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/^\w$/g</span>) <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+<p>y标志仅在正则对象的lastIndex属性所处位置搜索</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">regExp = <span class="regexp">/b/y</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(<span class="string">&#x27;abc&#x27;</span>))</span><br><span class="line">regExp.<span class="property">lastIndex</span> = <span class="number">1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(<span class="string">&#x27;abc&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<p>部分资料称y匹配失败后不会重置lastIndex属性的说法是错的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regExp = <span class="regexp">/\w+/y</span></span><br><span class="line">text = <span class="string">&#x27;foo&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="property">lastIndex</span>) <span class="comment">// 0</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">//  [ &#x27;foo&#x27;, index: 0, input: &#x27;foo bar&#x27; ]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="property">lastIndex</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="title function_">exec</span>(text)) <span class="comment">//  null</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regExp.<span class="property">lastIndex</span>) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<h2 id="正则表达式符号"><a class="markdownIt-Anchor" href="#正则表达式符号"></a> 正则表达式符号</h2>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>匹配</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>匹配开始</td>
+<td></td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配结束</td>
+<td></td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配前一个表达式0次以上</td>
+<td></td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前一个表达式1次以上</td>
+<td></td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配前一个表达式0/1次,跟在* + ? {} 后表非贪婪(默认贪婪)</td>
+<td></td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配单个任意字符,换行符除外</td>
+<td></td>
+</tr>
+<tr>
+<td>()</td>
+<td>捕获括号</td>
+<td></td>
+</tr>
+<tr>
+<td>(?:)</td>
+<td>非捕获括号</td>
+<td></td>
+</tr>
+<tr>
+<td>x(?=y)</td>
+<td>正向肯定查找,x后有y时匹配x</td>
+<td>/a(?=b)/.exec('abc') 　// [ 'a', index: 0, input: 'abc' ]</td>
+</tr>
+<tr>
+<td>x(?!y)</td>
+<td>正向否定查找,x后没有y时匹配x</td>
+<td>/a(?!c)/.exec('ab')  // [ 'a', index: 0, input: 'ab' ]</td>
+</tr>
+<tr>
+<td>(?&lt;=y)x</td>
+<td>反向肯定查找</td>
+<td>/(?&lt;=a)b/.exec('ab') // [ 'b', index: 1, input: 'ab' ]</td>
+</tr>
+<tr>
+<td>(?&lt;!x)</td>
+<td>反向否定查找</td>
+<td>/(?&lt;!c)b/.exec('ab') // [ 'b', index: 1, input: 'ab' ]</td>
+</tr>
+<tr>
+<td>x|y</td>
+<td>匹配x或y</td>
+<td></td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>匹配前一个字符n次</td>
+<td></td>
+</tr>
+<tr>
+<td>{n, m}</td>
+<td>匹配前一个字符[n, m]次</td>
+<td></td>
+</tr>
+<tr>
+<td>{n, }</td>
+<td>匹配前一个字符最少n次</td>
+<td></td>
+</tr>
+<tr>
+<td>[xyz]</td>
+<td>匹配方括号中的任意一个字符.可使用&quot;-&quot;指定一个范围,方括号中的 . 和 * 无特殊意义</td>
+<td>/[a-z]/ /[\u4E00-\u9FFF ]/</td>
+</tr>
+<tr>
+<td>[^xyz]</td>
+<td>匹配未包含在方括号中的字符</td>
+<td>/[^a-z]/</td>
+</tr>
+<tr>
+<td>[\b]</td>
+<td>匹配退格</td>
+<td></td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配词的边界(除大小写字母 下划线 数字外的字符都被认为是边界)</td>
+<td></td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配非单词边界</td>
+<td></td>
+</tr>
+<tr>
+<td>\cX</td>
+<td>?</td>
+<td></td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配数字</td>
+<td></td>
+</tr>
+<tr>
+<td>\D</td>
+<td>c非数字字符</td>
+<td></td>
+</tr>
+<tr>
+<td>\f</td>
+<td>匹配换页符</td>
+<td></td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配换行符</td>
+<td></td>
+</tr>
+<tr>
+<td>\r</td>
+<td>匹配回车符</td>
+<td></td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配空白字符,包括\f \n \r 等</td>
+<td></td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配非空白字符</td>
+<td></td>
+</tr>
+<tr>
+<td>\t</td>
+<td>匹配制表符(Tab)</td>
+<td></td>
+</tr>
+<tr>
+<td>\v</td>
+<td>匹配垂直制表符</td>
+<td></td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配一个字母/数字/下划线</td>
+<td></td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配一个非字母/数字/下划线的字符</td>
+<td></td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配之前第n个子字符串</td>
+<td>/(a)(b)\1/.exec('aba')  // aba</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>匹配NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td>匹配ASCII字符</td>
+<td></td>
+</tr>
+<tr>
+<td>\uhhhh</td>
+<td>匹配unicode字符</td>
+<td>/\u6211/.exec('我们') // 我</td>
+</tr>
+<tr>
+<td>\u{hhhh}</td>
+<td>(设置u标志时)匹配unicode字符</td>
+<td>/\u{6211}/u.exec('我们') // 我</td>
+</tr>
+</tbody>
+</table>
+<h2 id="regexp对象方法"><a class="markdownIt-Anchor" href="#regexp对象方法"></a> RegExp对象方法</h2>
+<h3 id="exec"><a class="markdownIt-Anchor" href="#exec"></a> exec</h3>
+<p>返回数组,包含匹配的字符.未找到匹配则返回null</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/(a)(b)/.<span class="title function_">exec</span>(<span class="string">&#x27;abc&#x27;</span>) </span><br><span class="line"><span class="comment">// [ &#x27;ab&#x27;, &#x27;a&#x27;, &#x27;b&#x27;, index: 0, input: &#x27;abc&#x27; ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="test"><a class="markdownIt-Anchor" href="#test"></a> test</h3>
+<p>判断正则是否匹配某个字符串,返回Boolean</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/(a)(b)/.<span class="title function_">test</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="string对象方法"><a class="markdownIt-Anchor" href="#string对象方法"></a> String对象方法</h2>
+<h3 id="match"><a class="markdownIt-Anchor" href="#match"></a> match</h3>
+<p>同RegExp.exec</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">abc<span class="string">&#x27;.match(/(a)(b)/)</span></span><br><span class="line"><span class="string">// [ &#x27;</span>ab<span class="string">&#x27;, &#x27;</span>a<span class="string">&#x27;, &#x27;</span>b<span class="string">&#x27;, index: 0, input: &#x27;</span>abc<span class="string">&#x27; ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="search"><a class="markdownIt-Anchor" href="#search"></a> search</h3>
+<p>根据正则搜索字符串, 返回匹配到的索引,未找到返回-1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;abc&#x27;</span>.<span class="title function_">search</span>(<span class="regexp">/(a)(b)/</span>)</span><br><span class="line"><span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<h3 id="replace"><a class="markdownIt-Anchor" href="#replace"></a> replace</h3>
+<p>替换字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x27;abc&#x27;.replace(/\w&#123;2&#125;/, &#x27;cd&#x27;)</span><br><span class="line">// cdc</span><br></pre></td></tr></table></figure>
+<p>对于正则中的子字符串,可用 $ + 数字 的格式表示这些子串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 颠倒a和b的位置</span><br><span class="line">&#x27;abc&#x27;.replace(/(a)(b)/, &#x27;$2$1&#x27;)</span><br><span class="line">&#x27;bac&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="split"><a class="markdownIt-Anchor" href="#split"></a> split</h3>
+<p>字符串转数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x27;a.b,c&#x27;.split(/\.|,/) </span><br><span class="line">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27; ]</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">MDN</a><br />
+<a target="_blank" rel="noopener" href="https://regex101.com/">正则测试</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E7%BC%96%E8%AF%91%20Chromium(Windows)/">&lt;  编译 Chromium(Windows)</a>
+      
+      
+        <a class="next" href="/article/JavScript-event/">js事件  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

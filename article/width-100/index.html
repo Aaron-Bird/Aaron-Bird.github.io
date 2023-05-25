@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>width: 100%相对于谁计算</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post hide-toc">
+  <!-- table of content -->
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">width: 100%相对于谁计算</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-11-15T13:53:00.000Z">
+            2017-11-15
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>当元素处于普通状态和拥有属性absolute时,其百分比宽度的计算的参照对象不相同.</p>
+<style type="text/css">
+   .box {
+        width: 150px;
+        height: 150px;
+        background: yellow;
+        border: 10px  dashed black;
+        position:relative;
+        padding:10px;
+    }
+    .child {
+        width: 100%;
+        height: 100%;
+        background:  blue;
+    }
+</style>
+<p>一般情况下,等于父元素宽度</p>
+<div class="el-1 box">
+    <div class="child"></div>
+</div>
+<p>当<br />
+存在属性box-sizing: border-box时,等于父元素宽度减去父元素边框和内边距</p>
+<div class="el-2 box" style="box-sizing: border-box">
+    <div class="child" style="box-sizing: border-box"></div>
+</div>
+<p>当子元素存在属性position:absolute时,等于父元素padding box宽度</p>
+<div class="el-3 box">
+	<div class="child" style="position:absolute;"></div>
+</div>
+<p>box-sizing: border-box同上</p>
+<div class="el-4 box"  style="box-sizing: border-box">
+	<div class="child" style="position:absolute;box-sizing: border-box"></div>
+</div>
+<br>
+<iframe scrolling="no" width="100%" height="300" src="https://jsfiddle.net/AaronBird/xodhx9fb/embedded/result,js,html,css/dark" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E6%B8%85%E9%99%A4inline-black%E5%85%83%E7%B4%A0%E9%97%B4%E7%9A%84%E7%BC%9D%E9%9A%99/">&lt;  清除inline-black元素间的缝隙</a>
+      
+      
+        <a class="next" href="/article/hexo-windows%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/">hexo windows安装  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebGL 着色器</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0"><span class="toc-text"> 参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text"> 数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2"><span class="toc-text"> 数据转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%BB%BA%E5%8F%98%E9%87%8F"><span class="toc-text"> 内建变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#precision%E7%B2%BE%E5%BA%A6"><span class="toc-text"> precision(精度)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uniform%E7%BB%9F%E4%B8%80%E5%80%BC"><span class="toc-text"> uniform(统一值)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#varying"><span class="toc-text"> varying</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text"> 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dot-%E8%AE%A1%E7%AE%97%E4%B8%A4%E5%90%91%E9%87%8F%E7%9A%84%E7%82%B9%E7%A7%AF"><span class="toc-text"> dot 计算两向量的点积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#normalize-%E5%BD%92%E4%B8%80%E5%8C%96"><span class="toc-text"> normalize 归一化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vertex-shaders%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-text"> Vertex shaders(顶点着色器)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fragment-shaders%E7%89%87%E5%85%83%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-text"> Fragment shaders(片元着色器)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#threejs%E5%86%85%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="toc-text"> Three.js内置参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%95%E7%BA%BFnormal"><span class="toc-text"> 法线(normal)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-text"> 调试工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-text"> 附录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-text"> 名词解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text"> 示例</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">WebGL 着色器</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-01-06T00:20:00.000Z">
+            2018-01-06
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript-library/">
+              <span>JavaScript library</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/JavaScript-library/">
+            <span>JavaScript library</span>
+          </a>
+        
+          <a href="/tags/three-js/">
+            <span>three.js</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>着色器是一段跑在GPU中的程序,使用GLSL语言编写(OpenGL Shading Language)<br />
+着色器又分为两种,顶点着色器和片元着色器<br />
+其中顶点点着色器负责计算每个顶点的位置/颜色等信息,片元着色器则用来计算这些顶点间每个片元(像素)的颜色</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://thebookofshaders.com/?lan=ch">The Book of Shaders</a><br />
+<a target="_blank" rel="noopener" href="https://threejs.org/docs/#api/renderers/webgl/WebGLProgram">WebGLProgram threejs.org</a><br />
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/freeblues/p/5742956.html">翻译:非常详细易懂的法线贴图</a><br />
+<a target="_blank" rel="noopener" href="https://github.com/Jam3/jam3-lesson-webgl-shader-threejs">lesson-webgl-shader-threejs</a><br />
+<a target="_blank" rel="noopener" href="https://www.pandaqi.com/Games/9-three-js-complete-glsl-tutorial">Three.js Beginners GLSL Tutorial</a></p>
+<h2 id="参数"><a class="markdownIt-Anchor" href="#参数"></a> 参数</h2>
+<p>varying 从顶点着色器传递变量到片元着色器<br />
+uniform  由js代码传递给顶点/片元着色器的变量,只读<br />
+attribute 由js代码传递给顶点着色器,只读</p>
+<h2 id="数据类型"><a class="markdownIt-Anchor" href="#数据类型"></a> 数据类型</h2>
+<ul>
+<li>int 整数</li>
+<li>float 浮点数</li>
+<li>bool 布尔值(true|false|0|1)</li>
+<li>vec2,vec3,vec4 2,3,4维向量(浮点数)</li>
+<li>ivec2,ivec3,ivec4 2,3,4维向量(整数)</li>
+<li>mat2,mat3,mat4 2X2,3x3,4x4矩阵(浮点数)</li>
+<li>void 无返回值的函数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    int eNum = <span class="number">1</span>;</span><br><span class="line">    float eFNum = <span class="number">1.0</span>;</span><br><span class="line">    bool eBool = <span class="literal">true</span>;</span><br><span class="line">    vec3 eV3 = <span class="title function_">vec2</span>(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>);    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>GLSL不会自动转换数据类型,如下代码会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int eNum = <span class="number">1.0</span>;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">int eNum = <span class="number">1</span>;</span><br><span class="line">float eFNum = eNum;</span><br><span class="line"><span class="comment">// global variable initializers should be constant expressions (uniforms and globals are allowed in global initializers for legacy compatibility)</span></span><br></pre></td></tr></table></figure>
+<h2 id="数据转换"><a class="markdownIt-Anchor" href="#数据转换"></a> 数据转换</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">vec3 v = <span class="title function_">vec3</span>(<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 浮点数向量转整数向量</span></span><br><span class="line">ivec3 iv = <span class="title function_">ivec3</span>(v);</span><br><span class="line"><span class="comment">// 整数向量转浮点数向量</span></span><br><span class="line">vec3 j = <span class="title function_">vec3</span>(ivec3);</span><br><span class="line"><span class="comment">// 转4维向量</span></span><br><span class="line">vec4 v4 = <span class="title function_">vec4</span>(v, <span class="number">1.0</span>); </span><br><span class="line"><span class="comment">// 转2维向量</span></span><br><span class="line">vec2 v2 = <span class="title function_">vec2</span>(v);</span><br><span class="line"><span class="comment">// or </span></span><br><span class="line">vec2 v2 = v.<span class="property">xy</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="内建变量"><a class="markdownIt-Anchor" href="#内建变量"></a> 内建变量</h2>
+<p>gl_FragColor<br />
+gl_FragCoord</p>
+<h2 id="precision精度"><a class="markdownIt-Anchor" href="#precision精度"></a> precision(精度)</h2>
+<p>precision mediump float;<br />
+precision lowp float;<br />
+precision highp float;</p>
+<h2 id="uniform统一值"><a class="markdownIt-Anchor" href="#uniform统一值"></a> uniform(统一值)</h2>
+<p>uniform是连通CPU和GPU的桥梁</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uniform vec3 u_color;</span><br></pre></td></tr></table></figure>
+<p>uniform只读,不可修改<br />
+如下错误示范</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uniform vec3 u_color;</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//l-value required (can&#x27;t modify a uniform &quot;color&quot;)</span></span><br><span class="line">    u_color = <span class="title function_">vec3</span>(<span class="number">1.0</span>,<span class="number">1.0</span>,<span class="number">1.0</span>); </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="varying"><a class="markdownIt-Anchor" href="#varying"></a> varying</h2>
+<h2 id="函数"><a class="markdownIt-Anchor" href="#函数"></a> 函数</h2>
+<h3 id="dot-计算两向量的点积"><a class="markdownIt-Anchor" href="#dot-计算两向量的点积"></a> dot 计算两向量的点积</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vec3 a = <span class="title function_">vec3</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">vec3 b = <span class="title function_">vec3</span>(-<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">float d = <span class="title function_">dot</span>(a, b);</span><br></pre></td></tr></table></figure>
+<h3 id="normalize-归一化"><a class="markdownIt-Anchor" href="#normalize-归一化"></a> normalize 归一化</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vec3 vertex = <span class="title function_">normalize</span>(<span class="title function_">vec3</span>(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="vertex-shaders顶点着色器"><a class="markdownIt-Anchor" href="#vertex-shaders顶点着色器"></a> Vertex shaders(顶点着色器)</h2>
+<p>顶点着色器的作用是把3D数据转换为屏幕上的2D形状,即计算3维空间在2维屏幕上投影的坐标.</p>
+<p>可以把顶点着色器放在html中,然后操作Dom来获取相关代码.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 顶点着色器</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;vs&quot;</span> <span class="attr">type</span>=<span class="string">&quot;x-shader/x-vertex&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 最常用的顶点计算方式</span></span></span><br><span class="line"><span class="language-javascript">    gl_Position = projectionMatrix * modelViewMatrix * <span class="title function_">vec4</span>(position, <span class="number">1.0</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// or</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4( position, 1.0 );</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">// 片段着色器</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;fs&quot;</span> <span class="attr">type</span>=<span class="string">&quot;x-shader/x-vertex&quot;</span>&gt;</span></span><br><span class="line">    gl_FragColor = vec4(1.0)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取顶点着色器</span></span><br><span class="line"><span class="keyword">var</span> vs = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;vs&#x27;</span>).<span class="property">textContent</span>;</span><br><span class="line"><span class="comment">// 获取片段着色器</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;fs&#x27;</span>).<span class="property">textContent</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="fragment-shaders片元着色器"><a class="markdownIt-Anchor" href="#fragment-shaders片元着色器"></a> Fragment shaders(片元着色器)</h2>
+<p>例1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 片元着色器</span></span><br><span class="line">uniform vec3 color;</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    gl_FragColor = <span class="title function_">vec4</span>(color, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="threejs内置参数"><a class="markdownIt-Anchor" href="#threejs内置参数"></a> Three.js内置参数</h2>
+<p>由Geometry和BufferGeometry提供的顶点属性</p>
+<ul>
+<li>attribute vec3 position 顶点在物体中的坐标位置</li>
+<li>attribute vec3 normal 法向量</li>
+<li>attribute vec2 uv uv坐标,可用uv.x和uv.y分别获取顶点的横纵坐标</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> planeGeo = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">PlaneBufferGeometry</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(planeGeo.<span class="property">attributes</span>.<span class="property">normal</span>.<span class="property">array</span>);</span><br><span class="line"><span class="comment">// Float32Array [ 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, … ]</span></span><br><span class="line">planeGeo.<span class="property">attributes</span>.<span class="property">normal</span>.<span class="property">array</span>.<span class="property">length</span>;</span><br><span class="line"><span class="comment">// 12</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> planeGeo = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">PlaneBufferGeometry</span>(<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line"><span class="comment">// position</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(planeGeo.<span class="property">attributes</span>.<span class="property">position</span>.<span class="property">array</span>);</span><br><span class="line"><span class="comment">// Float32Array [ -5, 5, 0, 5, 5, 0, -5, -5, 0, 5, … ]</span></span><br><span class="line"><span class="comment">// normal</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(planeGeo.<span class="property">attributes</span>.<span class="property">normal</span>.<span class="property">array</span>);</span><br><span class="line"><span class="comment">// Float32Array [ 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, … ]</span></span><br><span class="line"><span class="comment">// uv</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(planeGeo.<span class="property">attributes</span>.<span class="property">uv</span>.<span class="property">array</span>);</span><br><span class="line"><span class="comment">// Float32Array [ 0, 1, 1, 1, 0, 0, 1, 0 ]</span></span><br></pre></td></tr></table></figure>
+<p>内置的uniform</p>
+<ul>
+<li>uniform mat3 normalMatrix; 法向矩阵,modelViewMatrix的反转</li>
+<li>uniform mat4 model modelMatrix; 模型空间矩阵</li>
+<li>uniform mat4 viewMatrix; 视图空间矩阵</li>
+<li>uniform mat4 modelViewMatrix; 模型空间矩阵和视图空间矩阵的组合(viewMatrix * modelMatrix)</li>
+<li>uniform mat4 projectionMatrix; 投影矩阵,用于转换3D坐标到2D平面</li>
+<li>uniform vec3 cameraPosition; 镜头在world space中的位置</li>
+</ul>
+<p>也可用uniforms传入自定义的uniform</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">shaderMaterial = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">ShaderMaterial</span>(&#123;</span><br><span class="line">    <span class="attr">uniforms</span>: &#123;</span><br><span class="line">        <span class="attr">color</span>: &#123;</span><br><span class="line">            <span class="attr">type</span>: <span class="string">&#x27;v3&#x27;</span>, <span class="comment">// 数据类型,3维向量</span></span><br><span class="line">            <span class="attr">value</span>: <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">Color</span>(<span class="string">&#x27;#60371b&#x27;</span>), <span class="comment">// 数据值</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">light</span>: &#123;</span><br><span class="line">            <span class="attr">type</span>: <span class="string">&#x27;v3&#x27;</span>,</span><br><span class="line">            <span class="attr">value</span>: <span class="variable language_">this</span>.<span class="property">spotlight</span>.<span class="property">position</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>自己用uniforms属性塞进来的uniform需要声明才能使用<br />
+而内置的uniform不需要这样做,Three.js已经在顶点着色器里声明了.再声明会报错的,例如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script id=<span class="string">&quot;vs&quot;</span> type=<span class="string">&quot;x-shader/x-vertex&quot;</span>&gt;</span><br><span class="line">    uniform mat4 projectionMatrix;</span><br><span class="line">    <span class="comment">// &#x27;projectionMatrix&#x27; : redefinition</span></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>但这些内置的uniform并没有在片元着色器里声明(viewMatrix|cameraPosition除外)<br />
+要用的话需要自己声明一次,或者用varying从顶点着色器传过来</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script id=<span class="string">&quot;fs&quot;</span> type=<span class="string">&quot;x-shader/x-vertex&quot;</span>&gt;</span><br><span class="line">    <span class="comment">// 这个在顶点着色器里会报错,而片元着色器不会.</span></span><br><span class="line">    uniform mat3 normalMatrix;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="法线normal"><a class="markdownIt-Anchor" href="#法线normal"></a> 法线(normal)</h2>
+<p>法线是垂直于平面内某点的一条直线(曲面则为该点的切平面)<br />
+通常用一个向量来表示,称这个向量叫法向量<br />
+<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B3%95%E7%BA%BF">法线 维基百科</a><br />
+法向量通常位于-1,1之间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无论Three.js正方形的大小如何变化,法向量距原点依然在[-1,1]区间内</span></span><br><span class="line"><span class="keyword">var</span> planeGeo = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">BoxBufferGeometry</span>(<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line">planeGeo.<span class="property">attributes</span>.<span class="property">normal</span>.<span class="property">array</span></span><br><span class="line"><span class="comment">// Float32Array(72) [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0...</span></span><br><span class="line"><span class="keyword">var</span> planeGeo = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">BoxBufferGeometry</span>(<span class="number">100</span>,<span class="number">100</span>,<span class="number">10</span>);</span><br><span class="line"><span class="comment">// Float32Array(72) [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0...</span></span><br></pre></td></tr></table></figure>
+<p>可通过归一化将法向量映射到[0,1]间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vec3 vNormal = <span class="title function_">normalize</span>(normalMatrix * normal);</span><br></pre></td></tr></table></figure>
+<p>在WebGL中,法向量用于表示模型顶点的朝向.常被用于计算光照/判断模型某一面的朝向</p>
+<h2 id="调试工具"><a class="markdownIt-Anchor" href="#调试工具"></a> 调试工具</h2>
+<p>firefox自带着色器调试工具,开启方式:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Toolbox option &gt; 勾选: Shader Editor</span><br></pre></td></tr></table></figure>
+<h2 id="附录"><a class="markdownIt-Anchor" href="#附录"></a> 附录</h2>
+<h3 id="名词解释"><a class="markdownIt-Anchor" href="#名词解释"></a> 名词解释</h3>
+<ul>
+<li>
+<p>uv坐标</p>
+</li>
+<li>
+<p>view(eye/camera) space 视图空间<br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/19946652/what-is-world-space-and-eye-space-in-game-development">what is world space,eye space and loadl space?</a></p>
+</li>
+</ul>
+<p>转换顶点坐标到视图空间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">uniform mat4 modelViewMatrix;</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    vec3 vertex = <span class="title function_">vec3</span>(<span class="number">1.0</span>,<span class="number">1.0</span>,<span class="number">1.0</span>);</span><br><span class="line">    vec4 vertexCameraSpace = modelViewMatrix * <span class="title function_">vec4</span>(vertex,<span class="number">1.0</span>);    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意,如果是光源的话不需要计算modelMatrix</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">    vec3 light = <span class="title function_">vec3</span>(<span class="number">1.0</span>,<span class="number">1.0</span>,<span class="number">1.0</span>);</span><br><span class="line">    vec4 lightCameraSpace = viewMatrix * <span class="title function_">vec4</span>(vertex,<span class="number">1.0</span>);    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>点积(又称为点乘/数量积/内积)<br />
+一个向量再另一个向量上的投影<br />
+结果为负时,两个向量方向相反<br />
+结果为0时,两向量互相垂直</li>
+</ul>
+<p>需要注意的是,少个分号(;)也会导致着色器报错</p>
+<h2 id="示例"><a class="markdownIt-Anchor" href="#示例"></a> 示例</h2>
+<p>计算光照</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//顶点着色器</span></span><br><span class="line">varying vec3 vNormal;</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    vNormal = normal;</span><br><span class="line">    gl_Position = projectionMatrix * modelViewMatrix * <span class="title function_">vec4</span>(position, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//片元着色器</span></span><br><span class="line">varying vec3 vNormal;</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">    vec3 color = <span class="title function_">vec3</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>); </span><br><span class="line">    vec3 light = <span class="title function_">normalize</span>(<span class="title function_">vec3</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">    float dProd = <span class="title function_">max</span>(<span class="number">0.0</span>,<span class="title function_">dot</span>(vNormal, light));</span><br><span class="line">    gl_FragColor = <span class="title function_">vec4</span>(color.<span class="property">r</span> * dProd, color.<span class="property">g</span> * dProd, color.<span class="property">b</span> * dProd, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/SASS/">&lt;  SASS</a>
+      
+      
+        <a class="next" href="/article/Three.js%E6%A8%A1%E5%9E%8B%E8%BD%BD%E5%85%A5/">Three.js 模型载入  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

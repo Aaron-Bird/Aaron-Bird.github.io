@@ -1,0 +1,43 @@
+.main > .archives,
+.main > .tag,
+.main > .category {
+  line-height: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.main > .archives .titles,
+.main > .tag .titles,
+.main > .category .titles {
+  align-items: center;
+  display: flex;
+}
+.main > .archives .titles .time,
+.main > .tag .titles .time,
+.main > .category .titles .time {
+  flex: 0 0 auto;
+  text-shadow: 0 1px #fff;
+}
+.main > .archives .titles .title-wrapper,
+.main > .tag .titles .title-wrapper,
+.main > .category .titles .title-wrapper {
+  flex: 1 1 auto;
+  margin-left: 20px;
+}
+.main > .archives .titles .title-wrapper .title-url,
+.main > .tag .titles .title-wrapper .title-url,
+.main > .category .titles .title-wrapper .title-url {
+  overflow: hidden;
+}
+.main > .archives .titles .title-wrapper .title-url .title,
+.main > .tag .titles .title-wrapper .title-url .title,
+.main > .category .titles .title-wrapper .title-url .title {
+  font-size: 1.5rem;
+}
+@media screen and (max-width: 720px) {
+  .main > .archives .titles .title-wrapper {
+    margin-left: 0;
+  }
+  .main > .archives .titles time {
+    display: none;
+  }
+}

@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1071 Greatest Common Divisor of Strings</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-text"> 题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text"> 解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">1071 Greatest Common Divisor of Strings</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-05-10T16:00:00.000Z">
+            2020-05-11
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/leetcode/">
+              <span>leetcode</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/leetcode/">
+            <span>leetcode</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>For strings S and T, we say &quot;T divides S&quot; if and only if S = T + ... + T (T concatenated with itself 1 or more times)</p>
+<p>Return the largest string X such that X divides str1 and X divides str2.</p>
+<span id="more"></span>
+<p>Example 1:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: str1 = &quot;ABCABC&quot;, str2 = &quot;ABC&quot;</span><br><span class="line">Output: &quot;ABC&quot;</span><br><span class="line">Example 2:</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: str1 = &quot;ABABAB&quot;, str2 = &quot;ABAB&quot;</span><br><span class="line">Output: &quot;AB&quot;</span><br><span class="line">Example 3:</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: str1 = &quot;LEET&quot;, str2 = &quot;CODE&quot;</span><br><span class="line">Output: &quot;&quot;</span><br></pre></td></tr></table></figure>
+<p>Note:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;= str1.length &lt;= 1000</span><br><span class="line">1 &lt;= str2.length &lt;= 1000</span><br><span class="line">str1[i] and str2[i] are English uppercase letters.</span><br></pre></td></tr></table></figure>
+<p>对于字符串 S 和 T，只有在 S = T + ... + T（T 与自身连接 1 次或多次）时，我们才认定 “T 能除尽 S”。</p>
+<p>返回最长字符串 X，要求满足 X 能除尽 str1 且 X 能除尽 str2。</p>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<p>先判断是否存在子字符串(以下称为子串) x 能同时除尽 str1 和 str2.<br />
+如果存在子串 x,则最长子串的长度一定是 str1 和 str2 长度的最大公约数.</p>
+<p>如果存在子串 x 能同时除尽 str1 和 str2.<br />
+则 str1 和 str2 一定是 x 的重复序列. str1 + str2 一定等于 str2 + str1.</p>
+<blockquote>
+<p>ABABAB + ABAB == ABAB + ABABAB</p>
+</blockquote>
+<p>否则一定不存在子串 x.例如:</p>
+<blockquote>
+<p>ABABAB + ABA != ABA + ABABAB</p>
+</blockquote>
+<p>当有子串 x 可以同时除尽 str1 和 str2 时, 子串 x 一定满足如下条件:<br />
+(令 xLen 为 x.length, str1Len 和 str2Len 分别为 str1.length str2.length)</p>
+<p>1 子串 x 的长度 xLen 一定是 str1Len 和 str2Len 的公约数, 即 str1Len 和 str2Len 一定是 xLen 的倍数.</p>
+<blockquote>
+<p>str1.length % x.length = 0<br />
+str2.length % x.length = 0</p>
+</blockquote>
+<p>2 根据公约数性质, str1Len 和 str2Len 的公约数一定是 gcd(str1Len, str2Len) (str1Len 和 str2Len 的最大公约数)的约数.<br />
+如果存在子串 x , 则其长度 xLen 一定是 gcd(str1Len, str2Len) 的约数,gcd(str1Len, str2Len) 一定是 xLen 的倍数.</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mi>c</mi><mi>d</mi><mo stretchy="false">(</mo><mi>s</mi><mi>t</mi><mi>r</mi><mn>1</mn><mi>L</mi><mi>e</mi><mi>n</mi><mo separator="true">,</mo><mi>s</mi><mi>t</mi><mi>r</mi><mn>2</mn><mi>L</mi><mi>e</mi><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>k</mi><mo>⋅</mo><mi>x</mi><mi>L</mi><mi>e</mi><mi>n</mi><mo stretchy="false">(</mo><mi>k</mi><mo>&gt;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">gcd(str1Len, str2Len) = k \cdot xLen (k &gt; 0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">c</span><span class="mord mathdefault">d</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord">1</span><span class="mord mathdefault">L</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord">2</span><span class="mord mathdefault">L</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mord mathdefault">L</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></p>
+</blockquote>
+<p>(令 xg 为 str1 和 str2 中长度为 gcd(str1Len, str2Len) 的子串. xgLen 为 xg.length)<br />
+因为 xg 是 x 的倍数, 且 xgLen 是 str1Len 和 str2Len 的最大公约数.<br />
+所以 xg 一定是可以同时除尽 str1 和 str2 的最长字串.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">str1</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">str2</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">string</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> gcd = <span class="keyword">function</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a , b) &#123;</span><br><span class="line">        [a, b] = [b, a]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(b &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        [a, b] = [b, a % b];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> gcdOfStrings = <span class="keyword">function</span>(<span class="params">str1, str2</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (str1 + str2 !== str2 + str1) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str1.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="title function_">gcd</span>(str1.<span class="property">length</span>, str2.<span class="property">length</span>));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Greatest_common_divisor#properties">维基百科 最大公约数</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/118%20Pascal's%20Triangle/">&lt;  118 Pascal&#39;s Triangle</a>
+      
+      
+        <a class="next" href="/article/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">RSA加密算法  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SASS</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text"> 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scsssass%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> SCSS&#x2F;SASS的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95scss"><span class="toc-text"> 常用语法(SCSS)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-text"> 变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97"><span class="toc-text"> 嵌套</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B6%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text"> 父选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5scsssass%E6%96%87%E4%BB%B6"><span class="toc-text"> 导入SCSS&#x2F;SASS文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E5%99%A8"><span class="toc-text"> 混合器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text"> 继承</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">SASS</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-01-16T07:51:00.000Z">
+            2018-01-16
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/SASS/">
+              <span>SASS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+          <a href="/tags/SASS/">
+            <span>SASS</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.sass.hk/guide/">SCSS快速入门</a><br />
+<a target="_blank" rel="noopener" href="http://sass.bootcss.com/docs/scss-for-sass-users/">SCSS与Sass异同</a></p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>SASS基于Ruby语言,因此需先安装Ruby<br />
+windows下建议使用<a target="_blank" rel="noopener" href="https://rubyinstaller.org/">rubyinstaller</a>安装Ruby</p>
+<p>安装SASS</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install sass</span><br></pre></td></tr></table></figure>
+<p>其他命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 升级sass</span><br><span class="line">gem update sass</span><br><span class="line">// 版本</span><br><span class="line">sass -v</span><br><span class="line">// 帮助</span><br><span class="line">sass -h</span><br></pre></td></tr></table></figure>
+<h2 id="scsssass的区别"><a class="markdownIt-Anchor" href="#scsssass的区别"></a> SCSS/SASS的区别</h2>
+<p>SCSS是SASS 3的语法升级,最大的区别为SASS使用缩进表示层级关系,SCSS则是使用大括号表示层级关系<br />
+SCSS完全兼容CSS3语法,因此建议使用SCSS</p>
+<h2 id="常用语法scss"><a class="markdownIt-Anchor" href="#常用语法scss"></a> 常用语法(SCSS)</h2>
+<h3 id="变量"><a class="markdownIt-Anchor" href="#变量"></a> 变量</h3>
+<p>SCSS以$开头表示一个变量,与CSS属性不同,SASS变量可以定义在声明块外<br />
+SASS变量有作用域.在声明块内定义的SASS不能在声明块外使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$heighlight-<span class="attribute">color</span>: <span class="number">#ff0</span>;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    $<span class="attribute">border-width</span>: <span class="number">1px</span>; </span><br><span class="line">    <span class="attribute">background-color</span>: $heighlight-color;</span><br><span class="line">    // 变量可以作为属性值的一部分</span><br><span class="line">    <span class="attribute">border</span>: $border-width solid black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ff0</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="嵌套"><a class="markdownIt-Anchor" href="#嵌套"></a> 嵌套</h3>
+<p>SCSS样式可以用嵌套的形式表示层级关系</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="selector-tag">div</span> &#123;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#ff0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果想使用子元素/同层元素等选择器(&gt; + ~),只需把选择器写在内部元素前</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    &gt; <span class="selector-tag">div</span> &#123;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#ff0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &gt; <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="父选择器"><a class="markdownIt-Anchor" href="#父选择器"></a> 父选择器</h3>
+<p>父选择器常用于设置伪类/伪元素样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    &amp;<span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#ff0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;<span class="selector-attr">[class|=<span class="string">&quot;en&quot;</span>]</span> &#123;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#f00</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-attr">[class|=<span class="string">&quot;en&quot;</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#f00</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="导入scsssass文件"><a class="markdownIt-Anchor" href="#导入scsssass文件"></a> 导入SCSS/SASS文件</h3>
+<p>和css类似,直接使用@import导入.SCSS/SASS文件.被导入文件名建议以下划线开头(_)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&quot;_header.scss&quot;</span></span><br><span class="line">// 也可以省略后缀</span><br><span class="line">@import <span class="string">&quot;_header&quot;</span></span><br></pre></td></tr></table></figure>
+<p>@import 可以在声明块内使用,sass会自动生成嵌套样式<br />
+假设有文件_test.scss,其内容为</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    backround: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将_test.scss导入到其他样式规则内</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="keyword">@import</span> <span class="string">&quot;_test.scss&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span>&#123;</span><br><span class="line">    backround: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="混合器"><a class="markdownIt-Anchor" href="#混合器"></a> 混合器</h3>
+<p>混合器的作用是复用常用样式<br />
+使用@mixin定义,用@include调用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> title &#123;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="selector-tag">a</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#ff0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="keyword">@include</span> title;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">span</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以向混合器传入参数</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> heighlight-text($link-color) &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ff0</span>;</span><br><span class="line">    <span class="selector-tag">a</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: $link-color;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="keyword">@include</span> heighlight-text($<span class="attribute">link-color</span>: #f00);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#f00</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="继承"><a class="markdownIt-Anchor" href="#继承"></a> 继承</h3>
+<p>使用@extend继承另一个选择器的所有样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.guide</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">1</span>xp solid black;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.selected</span> &#123;</span><br><span class="line">    <span class="keyword">@extend</span> .guide;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f00</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>, <span class="selector-class">.selected</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1</span>xp solid black;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.selected</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#f00</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/JavaScript-string/">&lt;  JavaScript String</a>
+      
+      
+        <a class="next" href="/article/Three.js%E7%9D%80%E8%89%B2%E5%99%A8/">WebGL 着色器  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

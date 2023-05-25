@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTTP 响应状态码</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2xx"><span class="toc-text"> 2xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#200-ok"><span class="toc-text"> 200 OK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#201-created"><span class="toc-text"> 201 created</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#202-accepted"><span class="toc-text"> 202 Accepted</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#203-non-authoritative-information"><span class="toc-text"> 203 Non-Authoritative Information</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#204-no-content"><span class="toc-text"> 204 No Content</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3xx"><span class="toc-text"> 3xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#301-moved-permanently"><span class="toc-text"> 301 Moved Permanently</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#302-found"><span class="toc-text"> 302 Found</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#304-not-modified"><span class="toc-text"> 304 Not Modified</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#307-temporary-redirect"><span class="toc-text"> 307 Temporary Redirect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#308-permanent-redirect"><span class="toc-text"> 308 Permanent Redirect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4xx"><span class="toc-text"> 4xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#401-unauthorized"><span class="toc-text"> 401 Unauthorized</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#403-forbidden"><span class="toc-text"> 403 Forbidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#404-not-found"><span class="toc-text"> 404  Not Found</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#405-method-not-allowed"><span class="toc-text"> 405 Method Not Allowed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#408-request-timeout"><span class="toc-text"> 408 Request Timeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#409-conflict"><span class="toc-text"> 409 Conflict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#410-gone"><span class="toc-text"> 410 Gone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#413-request-entity-too-large"><span class="toc-text"> 413 Request Entity Too Large</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#414-request-uri-too-long"><span class="toc-text"> 414 Request-URI Too Long</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#415-unsupported-media-type"><span class="toc-text"> 415 Unsupported Media Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#418-im-a-teapot"><span class="toc-text"> 418  I&#39;m a teapot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#451-unavailable-for-legal-reasons"><span class="toc-text"> 451  Unavailable For Legal Reasons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5xx"><span class="toc-text"> 5xx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#500-internal-server-error"><span class="toc-text"> 500 Internal Server Error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#503-service-unavailable"><span class="toc-text"> 503 Service Unavailable</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">HTTP 响应状态码</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-08-31T16:00:00.000Z">
+            2019-09-01
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/HTTP/">
+              <span>HTTP</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/HTTP/">
+            <span>HTTP</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>HTTP 响应状态码(HTTP Response Status Code) 用于表示服务器对此次 HTTP 请求的响应结果(服务器是否正常, 是否返回了数据).<br />
+其由是一个3位整数的<strong>状态码</strong>(status-code)及一个<strong>原因短语</strong>(reason-phrase)组成,状态码和原因短语间用空格隔开(例如最常见的表示请求成功的 200 OK).<br />
+<img src="/img/d4760d97.PNG" alt="1234.PNG" /></p>
+<p>通常可以用 XMLHttpRequest.status 属性来获取返回的状态码.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xml.<span class="title function_">open</span>(<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;https://httpstat.us/200&#x27;</span>);</span><br><span class="line">xml.<span class="property">onreadystatechange</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.<span class="property">readyState</span> === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(xml.<span class="property">status</span>) <span class="comment">// 200</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">xml.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+<p>fetch 的话也一样</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://httpstat.us/200&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(response.<span class="property">status</span>))  <span class="comment">// 200</span></span><br></pre></td></tr></table></figure>
+<p>status-code 的第一个数字用于区分响应的类别,一共可分为 5 大类.</p>
+<ul>
+<li>1xx (Informational responses) 信息提示</li>
+<li>2xx (Successful responses) 请求成功</li>
+<li>3xx (Redirects) 重定向</li>
+<li>4xx (Client errors) 客户端错误</li>
+<li>5xx (Server errors) 服务端错误</li>
+</ul>
+<span id="more"></span>
+<h2 id="2xx"><a class="markdownIt-Anchor" href="#2xx"></a> 2xx</h2>
+<h3 id="200-ok"><a class="markdownIt-Anchor" href="#200-ok"></a> 200 OK</h3>
+<p>请求成功,并根据请求类型返回对应的数据.</p>
+<h3 id="201-created"><a class="markdownIt-Anchor" href="#201-created"></a> 201 created</h3>
+<p>请求成功,并根据请求创建了一个或多个资源.</p>
+<h3 id="202-accepted"><a class="markdownIt-Anchor" href="#202-accepted"></a> 202 Accepted</h3>
+<p>请求成功,但还未处理.并可能不会处理该请求.</p>
+<h3 id="203-non-authoritative-information"><a class="markdownIt-Anchor" href="#203-non-authoritative-information"></a> 203 Non-Authoritative Information</h3>
+<p>请求成功, 但原服务器返回的内容(响应码为 200)可能被代理修改.</p>
+<h3 id="204-no-content"><a class="markdownIt-Anchor" href="#204-no-content"></a> 204 No Content</h3>
+<p>请求成功,但没有返回任何数据.该响应码传输的数据量最小,因此常用于统计用户的访问信息.</p>
+<h2 id="3xx"><a class="markdownIt-Anchor" href="#3xx"></a> 3xx</h2>
+<h3 id="301-moved-permanently"><a class="markdownIt-Anchor" href="#301-moved-permanently"></a> 301 Moved Permanently</h3>
+<p>永久重定向,表示请求的资源已经被永久移动到其他地址. 移动后的地址储存在响应头的 Location 首部中.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://httpstat.us/301&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/54d1f201.PNG" alt="301.PNG" /></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://httpstat.us/301&#x27;</span>, &#123;<span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>&#125;)  </span><br></pre></td></tr></table></figure>
+<p>由于历史原因, 用户代理可能会在后续请求时将 POST 请求更改为 GET.</p>
+<p><img src="/img/c33ec42b.PNG" alt="301p.PNG" /></p>
+<h3 id="302-found"><a class="markdownIt-Anchor" href="#302-found"></a> 302 Found</h3>
+<p>临时重定向, 表示请求的资源被临时移动到其他地址.移动后的地址储存在响应头的 Location 首部中.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://httpstat.us/302&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/c6da3b2b.PNG" alt="302.PNG" /></p>
+<p>和301一样由于历史原因, 用户代理可能会在后续请求时将 POST 请求更改为 GET.</p>
+<h3 id="304-not-modified"><a class="markdownIt-Anchor" href="#304-not-modified"></a> 304 Not Modified</h3>
+<p>资源未更新.</p>
+<p>当服务器返回的响应头中带有 If-None-Match 或 If-Modified-Since 首部时, 浏览器会根据这两个首部的字段值来判断用户所请求的资源是否有更新.</p>
+<p>如果资源发生了变化,则返回 200 状态码和对应的资源内容.<br />
+而资源没有更新时,仅返回 304 状态码,以表示未发生变化.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://aaron-bird.github.io/&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">headers</span>: &#123;</span><br><span class="line">	<span class="string">&#x27;if-modified-since&#x27;</span>: <span class="string">&#x27;Fri, 23 Aug 2019 02:20:54 GMT&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(response.<span class="property">status</span>)) <span class="comment">// 304</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://aaron-bird.github.io/&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">headers</span>: &#123;</span><br><span class="line">	<span class="string">&#x27;if-none-match&#x27;</span>: <span class="string">&#x27;W/&quot;5d5f4d86-8261&quot;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(response.<span class="property">status</span>)) <span class="comment">// 304</span></span><br></pre></td></tr></table></figure>
+<p>If-None-Match/If-Modified-Since 所需的值由服务器生成并发送, 分别储存在响应头的 etag 和 last-modified 字段中. 浏览器会记住这两个值, 并在下一次请求时自动添加到请求头中.</p>
+<p>这四者的对应关系如下:</p>
+<table>
+<thead>
+<tr>
+<th>response</th>
+<th>request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>etag</td>
+<td>if-none-match</td>
+</tr>
+<tr>
+<td>last-modified</td>
+<td>if-modified-since</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/img/a748e323.PNG" alt="304.PNG" /><br />
+一般来讲, 当请求头中同时存在  If-None-Match 和 If-Modified-Since 时, 应优先采用 If-None-Match .(但后端不一定要这样作).</p>
+<h3 id="307-temporary-redirect"><a class="markdownIt-Anchor" href="#307-temporary-redirect"></a> 307 Temporary Redirect</h3>
+<p>同302 临时重定向, 表示请求的资源被临时移动到其他地址.移动后的地址储存在响应头的 Location 首部中.</p>
+<p>区别是明确规定了不允许用户代理在后去请求时将 POST 请求改为 GET 请求.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://httpstat.us/307&#x27;</span>, &#123;<span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>&#125;)  </span><br></pre></td></tr></table></figure>
+<p><img src="/img/baa1a18b.PNG" alt="3011.PNG" /></p>
+<h3 id="308-permanent-redirect"><a class="markdownIt-Anchor" href="#308-permanent-redirect"></a> 308 Permanent Redirect</h3>
+<p>同 301 永久重定向,  表示请求的资源已经被永久移动到其他地址. 移动后的地址储存在响应头的 Location 首部中.</p>
+<p>区别是明确规定了不允许用户代理在后去请求时将 POST 请求改为 GET 请求.</p>
+<h2 id="4xx"><a class="markdownIt-Anchor" href="#4xx"></a> 4xx</h2>
+<h3 id="401-unauthorized"><a class="markdownIt-Anchor" href="#401-unauthorized"></a> 401 Unauthorized</h3>
+<p>需要验证身份(登录)</p>
+<h3 id="403-forbidden"><a class="markdownIt-Anchor" href="#403-forbidden"></a> 403 Forbidden</h3>
+<p>无权限,拒绝服务</p>
+<h3 id="404-not-found"><a class="markdownIt-Anchor" href="#404-not-found"></a> 404  Not Found</h3>
+<p>未找到资源</p>
+<h3 id="405-method-not-allowed"><a class="markdownIt-Anchor" href="#405-method-not-allowed"></a> 405 Method Not Allowed</h3>
+<p>不支持该请求方法. 返回的响应头中会包含一个 Allow 首部, 表示可用的请求方法.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://google.com/search&#x27;</span>, &#123;<span class="attr">method</span>: <span class="string">&#x27;PUT&#x27;</span>&#125;)  </span><br></pre></td></tr></table></figure>
+<p><img src="/img/6af7671c.PNG" alt="405.PNG" /></p>
+<h3 id="408-request-timeout"><a class="markdownIt-Anchor" href="#408-request-timeout"></a> 408 Request Timeout</h3>
+<p>请求超时, 客户端没有在规定的时间内完成数据的发送.</p>
+<h3 id="409-conflict"><a class="markdownIt-Anchor" href="#409-conflict"></a> 409 Conflict</h3>
+<p>请求冲突</p>
+<h3 id="410-gone"><a class="markdownIt-Anchor" href="#410-gone"></a> 410 Gone</h3>
+<p>资源不再可用(以前有现在没了)</p>
+<h3 id="413-request-entity-too-large"><a class="markdownIt-Anchor" href="#413-request-entity-too-large"></a> 413 Request Entity Too Large</h3>
+<p>请求内容过大</p>
+<h3 id="414-request-uri-too-long"><a class="markdownIt-Anchor" href="#414-request-uri-too-long"></a> 414 Request-URI Too Long</h3>
+<p>请求 URI 长度过长</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://github.com/&#x27;</span> + <span class="string">&#x27;&#x27;</span>.<span class="title function_">padEnd</span>(<span class="number">10000</span>, <span class="string">&#x27;g&#x27;</span>))  </span><br></pre></td></tr></table></figure>
+<p><img src="/img/1c0f6632.PNG" alt="1234.PNG" /></p>
+<h3 id="415-unsupported-media-type"><a class="markdownIt-Anchor" href="#415-unsupported-media-type"></a> 415 Unsupported Media Type</h3>
+<p>不支持的媒体类型.例如服务器接收png,但是用户提交了jpg.</p>
+<h3 id="418-im-a-teapot"><a class="markdownIt-Anchor" href="#418-im-a-teapot"></a> 418  I'm a teapot</h3>
+<p>愚人节彩蛋,表示自己是个茶壶而非服务器.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://www.google.com/teapot&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="property">status</span>))  <span class="comment">// 418</span></span><br></pre></td></tr></table></figure>
+<p>谷歌的愚人节彩蛋, 访问 teapot 页面会返回一个茶壶.<br />
+<img src="/img/5a37b796.PNG" alt="418.PNG" /></p>
+<h3 id="451-unavailable-for-legal-reasons"><a class="markdownIt-Anchor" href="#451-unavailable-for-legal-reasons"></a> 451  Unavailable For Legal Reasons</h3>
+<p>因违反法律而无法提供的内容会返回 451 状态码.<br />
+其数字 451 出自小说 &lt;&lt;华摄 451 度&gt;&gt;</p>
+<h2 id="5xx"><a class="markdownIt-Anchor" href="#5xx"></a> 5xx</h2>
+<h3 id="500-internal-server-error"><a class="markdownIt-Anchor" href="#500-internal-server-error"></a> 500 Internal Server Error</h3>
+<p>服务器出错</p>
+<h3 id="503-service-unavailable"><a class="markdownIt-Anchor" href="#503-service-unavailable"></a> 503 Service Unavailable</h3>
+<p>服务器超载或正在维护</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81">https://zh.wikipedia.org/wiki/HTTP状态码</a><br />
+<a target="_blank" rel="noopener" href="https://httpstatuses.com">https://httpstatuses.com</a><br />
+<a target="_blank" rel="noopener" href="https://web.archive.org/web/20190902012017/https://github.com/rccoder/blog/issues/12">说说浏览器端缓存的那点事儿-扑朔迷离的 etag 与 last-modified</a><br />
+<a target="_blank" rel="noopener" href="https://http.cat/">HTTP Cats</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/Mocha/">&lt;  Mocha</a>
+      
+      
+        <a class="next" href="/article/%E5%B8%B8%E7%94%A8%20POST%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">常用 POST 数据类型  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

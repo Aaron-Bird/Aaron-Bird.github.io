@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>event loop</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%B9%B6%E8%A1%8C"><span class="toc-text"> 并发与并行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-stack"><span class="toc-text"> call stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#event-loop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-text"> event loop(事件循环)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task"><span class="toc-text"> task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macrotask%E5%AE%8F%E4%BB%BB%E5%8A%A1"><span class="toc-text"> macrotask(宏任务)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#microtask%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="toc-text"> microtask(微任务)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E7%9A%84"><span class="toc-text"> task 是如何运行的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-text"> 实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">event loop</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-03-16T04:00:00.000Z">
+            2019-03-16
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>JavaScript 支持处理并发事件,其并发模型基于 event loop.<br />
+<img src="/img/8709b91c.jpg" alt="Untitled Diagram (2).jpg" /></p>
+<h2 id="并发与并行"><a class="markdownIt-Anchor" href="#并发与并行"></a> 并发与并行</h2>
+<p>并发和并行是两个不同的概念,很容易被弄混.<br />
+并发(concurrency)指的是<strong>同一时间有能力应对多件事</strong>,而并行(Parallel )指的是<strong>同一时间有能力做多件事</strong>.</p>
+<p>举个例子:<br />
+妈妈一边打小明,一边和老王通电话.妈妈先打一下小明, 然后和老王聊一句.如此交替,这是并发.<br />
+小明的妈妈是个妖怪,长了两个脑袋.一个脑袋骂小明,同时另一个脑袋通电话.这即是并行,也是并发.<br />
+但如果妈妈的两个脑袋同时骂小明,那这就只能是并行了,不是并发.因为骂小明是同一个事件.</p>
+<span id="more"></span>
+<h2 id="call-stack"><a class="markdownIt-Anchor" href="#call-stack"></a> call stack</h2>
+<p>什么是 call stack?维基百科给出的解释是:</p>
+<blockquote>
+<p>调用栈（英语：Call stack，港台称“呼叫堆叠”，英文直接简称为“栈”（the stack））别称有：执行栈（execution stack）、控制栈（control stack）、运行时栈（run-time stack）与机器栈（machine stack），是计算机科学中存储有关正在运行的子程序的消息的栈。有时仅称“栈”，但栈中不一定仅存储子程序消息。几乎所有计算机程序都依赖于调用栈，然而高级语言一般将调用栈的细节隐藏至后台。</p>
+<p>调用栈最经常被用于存放子程序的返回地址。在调用任何子程序时，主程序都必须暂存子程序运行完毕后应该返回到的地址。因此，如果被调用的子程序还要调用其他的子程序，其自身的返回地址就必须存入调用栈，在其自身运行完毕后再行取回。在递归程序中，每一层次递归都必须在调用栈上增加一条地址，因此如果程序出现无限递归（或仅仅是过多的递归层次），调用栈就会产生栈溢出。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A">https://zh.wikipedia.org/wiki/呼叫堆疊</a></p>
+<p>可以注意到, call stack 有很多别称, 例如 stack 或执行栈.<br />
+这很容易引发误解. 因为不同资料对 call stack 的不同叫法, 让读者误以为是不同的东西.</p>
+<p>在 Js 中, call stack 和 <a target="_blank" rel="noopener" href="https://www.ecma-international.org/ecma-262/9.0/index.html#sec-execution-contexts">execution context stack</a>指的是同一个概念.<br />
+Js 引擎将 execution context(执行环境)储存在 execution context stack(执行环境栈)中, 利用 execution context 来储存/查找对应的变量/函数.</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/55140096/is-call-stack-the-same-as-execution-context-stack-in-javascript">Is &quot;Call stack&quot; the same as &quot;Execution context stack&quot; in JavaScript? - Stack Overflow</a></p>
+<h2 id="event-loop事件循环"><a class="markdownIt-Anchor" href="#event-loop事件循环"></a> event loop(事件循环)</h2>
+<p>什么是 event loop?</p>
+<blockquote>
+<p>In computer science, the event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. It works by making a request to some internal or external &quot;event provider&quot; (that generally blocks the request until an event has arrived), and then it calls the relevant event handler (&quot;dispatches the event&quot;).</p>
+<p>在计算机科学中,event loop(又名 message dispatcher, message loop, message pump, run loop)是一个程序结构, 其等待并分发程序中的事件和消息. 其工作原理是向某些内部或外部的&quot;事件生成器&quot;发出请求,然后调用相应的事件处理程序.</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Event_loop">Event loop - Wikipedia</a></p>
+<p>在浏览器中, event loop 是一个循环, 负责检查 task queues(任务队列)是否为空.<br />
+如果 task queue 中有 task(任务),event loop 就取一个出来运行.</p>
+<p>值得注意的是, 浏览器的 event loop 规范由 HTML 标准提供, 而非 ECMAScript.</p>
+<p>在 whatwg 的 HTML 文档中,关于 event loop 的描述如下:</p>
+<blockquote>
+<p>To coordinate events, user interaction, scripts, rendering, networking, and so forth, user agents must use event loops as described in this section. Each agent has an associated event loop.<br />
+用户代理必须使用本节描述的 event loop 来协调 事件/用户交互/脚本/渲染/网络 间的工作.<br />
+每个代理都有一个相关的 event loop.</p>
+</blockquote>
+<p>coordinate 的意思是 to make various different things work effectively as a whole 让一大堆东西可以同时正常工作.</p>
+<blockquote>
+<p>An event loop has one or more task queues. A task queue is an ordered list of tasks.<br />
+event loop 有一个或多个 task queue(任务队列).task queue 是有序的 task 队列.</p>
+</blockquote>
+<blockquote>
+<p>When a user agent is to queue a task, it must add the given task to one of the task queues of the relevant event loop.<br />
+当用户代理要 queue a task(排列某个 task 时), 其必须把这个 task 添加到某个(与 event loop 相关的)task queue 中</p>
+</blockquote>
+<blockquote>
+<p>Each task is defined as coming from a specific task source. All the tasks from one particular task source and destined to a particular event loop must always be added to the same task queue, but tasks from different task sources may be placed in different task queues.<br />
+每个 task 都由一个特定的 task source 生成,所有来自同一个 task source 的 task 都必须放到同一个 task queue 中,来自不同 task source 的 task 可以放在不同的 task queue 中</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loops">HTML Standard</a></p>
+<h2 id="task"><a class="markdownIt-Anchor" href="#task"></a> task</h2>
+<p>task 分为两种, macrotask(宏任务)和 microtask(微任务).<br />
+同样, task queue 也分为两种, macrotask queue(宏任务队列)和 microtask queue(微任务队列).<br />
+可以同时存在多个 macrotask queue, 但只能有一个 microtask queue.</p>
+<p>注: macro 和 micro 的发音有些相似,具体的区别可参考: <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=rrZtQY_HA-s">Difference in pronunciation MICRO vs MACRO: Learn British English</a></p>
+<p>当 execution content stack 为空时, event loop 首先会检查 microtask queue.<br />
+如果 microtask queue 队列中有任务, 则依序执行队列中的 microtask,然后把执行完的 microtask 从队列中删除,直到清空 microtask queue 为止.<br />
+如果在执行 microtask 的过程中生成了新的 microtask, 则把这个新的 microtask 添加到 microtask queue 队尾.这个新的 microtask 也会在本次循环中被执行.<br />
+当 microtask queue 被清空后, event loop 会依照权重, 从权重高的 macrotask queue 中取出一个 macrotask 执行, 然后删除这个 macrotask.<br />
+等到 execution content stack 再次为空后, 开始另一轮循环.</p>
+<p>注: 浏览器可能会将类似的 macrotask 放入同一个的 macrotask queue.将不同的 macrotask 放入不同的 macrotask queue.<br />
+例如, 鼠标/键盘交互可能被分类到同一个 macrotask queue,而 setTimeout 和 setInterval 则会被分类到另一个 macrotask queue.<br />
+鼠标对实时性交互要求高, 所以鼠标事件所在的 macrotask queue 权重可能会高于 setTimeout 所在的 macrotask queue.</p>
+<p>总结:</p>
+<ul>
+<li>只有 execution content stack 为空时, task 才会被执行</li>
+<li>microtask 的优先级比 macrotask 高</li>
+<li>microtask 一次性全部执行完,而 macrotask 按单个执行</li>
+</ul>
+<h2 id="macrotask宏任务"><a class="markdownIt-Anchor" href="#macrotask宏任务"></a> macrotask(宏任务)</h2>
+<p>whatwg 文档中没有到 microtask 这个关键词.<br />
+这是因为在 microtask 出现后, 为了将文档原来有的 task 和 microtask 相区别, 称原有 task 称为 macrotask.</p>
+<p>属于 macrotask 的任务有:</p>
+<ul>
+<li>I/O</li>
+<li>UI rendering UI 渲染</li>
+<li>Event 事件</li>
+<li>HTML parser HTML 文档解析</li>
+<li>DOM manipulation DOM 操作</li>
+<li>requestAnimationFrame</li>
+<li>setTimeout/setInterval</li>
+<li>setImmediate(IE10+)</li>
+<li>MessageChannel</li>
+<li>window.postMessage</li>
+<li>XMLHttpRquest.onload</li>
+</ul>
+<p>其实大部分事件都是 macrotask</p>
+<h2 id="microtask微任务"><a class="markdownIt-Anchor" href="#microtask微任务"></a> microtask(微任务)</h2>
+<p>属于 micro task 的任务有:</p>
+<ul>
+<li>process.nextTick(Node)</li>
+<li>Promise.then</li>
+<li>await</li>
+<li>MutationObserver.observe</li>
+<li>Object.observe(废弃)</li>
+</ul>
+<p>在 chromium 中,microtask queue 由 V8(js 引擎)提供.<br />
+但是 ECMAScript 文档里并没有 microtask, 只能查到一个类似的 job.</p>
+<p>ECMAScript 文档中,有关 job 的描述:</p>
+<blockquote>
+<p>Execution of a Job can be initiated only when there is no running execution context and the execution context stack is empty.<br />
+当没有正在运行的执行环境且执行环境栈为空时, 才能运行 Job.</p>
+</blockquote>
+<blockquote>
+<p>Once execution of a Job is initiated, the Job always executes to completion. No other Job may be initiated until the currently running Job completes.<br />
+一旦开始运行某个 Job, 这个 Job 就一定会完成运行(不会被中断).只有在当前的 Job 运行完毕后, 才能运行其他的 Job.</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.ecma-international.org/ecma-262/9.0/index.html#sec-jobs-and-job-queues">ECMAScript® 2018 Language Specification</a></p>
+<h2 id="task-是如何运行的"><a class="markdownIt-Anchor" href="#task-是如何运行的"></a> task 是如何运行的</h2>
+<p>在 whatwg 文档中,没有明确说明如何运行 task.只有一句 run task:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// macrotask</span><br><span class="line">Run oldestTask.</span><br><span class="line">// microtask</span><br><span class="line">Run oldestMicrotask.</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loops">HTML Standard</a></p>
+<p>不过 ECMAScript 文档详细描述了 job(microtask)的运行过程:</p>
+<blockquote>
+<p>Assert: The execution context stack is now empty.<br />
+Let nextQueue be a non-empty Job Queue chosen in an implementation-defined manner. If all Job Queues are empty, the result is implementation-defined.<br />
+Let nextPending be the PendingJob record at the front of nextQueue. Remove that record from nextQueue.<br />
+令 nextPending 为 PendingJob recode, 从 nextQueue 中删除该 recode.<br />
+Let newContext be a new execution context.<br />
+令 newContext 为新建的 execution context<br />
+Set newContext's Function to null.<br />
+Set newContext's Realm to nextPending.[[Realm]].<br />
+令 newContext 的 Realm 为 nextPending<br />
+Set newContext's ScriptOrModule to nextPending.[[ScriptOrModule]].<br />
+Push newContext onto the execution context stack; newContext is now the running execution context.<br />
+将 newContext 推入 execution context stack,成为 running execution context<br />
+Perform any implementation or host environment defined job initialization using nextPending.<br />
+Let result be the result of performing the abstract operation named by nextPending.[[Job]] using the elements of nextPending.[[Arguments]] as its arguments.<br />
+令 result 为以 nextPending.[[Arguments]]为参数执行 nextPending.[[Job]]的结果<br />
+If result is an abrupt completion, perform HostReportErrors(« result.[[Value]] »).</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.ecma-international.org/ecma-262/9.0/index.html#sec-runjobs">ECMAScript® 2018 Language Specification</a></p>
+<p>js 引擎会会根据 job 生成一个 execution context, 将其推入 execution context stack,然后执行其中的代码.<br />
+执行完毕后, 将 execution context 从栈中弹出, 然后执行下一个 job.</p>
+<h2 id="实例"><a class="markdownIt-Anchor" href="#实例"></a> 实例</h2>
+<p>一些关于 event loop 的例子:</p>
+<p>1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;setTimeout&quot;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Promise.then&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Promise.then</span><br><span class="line">setTimeout</span><br></pre></td></tr></table></figure>
+<p>setTimeout 是 macrotask, Promise.then 是 microtask.<br />
+microtask 先执行,所以先打印 Promise.then.</p>
+<p>2</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;setTimeout&quot;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Promise.then1&quot;</span>);</span><br><span class="line">  <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Promise.then2&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Promise.then1</span><br><span class="line">Promise.then2</span><br><span class="line">setTimeout</span><br></pre></td></tr></table></figure>
+<p>新生成的 microtask 会被添加到 microtask queue 队列的尾部,且 microtask queue 中的任务会被全部执行.<br />
+因此先执行了所有的 Promise.then, 然后再执行 setTimeout.</p>
+<p>3</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;bar&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;foo1&quot;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">bar</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;foo2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Promise.then&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="title function_">foo</span>();</span><br></pre></td></tr></table></figure>
+<p>执行结果:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">foo1</span><br><span class="line">bar</span><br><span class="line">Promise.then</span><br><span class="line">foo2</span><br></pre></td></tr></table></figure>
+<p>当调用 async 函数时, 如果返回值不是 Promise 对象, 则会将其包裹在 Promise.resolve 中返回.<br />
+(疑问: 是 new Promise(resolve =&gt; resolve())还是 Promise.resolve() ?)<br />
+当遇到 await 时, 先执行 await 右侧的代码, 然后将右侧代码的执行结果包裹在 Promise.resolve 中返回.<br />
+而 await 关键字后面的代码(从下一行开始),则被包裹在 Promise.resolve().then()中.</p>
+<p>因此, 实际的代码为:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;bar&quot;</span>);</span><br><span class="line">    <span class="title function_">resolve</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;foo1&quot;</span>);</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="title function_">bar</span>()).<span class="title function_">then</span>(<span class="function"><span class="params">_</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;foo2&quot;</span>)));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Promise.then&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="title function_">foo</span>();</span><br></pre></td></tr></table></figure>
+<p>关于 await:<br />
+在 chrome72 及以下版本中, 可能得到和 chrome73 不同的结果,这里以高版本浏览器为准.<br />
+具体原因可以参考: <a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000016147496/">javascript - async await 和 promise 微任务执行顺序问题 - SegmentFault 思否</a></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">What the heck is the event loop anyway? | Philip Roberts | JSConf EU</a><br />
+<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=cCOL7MC4Pl0&amp;feature=youtu.be&amp;t=1797">Jake Archibald: In The Loop - JSConf.Asia 2018</a><br />
+<a target="_blank" rel="noopener" href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Tasks, microtasks, queues and schedules - JakeArchibald.com</a><br />
+<a target="_blank" rel="noopener" href="https://www.zcfy.cc/article/tasks-microtasks-queues-and-schedules">任务、微任务、队列和时间表 - 众成翻译(上文的翻译)</a><br />
+<a target="_blank" rel="noopener" href="https://github.com/aooy/blog/issues/5">从 event loop 规范探究 javaScript 异步及浏览器更新渲染时机 · Issue #5 · aooy/blog · GitHub</a><br />
+<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011198232">JavaScript 异步、栈、事件循环、任务队列 - JS 精读 - SegmentFault 思否</a><br />
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/48522249">从 Chrome 源码看事件循环 - 知乎</a><br />
+<a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000008960948/a-1020000008962511">关于 javascript 的 event loop 如何理解 event queue 的优先级？ - 边城的回答 - SegmentFault 思否</a><br />
+<a target="_blank" rel="noopener" href="https://tasaid.com/blog/20180118132704.html">JavaScript 中的 task queues - blog</a><br />
+<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017224799">8 张图帮你一步步看清 async/await 和 promise 的执行顺序 - 前端进阶 - SegmentFault 思否</a><br />
+<a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000016147496/">javascript - async await 和 promise 微任务执行顺序问题 - SegmentFault 思否</a><br />
+<a target="_blank" rel="noopener" href="https://www.zcfy.cc/article/writing-a-javascript-framework-execution-timing-beyond-settimeout-risingstack">手把手教你写一个 Javascript 框架：时间调度 - 众成翻译</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E5%82%A8%E5%AD%98keep-alive%E5%86%85%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BB%9A%E5%8A%A8%E4%BD%8D%E7%BD%AE/">&lt;  储存keep-alive内组件的滚动位置</a>
+      
+      
+        <a class="next" href="/article/Js%E6%98%AF%E4%B8%80%E9%97%A8_%E5%8D%95%E7%BA%BF%E7%A8%8B_%E8%AF%AD%E8%A8%80/">Js是一门&#34;单线程&#34;语言  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

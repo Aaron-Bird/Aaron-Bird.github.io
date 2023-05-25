@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      
+
+<div class="index">
+    
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87-BFC/">
+                    块格式化上下文 BFC (Block Formatting Context)
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-11-27T16:00:00.000Z">
+                  2017-11-28
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                BFC像一个箱子(一块独立的渲染区域),内部元素不受外部影响,拥有自己的渲染规则.
+ 参考
+CSS中的BFC规则
+理解CSS中BFC
+ 创建BFC
+符合以下条件的元素会创建BFC
+1 根元素
+2 float: left | right
+3 position: absolute | fixed
+4 display:inline-block | table-cell | table-caption | flow-root
+5 具有overflow属性,且值不为visible
+6 column-span:all
+ BFC规则
+1 浮动元素参与容器高度计算
+2 BFC 内部元素不受外部影响,反之...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87-BFC/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E6%B8%85%E9%99%A4inline-black%E5%85%83%E7%B4%A0%E9%97%B4%E7%9A%84%E7%BC%9D%E9%9A%99/">
+                    清除inline-black元素间的缝隙
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-11-26T02:47:00.000Z">
+                  2017-11-26
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                行内块元素间存在一定的空隙,可使用下列方法清除
+1 删除两个元素标签间的空白符
+&lt;button&gt;测试&lt;/button&gt;&lt;button&gt;测试&lt;/button&gt;
+
+测试测试
+2 利用注释
+&lt;button&gt;测试&lt;/button&gt;&lt;!--
+--&gt;&lt;button&gt;测试&lt;/button&gt;
+
+测试测试
+3 设置容器属性 font-size: 0
+&lt;div style=&quot;font-size:0&quot;&gt;
+	&lt;button style=&quot;font-size:...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E6%B8%85%E9%99%A4inline-black%E5%85%83%E7%B4%A0%E9%97%B4%E7%9A%84%E7%BC%9D%E9%9A%99/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/width-100/">
+                    width: 100%相对于谁计算
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-11-15T13:53:00.000Z">
+                  2017-11-15
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                当元素处于普通状态和拥有属性absolute时,其百分比宽度的计算的参照对象不相同.
+
+   .box {
+        width: 150px;
+        height: 150px;
+        background: yellow;
+        border: 10px  dashed black;
+        position:relative;
+        padding:10px;
+    }
+    .child {
+        width: 100%;
+        height: 100%;
+        background:  bl...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/width-100/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/hexo-windows%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/">
+                    hexo windows安装
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-11-14T19:46:00.000Z">
+                  2017-11-15
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/software/">
+                    <span>software</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>hexo是一个可以运行在Github上的静态博客框架,支持Makedown</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>安装hexo前需安装以下程序<br />
+<a target="_blank" rel="noopener" href="https://nodejs.org/en/">node</a> <a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></p>
+<h3 id="安装hexo"><a class="markdownIt-Anchor" href="#安装hexo"></a> 安装hexo</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h3 id="初始化"><a class="markdownIt-Anchor" href="#初始化"></a> 初始化</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 新建文件夹,通过 cd命令进入博客文件夹</span><br><span class="line">cd 文件夹路径</span><br><span class="line">// 初始化博客</span><br><span class="line">hexo init </span><br><span class="line">// 安装依赖</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h3 id="本地预览"><a class="markdownIt-Anchor" href="#本地预览"></a> 本地预览</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 生成静态文件</span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">// 启动服务</span><br><span class="line">hexo server</span><br><span class="line"></span><br><span class="line">// 打开 http://localhost:4000 </span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/hexo-windows%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+    
+    <!-- pagination -->
+<nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/8/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+</nav>
+</div>
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

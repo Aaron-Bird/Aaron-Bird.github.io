@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSONP</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F"><span class="toc-text"> 什么是跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsonp%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text"> JSONP的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8jquery%E4%B8%AD%E4%BD%BF%E7%94%A8jsonp"><span class="toc-text"> 在Jquery中使用JSONP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8vue-resource%E4%B8%AD%E4%BD%BF%E7%94%A8jsonp"><span class="toc-text"> 在vue-resource中使用JSONP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">JSONP</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-02-09T16:00:00.000Z">
+            2019-02-10
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>JSONP(JSON with Padding)是在早期浏览器不允许跨域的背景下,诞生的 一种通信方式</p>
+<h2 id="什么是跨域"><a class="markdownIt-Anchor" href="#什么是跨域"></a> 什么是跨域</h2>
+<p>前端获取数据一般都通过XMLHttpRequest发送请求,但有一定的限制<br />
+在CORS之前, 浏览器不允许通过XMLHttpRequest向不同于当前域名/端口/协议的地址发送请求<br />
+另外,这种(向不同域名)发送请求的行为通常称为&quot;跨域&quot;</p>
+<p>例如</p>
+<table>
+<thead>
+<tr>
+<th>当前域名</th>
+<th><a target="_blank" rel="noopener" href="http://www.example.com/foo">http://www.example.com/foo</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>允许</td>
+<td><a target="_blank" rel="noopener" href="http://www.example.com">http://www.example.com</a></td>
+</tr>
+<tr>
+<td>允许</td>
+<td><a target="_blank" rel="noopener" href="http://www.example.com/api/foo">http://www.example.com/api/foo</a></td>
+</tr>
+<tr>
+<td>禁止</td>
+<td><a target="_blank" rel="noopener" href="https://www.example.com">https://www.example.com</a></td>
+</tr>
+<tr>
+<td>禁止</td>
+<td><a target="_blank" rel="noopener" href="http://bar.example.com">http://bar.example.com</a></td>
+</tr>
+<tr>
+<td>禁止</td>
+<td><a target="_blank" rel="noopener" href="https://www.example.com:4000">https://www.example.com:4000</a></td>
+</tr>
+</tbody>
+</table>
+<span id="more"></span>
+<h2 id="jsonp的原理"><a class="markdownIt-Anchor" href="#jsonp的原理"></a> JSONP的原理</h2>
+<p>虽然XMLHttpRequest禁止跨域,但部分HTML元素没有这个限制,例如img script iframe等<br />
+JSONP利用了script标签可以跨域的特点,通过script标签获取JSON数据<br />
+当后端接受请求后,动态返回一段函数调用格式的源代码文本.其中的函数名为url的callback参数值,函数参数为JSON数据<br />
+例如<br />
+执行如下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建一个script元素</span></span><br><span class="line"><span class="keyword">var</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line"><span class="comment">// 设置资源地址,其中的callback参数就是将被回调的函数名  </span></span><br><span class="line">script.<span class="property">src</span> = <span class="string">&#x27;https://jsonplaceholder.typicode.com/todos/1?callback=foo&#x27;</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(script)</span><br></pre></td></tr></table></figure>
+<p>当后端收到响应时,会返回如下数据<br />
+<img src="/img/06dfee4f.PNG" alt="捕获.PNG" /><br />
+如上图所示,后端返回一段函数调用表达式,其中的函数名就是callback参数传入的foo,而参数是JSON格式的所需数据</p>
+<h2 id="在jquery中使用jsonp"><a class="markdownIt-Anchor" href="#在jquery中使用jsonp"></a> 在Jquery中使用JSONP</h2>
+<p>普通的json</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>,</span><br><span class="line">    <span class="attr">dataType</span>: <span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: &#123; <span class="attr">foo</span>: <span class="string">&#x27;bar&#x27;</span> &#125;,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">response</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(response) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>json发送的url<br />
+<img src="/img/82d78c13.PNG" alt="捕获.PNG" /><br />
+json接收到的数据<br />
+<img src="/img/1b81a5f6.PNG" alt="4.PNG" /><br />
+JSONP</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>,</span><br><span class="line">    <span class="attr">jsonp</span>: <span class="string">&#x27;callback&#x27;</span>, </span><br><span class="line">    <span class="attr">dataType</span>: <span class="string">&#x27;jsonp&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: &#123; <span class="attr">foo</span>: <span class="string">&#x27;bar&#x27;</span> &#125;,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">response</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(response) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>JSONP发送的url<br />
+<img src="/img/16ac94bf.PNG" alt="2.PNG" /><br />
+参数callback后面的jQuery33...就是绑在success上的函数名</p>
+<p>JSONP收到的数据<br />
+<img src="/img/4bde7245.PNG" alt="3.PNG" /></p>
+<h2 id="在vue-resource中使用jsonp"><a class="markdownIt-Anchor" href="#在vue-resource中使用jsonp"></a> 在vue-resource中使用JSONP</h2>
+<p>vue-resource除了支持get post等常见请求方式外,还支持JSONP<br />
+示例<br />
+<img src="/img/346b75d9.PNG" alt="捕获.PNG" /></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span> <span class="attr">v-show</span>=<span class="string">&quot;todo.id&quot;</span>&gt;</span>&#123;&#123;todo&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">VueResource</span> <span class="keyword">from</span> <span class="string">&#x27;vue-resource&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueResource</span>)</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123; <span class="attr">todo</span>: &#123;&#125; &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">updateTodo</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> url = <span class="string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">$http</span>.<span class="title function_">jsonp</span>(url).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">this</span>.<span class="property">todo</span> = response.<span class="property">body</span></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">todo</span>)</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">created</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">this</span>.<span class="title function_">updateTodo</span>()</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如需更改callback名,则需添加'jsonp'参数<br />
+<img src="/img/4b4f3467.PNG" alt="捕获.PNG" /></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg&#x27;</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$http</span>.<span class="title function_">jsonp</span>(url, &#123;</span><br><span class="line">    <span class="attr">jsonp</span>: <span class="string">&#x27;jsonpCallback&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy">浏览器的同源策略 | MDN</a><br />
+<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015597029#articleHeader6">不要再问我跨域的问题了 - 个人文章 - SegmentFault 思否</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/height%E7%99%BE%E5%88%86%E6%AF%94%E5%80%BC%E4%B8%8D%E7%94%9F%E6%95%88/">&lt;  height百分比值不生效</a>
+      
+      
+        <a class="next" href="/article/%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E4%BD%8D%E7%BD%AE_%E5%B0%BA%E5%AF%B8%E7%9A%84%E6%96%B9%E6%B3%95/">获取元素位置/尺寸的方法  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

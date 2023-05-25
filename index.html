@@ -1,0 +1,616 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      
+
+<div class="index">
+    
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/Verdaccio%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+                    Verdaccio 使用笔记
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2023-05-24T16:00:00.000Z">
+                  2023-05-25
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Node-js/">
+                    <span>Node.js</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                Verdaccio 是一个基于 Node.js 的轻量级 NPM 包缓存服务，无需安装数据库。
+最常用应用场景是使用 Verdaccio 搭建 NPM 私服，解决离线环境下 Node.js 开发时无法安装依赖的问题。
+对比其他的 npm 包服务，Verdaccio 的优点有：
+1 容易安装配置，开箱即用。
+2 在不同电脑间迁移数据仅需要拷贝配置文件和缓存文件夹。
+ 安装
+安装
+1npm install -g verdaccio
+ 使用
+1 启动 verdaccio 服务
+1verdaccio
+2 通过 verdaccio 安装 npm package
+123npm install  --...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/Verdaccio%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/acme.sh%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+                    acme.sh 使用笔记
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2023-02-25T16:00:00.000Z">
+                  2023-02-26
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Linux/">
+                    <span>Linux</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                acme.sh 是一个HTTS SSL 证书自动获取、更新工具，本文记录了该工具的部分命令使用方式。
+ 官方文档
+GitHub - acmesh-official/acme.sh: A pure Unix shell script implementing ACME client protocol
+ 安装
+12345apt install git -ygit clone https://github.com/acmesh-official/acme.sh.gitcd ./acme.sh./acme.sh --install -m my@example.com
+ 生成证书
+直接生成
+123...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/acme.sh%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E6%AD%A3%E5%88%99%E6%96%AD%E8%A8%80(RegExp%20assertion)/">
+                    正则断言(RegExp assertion)
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2022-04-24T16:00:00.000Z">
+                  2022-04-25
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/RegExp/">
+                    <span>RegExp</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                又称: 零宽断言(Zero-width assertion)
+ 什么是位置?
+首先要搞清楚,断言匹配的是位置, 不是某个具体的字符串.
+可以把位置理解成&quot;空白字符&quot;. 例如字符串 ab 可以分解成如下格式,字母 ab 两边的空白字符就是位置.
+1&#x27;&#x27; + a + &#x27;&#x27; + b + &#x27;&#x27;
+^ 匹配字符串的开始位置, $ 匹配字符串的结尾位置.
+可以试试用 String.replace 来把这两个位置替换成下划线.
+12&#x27;ab&#x27;.replace(/^/, &#x27;_&#x27;) // &...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E6%AD%A3%E5%88%99%E6%96%AD%E8%A8%80(RegExp%20assertion)/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/JavaScript%20%E7%8A%B6%E6%80%81%E6%9C%BA%20xstate%20%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">
+                    JavaScript 状态机 xstate 使用简介
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2022-04-17T16:00:00.000Z">
+                  2022-04-18
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                xstate 是基于 Js 的有限状态机, 支持可视化.
+ 使用场景
+xstate 适用于复杂的状态管理, 例如需要在大量状态间切换:
+1 RTC 视频通话
+2 编辑器 UI 界面管理
+ 安装
+1npm install xstate@4.31.0 --save
+ 概念
+
+state(状态): 某事/物在某个时间点的概括, 可以随某些条件切换到另一种状态.例如水可以分成三种状态: 固 液 气.写在 stats 属性中
+state node(状态节点): 某个状态的具体配置,写在 states 属性中
+context(上下文): 状态机的扩展状态.其实就是个对象,可以存取变量.写在 cont...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/JavaScript%20%E7%8A%B6%E6%80%81%E6%9C%BA%20xstate%20%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/TCP%20%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E4%B8%8E%E7%BB%88%E6%AD%A2%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%BF%87%E7%A8%8B/">
+                    TCP 建立连接与终止连接的过程
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2022-03-25T16:00:00.000Z">
+                  2022-03-26
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/HTTP/">
+                    <span>HTTP</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                 示例实现过程
+1 使用 http-server 创建一个临时的服务器, 链接为 http://127.0.0.1:8080
+2 打开 WireShark, 在过滤器中输入如下命令,来过滤出我们所需的包.这条命令表示过滤出 source(来源) 地址或 destination(目的地) 地址为 127.0.0.1:8080 的包.
+1ip.src==127.0.0.1:8080 or ip.dst==127.0.0.1:8080  
+3 使用任意浏览器窗口访问 http://127.0.0.1:8080 即可.注意等待一段时间后需要关闭窗口,否则可能抓取不到终止TCP连接时的 四次挥手....
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/TCP%20%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E4%B8%8E%E7%BB%88%E6%AD%A2%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%BF%87%E7%A8%8B/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/84%20Largest%20Rectangle%20in%20Histogram/">
+                    84 Largest Rectangle in Histogram
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-05-18T16:00:00.000Z">
+                  2020-05-19
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/leetcode/">
+                    <span>leetcode</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/84%20Largest%20Rectangle%20in%20Histogram/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/121%20Best%20Time%20to%20Buy%20and%20Sell%20Stock/">
+                    121 Best Time to Buy and Sell Stock
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-05-12T16:00:00.000Z">
+                  2020-05-13
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/leetcode/">
+                    <span>leetcode</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
+<p>If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
+<p>Note that you cannot sell a stock before you buy one.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/121%20Best%20Time%20to%20Buy%20and%20Sell%20Stock/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/116%20Populating%20Next%20Right%20Pointers%20in%20Each%20Node/">
+                    116 Populating Next Right Pointers in Each Node
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-05-11T16:00:00.000Z">
+                  2020-05-12
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/leetcode/">
+                    <span>leetcode</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct <span class="title class_">Node</span> &#123;</span><br><span class="line">int val;</span><br><span class="line"><span class="title class_">Node</span> *left;</span><br><span class="line"><span class="title class_">Node</span> *right;</span><br><span class="line"><span class="title class_">Node</span> \*next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/116%20Populating%20Next%20Right%20Pointers%20in%20Each%20Node/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/118%20Pascal's%20Triangle/">
+                    118 Pascal&#39;s Triangle
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-05-11T16:00:00.000Z">
+                  2020-05-12
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/leetcode/">
+                    <span>leetcode</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/118%20Pascal's%20Triangle/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/1071%20Greatest%20Common%20Divisor%20of%20Strings/">
+                    1071 Greatest Common Divisor of Strings
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-05-10T16:00:00.000Z">
+                  2020-05-11
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/leetcode/">
+                    <span>leetcode</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>For strings S and T, we say &quot;T divides S&quot; if and only if S = T + ... + T (T concatenated with itself 1 or more times)</p>
+<p>Return the largest string X such that X divides str1 and X divides str2.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/1071%20Greatest%20Common%20Divisor%20of%20Strings/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+    
+    <!-- pagination -->
+<nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
+</nav>
+</div>
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

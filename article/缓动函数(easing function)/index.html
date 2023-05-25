@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>缓动函数(easing function)</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%BF%90%E5%8A%A8linear"><span class="toc-text"> 线性运动(linear)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%85%A5ease-in"><span class="toc-text"> 缓入(ease-in)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%87%BAease-out"><span class="toc-text"> 缓出(ease-out)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%85%A5%E7%BC%93%E5%87%BAease-in-out"><span class="toc-text"> 缓入缓出(ease-in-out)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%BF%90%E5%8A%A8%E6%95%88%E6%9E%9C"><span class="toc-text"> 其他运动效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-text"> 附录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">缓动函数(easing function)</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-03-30T06:00:00.000Z">
+            2019-03-30
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>网页设计经常会用到各种动画效果.<br />
+现实世界的大多数运动都是变速的.与变速运动相比,匀速运动就显得很生硬,给人一种不自然的感觉.</p>
+<p>css可以用timing-function参数来实现变速运动.<br />
+但不是所有的动画都能用css来解决, 例如下拉刷新, 要用js来根据touchmove的距离来绘制动画效果.<br />
+这时就可以用缓动公式来实现各种动画效果.</p>
+<span id="more"></span>
+<h2 id="线性运动linear"><a class="markdownIt-Anchor" href="#线性运动linear"></a> 线性运动(linear)</h2>
+<p>线性运动的计算公式为: f(x) = x<br />
+<img src="/img/cf4d5261.PNG" alt="1.PNG" /></p>
+<p>将线性运动映射到横向移动上,每次移动的距离都是相等的<br />
+<img src="/img/37c19d7b.PNG" alt="11.PNG" /></p>
+<p>具体的代码如下:</p>
+<ul>
+<li>currentTime 当前时间</li>
+<li>duration 动画时长</li>
+<li>startValue 起始位置</li>
+<li>changeValue 总移动距离</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">linear</span>(<span class="params">currentTime, startValue, changeValue, duration</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> changeValue * currentTime / duration + startValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对应到坐标轴上, currentTime是x轴上某点(记为点a), duration是x轴长度,startValue和changeValue分别是y轴起点和长度.返回值是点a对应的y轴坐标.</p>
+<h2 id="缓入ease-in"><a class="markdownIt-Anchor" href="#缓入ease-in"></a> 缓入(ease-in)</h2>
+<p>开始时速度很慢, 然后逐渐加快.结尾会突然停止,感觉很生硬.</p>
+<p>缓入的计算公式为: f(x) =x * x<br />
+<img src="/img/b79bb42c.PNG" alt="in.PNG" /></p>
+<p>将ease-in映射到横向移动上,可以观察到开始很慢, 然后逐渐变快, 在结尾时速度最快.<br />
+<img src="/img/2a6f9e0a.PNG" alt="inv.PNG" /></p>
+<p>具体的代码如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">easeInQuad</span>(<span class="params">currentTime, startValue, changeValue, duration</span>) &#123;</span><br><span class="line">  currentTime /= duration;</span><br><span class="line">  <span class="keyword">return</span> changeValue * currentTime * currentTime + startValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码的执行步骤为:</p>
+<ul>
+<li>将&quot;当前时间&quot;映射[0, 1]间(currentTime /= duration)</li>
+<li>根据缓入公式计算出&quot;当前时间&quot;应该移动的百分比(currentTime * currentTime)</li>
+<li>根据&quot;总移动长度&quot;和&quot;移动百分比&quot;算出应移动的具体值(changeValue * ...)</li>
+<li>加上初始位置(+ startValue)</li>
+</ul>
+<p>函数名easeInQuad中Quad指的是二次方, 也就是乘两次.<br />
+其它的easeIn函数还有easeInCubic(x^3), easeInQuart(x^4), easeInQuint(x^5).<br />
+乘的次数越多, 速度变化的幅度越大.</p>
+<h2 id="缓出ease-out"><a class="markdownIt-Anchor" href="#缓出ease-out"></a> 缓出(ease-out)</h2>
+<p>常用的变速运动, 开始时速度很快,给人一种流畅感.然后逐渐减速, 不会让人觉得戛然而止.</p>
+<p>缓出的计算公式为: f(x) = -xx+2x<br />
+其实就是ease-in函数的镜像翻转<br />
+<img src="/img/8939e267.PNG" alt="easeout.PNG" /></p>
+<p>将ease-out映射到横向移动上,可以观察到开始时速度最快, 然后逐渐变慢,在结尾时速度最慢.<br />
+<img src="/img/b0d25e0b.PNG" alt="easeout.PNG" /></p>
+<p>具体的代码如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">easeOutQuad</span>(<span class="params">currentTime, startValue, changeValue, duration</span>) &#123;</span><br><span class="line">  currentTime /= duration;</span><br><span class="line">  <span class="keyword">return</span> -changeValue * currentTime * (currentTime - <span class="number">2</span>) + startValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="缓入缓出ease-in-out"><a class="markdownIt-Anchor" href="#缓入缓出ease-in-out"></a> 缓入缓出(ease-in-out)</h2>
+<p>开始和结尾慢时, 中间快.比缓出更生动.<br />
+动画时间不宜过长, 最好在300~500ms间.<br />
+ease-in-out和ease非常相似,不同点在于ease的开始速度比结束速度更快一些.</p>
+<p>ease-in-out是ease-in和ease-out的结合,前半段用ease-in的计算公式,后半段用ease-out的计算公式.<br />
+<img src="/img/1429035c.PNG" alt="inout.PNG" /></p>
+<p>将ease-in-out映射到横向移动上,可以观察到开始速度慢, 然后逐渐变快,到中间时达到最大值, 然后又逐渐减慢.<br />
+<img src="/img/00d2c96d.PNG" alt="inoutw.PNG" /></p>
+<p>具体的代码如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">easeInOutQuad</span>(<span class="params">currentTime, startValue, changeValue, duration</span>) &#123;</span><br><span class="line">  currentTime /= duration / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (currentTime &lt; <span class="number">1</span>) <span class="keyword">return</span> changeValue / <span class="number">2</span> * currentTime * currentTime + startValue;</span><br><span class="line">  currentTime--;</span><br><span class="line">  <span class="keyword">return</span> -changeValue / <span class="number">2</span> * (currentTime * (currentTime - <span class="number">2</span>) - <span class="number">1</span>) + startValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码的执行步骤为:</p>
+<ul>
+<li>将当前时间映射到[0, 2]间(currentTime /= duration / 2)</li>
+<li>如果&quot;当前时间&quot;小于1, 则用ease-in公式计算.除2是因为y轴(总长度)实际上只有一半,后面一半用ease-out计算.</li>
+<li>如果&quot;当前时间&quot;大于等于1,则用ease-out公式计算</li>
+</ul>
+<p><img src="/img/c56c006e.png" alt="inout1.png" /></p>
+<h2 id="其他运动效果"><a class="markdownIt-Anchor" href="#其他运动效果"></a> 其他运动效果</h2>
+<p>还有很多复杂的过渡函数,访问如下的网站来查询更多的过渡函数及效果</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://easings.net/">Easing Functions Cheat Sheet</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.gizma.com/easing/">Easing Equations</a></li>
+</ul>
+<h2 id="附录"><a class="markdownIt-Anchor" href="#附录"></a> 附录</h2>
+<p>过渡函数曲线</p>
+<p class="codepen" data-height="265" data-theme-id="0" data-default-tab="js,result" data-user="aaronbird" data-slug-hash="MRgQRN" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="easing function(x,y)">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/aaronbird/pen/MRgQRN/">
+  easing function(x,y)</a> by aaronbird (<a target="_blank" rel="noopener" href="https://codepen.io/aaronbird">@aaronbird</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p>横向移动速度</p>
+<p class="codepen" data-height="265" data-theme-id="0" data-default-tab="js,result" data-user="aaronbird" data-slug-hash="MRgrPV" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="easing function">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/aaronbird/pen/MRgrPV/">
+  easing function</a> by aaronbird (<a target="_blank" rel="noopener" href="https://codepen.io/aaronbird">@aaronbird</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="http://blog.cgsdream.org/2015/09/19/tweenslow-motion-formula/">缓动公式小析</a><br />
+<a target="_blank" rel="noopener" href="https://developers.google.com/web/fundamentals/design-and-ux/animations/the-basics-of-easing?hl=zh-cn">https://developers.google.com/web/fundamentals/design-and-ux/animations/the-basics-of-easing?hl=zh-cn</a><br />
+<a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2016/12/how-use-tween-js-animation-easing/">如何使用Tween.js各类原生动画运动缓动算法 « 张鑫旭-鑫空间-鑫生活</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/(%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C)%E8%B7%9F%E9%9A%8F%E4%B8%8B%E6%8B%89%E6%94%BE%E5%A4%A7%E5%9B%BE%E5%83%8F/">&lt;  (动画效果)跟随下拉放大图像</a>
+      
+      
+        <a class="next" href="/article/-webkit-overflow-scrolling%E5%AF%BC%E8%87%B4%E5%85%83%E7%B4%A0%E6%B6%88%E5%A4%B1/">-webkit-overflow-scrolling导致元素消失  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

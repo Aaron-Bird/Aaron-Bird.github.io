@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>transform导致fixed失效</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-text"> 原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFcontaining-block"><span class="toc-text"> 什么是&quot;containing block&quot;?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text"> 解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">transform导致fixed失效</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-02-25T12:00:00.000Z">
+            2019-02-25
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>transform是个超级常用的属性, 需要居中/动画/开启cpu加速时经常会用到.<br />
+但这个属性也有很多副作用, 例如把后边的元素盖住了,或者是后代absolute元素被overflow:hidden剪裁.<br />
+除此之外还有个影响, 让拥有固定定位(fixed)属性的子元素变的像个绝对定位(absolute)元素.</p>
+<p><img src="/img/6cb4441c.PNG" alt="1.PNG" /></p>
+<p>如上图所示, 黑色子元素为固定定位元素(fixed), 由于黄色父元素transfrom属性的影响, 表现的像个绝对定位元素(absolute).</p>
+<span id="more"></span>
+<p>示例代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;target&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: yellow;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.target</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="原因"><a class="markdownIt-Anchor" href="#原因"></a> 原因</h2>
+<p>根据css规范:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In the HTML namespace, any value other than none for the transform results in the creation of both a stacking context and a containing block. The object acts as a containing block for fixed positioned descendants.</span><br><span class="line">在HTML命名空间(namespace)中, </span><br><span class="line">拥有属性transform的元素(除了transform: none)的元素会创建&quot;层叠上下文&quot;(stacking context)和&quot;包含块&quot;(containing block),</span><br><span class="line">该元素将作为(拥有position: fixed属性的)后代元素的&quot;包含块&quot;</span><br></pre></td></tr></table></figure>
+<p>也就是说,如果fixed元素的祖先有transform属性,则fixed元素会相对与这个祖先计算,而不是视口.</p>
+<h2 id="什么是containing-block"><a class="markdownIt-Anchor" href="#什么是containing-block"></a> 什么是&quot;containing block&quot;?</h2>
+<p>通常情况下(position: static/relative),包含块指的是距离元素最近的&quot;祖先元素的内容区&quot;,也就是父元素.<br />
+如果position属性值为absolute, 则将&quot;距离该元素最近&quot;且&quot;position属性值不为none&quot;的祖先元素作为包含块.<br />
+如果position属性值为fixed, 则将&quot;视口&quot;(viewport)作为包含块.</p>
+<p>除此之外, 如果祖先元素拥有下列属性,也可能被作为absolute和fixed的包含块.</p>
+<ul>
+<li>transform/perspective属性值不为none</li>
+<li>will-change属性值为transform/perspective</li>
+</ul>
+<h2 id="解决办法"><a class="markdownIt-Anchor" href="#解决办法"></a> 解决办法</h2>
+<p>不要把固定定位元素放在拥有transform/will-change属性值的元素里面.<br />
+导航栏之类的元素也可以用sticky代替fixed,不过sticky的兼容性不太好.<br />
+另外,很多动画库都会使用transform来优化动画效果, 如果fixed元素出了什么奇怪的bug,那很可能是这些库搞得鬼.</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2015/05/css3-transform-affect/">CSS3 transform对普通元素的N多渲染影响 « 张鑫旭-鑫空间-鑫生活</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/15194313/transform3d-not-working-with-position-fixed-children/15256339#15256339">css - 'transform3d' not working with position: fixed children - Stack Overflow</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9audio%E6%A0%87%E7%AD%BE%E7%9A%84%E9%99%90%E5%88%B6%E6%80%BB%E7%BB%93/">&lt;  移动端浏览器对audio标签的限制总结</a>
+      
+      
+        <a class="next" href="/article/height%E7%99%BE%E5%88%86%E6%AF%94%E5%80%BC%E4%B8%8D%E7%94%9F%E6%95%88/">height百分比值不生效  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

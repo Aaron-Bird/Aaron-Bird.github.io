@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScipt function</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%87%BD%E6%95%B0"><span class="toc-text"> 创建函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-text"> 调用函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-text"> 匿名函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E6%89%A7%E8%A1%8C%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0iife"><span class="toc-text"> 自执行匿名函数(IIFE)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="toc-text"> 箭头函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return"><span class="toc-text"> return</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#arguments"><span class="toc-text"> arguments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text"> 构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text"> 作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-text"> 全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="toc-text"> 局部变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87"><span class="toc-text"> 变量&#x2F;函数提升</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-text"> 闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this"><span class="toc-text"> this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8Dthis%E6%8C%87%E5%90%91"><span class="toc-text"> 修复this指向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">JavaScipt function</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-04-09T08:49:00.000Z">
+            2018-04-09
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/%E9%97%AD%E5%8C%85/">
+            <span>闭包</span>
+          </a>
+        
+          <a href="/tags/this/">
+            <span>this</span>
+          </a>
+        
+          <a href="/tags/function/">
+            <span>function</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>函数也是对象,所有函数都是Function的实例.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="property">constructor</span> === <span class="title class_">Function</span> <span class="comment">// true</span></span><br><span class="line"><span class="title class_">Function</span>.<span class="property">__proto__</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建函数"><a class="markdownIt-Anchor" href="#创建函数"></a> 创建函数</h2>
+<p>有两种方法创建函数,函数声明和函数表达式</p>
+<ul>
+<li>函数声明</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">say</span>(<span class="params">word</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(word);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">say</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数表达式</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> say = <span class="keyword">function</span>(<span class="params">word</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(word);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">say</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="调用函数"><a class="markdownIt-Anchor" href="#调用函数"></a> 调用函数</h2>
+<p>用函数名后接一对括号的形式调用函数,括号内填函数所需参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">say</span>(<span class="string">&#x27;hi&#x27;</span>) <span class="comment">//hi</span></span><br></pre></td></tr></table></figure>
+<p>也可以把函数赋值给一个变量,通过变量调用函数.但这样就不能在外部使用原函数名调用了.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="keyword">function</span> <span class="title function_">say</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">b</span>(); <span class="comment">// hi</span></span><br><span class="line"><span class="title function_">say</span>(); <span class="comment">// ReferenceError: say is not defined</span></span><br><span class="line"><span class="comment">//而在函数内部是能正常调用的</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">function</span> <span class="title function_">say</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br><span class="line">    <span class="title function_">say</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">b</span>(); <span class="comment">//hi, hi, hi ......</span></span><br></pre></td></tr></table></figure>
+<h2 id="匿名函数"><a class="markdownIt-Anchor" href="#匿名函数"></a> 匿名函数</h2>
+<p>函数名可以省略,这种结构被称为匿名函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>(<span class="params">word</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以将匿名函数赋值给一个变量,通过这个变量调用匿名函数.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> say = <span class="keyword">function</span>(<span class="params">word</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(word)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">say</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>匿名函数常用于事件绑定,闭包储存,立刻执行函数等等</p>
+<pre><code>//打印触发事件的元素名
+window.onclick = function(event)&#123;
+    alert(event.target.tagName);
+&#125; 
+
+//声明后立即执行 
+(function()&#123;console.log('hi')&#125;)() //hi
+</code></pre>
+<h2 id="自执行匿名函数iife"><a class="markdownIt-Anchor" href="#自执行匿名函数iife"></a> 自执行匿名函数(IIFE)</h2>
+<p>声明匿名函数后,立即执行.需用一对括号包裹,否则会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br><span class="line">&#125;)() <span class="comment">// hi</span></span><br><span class="line"><span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hi&#x27;</span>)</span><br><span class="line">&#125;() <span class="comment">//SyntaxError: Unexpected token (</span></span><br></pre></td></tr></table></figure>
+<p>也有在函数前加叹号的写法(不建议使用)<br />
+因为这两个符号会对返回结果产生影响.如果不需要处理返回结果,可以使用这种方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hi&#x27;</span>)&#125;()</span><br><span class="line">~<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hi&#x27;</span>)&#125;()</span><br><span class="line"></span><br><span class="line">!<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">return</span> <span class="literal">true</span>&#125;(); <span class="comment">// false</span></span><br><span class="line">~<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">return</span> <span class="literal">true</span>&#125;(); <span class="comment">// -2</span></span><br></pre></td></tr></table></figure>
+<h2 id="箭头函数"><a class="markdownIt-Anchor" href="#箭头函数"></a> 箭头函数</h2>
+<p>箭头函数是es6新增函数语法,解决了this的指向问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">say</span> = (<span class="params">word</span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果函数只有一行,可省略大括号</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">say</span> = (<span class="params">word</span>) =&gt; <span class="variable language_">console</span>.<span class="title function_">log</span>(word);</span><br></pre></td></tr></table></figure>
+<p>如果函数只有一个参数,还可省略参数外的括号</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">say</span> = word =&gt; <span class="variable language_">console</span>.<span class="title function_">log</span>(word);</span><br></pre></td></tr></table></figure>
+<p>箭头函数没有自己的this,而是使用创建环境上下文的this(在哪创建的就用哪的)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">cat</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> =<span class="string">&#x27;anna&#x27;</span>;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>), <span class="number">100</span>); <span class="comment">// anna</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> <span class="title function_">cat</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="return"><a class="markdownIt-Anchor" href="#return"></a> return</h2>
+<p>函数执行时遇到return语句,则停止运行,并返回指定数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">t</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hi&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">t</span>() <span class="comment">// hi</span></span><br></pre></td></tr></table></figure>
+<p>如果函数中没有return语句/只有return,则返回undefined.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">t</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;hi&#x27;</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">t</span>() <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h2 id="arguments"><a class="markdownIt-Anchor" href="#arguments"></a> arguments</h2>
+<p>arguments是函数的特殊属性,包含调用函数时传入的所有变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function print(a, b) &#123;</span><br><span class="line">    for (var i = 0;i &lt; arguments.length; i++)&#123;</span><br><span class="line">        console.log(arguments[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">print(1, 2) //1 2</span><br></pre></td></tr></table></figure>
+<p>未定义的参数,也能用arguments获取到</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">print</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// 1 2 3</span></span><br></pre></td></tr></table></figure>
+<p>修改arguments项,参数也会随之发生改变,反之亦然.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function test(a)&#123;</span><br><span class="line">    console.log(arguments[0]); // 1</span><br><span class="line">    // 修改变量a,arguments随之变化</span><br><span class="line">    a = 2;</span><br><span class="line">    console.log(arguments[0]); // 2</span><br><span class="line">    // 修改arguments[0],变量a随之变化</span><br><span class="line">    arguments[0] = 3;</span><br><span class="line">    console.log(a); // 3</span><br><span class="line">&#125;</span><br><span class="line">test(1);</span><br></pre></td></tr></table></figure>
+<p>虽然arguments是类数组对象,无法对其使用push pop等方法.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">print</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">arguments</span>.<span class="title function_">push</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">print</span>(); <span class="comment">// TypeError: arguments.push is not a function</span></span><br></pre></td></tr></table></figure>
+<p>可用Array.prototype.slice或Array.from把arguments转换成的数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">print</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> arg = <span class="title class_">Array</span>.<span class="title function_">from</span>(<span class="variable language_">arguments</span>);</span><br><span class="line">    arg.<span class="title function_">push</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(arg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">print</span>(); <span class="comment">// [1]</span></span><br></pre></td></tr></table></figure>
+<h2 id="构造函数"><a class="markdownIt-Anchor" href="#构造函数"></a> 构造函数</h2>
+<p>构造函数就是普通函数, 使用new关键字调用,返回一个对象<br />
+调用构造函数时,会以如下方式运行:</p>
+<ul>
+<li>新建对象</li>
+<li>将构造函数的作用域赋给新建对象</li>
+<li>运行构造函数内的代码</li>
+<li>返回新建对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Cat</span>(<span class="params">name</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">say</span> = <span class="keyword">function</span>(<span class="params">word</span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(word);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">c = <span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&#x27;anna&#x27;</span>); <span class="comment">// Cat &#123;name: &quot;anna&quot;, say: ƒ&#125;</span></span><br><span class="line">c.<span class="title function_">say</span>(<span class="string">&#x27;hi&#x27;</span>); <span class="comment">// hi</span></span><br></pre></td></tr></table></figure>
+<p>未绑定在this上的属性不会被反回</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Cat</span>(<span class="params">name</span>)&#123;</span><br><span class="line">    name = name;</span><br><span class="line">&#125;      </span><br><span class="line">c = <span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&#x27;anna&#x27;</span>); </span><br><span class="line">c.<span class="property">name</span>; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h2 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h2>
+<p>js中的变量分为两种,局部变量和全局变量.</p>
+<h3 id="全局变量"><a class="markdownIt-Anchor" href="#全局变量"></a> 全局变量</h3>
+<p>在函数外声明的变量叫全局变量,所有全局变量都被绑定在window下</p>
+<pre><code>var v = 1;
+console.log(window.v) // 1
+</code></pre>
+<p>在函数中,不使用var关键字声明的变量也是全局变量</p>
+<pre><code>(function()&#123;
+    v = 1;
+&#125;)();
+//v是一个全局变量,因此可以在函数外被获取
+console.log(v); //1
+console.log(window.v); //1
+</code></pre>
+<h3 id="局部变量"><a class="markdownIt-Anchor" href="#局部变量"></a> 局部变量</h3>
+<p>在函数中,用var关键字声明的变量叫&quot;局部变量&quot;<br />
+不能在函数外读取函数内的局部变量,但能在函数内读取函数外的变量<br />
+如果内部局部变量名和外部变量名相同,内部的局部变量会覆盖外部的变量</p>
+<pre><code>var a = 1;
+(function()&#123;
+    var b = 2;
+    console.log(a); // 1
+&#125;)()
+//b是局部变量,在函数外无法获得.
+console.log(b); //ReferenceError: b is not defined
+</code></pre>
+<p>注:函数的参数以及arguments等内部关键字也是局部变量</p>
+<h3 id="变量函数提升"><a class="markdownIt-Anchor" href="#变量函数提升"></a> 变量/函数提升</h3>
+<p>js在编译时,会把所有变量和函数提升到作用域顶部</p>
+<pre><code>(function test() &#123;
+    a = 1; 
+    console.log(window.a); //undefined
+    var a = 2;
+    console.log(a); // 2
+&#125;)();
+
+//实际执行顺序
+ (function test() &#123;
+    var a;     
+    a = 1; //var a 被提升到顶部,这里的a = 1实际上是局部变量
+    console.log(window.a); //undefined
+    var a = 2;
+    console.log(a); // 2
+&#125;)();   
+</code></pre>
+<p>函数也会被提升,即便先调用后声明函数.也能正常执行</p>
+<pre><code>say(); // hi
+function say() &#123;
+    console.log('hi');
+&#125;
+
+//实际的执行顺序
+function say() &#123;
+    console.log('hi');
+&#125;
+say(); // hi 
+</code></pre>
+<p>需注意的是,变量只会被提升,不会立刻赋值.</p>
+<pre><code>say(); // TypeError: say is not a function
+var say = function()&#123;console.log('hi')&#125;;
+
+//实际执行顺序
+var say; //虽然变量say被提升到作用域顶端,但右边的匿名函数还没被赋值给say.
+say(); 
+say = function()&#123;console.log('hi')&#125;; //运行到这里才被赋值
+</code></pre>
+<h2 id="闭包"><a class="markdownIt-Anchor" href="#闭包"></a> 闭包</h2>
+<p>什么是闭包?如果一个&quot;函数&quot;能访问作用域中的&quot;变量&quot;,则称函数和变量为闭包.<br />
+所有Js函数都是闭包,因为他们都能访问全局作用域中的变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">// 函数b能访问a中的变量</span></span><br><span class="line">    <span class="keyword">var</span> temp = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">b</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">lot</span>(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">    arr.<span class="title function_">push</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">arr[<span class="number">0</span>]() <span class="comment">// 11</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">    arr.<span class="title function_">push</span>( (<span class="keyword">function</span>(<span class="params">i</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(i)&#125;;</span><br><span class="line">    &#125;)(i) );</span><br><span class="line">&#125;</span><br><span class="line">arr[<span class="number">0</span>]() <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<h2 id="this"><a class="markdownIt-Anchor" href="#this"></a> this</h2>
+<p>this是函数内部的特殊关键字,指向函数的调用位置.</p>
+<p>1 在全局范围调用函数,this会指向全局对象(window).</p>
+<pre><code>var word = 'hi';
+function say()&#123;
+    console.log(this.word);
+&#125;
+say(); //hi
+</code></pre>
+<p>严格模式下,函数内的this将不再被封装成对象.</p>
+<pre><code>&quot;use strict&quot;;
+var word = 'hi';
+function say()&#123;
+    console.log(word); // hi
+    console.log(this.word); 
+    // TypeError: Cannot read property 't' of undefined
+&#125;
+say(); //hi  
+</code></pre>
+<p>2 在对象的方法中调用,指向该对象</p>
+<pre><code>var cat = &#123;
+    name:'anna',
+    //this指向cat对象
+    getName: function()&#123;
+        return this.name;
+    &#125;
+&#125;
+cat.getName(); // anna
+</code></pre>
+<p>3 在构造函数中调用,指向新生成的对象</p>
+<pre><code>var Cat = function() &#123;
+    this.name = &quot;anna&quot;;
+&#125;
+Cat.prototype.getName = function()&#123;
+    return this.name;
+&#125;
+
+var cat = new Cat();
+cat.name = 'dog';
+//虽然新创建对象的prototype上指向原构造函数的prototype,但其中的this仍指向新生成对象.
+cat.getName(); // dog
+</code></pre>
+<p>注意,把方法从对象中拿出来调用,也会造成this的指向改变</p>
+<pre><code>function Cat() &#123;
+    this.name = 'anna';
+    this.getname = function()&#123;
+        return this.name;
+    &#125;   
+&#125;
+var c = new Cat();
+console.log(c.getname()); // anna
+var c = this.getname;
+//c中的this指向window
+console.log(c()); // c is not a function
+</code></pre>
+<p>4 使用call apply bind方法调用<br />
+call apply bind都可以改变函数的上下文,使函数中的this指向传入的第一个参数<br />
+<em>function</em>.call(<em>thisArg</em>,<em>arg1</em>,<em>arg2</em>,...)<br />
+<em>function</em>.apply(<em>thisArg</em>,[<em>arg1</em>,<em>arg2</em>,...])<br />
+<em>function</em>.bind(<em>thisArg</em>,<em>arg1</em>,<em>arg2</em>,...)</p>
+<p>call apply bind的区别<br />
+1 call和apply会立刻执行函数,而bind会返回一个函数</p>
+<pre><code>var cat = &#123;
+    name: 'anna',
+&#125;
+function printName() &#123;
+    console.log(this.name);
+&#125;
+//把printName的上下文指向cat
+printName.call(cat); // anna
+printName.apply(cat); // anna
+//bind返回一个函数
+printName.bind(cat); // ƒ printName()
+printName.bind(cat)(); // anna 
+</code></pre>
+<p>2  call和apply的区别是接收参数格式不同<br />
+call需要把函数参数依序传入,而apply接受一个数组,内含所有函数参数</p>
+<pre><code>var num = &#123;
+    c: 3
+&#125;
+function sum(a, b)&#123;
+    console.log(a + b + this.c);
+&#125;
+
+sum.call(num, 1, 2); //6
+sum.apply(num, [1, 2]); //6
+//bind的参数格式和call一样
+sum.bind(num, 1, 2)(); //6
+</code></pre>
+<p>需注意,对同一个函数多次调用bind方法,只有第一次有效<br />
+这是因为bind函数会创建一个新函数(绑定函数),内部包含原函数和call方法,用call把原函数其他对象</p>
+<pre><code>var num = &#123;n: 1&#125;
+var num1 = &#123;n: 10&#125;
+
+function printN()&#123;
+    console.log(this.n);
+&#125;
+printN.bind(num).bind(num1)(); //1    
+</code></pre>
+<p>使用new调用构造函数时,bind方法无效</p>
+<h2 id="修复this指向"><a class="markdownIt-Anchor" href="#修复this指向"></a> 修复this指向</h2>
+<p>setTimeout和setInterval这类函数中的this指向window,因为在运行的时候上下文环境已经变了</p>
+<pre><code>function Person() &#123;
+    this.age = 0;
+    console.log(this.age++); // 0
+    setInterval(function growUp() &#123;
+        console.log(this.age++); //NaN
+    &#125;, 1000);
+&#125;
+new Person();
+</code></pre>
+<p>可以用以下几种方法修复setTimeout和setInterval的指向问题</p>
+<p>0 使用箭头函数</p>
+<pre><code>function Person() &#123;
+    this.age = 0;
+    console.log(this.age++); // 0
+    setInterval(() =&gt; &#123;
+        console.log(this.age++); //NaN
+    &#125;, 1000);
+&#125;
+new Person();
+</code></pre>
+<p>1 储存this到其他变量</p>
+<pre><code>function Person() &#123;
+    this.age = 0;
+    //把this保存到that中
+    var that = this; 
+    setInterval(function() &#123;
+        console.log(that.age++);
+    &#125;, 1000);
+&#125;
+new Person();
+</code></pre>
+<p>2 使用闭包保存this</p>
+<pre><code>function Person() &#123;
+    this.age = 0;
+    setInterval(
+        // 将this保存在自执行匿名函数中,返回函数upage.
+        // 函数upage在匿名函数中,可以读取匿名函数中的局部变量.
+        // 因为upage依赖匿名函数.匿名函数在被执行后,不会被立刻销毁.
+        // 这样做可以避免不必要的变量污染局部作用域.
+        (function(self) &#123;
+            return function upage() &#123;
+                console.log(self.age++);
+            &#125;
+        &#125;)(this),
+    1000);
+&#125;
+new Person();
+</code></pre>
+<p>3 使用bind绑定this</p>
+<pre><code>function Person() &#123;
+    this.age = 0;
+    var callback = function() &#123;
+        console.log(this.age++);
+    &#125;
+    //setInterval接受一个函数作为参数,稍后执行.
+    // 因此这里要用bind,而不是call|apply
+    setInterval(callback.bind(this), 1000);
+&#125;
+new Person();
+</code></pre>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://bonsaiden.github.io/JavaScript-Garden/zh/#function.general">JavaScript 秘密花园</a><br />
+<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html">Javascript的this用法 阮一峰</a><br />
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode">严格模式 MDN</a><br />
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">bind MDN</a><br />
+<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">学习Javascript闭包（Closure）阮一峰</a><br />
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions">箭头函数 MDN</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/JavaScript-Number/">&lt;  JavaScript Number</a>
+      
+      
+        <a class="next" href="/article/JavaScript-Object/">JavaScript 对象  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

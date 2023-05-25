@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hexo windows安装</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text"> 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="toc-text"> 安装hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text"> 初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88"><span class="toc-text"> 本地预览</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E8%87%B3github"><span class="toc-text"> 发布至Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2markdown%E6%B8%B2%E6%9F%93%E5%99%A8"><span class="toc-text"> 替换Markdown渲染器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98"><span class="toc-text"> 安装主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2%E6%B8%B2%E6%9F%93%E6%9F%90%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%96%87%E4%BB%B6"><span class="toc-text"> 禁止渲染某目录下文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE"><span class="toc-text"> 生成站点地图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E9%A2%84%E8%A7%88"><span class="toc-text"> 实时预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95"><span class="toc-text"> 常用语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE"><span class="toc-text"> 标签</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">hexo windows安装</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-11-14T19:46:00.000Z">
+            2017-11-15
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/software/">
+              <span>software</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/software/">
+            <span>software</span>
+          </a>
+        
+          <a href="/tags/install/">
+            <span>install</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>hexo是一个可以运行在Github上的静态博客框架,支持Makedown</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>安装hexo前需安装以下程序<br />
+<a target="_blank" rel="noopener" href="https://nodejs.org/en/">node</a> <a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></p>
+<h3 id="安装hexo"><a class="markdownIt-Anchor" href="#安装hexo"></a> 安装hexo</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h3 id="初始化"><a class="markdownIt-Anchor" href="#初始化"></a> 初始化</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 新建文件夹,通过 cd命令进入博客文件夹</span><br><span class="line">cd 文件夹路径</span><br><span class="line">// 初始化博客</span><br><span class="line">hexo init </span><br><span class="line">// 安装依赖</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h3 id="本地预览"><a class="markdownIt-Anchor" href="#本地预览"></a> 本地预览</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 生成静态文件</span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">// 启动服务</span><br><span class="line">hexo server</span><br><span class="line"></span><br><span class="line">// 打开 http://localhost:4000 </span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="发布至github"><a class="markdownIt-Anchor" href="#发布至github"></a> 发布至Github</h2>
+<p>1 新建github项目,项目名为 &lt;账号名&gt;.github.io,例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Aaron-bird.github.io</span><br></pre></td></tr></table></figure>
+<p>注:必须为自己的账户名,其他名称无效</p>
+<p>2 打开_config.html,更改下列选项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">language: zh-Hans</span><br><span class="line">timezone: Asia/Shanghai</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repository: git@github.com:Aaron-Bird/Aaron-Bird.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+<p>3 部署</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">#上传至Github</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>注:如提示 deployer not found:git, 安装 hexo-deployer-git</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h2 id="替换markdown渲染器"><a class="markdownIt-Anchor" href="#替换markdown渲染器"></a> 替换Markdown渲染器</h2>
+<p>自带的渲染器不支持直接插入HTML代码,可使用Markdown it渲染器替换<br />
+<a target="_blank" rel="noopener" href="https://github.com/CHENXCHEN/hexo-renderer-markdown-it-plus">Github hexo-renderer-markdown-it-plus</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 卸载默认渲染器</span><br><span class="line">npm un hexo-renderer-marked --save</span><br><span class="line">// 安装hexo-renderer-markdown-it-plus</span><br><span class="line">npm i hexo-renderer-markdown-it-plus --save</span><br></pre></td></tr></table></figure>
+<p>如果有yarn,上面2条命令也可以使用yarn完成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 卸载默认渲染器</span><br><span class="line">yarn remove hexo-renderer-marked</span><br><span class="line">// 安装hexo-renderer-markdown-it-plus</span><br><span class="line">yarn add hexo-renderer-markdown-it-plus</span><br></pre></td></tr></table></figure>
+<p>安装完成后,打开根目录下_config.yml,添加以下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">markdown_it_plus:</span><br><span class="line">    highlight: true</span><br><span class="line">    html: true</span><br><span class="line">    breaks: false</span><br><span class="line">    // 不转义单/双引号,如果为true.会把文章中英文引号转为中文引号</span><br><span class="line">    typographer: false</span><br></pre></td></tr></table></figure>
+<p>更多设置参数可参考<a target="_blank" rel="noopener" href="https://github.com/markdown-it/markdown-it">Github markdown-it</a><br />
+最后,使用clean命令清除Hexo缓存</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<p>注: hexo-renderer-markdown-it会导致Hexo的toc方法失效<br />
+<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues/3373#issuecomment-442793944">github issue</a><br />
+<a target="_blank" rel="noopener" href="https://dwatow.github.io/2018/01-28-hexo/how-to-hexo-markdown-it-toc/">markdown-it 导致hexo toc失效的原因及解决办法</a></p>
+<h2 id="安装主题"><a class="markdownIt-Anchor" href="#安装主题"></a> 安装主题</h2>
+<ul>
+<li>下载主题,放在 source&gt; themes 文件夹内</li>
+<li>修改站点配置文件内容(根目录下_config.yml)<br />
+theme: 主题名</li>
+</ul>
+<!-- ### 禁止自动添加br标签
+hexo会自动插入br标签,若需关闭,可在_config.yml中加入如下配置
+[参考](https://github.com/hexojs/hexo/issues/1388)
+
+    marked:
+        gfm: true
+        breaks: false -->
+<h2 id="禁止渲染某目录下文件"><a class="markdownIt-Anchor" href="#禁止渲染某目录下文件"></a> 禁止渲染某目录下文件</h2>
+<p>打开根目录下_config.yml,添加如下设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 禁止渲染source目录下html和js文件(对子文件夹无效)</span><br><span class="line">skip_render:</span><br><span class="line">    - &#x27;*.html&#x27;</span><br><span class="line">    - &#x27;*.js&#x27;</span><br><span class="line"></span><br><span class="line">// 禁止渲染source/doc目录下所有文件</span><br><span class="line">skip_render:</span><br><span class="line">    - &#x27;document/**&#x27;</span><br></pre></td></tr></table></figure>
+<h2 id="生成站点地图"><a class="markdownIt-Anchor" href="#生成站点地图"></a> 生成站点地图</h2>
+<p>安装hexo-generator-sitemap</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure>
+<p>打开根目录下_config.yml,添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sitemap:</span><br><span class="line">　path: sitemap.xml</span><br><span class="line">　template: ./sitemap_template.xml</span><br><span class="line">url: https://Aaron-Bird.github.io</span><br></pre></td></tr></table></figure>
+<h2 id="实时预览"><a class="markdownIt-Anchor" href="#实时预览"></a> 实时预览</h2>
+<p>编写Markdown时,可使用LiveReload实时预览最终效果<br />
+需安装以下程序</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei">chrome LiveReload扩展</a></li>
+<li><a target="_blank" rel="noopener" href="https://packagecontrol.io/packages/LiveReload">SublimeText LiveReload插件</a></li>
+</ul>
+<p>Hexo渲染md文件需一定时间,因此设置LiveReload延迟400ms刷新浏览器<br />
+打开 SublimeText &gt; Preferences &gt; Packages settings &gt; LiveReload &gt;Setting User,填入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;enabled_plugins&quot;: [</span><br><span class="line">        &quot;SimpleReloadPluginDelay&quot;, </span><br><span class="line">        &quot;SimpleRefreshDelay&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>LiveReload的默认延迟时间为400ms,可到如下路径文件中更改(便携版Sublime)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sublimetext\Data\Packages\LiveReload\SimpleReloadPluginDelay.py</span><br></pre></td></tr></table></figure>
+<h2 id="常用语法"><a class="markdownIt-Anchor" href="#常用语法"></a> 常用语法</h2>
+<h2 id="标签"><a class="markdownIt-Anchor" href="#标签"></a> 标签</h2>
+<p>标签用于描述文章信息,用hexo new命令新建文章,打开新建的.md文件,就能看到这些标签</p>
+<pre><code>---
+title:
+date: 
+tags: 
+    - program 
+    - install
+categories: software
+description:
+---
+</code></pre>
+<p>你可以自己手动添加需要的标签,常用的标签有:</p>
+<p>title 标题<br />
+date 日期<br />
+tags 标签<br />
+categories 分类<br />
+description 描述</p>
+<!-- ### 插入html代码
+如果使用原Hexo的MarkDown渲染器,可使用raw标记包裹html代码,从而避免渲染器对html进行更改    
+
+     ...html 
+<p>--&gt;</p>
+<h2 id="常用命令"><a class="markdownIt-Anchor" href="#常用命令"></a> 常用命令</h2>
+<p>启动本地服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s | hexo server</span><br></pre></td></tr></table></figure>
+<p>上传网站到Github</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d | deploy</span><br></pre></td></tr></table></figure>
+<p>生成静态文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g | hexo generate</span><br></pre></td></tr></table></figure>
+<p>清除缓存 当修改网站配置,网页却没有更新时使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<p>新建文章<br />
+所有文章以.md格式保存在source&gt;_post中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;title&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="http://km.zaxisit.com/livereload-with-sublime-text-3-setup/">LiveReload delay</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/width-100/">&lt;  width: 100%相对于谁计算</a>
+      
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      
+
+<div class="index">
+    
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">
+                    RSA加密算法
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-05-09T16:00:00.000Z">
+                  2020-05-10
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/algorithm/">
+                    <span>algorithm</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>注: 下文中的 % 符号一律表示取模(mod)操作,而非取余(rem).</p>
+<p>取模(Python)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span> % -<span class="number">5</span> = -<span class="number">2</span></span><br><span class="line">-<span class="number">8</span> % <span class="number">5</span> = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>取余(JavaScript)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span> % -<span class="number">5</span> = <span class="number">3</span></span><br><span class="line">-<span class="number">8</span> % <span class="number">5</span> = -<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h2 id="rsa-算法"><a class="markdownIt-Anchor" href="#rsa-算法"></a> RSA 算法</h2>
+<p>1 随机选择两个不同的质数 p 和 q.</p>
+<p>2 计算 p * q, 记为 n.</p>
+<p>3 计算卡迈尔克函数 λ(n).<br />
+因为 n = pq, 且 p 和 q 均为质数, 则 λ(n) 为 φ(p) 和 φ(q) 的最小公倍数.<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>l</mi><mi>c</mi><mi>m</mi><mo stretchy="false">(</mo><mi>λ</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>λ</mi><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>l</mi><mi>c</mi><mi>m</mi><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>l</mi><mi>c</mi><mi>m</mi><mo stretchy="false">(</mo><mi>p</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>q</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mi>p</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>q</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi></mrow><mrow><mi>g</mi><mi>c</mi><mi>d</mi><mo stretchy="false">(</mo><mi>p</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>q</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">λ(n) = lcm(λ(p), λ(q)) = lcm(φ(p), φ(q)) = lcm(p -1 , q - 1) = \frac{/(p - 1)(q - 1)/}{gcd(p - 1, q - 1)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">λ</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mord mathdefault">λ</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">λ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mord mathdefault">φ</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">φ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">d</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">p</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">/</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">p</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mord mtight">/</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>4 随机选择一个整数 e, 满足 1 &lt; e &lt; λ(n) , 并且 e 和 λ(n) 互质.通常会选择 65537 作为 e 的值.</p>
+<p>5 计算 e 的模反元素 d, 即 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>e</mi><mo>≡</mo><mn>1</mn><mtext> </mtext><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mtext> </mtext><mi>λ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">de \equiv 1 \ (mod \ λ(n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mspace"> </span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace"> </span><span class="mord mathdefault">λ</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>.</p>
+<p>6 将 n 和 e 作为 公钥, n 和 d 作为私钥.</p>
+<p>加密: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>m</mi><mi>e</mi></msup><mtext> </mtext><mi>m</mi><mi>o</mi><mi>d</mi><mtext> </mtext><mi>n</mi></mrow><annotation encoding="application/x-tex">c(m) = m^e \ mod \ n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span></span></span></span><span class="mspace"> </span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace"> </span><span class="mord mathdefault">n</span></span></span></span></p>
+<p>解密: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>=</mo><msup><mi>c</mi><mi>d</mi></msup><mtext> </mtext><mi>m</mi><mi>o</mi><mi>d</mi><mtext> </mtext><mi>n</mi></mrow><annotation encoding="application/x-tex">m = c^d \ mod \ n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mspace"> </span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace"> </span><span class="mord mathdefault">n</span></span></span></span></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/instanceof%20%E4%B8%8E%20Object.isPrototypeOf%20%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                    instanceof 与 Object.isPrototypeOf 的区别
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-04-16T16:00:00.000Z">
+                  2020-04-17
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>Aobj instanceof Bfunction // Bfunction.prototype 是否在 Aobj.__proto__ (A 的原型链)上 ?<br />
+Aobj.isPrototypeOf(Bobj) // Aobj 是否在 Bobj.__proto__ (B 的原型链)上?</p>
+<p>instanceof 用于判断&quot;左侧的对象&quot;是否是&quot;右侧的构造函数&quot;生成的实例.</p>
+<p>相当于:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">instance</span>(<span class="params">Aobj, Bfunction</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> proto = <span class="title class_">Aobj</span>.<span class="property">__proto__</span>;</span><br><span class="line">  <span class="keyword">while</span> (proto) &#123;</span><br><span class="line">    <span class="keyword">if</span> (proto === <span class="title class_">Bfunction</span>.<span class="property"><span class="keyword">prototype</span></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      proto = proto.<span class="property">__proto__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Parent</span> &#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Grandson</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Child</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line"><span class="title function_">instance</span>(c, <span class="title class_">Parent</span>); <span class="comment">// true</span></span><br><span class="line"><span class="title function_">instance</span>(&#123;&#125;, <span class="title class_">Parent</span>); <span class="comment">// false</span></span><br><span class="line"><span class="title function_">instance</span>(c, <span class="title class_">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = <span class="keyword">new</span> <span class="title class_">Grandson</span>();</span><br><span class="line"><span class="title function_">instance</span>(g, <span class="title class_">Parent</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/instanceof%20%E4%B8%8E%20Object.isPrototypeOf%20%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/class/">
+                    class
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-04-06T16:00:00.000Z">
+                  2020-04-07
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>Es6 开始引入了 class 关键字,其本质是基于构造函数和原型链继承的语法糖.</p>
+<h2 id="创建-class"><a class="markdownIt-Anchor" href="#创建-class"></a> 创建 class</h2>
+<p>有两种方法创建 class, class declartions(类声明) 和 class expression(类表达式).</p>
+<h3 id="class-declarations"><a class="markdownIt-Anchor" href="#class-declarations"></a> class declarations</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Foo &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>class declarations 必须有类名,否则会报错 SyntaxError.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class &#123;&#125; // SyntaxError: Unexpected token &#123;</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/class/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/URL/">
+                    URL
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-03-28T16:00:00.000Z">
+                  2020-03-29
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="document"><a class="markdownIt-Anchor" href="#document"></a> document</h2>
+<h3 id="documenturl"><a class="markdownIt-Anchor" href="#documenturl"></a> document.URL</h3>
+<p>返回当前文档的 URL 地址,只读.<br />
+<s>只能在 HTML 文档中使用.</s></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/URL">Document.URL - Web APIs | MDN</a></p>
+<h3 id="documentdocumenturi"><a class="markdownIt-Anchor" href="#documentdocumenturi"></a> document.documentURI</h3>
+<p>返回当前文档的 URL 地址,只读.<br />
+在 DOM3 规范中定义为可写, DOM4 改为只读.<br />
+<s>没有文档类型限制,可用于任何文档.</s></p>
+<p>IE 不支持此属性</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/documentURI">Document.documentURI - Web APIs | MDN</a></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/URL/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/Sequelize/">
+                    Sequelize
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-03-07T16:00:00.000Z">
+                  2020-03-08
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Sequelize/">
+                    <span>Sequelize</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>Sequelize 是基于 Node 的 ORM 库, 支持的数据库有 Postgres | MySQL | MariaDB, SQLite | Microsoft SQL Server.<br />
+Sequelize 将数据库键值对映射成对象, 将增删改查操作映射成方法,抹平了不同数据库间的语法区别.</p>
+<h2 id="hello-world"><a class="markdownIt-Anchor" href="#hello-world"></a> hello world</h2>
+<p>安装 Sequelize</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add sequelize</span><br><span class="line">yarn add sqlite3</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/Sequelize/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/child_process/">
+                    child_process
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-03-04T16:00:00.000Z">
+                  2020-03-05
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Node/">
+                    <span>Node</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>本文环境:</p>
+<ul>
+<li>windows</li>
+<li>node v12.16.1</li>
+</ul>
+<p>本文使用的模块:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cp = <span class="built_in">require</span>(<span class="string">&quot;child_process&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> iconv = <span class="built_in">require</span>(<span class="string">&quot;iconv-lite&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>child_process 模块提供了 4 种方法创建子进程:</p>
+<ul>
+<li>child_process.spawn</li>
+<li>child_process.execFile</li>
+<li>child_process.exec</li>
+<li>child_process.fork</li>
+</ul>
+<p>除此之外, 还用 3 种同步方法:</p>
+<ul>
+<li>child_process.spawnSync</li>
+<li>child_process.execFileSync</li>
+<li>child_process.execSync</li>
+</ul>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/child_process/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/puppeteer%20(2)%20%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%89%A7%E8%A1%8C%20Js%20%E4%BB%A3%E7%A0%81/">
+                    puppeteer (2) 在页面环境下执行 Js 代码
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-01-13T16:00:00.000Z">
+                  2020-01-14
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Puppeteer/">
+                    <span>Puppeteer</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="执行-js-函数"><a class="markdownIt-Anchor" href="#执行-js-函数"></a> 执行 js 函数</h2>
+<p>page.evaluate(pageFunction[, ...args])</p>
+<ul>
+<li>pageFunction 在页面环境中执行的函数</li>
+<li>args 参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&quot;puppeteer&quot;</span>);</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">init</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">args</span>: [<span class="string">&#x27;--proxy-server=&quot;direct://&quot;&#x27;</span>, <span class="string">&quot;--proxy-bypass-list=*&quot;</span>],</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> page.evaluate(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">init</span>();</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/puppeteer%20(2)%20%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%89%A7%E8%A1%8C%20Js%20%E4%BB%A3%E7%A0%81/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E5%BF%AB%E6%8E%92/">
+                    快排
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-01-11T16:00:00.000Z">
+                  2020-01-12
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/algorithm/">
+                    <span>algorithm</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="平均时间复杂度"><a class="markdownIt-Anchor" href="#平均时间复杂度"></a> 平均时间复杂度</h2>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>n</mi><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mrow><mo fence="true">[</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>T</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>+</mo><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>c</mi><mi>n</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>+</mo></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>T</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mi>c</mi><mi>n</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>+</mo></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi mathvariant="normal">⋮</mi><mpadded height="+0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>+</mo></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>T</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>+</mo><mi>c</mi><mi>n</mi></mrow></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>+</mo><mi>T</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mo>⋯</mo><mo>+</mo><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>+</mo><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mo>⋯</mo><mo>+</mo><mi>T</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>+</mo><mi>c</mi><msup><mi>n</mi><mn>2</mn></msup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>2</mn><munder><munder><mrow><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>+</mo><mi>T</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mo>⋯</mo><mo>+</mo><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><mo stretchy="true">⏟</mo></munder><mtext>合并</mtext></munder><mo>+</mo><mi>c</mi><msup><mi>n</mi><mn>2</mn></msup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>2</mn><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></munderover><mi>T</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo><mo>+</mo><mi>c</mi><msup><mi>n</mi><mn>2</mn></msup></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+nT(n) &amp;= 
+\begin{bmatrix}
+T(0) + T(n - 1) + cn \\
++ \\
+T(1) + T(n - 2) + cn \\
++ \\ \vdots \\ + \\
+
+T(n - 1) + T(0) + cn 
+\end{bmatrix} \\ \\
+&amp;= [T(0) + T(1) + \dots + T(n-1)] + [T(n-1) + T(n-2) + \dots + T(0)] + cn^2\\ \\
+&amp;= 2\underbrace{[T(0) + T(1) + \dots + T(n-1)]}_{\text{合并}} + cn^2 \\ \\
+&amp;= 2 \sum_{j=0}^{n-1} T(j) + cn^2
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:21.639437em;vertical-align:-10.5697185em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:11.0697185em;"><span style="top:-13.0697185em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span><span style="top:-7.6497185000000005em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"></span></span><span style="top:-6.1256105000000005em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"></span></span><span style="top:-4.6256105000000005em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"></span></span><span style="top:-3.1015025000000005em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"></span></span><span style="top:-0.385171500000002em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"></span></span><span style="top:2.0759414999999994em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:10.5697185em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:11.0697185em;"><span style="top:-13.0697185em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.758975em;"><span style="top:0.45004499999999903em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎣</span></span></span><span style="top:-0.7049550000000009em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-1.3059550000000009em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-1.9069550000000008em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-2.507955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-3.108955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-3.709955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-4.310955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-4.911955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-5.512955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-6.758975em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎡</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:4.250064999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.780000000000001em;"><span style="top:-7.6275em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span></span></span><span style="top:-6.427500000000001em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord">+</span></span></span><span style="top:-5.227500000000001em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span></span></span><span style="top:-4.027500000000001em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord">+</span></span></span><span style="top:-2.1675em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span><span style="top:-0.9675em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord">+</span></span></span><span style="top:0.2325000000000002em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:4.28em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.758975em;"><span style="top:0.45004499999999903em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎦</span></span></span><span style="top:-0.7049550000000009em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-1.3059550000000009em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-1.9069550000000008em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-2.507955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-3.108955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-3.709955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-4.310955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-4.911955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-5.512955000000001em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-6.758975em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎤</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:4.250064999999999em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-6.1256105000000005em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.1015025000000005em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">2</span><span class="mord munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7499999999999998em;"><span style="top:-1.4236689999999999em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">合并</span></span></span></span></span><span style="top:-2.9999999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span class="svg-align" style="top:-2.102em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMinYMin slice'><path d='M0 6l6-6h17c12.688 0 19.313.3 20 1 4 4 7.313 8.3 10 13
+ 35.313 51.3 80.813 93.8 136.5 127.5 55.688 33.7 117.188 55.8 184.5 66.5.688
+ 0 2 .3 4 1 18.688 2.7 76 4.3 172 5h399450v120H429l-6-1c-124.688-8-235-61.7
+-331-161C60.687 138.7 32.312 99.3 7 54L0 41V6z'/></svg></span><span class="brace-center" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMidYMin slice'><path d='M199572 214
+c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
+ 53.3-86.7 123.7-153 211-199 66.7-36 137.3-56.3 212-62h199568v120H200432c-178.3
+ 11.7-311.7 78.3-403 201-6 8-9.7 12-11 12-.7.7-6.7 1-18 1s-17.3-.3-18-1c-1.3 0
+-5-4-11-12-44.7-59.3-101.3-106.3-170-141s-145.3-54.3-229-60H0V214z'/></svg></span><span class="brace-right" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMaxYMin slice'><path d='M399994 0l6 6v35l-6 11c-56 104-135.3 181.3-238 232-57.3
+ 28.7-117 45-179 50H-300V214h399897c43.3-7 81-15 113-26 100.7-33 179.7-91 237
+-174 2.7-5 6-9 10-13 .7-1 7.3-1 20-1h17z'/></svg></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.898em;"><span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5763310000000001em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:2.0759414999999994em;"><span class="pstrut" style="height:6.780000000000001em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8011130000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:10.5697185em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E5%BF%AB%E6%8E%92/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/Cookie/">
+                    Cookie
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2020-01-04T16:00:00.000Z">
+                  2020-01-05
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/HTTP/">
+                    <span>HTTP</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>HTTP 协议是&quot;无状态的&quot;,但需要通过某些标记来判断用户身份,Cookie 为此而生.<br />
+Cookie 是保存在浏览器上的一段数据,常用来识别用户身份.当浏览器向服务器发出 HTTP 请求时,会自动携带 Cookie.<br />
+修改 Cookie 的方法有两种, 在服务器发送响应数据时设置 response headers,或在浏览器中执行 Js.<br />
+浏览器 Cookie 可以储存的数据有条数和大小限制.一般限制为50条以下 , 大小不超过4096bytes.</p>
+<p>Cookie 有大小限制,且浏览器会自动发送 Cookie,最好不要把 Cookie 当作 LocalStore 使用.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/Cookie/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/5%20Longest%20Palindromic%20Substring/">
+                    5 Longest Palindromic Substring
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-10-14T16:00:00.000Z">
+                  2019-10-15
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/leetcode/">
+                    <span>leetcode</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.<br />
+给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<p>Example 1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<p>从左向右依次遍历字符串.<br />
+以当前字符(假设回文数为基数长度)或当前字符和下一个字符(假设回文数为偶数长度)为回文数中心, 向左右两侧搜索.</p>
+<p>时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/5%20Longest%20Palindromic%20Substring/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+    
+    <!-- pagination -->
+<nav class="pagination">
+    <a class="extend prev" rel="prev" href="/">&lt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">&gt;</a>
+</nav>
+</div>
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

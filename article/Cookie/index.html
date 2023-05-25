@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie-%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text"> Cookie 的参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#path"><span class="toc-text"> Path</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#domain"><span class="toc-text"> Domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#httponly"><span class="toc-text"> HttpOnly</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#secure"><span class="toc-text"> Secure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#max-age"><span class="toc-text"> Max-Age</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#expires"><span class="toc-text"> Expires</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#samesite"><span class="toc-text"> SameSite</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-js-%E6%93%8D%E4%BD%9C-cookie"><span class="toc-text"> 通过 Js 操作 Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C-cookie"><span class="toc-text"> 通过服务器操作 Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">Cookie</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-01-04T16:00:00.000Z">
+            2020-01-05
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/HTTP/">
+              <span>HTTP</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/HTTP/">
+            <span>HTTP</span>
+          </a>
+        
+          <a href="/tags/Express/">
+            <span>Express</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>HTTP 协议是&quot;无状态的&quot;,但需要通过某些标记来判断用户身份,Cookie 为此而生.<br />
+Cookie 是保存在浏览器上的一段数据,常用来识别用户身份.当浏览器向服务器发出 HTTP 请求时,会自动携带 Cookie.<br />
+修改 Cookie 的方法有两种, 在服务器发送响应数据时设置 response headers,或在浏览器中执行 Js.<br />
+浏览器 Cookie 可以储存的数据有条数和大小限制.一般限制为50条以下 , 大小不超过4096bytes.</p>
+<p>Cookie 有大小限制,且浏览器会自动发送 Cookie,最好不要把 Cookie 当作 LocalStore 使用.</p>
+<span id="more"></span>
+<h2 id="cookie-的参数"><a class="markdownIt-Anchor" href="#cookie-的参数"></a> Cookie 的参数</h2>
+<h3 id="path"><a class="markdownIt-Anchor" href="#path"></a> Path</h3>
+<p>设置 Cookie 所应用的路径</p>
+<p>假设有以下三种路径:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/admin</span><br><span class="line">/admin/data</span><br><span class="line">/user</span><br></pre></td></tr></table></figure>
+<p>/admin/data 可以获取 /admin 路径的 Cookie<br />
+/admin 不能获取  /admin/data 路径的 Cookie<br />
+/admin 不能获取 /user 路径的 Cookie, 但反过来 /user 也不获取到 /admin</p>
+<p>总结就是,子路径可以获取父路径的 Cookie.但反过来不行, 父路径取不到子路径的 Cookie.<br />
+从子路径(/admin/data)访问服务器时, 父路径(/admin)的 Cookie 也会被自动发送给服务器.<br />
+从父路径(/admin)访问服务器时,不会发送子路径(/admin/data)中的 Cookie.</p>
+<p>虽然不能从父路径获取子路径的 Cookie, 但可以在父路径下配置子路径的 Cookie.</p>
+<p>例如, 在 /admin 路径下配置一个属于 /admin/data 的 Cookie.<br />
+这个 Cookie 在 /admin 路径下读不到<br />
+<img src="/img/7cfebcd1.PNG" alt="1.PNG" /></p>
+<p>但可以在 /admin/data 中通过 document.cookie 读取<br />
+<img src="/img/b9316d84.PNG" alt="2.PNG" /></p>
+<p>当然,也可以从子路径配置父路径的 Cookie.<br />
+下面是一个在 /admin/data 路径配置 /admin 路径 Cookie 的例子.<br />
+<img src="/img/71399e09.PNG" alt="1.PNG" /><br />
+<img src="/img/7e33d57e.PNG" alt="2.PNG" /></p>
+<p>path的默认值为 <strong>/</strong>,如果没有设置 path的话, 所有子路径都可以访问这个 Cookie.</p>
+<h3 id="domain"><a class="markdownIt-Anchor" href="#domain"></a> Domain</h3>
+<p>Path 配置的是路径,而 Domain 配置的是域.</p>
+<p>有如下域名:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main.test</span><br><span class="line">sub.main.test</span><br></pre></td></tr></table></figure>
+<p>如果配置 domain=main.test,  则可以在 main.test 和 sub.main.test都能获取到这个 Cookie.<br />
+如果配置 domain=sub.main.test, 则能在 sub.main.test 域名下访问这个 Cookie,而 main.test 不行.</p>
+<p>可以通过子域(sub.main.test)可以访问父域(main.test)的 Cookie<br />
+<img src="/img/6d0c103a.PNG" alt="1.PNG" /><br />
+<img src="/img/81280c47.PNG" alt="2.PNG" /></p>
+<p>也可以在子域配置父域的 Cookie<br />
+<img src="/img/ffbf7bd5.PNG" alt="3.PNG" /><br />
+<img src="/img/1a17eff8.PNG" alt="4.PNG" /></p>
+<p>但不能在父域访问子域的 Cookie, 也不能在父域创建/修改子域的 Cookie.<br />
+<img src="/img/56bd6cb0.PNG" alt="7.PNG" /><br />
+<img src="/img/ee1b1caf.PNG" alt="8.PNG" /></p>
+<p>注意: 如果不配置 domain,则表示这个 Cookie 的域为当前所在的域名,且不包括子域.<br />
+也就是如果没配置 domain=main.test 的话, 就只能在 main.test 访问这个 Cookie, 不能用 sub.main.test 域名访问.<br />
+<img src="/img/681d9ae2.PNG" alt="9.PNG" /><br />
+<img src="/img/4ee1c1b5.PNG" alt="10.PNG" /></p>
+<h3 id="httponly"><a class="markdownIt-Anchor" href="#httponly"></a> HttpOnly</h3>
+<p>禁止通过 Js 操作 Cookie<br />
+<img src="/img/a9b84d28.PNG" alt="捕获.PNG" /></p>
+<p>未设置 HttpOnly 标记 和设置了 HttpOnly 标记后的效果对比.<br />
+设置了 HttpOnly 后, document.cookie 无法读取到对应的 Cookie.<br />
+<img src="/img/7d0ed83e.PNG" alt="1.PNG" /></p>
+<h3 id="secure"><a class="markdownIt-Anchor" href="#secure"></a> Secure</h3>
+<p>只有通过 HTTPS 协议访问时(而非 HTTP),浏览器才会发送 Cookie 给服务器.<br />
+<img src="/img/85e4094d.PNG" alt="捕获.PNG" /></p>
+<p>HTTP 和 HTTPS 的区别, HTTP 不会发送设置了 Secure 标记的 Cookie.<br />
+<img src="/img/38f86e8f.PNG" alt="2.PNG" /></p>
+<h3 id="max-age"><a class="markdownIt-Anchor" href="#max-age"></a> Max-Age</h3>
+<p>设置 Cookie 的有效期,单位为 <strong>秒</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一天之后过期</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span>=<span class="string">`uid=1;max-age=<span class="subst">$&#123;<span class="number">60</span> * <span class="number">60</span>  *<span class="number">24</span>&#125;</span>`</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/6caa0336.PNG" alt="捕获.PNG" /></p>
+<p>注意,ie8 及以下版本的浏览器不支持 Max-Age</p>
+<h3 id="expires"><a class="markdownIt-Anchor" href="#expires"></a> Expires</h3>
+<p>设置 Cookie 的过期时间, 接受 UTC 时间作为参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一天后过期</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span>=<span class="string">`uid=1;expires=<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.now() + <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>).toUTCString()&#125;</span>`</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如果同时存在 Max-Age 和 Expires, 则 优先采用 Max-Age.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// max-age 一小时</span></span><br><span class="line"><span class="comment">// expires 一天</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span>=<span class="string">`uid=1;expires=<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.now() + <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>).toUTCString()&#125;</span>`</span>  </span><br></pre></td></tr></table></figure>
+<p><img src="/img/2eaaa458.PNG" alt="1.PNG" /></p>
+<p>注意, 过期时间以服务器时间为准</p>
+<p>如果未设置 Max-Age 和 Expires, 则表示这是个 session cookie(会话 Cookie), 这个 Cookie 会在浏览器关会话结束(关闭浏览器)时被删除.</p>
+<h3 id="samesite"><a class="markdownIt-Anchor" href="#samesite"></a> SameSite</h3>
+<p>可选值:</p>
+<ul>
+<li>Strict 禁止发送第三方 Cookie</li>
+<li>Lax</li>
+<li>None</li>
+</ul>
+<p>Lax 除以下情况外,均不携带 Cookie:<br />
+1 同域名(即 samesite=strict )<br />
+2 GET方法的跳转到同域名, 例如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;GET&quot;</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://main.test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>3 prerender 预加载</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;prerender&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>例子:<br />
+服务器配置, 设置了两个 Cookie, 只有第一个Cookie foo 设置了 sameSite:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">cookies</span>)</span><br><span class="line">  res.<span class="title function_">cookie</span>(<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;1&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">sameSite</span>: <span class="string">&quot;Lax&quot;</span>, <span class="comment">// 注意这里</span></span><br><span class="line">    <span class="attr">domain</span>: <span class="string">&quot;main.test&quot;</span></span><br><span class="line">  &#125;);</span><br><span class="line">  res.<span class="title function_">cookie</span>(<span class="string">&quot;bar&quot;</span>, <span class="string">&quot;2&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">domain</span>: <span class="string">&quot;main.test&quot;</span></span><br><span class="line">  &#125;);</span><br><span class="line">  res.<span class="title function_">send</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>接收到的 Cookie<br />
+<img src="/img/b05d2c1e.PNG" alt="捕获.PNG" /><br />
+下面将尝试通过不同的方法访问 main.test, 看看是否会发送带有 sameSite=Lax 的 Cookie</p>
+<p>1 通过 a 标签, 从 127.0.0.1 转跳到 <a target="_blank" rel="noopener" href="https://main.test">https://main.test</a>, Cookie 被发送.<br />
+<img src="/img/c91c03a6.png" alt="Image 8.png" /></p>
+<p>2 在 127.0.0.1 域名下, 通过 GET 方法向 <a target="_blank" rel="noopener" href="https://main.test">https://main.test</a> 提交表单, Cookie 被发送.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;GET&quot;</span> <span class="attr">action</span>=<span class="string">&quot;https://main.test&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/60091991.png" alt="Image 11.png" /></p>
+<p>3 在 127.0.0.1 域名下, 通过 POST 方法向 <a target="_blank" rel="noopener" href="https://main.test">https://main.test</a> 提交表单, Cookie foo 没有被发送.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span> <span class="attr">action</span>=<span class="string">&quot;https://main.test&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/a89f65d4.png" alt="Image 10.png" /></p>
+<p>4 在 127.0.0.1 域名下, 通过 fetch GET/POST 向 <a target="_blank" rel="noopener" href="https://main.test">https://main.test</a> 发送数据, Cookie foo 没有被发送.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 访问代码</span></span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://main.test/&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">    <span class="attr">credentials</span>: <span class="string">&#x27;include&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://main.test/&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">credentials</span>: <span class="string">&#x27;include&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/e34d5727.png" alt="Image 13.png" /></p>
+<p>5 prerender<br />
+这个挺不好看到效果.因为浏览器有缓存,等缓存过期要好久,控制台也不会显示 prerender 链接的预加载.</p>
+<p>首先修改下 127.0.0.1/index.html, 加上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">&quot;prerender&quot;</span> href=<span class="string">&quot;https://main.test&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>服务端也要改一下,不从服务端设置 Cookie.要是直接访问 <a target="_blank" rel="noopener" href="https://main.test">https://main.test</a> 的话会留下缓存, 浏览器就不会去请求设置了 prerender 的 link.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app2.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">cookies</span>, req.<span class="property">headers</span>.<span class="property">referer</span>)</span><br><span class="line">  res.<span class="title function_">send</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>用 Chrome 打开一个无痕窗口, 然后 右键查看 -&gt; NetWork -&gt; 勾上 Offline.<br />
+然后访问 <a target="_blank" rel="noopener" href="https://main.test">https://main.test</a>, 此时 Chrome 会提示未连接到互联网.<br />
+然后用 Chrome 扩展 EditThisCookie 手工加上两个 Cookie.</p>
+<p><img src="/img/4888af15.png" alt="Image 16.png" /></p>
+<p>再打开一个隐身窗口, 访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:5500/">http://127.0.0.1:5500/</a><br />
+查看服务器日志, 表明 Chrome 确实预加载了带有 prerender 的 link.</p>
+<p><img src="/img/601a6bf3.PNG" alt="捕获.PNG" /></p>
+<p>兼容性<br />
+<img src="/img/1849aa8a.PNG" alt="捕获.PNG" /></p>
+<h2 id="通过-js-操作-cookie"><a class="markdownIt-Anchor" href="#通过-js-操作-cookie"></a> 通过 Js 操作 Cookie</h2>
+<p>查询</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span> <span class="comment">// &#x27;foo=1&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>添加/修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span>=<span class="string">&quot;bar=1;max-age=3600;domain=main.test&quot;</span></span><br></pre></td></tr></table></figure>
+<p>删除 Cookie</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span> = <span class="string">&#x27;bar=;domain=main.test;expires=Thu, 01 Jan 1970 00:00:01 GMT;&#x27;</span>;  </span><br></pre></td></tr></table></figure>
+<p>注意 domain 和 path 要匹配</p>
+<h2 id="通过服务器操作-cookie"><a class="markdownIt-Anchor" href="#通过服务器操作-cookie"></a> 通过服务器操作 Cookie</h2>
+<p>服务器可以在发送数据时,在 response headers 中使用 Set-Cookie 来更改客户端的 Cookie.<br />
+以 Express 为例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">cookie</span>(<span class="string">&#x27;uid&#x27;</span>, <span class="string">&#x27;111111&#x27;</span>)</span><br><span class="line">  res.<span class="title function_">send</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/814d2d67.PNG" alt="捕获.PNG" /></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">cookie</span>(<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;1&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">domain</span>: <span class="string">&#x27;main.test&#x27;</span>,</span><br><span class="line">    <span class="attr">secure</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;admin&#x27;</span>,</span><br><span class="line">    <span class="attr">sameSite</span>: <span class="string">&#x27;Lax&#x27;</span>,</span><br><span class="line">    <span class="attr">httpOnly</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">secure</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">maxAge</span>: <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span>, <span class="comment">// 保质期, 单位为 毫秒</span></span><br><span class="line">    <span class="attr">expires</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() + <span class="number">1000</span> * <span class="number">60</span>) <span class="comment">// 接受 Date 作为参数, 优先级比 maxAge 低</span></span><br><span class="line">  &#125;);</span><br><span class="line">  res.<span class="title function_">cookie</span>(<span class="string">&quot;bar&quot;</span>, <span class="string">&quot;2&quot;</span>, &#123;&#125;);</span><br><span class="line">  res.<span class="title function_">send</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/2a0139a3.png" alt="Image 19.png" /></p>
+<p>删除 Cookie</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app2.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">clearCookie</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line">  res.<span class="title function_">send</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/a9f8036d.PNG" alt="捕获.PNG" /></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html">Cookie 的 SameSite 属性 - 阮一峰的网络日志</a><br />
+<a target="_blank" rel="noopener" href="https://www.jeffjade.com/2016/10/31/115-summary-of-cookie/">详解 Cookie 纪要 | 晚晴幽草轩</a><br />
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies">HTTP cookies - HTTP | MDN</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E5%BF%AB%E6%8E%92/">&lt;  快排</a>
+      
+      
+        <a class="next" href="/article/5%20Longest%20Palindromic%20Substring/">5 Longest Palindromic Substring  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

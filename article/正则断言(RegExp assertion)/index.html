@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>正则断言(RegExp assertion)</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BD%8D%E7%BD%AE"><span class="toc-text"> 什么是位置?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lookahead-assertion"><span class="toc-text"> Lookahead assertion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#negative-lookahead-assertion"><span class="toc-text"> Negative lookahead assertion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lookbehind-assertion"><span class="toc-text"> Lookbehind assertion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#negative-lookbehind-assertion"><span class="toc-text"> Negative lookbehind assertion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text"> 注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E8%A8%80%E5%92%8C%E9%9D%9E%E6%8D%95%E8%8E%B7%E7%BB%84non-capturing-group%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> 断言和非捕获组(Non-capturing group)的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text"> 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">正则断言(RegExp assertion)</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2022-04-24T16:00:00.000Z">
+            2022-04-25
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/RegExp/">
+              <span>RegExp</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/RegExp/">
+            <span>RegExp</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>又称: 零宽断言(Zero-width assertion)</p>
+<h2 id="什么是位置"><a class="markdownIt-Anchor" href="#什么是位置"></a> 什么是位置?</h2>
+<p>首先要搞清楚,断言匹配的是<strong>位置</strong>, 不是某个具体的字符串.<br />
+可以把位置理解成&quot;空白字符&quot;. 例如字符串 ab 可以分解成如下格式,字母 ab 两边的空白字符就是<strong>位置</strong>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;</span> + a + <span class="string">&#x27;&#x27;</span> + b + <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><code>^</code> 匹配字符串的开始位置, <code>$</code> 匹配字符串的结尾位置.<br />
+可以试试用 String.replace 来把这两个位置替换成下划线.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;ab&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/^/</span>, <span class="string">&#x27;_&#x27;</span>) <span class="comment">// &#x27;_ab&#x27;</span></span><br><span class="line"><span class="string">&#x27;ab&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/$/</span>, <span class="string">&#x27;_&#x27;</span>) <span class="comment">// &#x27;ab_&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="lookahead-assertion"><a class="markdownIt-Anchor" href="#lookahead-assertion"></a> Lookahead assertion</h2>
+<p>结构: <code>(?=pattern)</code></p>
+<p>匹配 pattern 前面的位置<br />
+可译为: 向前断言 正向肯定预查</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/<span class="title function_">a</span>(?=b)/.<span class="title function_">exec</span>(<span class="string">&#x27;ab&#x27;</span>) <span class="comment">// [&#x27;a&#x27;, index: 0, input: &#x27;ab&#x27;, groups: undefined]</span></span><br></pre></td></tr></table></figure>
+<p>使用:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 匹配所有的美元价格</span></span><br><span class="line"><span class="string">&#x27;10$ 20€ 30$ 40€&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/(\d+)(?=\$)/g</span>) <span class="comment">// [&#x27;10&#x27;, &#x27;30&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配所有的美元和英镑价格</span></span><br><span class="line"><span class="string">&#x27;10$ 20€ 30$ 40€ 50£&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/(\d+)(?=\$|£)/g</span>) <span class="comment">// [&#x27;10&#x27;, &#x27;30&#x27;, &#x27;50&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p>验证字符串格式,要求必须同时包含数字 大写字母 小写字母, 且长度在 8~10 间.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/^(?=.*[a-z]+)(?=.*[A-Z])(?=.*\d+).&#123;8,10&#125;$/</span></span><br><span class="line">reg.<span class="title function_">test</span>(<span class="string">&#x27;123abcAB&#x27;</span>) <span class="comment">// true</span></span><br><span class="line">reg.<span class="title function_">test</span>(<span class="string">&#x27;12abAB__&#x27;</span>) <span class="comment">// true</span></span><br><span class="line">reg.<span class="title function_">test</span>(<span class="string">&#x27;12345678&#x27;</span>) <span class="comment">// false</span></span><br><span class="line">reg.<span class="title function_">test</span>(<span class="string">&#x27;abcdefgh&#x27;</span>) <span class="comment">// false</span></span><br><span class="line">reg.<span class="title function_">test</span>(<span class="string">&#x27;1aA&#x27;</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>正则 <code>(?=.*[a-z]+)(?=.*[A-Z])(?=.*\d+)</code> 匹配到的是最开始的位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;123abcAB&#x27;</span>.<span class="title function_">replace</span>( <span class="regexp">/^(?=.*[a-z]+)(?=.*[A-Z])(?=.*\d+)/</span>, <span class="string">&#x27;_&#x27;</span>) <span class="comment">// &#x27;_123abcAB&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="negative-lookahead-assertion"><a class="markdownIt-Anchor" href="#negative-lookahead-assertion"></a> Negative lookahead assertion</h2>
+<p>结构: <code>(?!pattern)</code></p>
+<p>匹配 !pattern 前面的位置<br />
+可译为: 向前否定断言 正向否定预查</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/<span class="title function_">a</span>(?!b)/.<span class="title function_">exec</span>(<span class="string">&#x27;ac&#x27;</span>) <span class="comment">// [&#x27;a&#x27;, index: 0, input: &#x27;ac&#x27;, groups: undefined]</span></span><br><span class="line">/<span class="title function_">a</span>(?!b)/.<span class="title function_">exec</span>(<span class="string">&#x27;ab&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>匹配 abc000</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/<span class="title function_">abc</span>(?!abc).*/.<span class="title function_">exec</span>(<span class="string">&#x27;abcabc000&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="lookbehind-assertion"><a class="markdownIt-Anchor" href="#lookbehind-assertion"></a> Lookbehind assertion</h2>
+<p>结构: <code>(?&lt;=pattern)</code></p>
+<p>匹配 pattern 后面的位置<br />
+可译为: 向后断言 反向肯定预查</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/(?&lt;=a)b/.<span class="title function_">exec</span>(<span class="string">&#x27;ab&#x27;</span>) <span class="comment">// [&#x27;b&#x27;, index: 1, input: &#x27;ab&#x27;, groups: undefined]</span></span><br><span class="line"><span class="string">&#x27;ab&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/(?&lt;=a)/</span>, <span class="string">&#x27;#&#x27;</span>) <span class="comment">// &#x27;a#b&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="negative-lookbehind-assertion"><a class="markdownIt-Anchor" href="#negative-lookbehind-assertion"></a> Negative lookbehind assertion</h2>
+<p>结构: <code>(?&lt;!pattern)</code></p>
+<p>匹配 !pattern 后面的位置<br />
+可译为: 向后否定断言 反向否定预查</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/(?&lt;!a)b/.<span class="title function_">exec</span>(<span class="string">&#x27;cb&#x27;</span>) <span class="comment">// [&#x27;b&#x27;, index: 1, input: &#x27;cb&#x27;, groups: undefined]</span></span><br><span class="line">/(?&lt;!a)b/.<span class="title function_">exec</span>(<span class="string">&#x27;ab&#x27;</span>) <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+<h2 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h2>
+<p>1 Lookbehind 为 ECMA2018 提案, 截止到 2022/4/23 日, Safrai IE 和 低版本 Chrome (61及以下)不支持 Lookbehind,需注意兼容问题</p>
+<p>提案地址 <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-regexp-lookbehind">GitHub - tc39/proposal-regexp-lookbehind: RegExp lookbehind assertions</a><br />
+caniuse兼容列表 <a target="_blank" rel="noopener" href="https://caniuse.com/?search=lookbehind">https://caniuse.com/?search=lookbehind</a></p>
+<p>2 Chrome 和 Firefox 实现的 Lookbehind assertion 支持使用 <code>* ? +</code> 符号(在其他的某些语言中不允许使用这些符号)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;a123&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/(?&lt;=[a-z]+)\d+/g</span>) <span class="comment">// [&#x27;123&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p>具体说明见: <a target="_blank" rel="noopener" href="https://v8.dev/blog/regexp-lookbehind-assertions">RegExp lookbehind assertions · V8</a></p>
+<p>3 这四个断言的 <code>* +</code> 都是非贪婪的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;ab1ab2&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/(?:.+)\d/g</span>) <span class="comment">// [&#x27;ab1ab2&#x27;]</span></span><br><span class="line"><span class="string">&#x27;ab1ab2&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/(?&lt;=.+)\d/g</span>) <span class="comment">// [&#x27;1&#x27;, &#x27;2&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;a12b34&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/[a-z](?:.+)/g</span>) <span class="comment">// [&#x27;a12b34&#x27;]</span></span><br><span class="line"><span class="string">&#x27;a12b34&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/[a-z](?=.+)/g</span>) <span class="comment">// [&#x27;a&#x27;, &#x27;b&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p>4 断言没有位置限制,可以在任意位置使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;aaabbbc&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/a(?!a).*c/g</span>) <span class="comment">// [&#x27;abbbc&#x27;]</span></span><br><span class="line"><span class="string">&#x27;abc1&#x27;</span>.<span class="title function_">match</span>(<span class="regexp">/(?=.*\d$).*/g</span>) <span class="comment">// [&#x27;abc1&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p>为什么 <code>/(?=.*\d$).*/</code> 里有个 <code>$</code> 依然能匹配到 abc1?<br />
+因为<code>(?=.*\d$)</code>表示匹配 <code>.*\d$</code> 前面的位置,也就是字符串的开头.可以理解为: 后边的字符串必须以数值结尾.</p>
+<p>5 Lookahead 和 Lookbehind 的区别<br />
+断言匹配的是位置,向前断言就是匹配某个 pattern 前面的位置,向后断言就是匹配某个 pattern 后面的位置.</p>
+<p>举例来讲:<br />
+1 <code>(?=a)</code> 匹配字符串 a 前的位置<br />
+2 <code>(?&lt;=a)</code> 匹配字符串 a 后的位置</p>
+<h2 id="断言和非捕获组non-capturing-group的区别"><a class="markdownIt-Anchor" href="#断言和非捕获组non-capturing-group的区别"></a> 断言和非捕获组(Non-capturing group)的区别</h2>
+<p>非捕获组的结构: <code>(?:pattern)</code></p>
+<p><strong>非捕获组</strong>匹配的是字符串,而<strong>断言</strong>匹配的是位置<br />
+可以用正则测试网站 regex101 来查看二者的区别: <a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a></p>
+<p><img src="/img/5fb77dab.png" alt="无标题.png" /></p>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<p>1 assertion 匹配位置,而非字符串<br />
+2 位置是字符间的空隙,没有宽度<br />
+3 lookahead 匹配前面的位置, lookbehide 匹配后面的位置<br />
+4 lookahead 的写法是 <code>(?=pattern)</code>. lookbehide 的写法是 <code>(?&lt;=pattern)</code>,多了一个 <code>&lt;</code><br />
+5 反过来取非就在前面加 negative, negative lookahead<br />
+6 negative lookahead 的写法是 <code>(?!pattern)</code>, negative lookbehide 的写法是 <code>(?&lt;!pattern)</code>.(把<code>=</code>号替换成<code>!</code>)</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions">Assertions - JavaScript | MDN</a><br />
+<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">https://zh.wikipedia.org/wiki/正则表达式</a><br />
+<a target="_blank" rel="noopener" href="https://2ality.com/2017/05/regexp-lookbehind-assertions.html">https://2ality.com/2017/05/regexp-lookbehind-assertions.html</a><br />
+<a target="_blank" rel="noopener" href="https://www.regular-expressions.info/lookaround.html">Regex Tutorial - Lookahead and Lookbehind Zero-Length Assertions</a><br />
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27309508">正则表达式位置匹配攻略 - 知乎</a><br />
+<a target="_blank" rel="noopener" href="https://deerchao.cn/tutorials/regex/regex.htm#lookaround">正则表达式30分钟入门教程</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/acme.sh%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">&lt;  acme.sh 使用笔记</a>
+      
+      
+        <a class="next" href="/article/JavaScript%20%E7%8A%B6%E6%80%81%E6%9C%BA%20xstate%20%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">JavaScript 状态机 xstate 使用简介  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

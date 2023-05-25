@@ -1,0 +1,692 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      
+
+<div class="index">
+    
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/html2canvas/">
+                    html2canvas
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-12-22T06:00:00.000Z">
+                  2017-12-22
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript-library/">
+                    <span>JavaScript library</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                
+
+var dwsnapshot = function(){
+    var ele = document.querySelector('.content-wrap');
+    html2canvas(ele,{
+        // width: 800,
+        scale: 2,
+    }).then(function(c) {
+        var aNode = document.createElement('a');
+        aNode.href = c.toDataURL("png", 1);
+        //别忘了设置download属性,否则会...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/html2canvas/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/JavaScript-Array/">
+                    JavaScript Array
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-12-18T15:27:00.000Z">
+                  2017-12-18
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                数组是一种数据结构,内含一组有序元素.在js中,数组也是对象
+ 参考
+Object.prototype.toString方法的原理 紫云飞
+How can I shuffle an array? stackoverflow
+获取两个数间的随机数 stackoverflow
+ 速查表
+
+ 实例化(创建)数组
+有两种方式创建数组
+1 通过Array构造函数创建数组
+new Array()
+new Array(length | element1, element2...)
+//不传入参数,返回空数组
+var arr = new Array();
+console.log(arr) //[]
+
+/...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/JavaScript-Array/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/jQuery%E5%85%A5%E9%97%A8/">
+                    jQuery入门
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-12-16T12:40:00.000Z">
+                  2017-12-16
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/jQuery/">
+                    <span>jQuery</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                
+jquery是一个Javascript库.简化了js Dom/CSS/Ajax操作,支持链式表达式/动画.兼容ie6+浏览器,拥有丰富的第三方扩展
+ 参考
+jQuery API 中文文档
+ 载入jQuery
+本地加载
+123&lt;head&gt;    &lt;script type=&quot;text/javascript&quot; src=&quot;jquery-3.2.1.js&quot;&gt;&lt;/script&gt;&lt;/head
+cdn加载
+12&lt;!--使用Microsoft CDN加载jQuery--&gt;&lt;script type=&quo...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/jQuery%E5%85%A5%E9%97%A8/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/CSS%E5%8A%A8%E7%94%BB/">
+                    CSS动画
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-12-15T09:56:00.000Z">
+                  2017-12-15
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                 transition
+transition: property duration timing-function delay,property2...;
+12//宽度 变化时间1s,背景颜色 变化时间0.5s 匀速变化 延迟1s执行transition: width 1s,background 0.5s linear 1s;
+transition用于设置元素样式改变时的过渡动画效果,是以下4项属性的简写
+
+transition-property 属性名
+transition-duration 过渡时间
+transition-timing-function 过渡曲线
+transition...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/CSS%E5%8A%A8%E7%94%BB/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E5%9F%BA%E7%BA%BF%E4%B8%8Evertical-algin/">
+                    基线与vertical-algin
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-12-07T10:11:00.000Z">
+                  2017-12-07
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                 参考
+eep dive CSS: font metrics, line-height and vertical-align
+vertical-align和line-height的关系 张鑫旭
+ em框(em square)
+字符的em框大小受font-size影响,字符尺寸越大,em框越高.
+
+.baseline-0 span &#123;
+  background:#ccc;
+  color: #555;
+&#125;
+&lt;p class=&quot;baseline-0&quot;&gt;
+  &lt;span style=&quot;font-family: Microsof...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E5%9F%BA%E7%BA%BF%E4%B8%8Evertical-algin/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/CSS%E9%80%89%E6%8B%A9%E5%99%A8/">
+                    CSS选择器
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-12-07T01:30:00.000Z">
+                  2017-12-07
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                 参考
+选择器 MDN
+选择器详解 MDN
+优先级 MDN
+css属性选择器
+ 结构
+一个标准的CSS规则(rule)结构如下
+body &#123;
+    color: yellow;
+    margin: 40px;
+&#125;
+
+其由两部分组成,选择器(selector) 和声明块(declaration block).&quot;声明块&quot;由许多个&quot;声明&quot;(declaration)组成,写在&quot;选择器&quot;后,被一对大括号包裹.
+selector &#123;declaration block&#125;;
+
+声明由&quot;属性...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/CSS%E9%80%89%E6%8B%A9%E5%99%A8/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E7%94%A8babel%E8%BD%AC%E6%8D%A2es6%E4%BB%A3%E7%A0%81/">
+                    用Babel转换es6代码
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-12-04T07:47:00.000Z">
+                  2017-12-04
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                Babel是个js编译工具,可以把es6语法转换成es5,从而兼容ie9/10.
+ 参考
+Babel 入门教程 阮一峰
+怎样设置babel-polyfill
+babel 官网
+babel 中文网
+ 安装
+ 本地安装(windows)
+#工程文件根目录下,用管理员模式执行
+npm install --save-dev babel-cli babel-preset-env
+
+# Babel默认只转换语法,如果需要转义Array Promise之类的es6全局变量,需安装polyfill
+npm install --save-dev babel-polyfill
+
+不建议全局安装,目前有些问题...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E7%94%A8babel%E8%BD%AC%E6%8D%A2es6%E4%BB%A3%E7%A0%81/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/unicode%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/">
+                    unicode字符处理
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-12-01T05:34:00.000Z">
+                  2017-12-01
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                js的发布时间早于UTF,因此在unicode字符处理上,存在很多问题.
+ 参考
+Unicode与JavaScript详解 阮一峰
+字符串的扩展 阮一峰
+汉字 Unicode 编码范围
+es6-features nicode String &amp; RegExp Literal
+JavaScript has a Unicode problem
+chinese character regExp
+ 什么是unicode
+Unicode是一种字符格式,包含世界上的所有字符.
+其目的是为了解决传统字符编码的兼容问题,只要支持unicode,就能显示世界上的大部分语言.
+ unicode字符的表...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/unicode%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E8%B4%9F%E5%A4%96%E8%BE%B9%E8%B7%9D%E7%9A%84%E5%BD%B1%E5%93%8D/">
+                    负外边距的影响
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-11-30T00:10:00.000Z">
+                  2017-11-30
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                元素外边距可以为零/正数/负数.我们可以设定外边距为负值,调整元素的位置.
+ 特点
+margin-left为负时向左移动,后面的元素也跟着移动
+
+    .box-1{width:250px; height:100px; border: 1px solid;}
+    .child-1{float: left;background: #F4F4F5;height:100px;width:100px;}
+
+
+  
+  
+
+行内元素也一样
+
+    .box-3{width:250px; height:100px; border: 1px solid;}
+    .child-3{}
+
+
+ ...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E8%B4%9F%E5%A4%96%E8%BE%B9%E8%B7%9D%E7%9A%84%E5%BD%B1%E5%93%8D/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD/">
+                    元素居中
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2017-11-29T01:21:00.000Z">
+                  2017-11-29
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+              
+                <!-- content -->
+                 参考
+Centering in CSS: A Complete Guide
+position:absolute和margin:auto连用居中的原理
+ 水平居中
+ 行内(内联)元素水平居中
+.box&#123;text-align: center;&#125;
+
+
+    .box-1 {width:200px;border:1px solid;}
+
+
+    inline element
+
+&lt;style&gt;
+    .box-1 &#123;width:200px;border:1px solid;&#125;
+&lt;/style&gt;
+&lt;div class=&q...
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+    
+    <!-- pagination -->
+<nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/7/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">&gt;</a>
+</nav>
+</div>
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

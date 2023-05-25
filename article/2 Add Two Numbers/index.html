@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2 Add Two Numbers</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-text"> 题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text"> 解题思路</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">2 Add Two Numbers</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-07-19T16:00:00.000Z">
+            2019-07-20
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/leetcode/">
+              <span>leetcode</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/leetcode/">
+            <span>leetcode</span>
+          </a>
+        
+          <a href="/tags/algorithm/">
+            <span>algorithm</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<span id="more"></span>
+<p>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。</p>
+<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
+<p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">Output: 7 -&gt; 0 -&gt; 8</span><br><span class="line">Explanation: 342 + 465 = 807.</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<p>将两个链表的值相加, 然后判断是否需要进位(&gt;=10), 如果需要进位,就在计算下一组数值时 +1.</p>
+<p>特殊情况:<br />
+1 链表长度不等: [5, 6, 7], [3]<br />
+2 链表最后一位需要进位: [5], [5]</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ListNode</span>(<span class="params">val</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">val</span> = val;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">next</span> = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> addTwoNumbers = <span class="keyword">function</span>(<span class="params">l1, l2</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> carry = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> head = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">let</span> node = head;</span><br><span class="line">  <span class="keyword">while</span> (l1 || l2) &#123;</span><br><span class="line">    <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 进位</span></span><br><span class="line">    <span class="keyword">if</span> (carry === <span class="number">1</span>) &#123;</span><br><span class="line">      num = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 相加</span></span><br><span class="line">    <span class="keyword">if</span> (l1 !== <span class="literal">null</span>) &#123;</span><br><span class="line">      num += l1.<span class="property">val</span>;</span><br><span class="line">      l1 = l1.<span class="property">next</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l2  !== <span class="literal">null</span>) &#123;</span><br><span class="line">      num += l2.<span class="property">val</span>;</span><br><span class="line">      l2 = l2.<span class="property">next</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 判断下一个数值是否需要进位</span></span><br><span class="line">    <span class="keyword">if</span> (num &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">      carry = <span class="number">1</span>;</span><br><span class="line">      num = num - <span class="number">10</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      carry = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    node.<span class="property">next</span> = <span class="keyword">new</span> <span class="title class_">ListNode</span>(num);</span><br><span class="line">    node = node.<span class="property">next</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 结束循环时,最后一位可能存在进位,例如: [5],[5]</span></span><br><span class="line">  <span class="keyword">if</span> (carry) &#123;</span><br><span class="line">    node.<span class="property">next</span> = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> head.<span class="property">next</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test</span></span><br><span class="line"><span class="keyword">const</span> l1 = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">2</span>);</span><br><span class="line">l1.<span class="property">next</span> = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">4</span>);</span><br><span class="line">l1.<span class="property">next</span>.<span class="property">next</span> = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">const</span> l2 = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">5</span>);</span><br><span class="line">l2.<span class="property">next</span> = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">6</span>);</span><br><span class="line">l2.<span class="property">next</span>.<span class="property">next</span> = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">addTwoNumbers</span>(l1, l2));</span><br></pre></td></tr></table></figure>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/3%20Longest%20Substring%20Without%20Repeating%20Characters/">&lt;  3 Longest Substring Without Repeating Characters</a>
+      
+      
+        <a class="next" href="/article/Two%20Sum/">1. Two Sum  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>基线与vertical-algin</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#em%E6%A1%86em-square"><span class="toc-text"> em框(em square)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%BA%BF-baseline"><span class="toc-text"> 基线 baseline</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#inline-block-%E5%85%83%E7%B4%A0%E7%9A%84%E5%9F%BA%E7%BA%BF%E4%BD%8D%E7%BD%AE"><span class="toc-text"> inline-block 元素的基线位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%AB%98-line-height"><span class="toc-text"> 行高 line height</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%97%B4%E8%B7%9Dleading"><span class="toc-text"> 行间距(leading)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E6%A1%86line-box"><span class="toc-text"> 行框(line box)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vertical-align"><span class="toc-text"> vertical-align</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">基线与vertical-algin</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-12-07T10:11:00.000Z">
+            2017-12-07
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+          <a href="/tags/baseline/">
+            <span>baseline</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="http://iamvdo.me/en/blog/css-font-metrics-line-height-and-vertical-align">eep dive CSS: font metrics, line-height and vertical-align</a><br />
+<a target="_blank" rel="noopener" href="http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/">vertical-align和line-height的关系 张鑫旭</a></p>
+<h2 id="em框em-square"><a class="markdownIt-Anchor" href="#em框em-square"></a> em框(em square)</h2>
+<p>字符的em框大小受font-size影响,字符尺寸越大,em框越高.<br />
+<img src="/img/baseline4.PNG" alt="" /></p>
+<pre><code>.baseline-0 span &#123;
+  background:#ccc;
+  color: #555;
+&#125;
+&lt;p class=&quot;baseline-0&quot;&gt;
+  &lt;span style=&quot;font-family: Microsoft YaHei;font-size: 100px;&quot;&gt;a&lt;/span&gt;
+  &lt;span style=&quot;font-family: Microsoft YaHei;font-size: 50px;&quot;&gt;a&lt;/span&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+</code></pre>
+<p>但实际上,尽管设置了字体大小为100px,还是会发现,字体em框的高度其实是不一样的.<br />
+这是因为,em框高度实际上是由字体自己的参数设置决定的,每个字体都不一样.<br />
+<img src="/img/baseline5.PNG" alt="" /></p>
+<pre><code>.baseline-1 &#123;
+    font-size: 100px;
+&#125;
+.baseline-1 span &#123;
+    background:#ccc;
+    color: #555;
+&#125;
+&lt;p class=&quot;baseline-1&quot;&gt;
+    &lt;span style=&quot;font-family: &quot;Microsoft YaHei&quot;&gt;a&lt;/span&gt;
+    &lt;span style=&quot;font-family: &quot;Times New Roman&quot;&gt;a&lt;/span&gt;
+    &lt;span style=&quot;font-family: &quot;Nyala&quot;&gt;a&lt;/span&gt;
+&lt;/p&gt;
+</code></pre>
+<p>拿微软雅黑为例,当em size 为1000时,Win Ascent为1058,Win Descent为262.<br />
+<img src="/img/baseline7.PNG" alt="" /><br />
+也就是说,当设置微软雅黑的font-size属性值为100px时,实际em框高度为132px(1058 + 262).<br />
+<img src="/img/baseline8.PNG" alt="" /></p>
+<pre><code>.contain-4 &#123;
+    border: 1px solid;
+    border-left: 0;
+    border-right: 0;
+    width:500px;
+    height:100px;
+    font-size: 100px;
+    text-align: center;
+&#125;
+span &#123;
+  background:yellow;
+&#125;
+&lt;p style=&quot;&quot; class=&quot;contain-4&quot;&gt;
+  &lt;span&gt;I wonder &lt;/span&gt;
+&lt;/p&gt;
+</code></pre>
+<p>注:可以把em框理解为字符未设置padding时的background大小.<br />
+可以通过设置padding撑起字符的background,但这绝不代表em框的大小被改变了.</p>
+<h2 id="基线-baseline"><a class="markdownIt-Anchor" href="#基线-baseline"></a> 基线 baseline</h2>
+<p>基线是西方字体设计中的概念.英文字符长短不一,为了使这些字符对齐,规定一条直线,让大多数字符坐在这条线上.每种字体的基线位置也是各不相同.<br />
+<img src="/img/baseline.png" alt="" /><br />
+中文字体本来没有基线这个概念,方块字直接对齐就好了.但到了现代,出于中西文混排,标点位置的考虑,还是会在字体设计时,指定一条基线.<br />
+<img src="/img/baseline1.png" alt="" /><br />
+用FontForge字体处理软件可以查看字体的基线位置<br />
+<img src="/img/baseline2.png" alt="" /></p>
+<h3 id="inline-block-元素的基线位置"><a class="markdownIt-Anchor" href="#inline-block-元素的基线位置"></a> inline-block 元素的基线位置</h3>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/TR/CSS2/visudet.html#leading">The baseline of an 'inline-block' is the baseline of its last line box in the normal flow, unless it has either no in-flow line boxes or if its 'overflow' property has a computed value other than 'visible', in which case the baseline is the bottom margin edge. </a></p>
+<p>行内替换元素(inline-block)也有基线,<br />
+如果内部有内容,那么&quot;其内部最后一个子元素的基线&quot;就是它的基线.<br />
+如果内部没有元素或overflow值不为visible,那么他的基线位于margin-bottom底端.</p>
+<h2 id="行高-line-height"><a class="markdownIt-Anchor" href="#行高-line-height"></a> 行高 line height</h2>
+<p>行高就是文本行的高度,默认情况下根据font-size计算.<br />
+例如文本的font-size值为16px,那它的默认行高为16px(浏览器的默认行高各不相同,firefox是1.1,chrome是1.2).</p>
+<p>如果为行高指定一个固定值,那无论怎么改font-size,行高都不受影响.<br />
+如下所示,更改字体大小后,行高仍然是100px.<br />
+<img src="/img/baseline10.PNG" alt="" /></p>
+<pre><code>.contain-2 p &#123;
+    border: 1px solid red;
+    width: 600px;
+    line-height:100px;
+&#125;
+&lt;div class=&quot;contain-2&quot;&gt;
+    &lt;p style=&quot;font-size: 20px&quot;&gt;I wonder how many miles I've fallen by this time?&lt;/p&gt;
+    &lt;p style=&quot;font-size: 12px&quot;&gt;I wonder how many miles I've fallen by this time?&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="行间距leading"><a class="markdownIt-Anchor" href="#行间距leading"></a> 行间距(leading)</h2>
+<p>line-height和font-size的差被称为行间距<br />
+行间距分为两部分,这两部分被称为半间距(half-leading),分别位于内容区顶部和底部<br />
+<img src="/img/baseline11.PNG" alt="" /></p>
+<p>也可以理解为行高为&quot;上下半间距高度&quot;加&quot;文本元素高度&quot;之和.<br />
+如果容器高度为100px,容器内文本的font-size为20px,文本元素的上下半间距高度为40px(假设,没办法直接设置半间距高度).<br />
+那么行高就是100px(20px + 40px + 40px),因为文本被两个空白的半间距夹在中间,因此看起来文本就像居中了一样.</p>
+<h2 id="行框line-box"><a class="markdownIt-Anchor" href="#行框line-box"></a> 行框(line box)</h2>
+<p>可以把行框想象成一个盒子,这个盒子只能装一行内容.如果放不下,那么他会自动拆分成多个盒子,这些盒子一个接着一个,垂直堆放.<br />
+这个盒子(行框)的高度为,盒子里所有子元素最高点到最低点.</p>
+<p><img src="/img/baseline9.png" alt="" /></p>
+<h2 id="vertical-align"><a class="markdownIt-Anchor" href="#vertical-align"></a> vertical-align</h2>
+<p>vertical-align可用于定义inline|inline-block元素在垂直方向上的对齐方式</p>
+<pre><code>vertical-align:
+    baseline 元素基线与父元素基线对齐(默认值)
+    top 元素顶端与所在行顶端对齐
+    bottom 元素底端与所在行底端对齐
+    middle 元素中垂线与父元素的基线加上小写x一半的高度值对齐
+    text-top 元素顶端与父元素(line box)字体顶端对齐
+    text-bottom 元素底端与父元素(line box)字体底端对齐
+    sub 元素基线与父元素下标基线对齐
+    super 元素基线与父元素上标基线对齐
+    % | em | rem | px 以父元素基线为基准点上下移动,移动距离相对line-heihgt计算
+</code></pre>
+<p>top对齐行框顶端<br />
+<img src="/img/baseline12.PNG" alt="" /></p>
+<p>text-top也是顶端对齐,但其参照物是父元素(line box)的font-size.<br />
+如下图所示,两行文本中有一个30x30的img,行中部分字体被b标签加粗,加粗字体大小为30px.<br />
+设置行一容器font-szie值为16px,行二容器font-szie值为30px.<br />
+可见行一的行框(line box)被加粗字体撑起,但img未跟随其上浮,仍然跟左侧未加粗字体顶端对齐.</p>
+<p><img src="/img/baseline13.PNG" alt="" /></p>
+<pre><code>div[class|=&quot;container&quot;] &#123;
+    border: 1px solid black;
+    height:50px;
+    margin:50px;
+    width:500px;
+    text-align:center;
+&#125;
+div:first-letter &#123;
+    background:yellow;
+&#125;
+b &#123;
+    font-size:30px;
+&#125;
+img &#123;
+    width:30px;
+    height:30px;
+    vertical-align:text-top;
+&#125;
+.container-5 span &#123;
+    font-size:16px;
+&#125;
+.container-6 span&#123;
+    font-size:30px;
+&#125;
+&lt;div class=&quot;container-5&quot;&gt;
+    &lt;span&gt; 
+        Which
+        &lt;img src=&quot;https://mdn.mozillademos.org/files/12245/frame_image.svg&quot;&gt;         
+        &lt;b&gt;was very likely true&lt;/b&gt;
+  &lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;container-6&quot;&gt;
+    &lt;span&gt;
+        Which
+        &lt;img src=&quot;https://mdn.mozillademos.org/files/12245/frame_image.svg&quot;&gt; 
+        &lt;b&gt;was very likely true&lt;/b&gt;
+    &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/CSS%E5%8A%A8%E7%94%BB/">&lt;  CSS动画</a>
+      
+      
+        <a class="next" href="/article/CSS%E9%80%89%E6%8B%A9%E5%99%A8/">CSS选择器  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

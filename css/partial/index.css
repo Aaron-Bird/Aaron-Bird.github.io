@@ -1,0 +1,84 @@
+.main > .index {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+.main > .index .item {
+  position: relative;
+  margin: 0 0 10rem 0;
+}
+.main > .index .item .article img {
+  margin: 16px auto;
+  display: block;
+}
+.main > .index .item .article .gallery {
+  overflow: auto;
+}
+.main > .index .item .article .gallery .images {
+  display: flex;
+  height: 300px;
+}
+.main > .index .item .article .gallery .images .wrapper {
+  float: left;
+  flex: 0 0 300px;
+  width: 300px;
+  height: 300px;
+  position: relative;
+  background: #f00;
+  overflow: hidden;
+}
+.main > .index .item .article .gallery .images .wrapper .image {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+}
+.main > .index .item .read-more {
+  text-align: center;
+  margin: 3rem 0;
+}
+.main > .index .item .read-more .wrapper {
+  height: 2rem;
+  color: #757575;
+  font-size: 1rem;
+}
+.main > .index .item .read-more .wrapper a {
+  font-size: 1rem;
+}
+.main > .index .item .title a {
+  position: relative;
+}
+.main > .index .item .title a:after {
+  position: absolute;
+  content: "";
+  color: #000;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  background: #000;
+  transform: translateX(-50%);
+  transition: 0.2s linear;
+}
+@media (pointer: fine) {
+  .main > .index .item .title a:hover:after {
+    width: 100%;
+  }
+}
+.main > .index .item:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
+  .main > .index .item:after {
+    transform: scaleY(0.7);
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+  .main > .index .item:after {
+    transform: scaleY(0.5);
+  }
+}

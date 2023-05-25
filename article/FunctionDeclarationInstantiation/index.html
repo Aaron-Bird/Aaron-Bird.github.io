@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FunctionDeclarationInstantiation</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post hide-toc">
+  <!-- table of content -->
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">FunctionDeclarationInstantiation</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-06-28T16:00:00.000Z">
+            2019-06-29
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p><a target="_blank" rel="noopener" href="https://www.ecma-international.org/ecma-262/9.0/index.html#sec-functiondeclarationinstantiation">ECMAScript® 2018 Language Specification</a></p>
+<pre style="white-space: pre-wrap">
+When an execution context is established for evaluating an ECMAScript function a new function Environment Record is created and bindings for each formal parameter are instantiated in that Environment Record.Each declaration in the function body is also instantiated.  
+当为了执行函数代码而建立 execution context(执行环境) 时, 会创建一个新的 function Environment Record(函数环境记录),所有 formal parameters(形参) 都会在这个执行环境中实例化.function body(函数体)中的所有声明也会被实例化.  
+
+If the function's formal parameters do not include any default value initializers then the body declarations are instantiated in the same Environment Record as the parameters. If default value parameter initializers exist, a second Environment Record is created for the body declarations.  
+如果形参没有默认值,则在同一个环境记录中实例化 body declarations(函数体内的声明).  
+如果形参有默认值,则会给 body declarations 创建一个新的环境记录.  
+
+Formal parameters and functions are initialized as part of FunctionDeclarationInstantiation. All other bindings are initialized during evaluation of the function body.  
+形参和函数会在执行内部方法 FunctionDeclarationInstantiation 时被初始化.而其它的 bindings(绑定) 要等到执行函数代码时,才会被初始化.
+
+FunctionDeclarationInstantiation is performed as follows using arguments func and argumentsList. func is the function object for which the execution context is being established.  
+FunctionDeclarationInstantiation 使用 func 和 argumentsList 作为参数,依照如下步骤执行.func 是为其建立execution context (函数 执行环境/上下文)的对象, arguments 是调用函数时传递的参数(实参列表).
+</pre>
+<span id="more"></span>
+<pre style="white-space: pre-wrap">
+1. Let calleeContext be the running execution context. // calleeContext: running execution context(环境栈最顶层的执行环境)
+2. Let env be the LexicalEnvironment of calleeContext. // env: 当前活动执行环境的 LexicalEnvironment(词法环境组件)
+3. Let envRec be env's EnvironmentRecord. // envRec: 词法环境组件的环境记录
+4. Let code be func.[[ECMAScriptCode]]. // code: 函数体(函数内部的代码)的解析树根节点
+5. Let strict be func.[[Strict]]. // strict: 是否是严格模式
+6. Let formals be func.[[FormalParameters]]. // formals: 形参的解析树根节点
+7. Let parameterNames be the BoundNames of formals. // parameterNames: 形参名列表
+8. If parameterNames has any duplicate entries, let hasDuplicates be true. Otherwise, let hasDuplicates be false. // hasDuplicates: 是否有重复的形参名
+9. Let simpleParameterList be IsSimpleParameterList of formals. // simpleParameterList: 是不是简单参数(没有默认值)
+10. Let hasParameterExpressions be ContainsExpression of formals. // hasParameterExpressions: 函数参数里是否有表达式
+11. Let varNames be the VarDeclaredNames of code. // varNames: var 变量名列表
+12. Let varDeclarations be the VarScopedDeclarations(13.2.12) of code. // varDeclarations:  var 语句代码列表
+13. Let lexicalNames be the LexicallyDeclaredNames of code. //  lexicalNames: LexicalDeclaration(词法声明, 例如let/const)变量名列表
+
+// 14 ~ 16 找出所有函数
+14. Let functionNames be a new empty List.  // functionNames: 所有函数名
+15. Let functionsToInitialize be a new empty List. // functionsToInitialize: 所有函数代码
+16. For each d in varDeclarations, in reverse list order, do // 顶层的 function 被视为变量声明,而块({})里的函数被视为词法声明. 所以从 varDeclarations 列表里找函数. 倒序遍历是为了过滤同名函数.
+  a. If d is neither a VariableDeclaration nor a ForBinding nor a BindingIdentifier, then // 如果 d 不是 var/for/ BindingIdentifier ?
+    i. Assert: d is either a FunctionDeclaration, a GeneratorDeclaration, an AsyncFunctionDeclaration, or an AsyncGeneratorDeclaration. // 断言: d 只能是函数(函数/生成器函数/异步函数/异步生成器函数)
+    ii. Let fn be the sole element of the BoundNames of d. // fn: 函数 d 的函数名
+    iii. If fn is not an element of functionNames, then  // 如果 functionNames 列表里没有相同的 函数名.
+      1. Insert fn as the first element of functionNames.  // 记录 函数名(插到开头)
+      2. NOTE: If there are multiple function declarations for the same name, the last declaration is used. // 如果有重名函数,用最后一个. 注: 因为是倒序遍历的,所以所有同名函数只能只能用到最后一个.
+      3. Insert d as the first element of functionsToInitialize. // 记录函数(插到开头)
+
+// 判断要不要生成局部变量 arguments
+17. Let argumentsObjectNeeded be true. // argumentsObjectNeeded: 是否需要生成局部变量 arguments
+18. If func.[[ThisMode]] is lexical, then // 内部属性 [[ThisMode]] (9.2)决定了 this 指向谁.有三个值: lexical strict global
+  a. NOTE: Arrow functions never have an arguments objects. // 箭头函数没有 arguments
+  b. Set argumentsObjectNeeded to false.
+19. Else if  "arguments" is an element of parameterNames, then // 有同名变量(arguments)
+  a. Set argumentsObjectNeeded to false.
+20. Else if hasParameterExpressions is false, then // 如果参数里没有表达式
+  a. If  "arguments" is an element of functionNames or if  "arguments" is an element of lexicalNames, then // 有同名的函数/词法声明
+    i. Set argumentsObjectNeeded to false.
+
+// 绑定形参
+21. For each String paramName in parameterNames, do // 遍历形参名
+  a. Let alreadyDeclared be envRec.HasBinding(paramName). // 判断形参名 paramName 是否被绑定过, HasBinding(8.1.1.1.1)
+  b. NOTE: Early errors ensure that duplicate parameter names can only occur in non-strict functions that do not have parameter default values or rest parameters. // 前期错误检查确保了重复的参数名只能出现在以下情况中: 非严格模式且参数里没有默认值/剩余参数
+  c. If alreadyDeclared is false, then // 如果形参名没有被绑定过
+    i. Perform ! envRec.CreateMutableBinding(paramName, false). // 创建一个可变绑定
+    ii. If hasDuplicates is true, then // 如果有重复的参数名
+      1. Perform ! envRec.InitializeBinding(paramName, undefined). // 初始化 paramName 为 undefined ?
+
+// 处理 arguments
+22. If argumentsObjectNeeded is true, then // 如果需要创建局部变量 arguments
+  a. If strict is true or if simpleParameterList is false, then // 如果处于严格模式或参数有默认值
+    i. Let ao be CreateUnmappedArgumentsObject(argumentsList). // CreateUnmappedArgumentsObject 返回一个类数组对象,包含length callee 属性.
+  b. Else, // 非严格模式或参数没有默认值
+    i. NOTE: mapped argument object is only provided for non-strict functions that don't have a rest parameter, any parameter default value initializers, or any destructured parameters.  // mapped argynebt object 仅可用于非严格模式且为简单形参(形参里没有rest, 默认值, 解构)
+    ii. Let ao be CreateMappedArgumentsObject(func, formals, argumentsList, envRec).
+
+  c. If strict is true, then // 如果是严格模式,则创建不可变绑定 arguments
+    i. Perform ! envRec.CreateImmutableBinding( "arguments", false).
+  d. Else, // 如果非严格模式,则创建可变绑定 arguments(即可以修改 arguents)
+    i. Perform ! envRec.CreateMutableBinding( "arguments", false).
+  e. Call envRec.InitializeBinding( "arguments", ao). // 初始化 arguments
+  f. Let parameterBindings be a new List of parameterNames with  "arguments" appended. // parameterBindings列表: 所有参数名 + arguments
+23. Else, //不需要创建内部变量 arguments
+  a. Let parameterBindings be parameterNames. // parameterBindings列表:  所有参数名
+24. Let iteratorRecord be CreateListIteratorRecord(argumentsList). // 用调用函数时传入的参数列表创建迭代器
+25. If hasDuplicates is true, then // 有重复的参数名
+  a. Perform ? IteratorBindingInitialization for formals with iteratorRecord and undefined as arguments. // 用 iteratorRecord 和 undefined 作为参数, 调用 formals 的 内部方法 IteratorBindingInitialization(13.3.3.8). 注: formals 是 函数参数代码的解析树 // 初始化参数,有默认值的初始化为默认值,没有的初始化为 undefined.
+26. Else,  // 没有重复的参数名
+  a. Perform ? IteratorBindingInitialization for formals with iteratorRecord and env as arguments.// 用 iteratorRecord 和 env 作为参数, 调用 formals 的内部方法 IteratorBindingInitialization. env 是当前执行环境的 LexicalEnvironment.
+
+// 27~29 绑定/初始化 var 变量
+27. If hasParameterExpressions is false, then // 如果形参没有默认值
+  a. NOTE: Only a single lexical environment is needed for the parameters and top-level vars. // 因为参数里没有表达式, 所以参数和顶层的 var 变量可以共用同一个词法环境
+  b. Let instantiatedVarNames be a copy of the List parameterBindings. // instantiatedVarNames 的作用: 1 判断是否有同名的参数(包括arguments) 2 判断是否有同名的 var 变量.
+  c. For each n in varNames, do // varNames: var变量名列表
+    i. If n is not an element of instantiatedVarNames, then // 如果变量名 n 之前没有被绑定过
+      1. Append n to instantiatedVarNames.
+      2. Perform ! envRec.CreateMutableBinding(n, false). // 创建可变绑定
+      3. Call envRec.InitializeBinding(n, undefined). // 初始化为 undefined
+  d. Let varEnv be env.
+  e. Let varEnvRec be envRec.
+28. Else, // 如果形参有默认值, 则在另一个环境记录中处理var变量
+  a. NOTE: A separate Environment Record is needed to ensure that closures created by expressions in the formal parameter list do not have visibility of declarations in the function body. // 如果函数参数有表达式,则必须创建一个新的环境记录, 这样才能避免执行函数体代码时污染参数表达式创建的闭包(表达式所处的执行环境).
+  b. Let varEnv be NewDeclarativeEnvironment(env). // varEnv: 新的词法环境,其内部的环境记录不包含任何绑定,将其外部词法环境指向 env.
+  c. Let varEnvRec be varEnv's EnvironmentRecord. // varEnvRec: 新词法环境的环境记录
+  d. Set the VariableEnvironment of calleeContext to varEnv. //  将 活动执行环境 的 变量环境组件 指向 varEnv
+  e. Let instantiatedVarNames be a new empty List. // instantiatedVarNames: 用于记录变量是否被绑定过
+  f. For each n in varNames, do // n: var变量名
+    i. If n is not an element of instantiatedVarNames, then // var 变量没有被绑定过
+      1. Append n to instantiatedVarNames.
+      2. Perform ! varEnvRec.CreateMutableBinding(n, false). // 用var 变量名创建绑定
+      3. If n is not an element of parameterBindings or if n is an element of functionNames, let initialValue be undefined. // 如果 n不和参数/arguments/函数重名, 则令 initialValue 为 undefined
+      4. Else, // 如果n和参数/arguments/函数重名
+        a. Let initialValue be ! envRec.GetBindingValue(n, false). // 否则, 令 initialValue 为环境记录里同名绑定的值
+
+      5. Call varEnvRec.InitializeBinding(n, initialValue). // 初始化 n 为 initialValue
+      6. NOTE: vars whose names are the same as a formal parameter, initially have the same value as the corresponding initialized parameter. // 如果 var 的参数名和形参名相同,则var的初始值和对应的同名参数值相同.
+29. NOTE: Annex B.3.3.1 adds additional steps at this point.
+
+// 30~35处理 let const 变量
+30. If strict is false, then //非严格模式
+  a. Let lexEnv be NewDeclarativeEnvironment(varEnv). // 创建新的词法环境
+  b. NOTE: Non-strict functions use a separate lexical Environment Record for top-level lexical declarations so that a direct eval can determine whether any var scoped declarations introduced by the eval code conflict with pre-existing top-level lexically scoped declarations. This is not needed for strict functions because a strict direct eval always places all declarations into a new Environment Record. // 非严格函数对 顶层(top level)的词法声明必须用单独的词法环境记录,以便判断 "eval 生成的 var 变量"是否和之前存在于"顶层词法作用域中的声明"相冲突.严格模式没必要这样作,因为严格模式下的 eval 只能把声明放在新生成的环境记录里.
+31. Else, let lexEnv be varEnv.  // 严格模式,用 varEnv 作为 词法环境
+32. Let lexEnvRec be lexEnv's EnvironmentRecord.
+33. Set the LexicalEnvironment of calleeContext to lexEnv. // 设置活动执行环境的词法环境为 lexEnv
+34. Let lexDeclarations be the LexicallyScopedDeclarations of code. // LexicallyScopedDeclarations: 函数体内的所有词法声明语句
+35. For each element d in lexDeclarations, do // d 词法声明语句
+  a. NOTE: A lexically declared name cannot be the same as a function/generator declaration, formal parameter, or a var name. Lexically declared names are only instantiated here but not initialized. // 词法声明不能和以下绑定重名: 函数/生成器/形参/var. 在此阶段,词法声明仅实例化(绑定到作用域), 不初始化.
+  b. For each element dn of the BoundNames of d, do // dn: 变量名
+    i. If IsConstantDeclaration of d is true, then // 如果 d 是 const
+     1. Perform ! lexEnvRec.CreateImmutableBinding(dn, true). // 创建一个不可变绑定
+    ii. Else, // 如果 d 是 let
+      1. Perform ! lexEnvRec.CreateMutableBinding(dn, false). // 创建一个可变绑定
+
+// 初始化内部函数, 注: 内部函数在步骤27/28被绑定
+36. For each Parse Node f in functionsToInitialize, do // 处理函数声明
+  a. Let fn be the sole element of the BoundNames of f. // fn: 函数名
+  b. Let fo be the result of performing InstantiateFunctionObject for f with argument lexEnv.
+  c. Perform ! varEnvRec.SetMutableBinding(fn, fo, false). // 绑定函数到作用域
+37. Return NormalCompletion(empty).
+</pre>
+<p>从上往下慢慢捋</p>
+<p>存在多个同名函数时,用最后一个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// ƒ a() &#123;console.log(2)&#125;</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>arguments 会被同名的参数/函数/变量覆盖.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"><span class="variable language_">arguments</span>, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>); <span class="comment">// 1</span></span><br><span class="line">&#125;)(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>); <span class="comment">// ReferenceError: arguments is not defined</span></span><br><span class="line">  <span class="keyword">let</span> <span class="variable language_">arguments</span>;</span><br><span class="line">&#125;)(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>); <span class="comment">// ƒ arguments() &#123;&#125;</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">arguments</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;)(<span class="number">1</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>如果有参数默认值, 仍然会生成局部变量 arguments.因为形参的默认值可能会使用局部变量 arguments.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">a, b = <span class="variable language_">arguments</span></span>) &#123;</span><br><span class="line">  <span class="comment">// 把 arguments 当作参数的默认值</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// Arguments [1, callee: (...), Symbol(Symbol.iterator): ƒ]</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">arguments</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;)(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>另外要注意, 判断是否生成 arguments 的选项不涉及 var ,因此 var 声明无法覆盖 arguments.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="variable language_">arguments</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>); <span class="comment">// Arguments [callee: ƒ, Symbol(Symbol.iterator): ƒ]</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>如果形参里没有表达式,则形参和函数体共用同一个环境记录(作用域).</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span>(<span class="params">a</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">f</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>如果形里有表达式,则形参和函数体分别使用不同的环境记录,其顺序为: 函数体的作用域 --&gt; 形参的作用域 --&gt; 外部作用域</p>
+<p>&quot;a = 'inside'&quot;改变了形参作用域里的 a.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span></span><br><span class="line"><span class="params">  a = <span class="string">&quot;outside&quot;</span>,</span></span><br><span class="line"><span class="params">  b = <span class="keyword">function</span>() &#123;</span></span><br><span class="line"><span class="params">    <span class="variable language_">console</span>.log(a);</span></span><br><span class="line"><span class="params">  &#125;</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  a = <span class="string">&quot;inside&quot;</span>;</span><br><span class="line">  <span class="title function_">b</span>(); <span class="comment">// inside</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>&quot;var a = 'inside'&quot;在函数体作用域里创建了个变量 a, 并赋值为 inside. 而函数 b 输出的是形参作用域里的 a.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span></span><br><span class="line"><span class="params">  a = <span class="string">&quot;outside&quot;</span>,</span></span><br><span class="line"><span class="params">  b = <span class="keyword">function</span>() &#123;</span></span><br><span class="line"><span class="params">    <span class="variable language_">console</span>.log(a);</span></span><br><span class="line"><span class="params">  &#125;</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="string">&quot;inside&quot;</span>;</span><br><span class="line">  <span class="title function_">b</span>(); <span class="comment">// outside</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>和上边那个一样, &quot;var a&quot;导致函数体作用域和形参数作用域都有一个 a(且这两个值在最初相同), &quot;a = 'inside'&quot;改变了函数体作用域的 a,形参作用域中的 a 没有变化.因为 b 函数只能访问形参作用域,所以最终输出 outside.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span></span><br><span class="line"><span class="params">  a = <span class="string">&quot;outside&quot;</span>,</span></span><br><span class="line"><span class="params">  b = <span class="keyword">function</span>() &#123;</span></span><br><span class="line"><span class="params">    <span class="variable language_">console</span>.log(a);</span></span><br><span class="line"><span class="params">  &#125;</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  a = <span class="string">&quot;inside&quot;</span>;</span><br><span class="line">  <span class="title function_">b</span>(); <span class="comment">// outside</span></span><br><span class="line">  <span class="keyword">var</span> a;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&quot;global&quot;</span>;</span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span></span><br><span class="line"><span class="params">  a = <span class="string">&quot;outside&quot;</span>, <span class="comment">// &lt;- 改的是这个 a</span></span></span><br><span class="line"><span class="params">  b = <span class="keyword">function</span>() &#123;</span></span><br><span class="line"><span class="params">    a = <span class="number">1</span>;</span></span><br><span class="line"><span class="params">  &#125;</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">b</span>(); <span class="comment">//  1</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 1</span></span><br><span class="line">&#125;)();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// global</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&quot;global&quot;</span>;</span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span></span><br><span class="line"><span class="params">  b = <span class="keyword">function</span>() &#123;</span></span><br><span class="line"><span class="params">    a = <span class="number">1</span>;</span></span><br><span class="line"><span class="params">  &#125;,</span></span><br><span class="line"><span class="params">  a = <span class="string">&quot;outside&quot;</span> <span class="comment">// &lt;- 改的是这个 a</span></span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">b</span>(); <span class="comment">//  1</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 1</span></span><br><span class="line">&#125;)();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// global</span></span><br></pre></td></tr></table></figure>
+<p>重复参数会报错的情况</p>
+<p>1 严格模式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="string">&#x27;use strict&#x27;</span></span><br><span class="line">  !<span class="keyword">function</span>(<span class="params">a, a</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>); <span class="comment">// SyntaxError: Duplicate parameter name not allowed in this context</span></span><br><span class="line">  &#125;();</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>2 形参里有表达式/剩余参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">!(<span class="keyword">function</span>(<span class="params">a, a, b = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>); <span class="comment">// SyntaxError: Duplicate parameter name not allowed in this context</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">!(<span class="keyword">function</span>(<span class="params">a, a, ...b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>); <span class="comment">// SyntaxError: Duplicate parameter name not allowed in this context</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>重复参数不会报错的例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">function</span>(<span class="params">a, a, b</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>) <span class="comment">// [1,2,3]</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 2</span></span><br><span class="line">&#125;(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>先处理 var 后处理 function, 因此 var 会被 function 覆盖掉</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// ƒ a() &#123;&#125;</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> a;</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
+<p>在非严格模式下, eval 中的 var 会改变函数作用域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">eval</span>(<span class="string">&quot;var a = 2;console.log(a)&quot;</span>); <span class="comment">// 2</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 2</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="string">&quot;use strict&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">eval</span>(<span class="string">&quot;var a = 2;console.log(a)&quot;</span>); <span class="comment">// 2</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 1</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">eval</span>(<span class="string">&quot;var a = 2;console.log(a)&quot;</span>); <span class="comment">// Identifier &#x27;a&#x27; has already been declared</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="string">&quot;use strict&quot;</span>;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">eval</span>(<span class="string">&quot;var a = 2;console.log(a)&quot;</span>); <span class="comment">// 2</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">eval</span>(<span class="string">&quot;let a = 2;console.log(a)&quot;</span>); <span class="comment">// 2</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 1</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>函数参数里的表达式是惰性的, 在调用函数时才会进行求值计算.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="literal">true</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">func</span>(<span class="params">a = b ? <span class="number">1</span> : <span class="number">2</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">&#125;</span><br><span class="line">b = <span class="literal">false</span></span><br><span class="line"><span class="title function_">func</span>() <span class="comment">// 2</span></span><br><span class="line">b = <span class="literal">true</span> <span class="comment">// 1</span></span><br><span class="line"><span class="title function_">func</span>()</span><br></pre></td></tr></table></figure>
+<p>如果形参的表达式引用了和形参同名的变量, 则会使用形参里的同名变量.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="number">1</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">func</span>(<span class="params">a = b, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">func</span>() <span class="comment">// ReferenceError: Cannot access &#x27;b&#x27; before initialization</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">1</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">func</span>(<span class="params">a = b, c</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">func</span>() <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/white-space/">&lt;  white-space</a>
+      
+      
+        <a class="next" href="/article/%E5%9C%A8%20Vue%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20TinyMCE/">在 Vue 中使用 TinyMCE  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>不定宽元素的宽度计算</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%AE%9A%E5%AE%BD%E5%85%83%E7%B4%A0"><span class="toc-text"> 不定宽元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shrink-to-fit%E6%94%B6%E7%BC%A9%E8%87%B3%E9%80%82%E5%BA%94%E5%AE%BD%E5%BA%A6"><span class="toc-text"> shrink-to-fit(收缩至适应宽度)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E5%AE%BD%E5%BA%A6%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F"><span class="toc-text"> 实际宽度的计算方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#firefox%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F"><span class="toc-text"> Firefox的计算方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">不定宽元素的宽度计算</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-05-03T14:00:00.000Z">
+            2019-05-03
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>本文所讨论的中心点为: 如果&quot;不定宽元素&quot;内有&quot;宽度为百分数的 img&quot;, 浏览器将如何计算容器和 img 的实际宽度.</p>
+<p>注意:<br />
+1 除非提及,本文所有代码以 Chrome75 的效果为准.<br />
+2 本文中的&quot;不定宽元素&quot;是一个自造词,详见&quot;不定宽元素&quot;一节.<br />
+另外,本文是 stackoverflow 上这个<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/55949254/why-are-the-results-of-img-width-different-in-some-browsers-who-is-correct">讨论</a>的总结,推荐直接去看原文.</p>
+<p>举例:<br />
+有一个浮动元素(以下记为container):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;container&quot;</span> style=<span class="string">&quot;float: left&quot;</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>container 中有一些图片, 当图片的 width 值为百分比时,浏览器如何计算 container 和 img 的宽度?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="variable constant_">DOCTYPE</span> html&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">      <span class="selector-tag">body</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">margin</span>: <span class="number">0</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">font-size</span>: <span class="number">0</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="comment">&lt;!-- #img1的宽度为300x200px --&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img1&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="comment">&lt;!-- #img2的宽度为200x100px --&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img2&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/Ed0juok.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 50%&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>最终结果很有趣:</p>
+<ul>
+<li>#container 的实际宽度为 500px</li>
+<li>#img1 的实际宽度为 500px</li>
+<li>#img2 的实际宽度为 250px</li>
+</ul>
+<p><img src="/img/a8b591b1.png" alt="1.png" /></p>
+<h2 id="不定宽元素"><a class="markdownIt-Anchor" href="#不定宽元素"></a> 不定宽元素</h2>
+<p>注意: 本文中的&quot;不定宽元素&quot;是一个自造词,用来代指其宽度由内容决定的元素.</p>
+<p>例如:</p>
+<p>绝对定位元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>内联块元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;display:inline-block;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>浮动元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;float:left;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="shrink-to-fit收缩至适应宽度"><a class="markdownIt-Anchor" href="#shrink-to-fit收缩至适应宽度"></a> shrink-to-fit(收缩至适应宽度)</h2>
+<p>如果未声明元素宽度(width: auto),部分元素会使用 shrink-to-fit width 作为元素的实际宽度.</p>
+<blockquote>
+<p>If 'width' is computed as 'auto', the used value is the &quot;shrink-to-fit&quot; width.<br />
+如果没有指明宽度,则使用 shrink-to-fit width 计算实际的宽度值.</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/html/ig/zh/wiki/CSS2/visudet/zh-hans#float-width">CSS2/visudet/zh-hans - HTML5 Chinese Interest Group Wiki</a></p>
+<p>shrink-to-fit width的计算方式如下:</p>
+<blockquote>
+<p>shrink-to-fit width = min(max(preferred minimum width, available width), preferred width)</p>
+</blockquote>
+<p>以下元素会采用 shrink-to-fit width 来计算实际宽度:</p>
+<ul>
+<li>Floating, non-replaced elements: 浮动,非替换元素(float)</li>
+<li>Absolutely positioned, non-replaced elements: 绝对定位,非替换元素(position: absolute|fixed)</li>
+<li>'inline-block', non-replaced elements in normal flow: 内联块,非替换元素(display: inline-block)</li>
+</ul>
+<p>另外在 CSS3 中, 这些名词有不同的叫法:</p>
+<table>
+<thead>
+<tr>
+<th>CSS2</th>
+<th>CSS3</th>
+<th>CSS3 对应的样式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>preferred minimum width</td>
+<td>min-content size</td>
+<td>width: min-content</td>
+</tr>
+<tr>
+<td>preferred width</td>
+<td>max-content size</td>
+<td>width: max-content</td>
+</tr>
+<tr>
+<td>available width</td>
+<td>stretch-fit size</td>
+<td>width:-webkit-fill-available</td>
+</tr>
+<tr>
+<td>shrink-to-fit width</td>
+<td>fit-content size</td>
+<td>width: fit-content</td>
+</tr>
+</tbody>
+</table>
+<p>fit-content size 的计算公式如下,其实和 CSS2 一样:</p>
+<blockquote>
+<p>fit-content size = min(max-content size, max(min-content size, stretch-fit size))</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://drafts.csswg.org/css-sizing-3/#auto-box-sizes">CSS Intrinsic &amp; Extrinsic Sizing Module Level 3</a></p>
+<h2 id="实际宽度的计算方式"><a class="markdownIt-Anchor" href="#实际宽度的计算方式"></a> 实际宽度的计算方式</h2>
+<p>通常来讲, 样式 width: &lt;precentage&gt; 的实际宽度相对于 containing block (包含块)计算.<br />
+但在某些情况下, 包含块的宽度由子元素决定,子元素的宽度又依赖包含块.</p>
+<p>例如:<br />
+浮动元素 #container 内有一个 #img.<br />
+因为 float,container 有多宽取决于内部的 img.<br />
+但是 img 的 width 值是个百分数, 也就是 img 有多宽取决于外部的 container.<br />
+如此下去,就变成死循环了.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"> <span class="selector-tag">body</span> &#123;<span class="attribute">margin</span>: <span class="number">0</span>;&#125; </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span> <span class="attr">style</span>=<span class="string">&quot;float: left&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- img的原始尺寸为300x200 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>为了解决这个问题, CSS3 是这样做的:</p>
+<blockquote>
+<p>When calculating the containing block’s size, the percentage behaves as auto.<br />
+忽略百分比的 width 值, 当作 width: auto 来处理.</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-sizing-3/#percentage-sizing">CSS Intrinsic &amp; Extrinsic Sizing Module Level 3</a></p>
+<p>相当于:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span><br><span class="line">--&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>也就是,根据&quot;图片的原始宽度&quot;(300px)来计算 #container 的宽度.</p>
+<p>这里又有了一个新问题.<br />
+上文提到了不定宽元素的宽度计算公式是:  min(max(preferred minimum width, available width), preferred width).<br />
+那么, 这个&quot;图片的原始宽度&quot;(300px)会被带入到 preferred minimum width | available width | preferred width 这三个值中的哪个呢?<br />
+(本文假设 body 的宽度 width 为 1366px)</p>
+<p>available width 指的是外层包含块的宽度, 即#container的父元素body的宽度(1366px). 因此排除available width:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min(max(preferred minimum width, 1366), preferred width)</span><br></pre></td></tr></table></figure>
+<p>preferred minimum width 和 preferred width 不太好判断,所幸 CSS3 提供了 min-content 和 max-content.<br />
+通过这两个属性值,可以直接得到 preferred minimum width 和 preferred width 的结果.<br />
+下面写两个demo看一下</p>
+<p>preferred width:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot; style=&quot;width: max-content&quot;&gt;</span><br><span class="line">  &lt;!-- img的原始尺寸为300x200 --&gt;</span><br><span class="line">  &lt;img id=&quot;img&quot; src=&quot;https://i.imgur.com/fH2hTRa.jpg&quot; style=&quot;width: 100%&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>preferred width的结果如下(300px),和图片的原始宽度一致.<br />
+<img src="/img/40d7292f.png" alt="max.png" /></p>
+<p>preferred minimum width:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot; style=&quot;width: min-content&quot;&gt;</span><br><span class="line">  &lt;!-- img的原始尺寸为300x200 --&gt;</span><br><span class="line">  &lt;img id=&quot;img&quot; src=&quot;https://i.imgur.com/fH2hTRa.jpg&quot; style=&quot;width: 100%&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>preferred minimum width的结果如下, 是0?<br />
+<img src="/img/39199f50.png" alt="min.png" /></p>
+<p>如上图所示, preferred minimum width 的结果非常奇怪.所以我又写了几个测试:<br />
+1 先多加几个图片试试看</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: min-content&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- img的原始尺寸为300x200 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果如下图,还是0.<br />
+<img src="/img/10dd3ce0.png" alt="muti-min.png" /></p>
+<p>2 加个字母进去试试</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: min-content&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- img的原始尺寸为300x200 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span><br><span class="line">  aaaaaa aaaaaa</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以看到,这回图片能显示了.并且 #container 的宽度为其内部&quot;最长单词的宽度&quot;.<br />
+<img src="/img/65e4d5bf.png" alt="muti-letter.png" /></p>
+<p>根据如上的两个 demo 可以假设, 在这种特定的情况下(不定宽元素内存在百分比宽度的img).<br />
+Chrome 在计算 #container 元素的 preferred minimum width 时,忽略了内部&quot;百分比宽度的&quot; img, 将这些图片的宽度当作 0 来处理.</p>
+<p>因此,#container元素的fit-content size为300px:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min(max(0, 1366), 300)  = 300  </span><br></pre></td></tr></table></figure>
+<h2 id="firefox的计算方式"><a class="markdownIt-Anchor" href="#firefox的计算方式"></a> Firefox的计算方式</h2>
+<p>Chrome将图片的原始宽度作为 preferred width 处理,不考虑其高度(height),但是 Firefox 不同.<br />
+Firefox 会先计算 img 的高度(height), 然后根据图片原始的宽/高的比例来计算 preferred width.</p>
+<p>例如如下这段代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span> <span class="attr">style</span>=<span class="string">&quot;float: left&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- img的原始尺寸为300x200 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 100px&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>图片元素的尺寸为 300x200,比例大约是 1.5:1.<br />
+忽略 width 后, 火狐会根据height(高度)和比例值计算宽度,也就是 100 * 1.5 = 150.<br />
+因为, 图像的最终宽度为 150px.</p>
+<p>Chrome 的结果:<br />
+<img src="/img/3660687a.png" alt="chrome.png" /><br />
+Firefox 的结果:<br />
+<img src="/img/7f60c2c7.png" alt="firefox.png" /><br />
+值得一提的是, img 元素的宽度计算了两次.<br />
+第一次计算发生在 container 的宽度确定之前,用于确定 container 的宽度.<br />
+第二次计算发生在 container 的宽度确定之后,用于确定 img 自身的宽度.</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/55949254/why-are-the-results-of-img-width-different-in-some-browsers-who-is-correct">css - Why are the results of img width different in some browsers? Who is correct? - Stack Overflow</a><br />
+<a target="_blank" rel="noopener" href="https://www.w3.org/html/ig/zh/wiki/CSS2/visudet/zh-hans#Computing_widths_and_margins">CSS2/visudet/zh-hans - HTML5 Chinese Interest Group Wiki</a><br />
+<a target="_blank" rel="noopener" href="https://www.w3.org/TR/CSS2/visudet.html#Computing_widths_and_margins">Visual formatting model details</a><br />
+<a target="_blank" rel="noopener" href="https://drafts.csswg.org/css-sizing-3/#auto-box-sizes">CSS Intrinsic &amp; Extrinsic Sizing Module Level 3</a><br />
+<a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2016/05/css3-width-max-contnet-min-content-fit-content/">理解CSS3 max/min-content及fit-content等width值 « 张鑫旭-鑫空间-鑫生活</a><br />
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/width">width - CSS（层叠样式表） | MDN</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E5%9C%A8%20Vue%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20TinyMCE/">&lt;  在 Vue 中使用 TinyMCE</a>
+      
+      
+        <a class="next" href="/article/puppeteer%E5%85%A5%E9%97%A8/">puppeteer入门  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>圆形运算相关知识点</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%A7%E5%BA%A6"><span class="toc-text"> 弧度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%92%E5%BC%A7%E5%BA%A6%E6%8D%A2%E7%AE%97"><span class="toc-text"> 角弧度换算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text"> 常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mathsinrad"><span class="toc-text"> Math.sin(rad)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mathcosrad"><span class="toc-text"> Math.cos(rad)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mathtanrad"><span class="toc-text"> Math.tan(rad)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mathatanrad"><span class="toc-text"> Math.atan(rad)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mathatan2y-x"><span class="toc-text"> Math.atan2(y, x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#atan%E5%92%8Catan2%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> atan和atan2的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%92%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="toc-text"> 角度计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">圆形运算相关知识点</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-03-20T05:00:00.000Z">
+            2019-03-20
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="弧度"><a class="markdownIt-Anchor" href="#弧度"></a> 弧度</h2>
+<p>角度: 圆被平分为360分(人为定义),其中的一份为 1deg, 1deg =  π / 180</p>
+<p>弧度: 圆上弧长等于半径时的圆心角,  1rad ~ 57.2958deg<br />
+<img src="/img/7e45e675.png" alt="51987688-08c55300-24de-11e9-81ba-e4aa61fb0446.png" /><br />
+整圆弧度 2π (2πr / r)</p>
+<h2 id="角弧度换算"><a class="markdownIt-Anchor" href="#角弧度换算"></a> 角弧度换算</h2>
+<p>弧度转角度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">toAngle</span>(<span class="params">radian</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>  (<span class="number">180</span> / <span class="title class_">Math</span>.<span class="property">PI</span>)  * radian</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>角度转弧度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">toRadian</span>(<span class="params">angle</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="title class_">Math</span>.<span class="property">PI</span> / <span class="number">180</span>) *  angle</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="常用方法"><a class="markdownIt-Anchor" href="#常用方法"></a> 常用方法</h2>
+<h3 id="mathsinrad"><a class="markdownIt-Anchor" href="#mathsinrad"></a> Math.sin(rad)</h3>
+<p>输入弧度, 返回对应弧度的正值<br />
+<img src="/img/173d6d5d.gif" alt="51987757-22ff3100-24de-11e9-8117-3533b9e644d0.gif" /></p>
+<h3 id="mathcosrad"><a class="markdownIt-Anchor" href="#mathcosrad"></a> Math.cos(rad)</h3>
+<p>输入弧度, 返回对应的余弦值<br />
+<img src="/img/7bbe2f6d.gif" alt="51987766-27c3e500-24de-11e9-8871-2959e9ba460e.gif" /></p>
+<h3 id="mathtanrad"><a class="markdownIt-Anchor" href="#mathtanrad"></a> Math.tan(rad)</h3>
+<p>输入弧度, 返回对应的正切值/斜率</p>
+<h3 id="mathatanrad"><a class="markdownIt-Anchor" href="#mathatanrad"></a> Math.atan(rad)</h3>
+<p>输入正切值, 返回对应的弧度值</p>
+<h3 id="mathatan2y-x"><a class="markdownIt-Anchor" href="#mathatan2y-x"></a> Math.atan2(y, x)</h3>
+<p>返回象限角对应的弧度值</p>
+<p>参数y为纵坐标<br />
+参数x为横坐标</p>
+<h3 id="atan和atan2的区别"><a class="markdownIt-Anchor" href="#atan和atan2的区别"></a> atan和atan2的区别</h3>
+<p>在不同象限中,atan输入值可能相同<br />
+而atan2不存在这个问题</p>
+<p><img src="/img/754584c0.gif" alt="51987773-2c889900-24de-11e9-9426-38c487740cf2.gif" /></p>
+<h2 id="角度计算"><a class="markdownIt-Anchor" href="#角度计算"></a> 角度计算</h2>
+<p>1 根据圆内点a坐标(x, y), 求点a的象限角</p>
+<p>已知</p>
+<ul>
+<li>点a坐标为 (x, y)</li>
+<li>圆心点坐标为(cx, cy)</li>
+</ul>
+<p>则</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> radian = <span class="title class_">Math</span>.<span class="title function_">atan2</span>(y - cy, x - cx)</span><br><span class="line"><span class="keyword">if</span> (radian &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    radian = radian +  <span class="number">2</span> * <span class="title class_">Math</span>.<span class="property">PI</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>象限是逆时针的<br />
+<img src="/img/205a1423.png" alt="51987922-69549000-24de-11e9-9e28-691a6b73e08b.png" /></p>
+<p>如果需要从12点方向开始, 按顺时针计算,可以翻转y轴坐标,然后向左旋转90度<br />
+<img src="/img/20f8fde0.png" alt="51987956-7f625080-24de-11e9-8e71-f89426d970ee.png" /></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> radian = <span class="title class_">Math</span>.<span class="title function_">atan2</span>(cy - y, x - cx) + <span class="title class_">Math</span>.<span class="property">PI</span> / <span class="number">2</span></span><br><span class="line"><span class="keyword">if</span> (radian &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    radian = radian +  <span class="number">2</span> * <span class="title class_">Math</span>.<span class="property">PI</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2 已知圆上点a象限角及周长.求点a坐标<br />
+<img src="https://user-images.githubusercontent.com/25508292/51987956-7f625080-24de-11e9-8e71-f89426d970ee.png" alt="4dfd3819" /></p>
+<p>圆上点y轴坐标计算公式 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%BC%A6#%E5%8D%95%E4%BD%8D%E5%9C%86%E5%AE%9A%E4%B9%89">sin(ϴ)r</a><br />
+圆上点x轴坐标计算公式 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%A4%98%E5%BC%A6#%E5%8D%95%E4%BD%8D%E5%9C%86%E5%AE%9A%E4%B9%89">cos(ϴ)r</a></p>
+<p>已知</p>
+<ul>
+<li>象限角radian</li>
+<li>圆心坐标(cx, cy)及半径R</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let x = cx  + Math.cos(radian) * r</span><br><span class="line">let y = cy + Math.sin(radian) * r</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BC%A7%E5%BA%A6">https://zh.wikipedia.org/wiki/弧度</a><br />
+<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%BC%A6">https://zh.wikipedia.org/wiki/正弦</a><br />
+<a target="_blank" rel="noopener" href="https://www.shuxuele.com/geometry/radians.html">数学乐 弧度</a><br />
+<a target="_blank" rel="noopener" href="https://www.shuxuele.com/sine-cosine-tangent.html">数学乐 正弦、余弦和正切</a><br />
+<a target="_blank" rel="noopener" href="https://www.shuxuele.com/algebra/trig-inverse-sin-cos-tan.html">数学乐 反正弦、反余弦和反正切</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/46387747/find-angle-of-point-on-circle">java - Find angle of point on circle - Stack Overflow</a><br />
+<a target="_blank" rel="noopener" href="https://github.com/o2team/H5Skills/issues/17">反正切函数 Math.atan() 与 Math.atan2() 的区别 · Issue #17 · o2team/H5Skills · GitHub</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E5%B0%81%E8%A3%85Swiper%E4%B8%BAVue%E7%BB%84%E4%BB%B6/">&lt;  封装Swiper为Vue组件</a>
+      
+      
+        <a class="next" href="/article/%E5%82%A8%E5%AD%98keep-alive%E5%86%85%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BB%9A%E5%8A%A8%E4%BD%8D%E7%BD%AE/">储存keep-alive内组件的滚动位置  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

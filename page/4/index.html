@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      
+
+<div class="index">
+    
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E4%B8%8D%E5%AE%9A%E5%AE%BD%E5%85%83%E7%B4%A0%E7%9A%84%E5%AE%BD%E5%BA%A6%E8%AE%A1%E7%AE%97/">
+                    不定宽元素的宽度计算
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-05-03T14:00:00.000Z">
+                  2019-05-03
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>本文所讨论的中心点为: 如果&quot;不定宽元素&quot;内有&quot;宽度为百分数的 img&quot;, 浏览器将如何计算容器和 img 的实际宽度.</p>
+<p>注意:<br />
+1 除非提及,本文所有代码以 Chrome75 的效果为准.<br />
+2 本文中的&quot;不定宽元素&quot;是一个自造词,详见&quot;不定宽元素&quot;一节.<br />
+另外,本文是 stackoverflow 上这个<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/55949254/why-are-the-results-of-img-width-different-in-some-browsers-who-is-correct">讨论</a>的总结,推荐直接去看原文.</p>
+<p>举例:<br />
+有一个浮动元素(以下记为container):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;container&quot;</span> style=<span class="string">&quot;float: left&quot;</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>container 中有一些图片, 当图片的 width 值为百分比时,浏览器如何计算 container 和 img 的宽度?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="variable constant_">DOCTYPE</span> html&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">      <span class="selector-tag">body</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">margin</span>: <span class="number">0</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">font-size</span>: <span class="number">0</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="comment">&lt;!-- #img1的宽度为300x200px --&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img1&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/fH2hTRa.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="comment">&lt;!-- #img2的宽度为200x100px --&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img2&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://i.imgur.com/Ed0juok.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 50%&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E4%B8%8D%E5%AE%9A%E5%AE%BD%E5%85%83%E7%B4%A0%E7%9A%84%E5%AE%BD%E5%BA%A6%E8%AE%A1%E7%AE%97/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/puppeteer%E5%85%A5%E9%97%A8/">
+                    puppeteer入门
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-04-21T16:00:00.000Z">
+                  2019-04-22
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Puppeteer/">
+                    <span>Puppeteer</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>puppeteer 是一个 Google 出品的 Node 库,可以用它来操纵 Chrome.<br />
+puppeteer 这个单词的发音为 [ˌpʌpɪˈtɪə], 意思是&quot;操纵木偶的人&quot;.</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>安装 puppeteer 时会自动下载 chrome,需要有全局代理.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add puppeteer</span><br></pre></td></tr></table></figure>
+<p>如果无法下载 puppeteer, 可以在根目录下新建文件 .yarnrc, 填入如下内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">puppeteer_download_host &quot;https://storage.googleapis.com.cnpmjs.org&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h2>
+<p>新建 index.js, 填入如下代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 载入puppeteer</span></span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&#x27;puppeteer&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开浏览器</span></span><br><span class="line"><span class="comment">// launch方法返回一个Promise对象</span></span><br><span class="line">puppeteer.<span class="title function_">launch</span>(&#123;<span class="attr">headless</span>: <span class="literal">false</span>&#125;).<span class="title function_">then</span>(<span class="keyword">async</span> browser =&gt; &#123;</span><br><span class="line">  <span class="comment">// 打开一个页面</span></span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line">  <span class="comment">// 打开百度</span></span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">goto</span>(<span class="string">&#x27;https://www.baidu.com&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> page.<span class="title function_">screenshot</span>(&#123;<span class="attr">path</span>: <span class="string">&#x27;baidu.png&#x27;</span>&#125;);</span><br><span class="line">  <span class="comment">// 关闭浏览器</span></span><br><span class="line">  <span class="comment">// await browser.close();</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最后,进入文件所在路径, 执行 node index.js 命令即可.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/puppeteer%E5%85%A5%E9%97%A8/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+                    函数声明与函数表达式
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-04-18T14:00:00.000Z">
+                  2019-04-18
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>偶然看到了一道题,  问如下代码中的console输出什么:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">(<span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>)&#123;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a)&#125;</span><br><span class="line">)()</span><br></pre></td></tr></table></figure>
+<p>结果console输出的不是数值2,而是函数本身:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ƒ <span class="title function_">a</span>(<span class="params"></span>)&#123;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/(ios%E5%A4%B8%E5%85%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9)%E5%8F%AF%E6%BB%9A%E5%8A%A8%E5%85%83%E7%B4%A0%E5%86%85%E7%9A%84fixed%E5%85%83%E7%B4%A0%E6%97%A0%E6%B3%95%E5%9B%BA%E5%AE%9A/">
+                    (Ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-04-06T04:00:00.000Z">
+                  2019-04-06
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <h2 id="表现"><a class="markdownIt-Anchor" href="#表现"></a> 表现</h2>
+<p>可滚动(oveflow:scroll)元素滚动时, 其内的固定定位(position: fixed)元素无法保持在原有位置,直到滚动结束才能恢复.<br />
+该bug仅能在ios上的夸克中触发,android则无此问题.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/(ios%E5%A4%B8%E5%85%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9)%E5%8F%AF%E6%BB%9A%E5%8A%A8%E5%85%83%E7%B4%A0%E5%86%85%E7%9A%84fixed%E5%85%83%E7%B4%A0%E6%97%A0%E6%B3%95%E5%9B%BA%E5%AE%9A/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/(Android%20Chrome%E5%85%BC%E5%AE%B9)%E4%BF%AE%E5%A4%8D%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0%E5%AF%BC%E8%87%B4%E7%9A%84%E5%9C%B0%E5%9D%80%E6%A0%8F%E4%B8%8A%E7%A7%BB/">
+                    (Android Chrome兼容)修复定位元素导致的地址栏上移
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-04-05T06:00:00.000Z">
+                  2019-04-05
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>移动端浏览器的地址栏是可动的,用户向上滑动页面时, 地址栏也会向上移动,直到隐藏.<br />
+如果想固定地址栏,可以使用如下样式:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">overflow-y</span>: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="表现"><a class="markdownIt-Anchor" href="#表现"></a> 表现</h2>
+<p>在chrome(android 73)中,上面这个办法可能会失效.<br />
+如果某个可滚动的绝对定位元素的尺寸和浏览器窗口一样大,可能会导致导航栏上移.<br />
+该bug仅能在android中复现, ios系统的chrome无此问题.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/(Android%20Chrome%E5%85%BC%E5%AE%B9)%E4%BF%AE%E5%A4%8D%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0%E5%AF%BC%E8%87%B4%E7%9A%84%E5%9C%B0%E5%9D%80%E6%A0%8F%E4%B8%8A%E7%A7%BB/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/(Safari%E5%85%BC%E5%AE%B9)overflow%E5%92%8Coverflow-scrolling%E5%AF%BC%E8%87%B4fixed%E5%85%83%E7%B4%A0%E4%B8%8D%E6%98%BE%E7%A4%BA/">
+                    (Safari兼容)overflow和overflow-scrolling导致fixed元素不显示
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-04-04T13:00:00.000Z">
+                  2019-04-04
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/Safari/">
+                    <span>Safari</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>当元素同时拥有overflow:scroll和-webkit-overflow-scrolling:touch两个属性时, 可能会导致内部的fixed元素无法显示.</p>
+<h2 id="表现"><a class="markdownIt-Anchor" href="#表现"></a> 表现</h2>
+<p>有如下Dom结构及CSS样式<br />
+html结构:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inner&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>css样式:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inner</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>wrapper的背景色为红色.<br />
+inner是一个fixed元素, 背景色为黄色.<br />
+<img src="/img/591cc0a6.png" alt="54279d8e.png" /></p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/(Safari%E5%85%BC%E5%AE%B9)overflow%E5%92%8Coverflow-scrolling%E5%AF%BC%E8%87%B4fixed%E5%85%83%E7%B4%A0%E4%B8%8D%E6%98%BE%E7%A4%BA/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E9%98%BB%E6%AD%A2%E6%BB%9A%E5%8A%A8%E7%A9%BF%E9%80%8F/">
+                    阻止滚动穿透
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-31T11:00:00.000Z">
+                  2019-03-31
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>当滚动元素滚动到顶/底时, 如果其外层还有可滚动的元素,则会触发外层可滚动元素的滚动.<br />
+<img src="/img/b3d2bfc3.gif" alt="a.gif" /></p>
+<p>这是个feature, 但有时这个feature会给开发者带来麻烦.<br />
+特别是safari, 如果某个可滚动元素设置了-webkit-overflow-scrolling: touch,滑动到头的时候经常会被卡住.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E9%98%BB%E6%AD%A2%E6%BB%9A%E5%8A%A8%E7%A9%BF%E9%80%8F/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/(%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C)%E8%B7%9F%E9%9A%8F%E4%B8%8B%E6%8B%89%E6%94%BE%E5%A4%A7%E5%9B%BE%E5%83%8F/">
+                    (动画效果)跟随下拉放大图像
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-31T06:00:00.000Z">
+                  2019-03-31
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p><img src="/img/702feb54.gif" alt="a.gif" /></p>
+<h2 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h2>
+<p>监控用户touch事件, 根据移动距离修改图像的高度及缩放尺寸.<br />
+图像的放大要配合修改height和scale来进行,不能单独使用scale.因为缩放并不会占用文本流位置,这会导致图像覆盖下面的内容.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/(%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C)%E8%B7%9F%E9%9A%8F%E4%B8%8B%E6%8B%89%E6%94%BE%E5%A4%A7%E5%9B%BE%E5%83%8F/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/%E7%BC%93%E5%8A%A8%E5%87%BD%E6%95%B0(easing%20function)/">
+                    缓动函数(easing function)
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-30T06:00:00.000Z">
+                  2019-03-30
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/JavaScript/">
+                    <span>JavaScript</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>网页设计经常会用到各种动画效果.<br />
+现实世界的大多数运动都是变速的.与变速运动相比,匀速运动就显得很生硬,给人一种不自然的感觉.</p>
+<p>css可以用timing-function参数来实现变速运动.<br />
+但不是所有的动画都能用css来解决, 例如下拉刷新, 要用js来根据touchmove的距离来绘制动画效果.<br />
+这时就可以用缓动公式来实现各种动画效果.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/%E7%BC%93%E5%8A%A8%E5%87%BD%E6%95%B0(easing%20function)/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+        <div class="item">
+          <article class="article">
+            <!-- title -->  
+            <h2 class="title">
+                         
+                  <a href="/article/-webkit-overflow-scrolling%E5%AF%BC%E8%87%B4%E5%85%83%E7%B4%A0%E6%B6%88%E5%A4%B1/">
+                    -webkit-overflow-scrolling导致元素消失
+                  </a>               
+              
+            </h2>
+            <!-- post info  -->
+            <div class="post-meta">
+              
+                <span class="icon-baseline-query_builder-24px"></span>
+                <time datetime="2019-03-24T09:00:00.000Z">
+                  2019-03-24
+                </time>
+              
+              <!-- categories -->
+              
+                <span class="icon-baseline-work_outline-24px"></span>
+                
+                  <a href="/categories/CSS/">
+                    <span>CSS</span>
+                  </a>
+                
+              
+            </div>
+            <!-- article -->
+            
+            <div class="content">
+               
+                  <!-- excerpt -->
+                  <p>在ios系统的浏览器中, 如果想让可滚动元素(例如有overflow: scroll属性的元素)带有弹性效果, 往往会给可滚动元素添加-webkit-overflow-scrolling: touch属性.<br />
+但这个属性有个bug, 可能会导致其内部的某些元素不显示.看起来就好象给元素加上了visibility:hidden一样.</p>
+<p>为了修复这个bug, 需要给&quot;某些&quot;后代元素添加transform: translate3d(0,0,0)属性.</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: scroll;</span><br><span class="line">  -webkit-<span class="attribute">overflow</span>-scrolling: touch;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: translate3d(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里之所以称&quot;某些&quot;,是因为无法确定到底应该加到哪些元素之上.<br />
+因为translate3d会产生很多副作用, 例如会改变元素的z-index, 要依具体情况而定.<br />
+需注意的是这个方法也不一定总是有效.</p>
+              
+            </div>
+          </article>
+          <!-- read-more -->
+          <div class="read-more">
+              <div class="wrapper">
+                <a href="/article/-webkit-overflow-scrolling%E5%AF%BC%E8%87%B4%E5%85%83%E7%B4%A0%E6%B6%88%E5%A4%B1/">
+                  READ MORE
+                  <span class="icon-baseline-keyboard_arrow_right-24px"></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      
+    
+    <!-- pagination -->
+<nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
+</nav>
+</div>
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

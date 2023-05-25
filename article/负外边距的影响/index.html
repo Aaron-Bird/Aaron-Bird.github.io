@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>负外边距的影响</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text"> 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text"> 对浮动元素的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text"> 对绝对定位元素的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-text"> 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80"><span class="toc-text"> 圣杯布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80"><span class="toc-text"> 双飞翼布局</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">负外边距的影响</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-11-30T00:10:00.000Z">
+            2017-11-30
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+          <a href="/tags/margin/">
+            <span>margin</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>元素外边距可以为零/正数/负数.我们可以设定外边距为负值,调整元素的位置.</p>
+<h2 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h2>
+<p>margin-left为负时向左移动,后面的元素也跟着移动</p>
+<style>
+    .box-1{width:250px; height:100px; border: 1px solid;}
+    .child-1{float: left;background: #F4F4F5;height:100px;width:100px;}
+</style>
+<div class="box-1">
+  <div class="child-1" style="margin-left:-10px"></div>
+  <div class="child-1" style="background:#00FFF0FF"></div>
+</div>
+<p>行内元素也一样</p>
+<style>
+    .box-3{width:250px; height:100px; border: 1px solid;}
+    .child-3{}
+</style>
+<div class="box-3">
+  Alice was beginning to get very tired 
+  <a class="child-3" style="margin-left: -15px;border:1px solid">of </a>
+  sitting by her sister on the bank
+</div>
+<p>用margin上移元素,其后的元素会跟随向上移动</p>
+<style>
+    .box-5{width:250px; border: 1px solid;}
+    .child-5{height: 50px;width: 100px;}
+</style>
+<div class="box-5">
+  <div class="child-5" style="margin-top:-20px;background: #F4F4F5;"></div>
+  <div class="child-5" style="background: yellow;"></div>
+</div>
+<p>relative可起到类似效果,但原本所占空间仍然被保留</p>
+<style>
+
+    .box-2{width:250px; height:100px; border: 1px solid;}
+    .child-2{position:relative; float: left;background: #F4F4F5;height: 100px;width: 100px;}
+</style>
+<div class="box-2">
+  <div class="child-2" style="left:-20px;"></div>
+  <div class="child-2" style=""></div>
+</div>
+<p>margin-top | margin-left 为负时,元素向对应方向移动</p>
+<style>
+    .box-6{width:250px; border: 1px solid;}
+    .child-6{height: 50px;width: 100px;}
+</style>
+<div class="box-6">
+  <div class="child-6" style="margin-top:-20px;margin-left:-20px;background: #F4F4F5;"></div>
+  <div class="child-6" style="background: yellow;"></div>
+</div>
+<p>margin-right | margin-bottom 为负时,对自身位置无影响,后面的元素覆盖其上</p>
+<style>
+    .box-7{width:250px; border: 1px solid;}
+    .child-7{height: 50px;width: 100px;}
+</style>
+<div class="box-7">
+  <div class="child-7" style="margin-bottom:-20px;margin-right:-20px;background: #F4F4F5;"></div>
+  <div class="child-7" style="background: yellow;opacity: 0.5"></div>
+</div>
+<p>未声明元素宽度时,负边距可以增加元素宽度<br />
+子元素宽度100%</p>
+<style>
+    .box-8{width:250px; border: 1px solid;}
+    .child-8{height: 50px;}
+</style>
+<div class="box-8">
+  <div class="child-8" style="width: 100%;margin-right:-20px;background: #F4F4F5;"></div>
+</div>
+未设置子元素宽度
+<style>
+    .box-9{width:250px; border: 1px solid;}
+    .child-9{height: 50px;}
+</style>
+<div class="box-9">
+  <div class="child-9" style="margin-right:-20px;background: #F4F4F5;"></div>
+</div>
+<h2 id="对浮动元素的影响"><a class="markdownIt-Anchor" href="#对浮动元素的影响"></a> 对浮动元素的影响</h2>
+<style>
+    .box-4{width:250px; height:100px; border: 1px solid;}
+    .child-4{}
+</style>
+<div class="box-4">
+  Alice was beginning to get very tired 
+  <a class="child-4" style="float:left;margin-left: -10px;border:1px solid">of </a>
+  sitting by her sister on the bank
+</div>
+<h2 id="对绝对定位元素的影响"><a class="markdownIt-Anchor" href="#对绝对定位元素的影响"></a> 对绝对定位元素的影响</h2>
+<p>绝对定位元素后脱离文本流,因此后面的元素被盖在了下边<br />
+尽管声明了left:0;top:0;但margin还是对元素位置产生了影响</p>
+<style>
+    .box-12{width:250px; border: 1px solid;position:relative;}
+    .child-12{height: 50px;width: 100px;}
+</style>
+<div class="box-12">
+  <div class="child-12" style="position:absolute;left:0;top:0;margin-top:-20px;margin-left:-20px;background: #F4F4F5;"></div>
+  <div class="child-12" style="background: yellow;"></div>
+</div>
+<h2 id="应用"><a class="markdownIt-Anchor" href="#应用"></a> 应用</h2>
+<h3 id="圣杯布局"><a class="markdownIt-Anchor" href="#圣杯布局"></a> 圣杯布局</h3>
+<p>优点</p>
+<ul>
+<li>先渲染中间,后渲染两侧</li>
+<li>中部自适应,两侧定宽</li>
+</ul>
+<style>
+    .box-10 {
+      width: 300px; 
+      border: 1px solid;
+      overflow: auto;
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+    .box-10 * {
+      height: 50px;
+      float:left;
+    }
+    .child-10-main {
+      width:100%;
+      background: red;
+    }
+    .child-10-left {
+      width: 100px;
+      margin-left:-100%;
+      position: relative;
+      left: -100px;
+      background: yellow;
+    }
+    .child-10-right {
+      width:100px;
+      margin-left:-100px;
+      position:relative;
+      right:-100px;
+      background: green;
+    }
+</style>
+<div class="box-10">
+  <div class="child-10-main"></div>
+  <div class="child-10-left"></div>
+  <div class="child-10-right"></div>
+</div>  
+<pre><code>&lt;style&gt;
+  .box-10 &#123;
+    width: 300px; 
+    border: 1px solid;
+    overflow: auto;
+    padding-left: 100px;
+    padding-right: 100px;
+  &#125;
+  .box-10 * &#123;
+    height: 50px;
+    float:left;
+  &#125;
+  .child-10-main &#123;
+    width:100%;
+    background: red;
+  &#125;
+  .child-10-left &#123;
+    width: 100px;
+    margin-left:-100%;
+    position: relative;
+    left: -100px;
+    background: yellow;
+  &#125;
+  .child-10-right &#123;
+    width:100px;
+    margin-left:-100px;
+    position:relative;
+    right:-100px;
+    background: green;
+  &#125;
+&lt;/style&gt;
+&lt;div class=&quot;box-10&quot;&gt;
+  &lt;div class=&quot;child-10-main&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;child-10-left&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;child-10-right&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="双飞翼布局"><a class="markdownIt-Anchor" href="#双飞翼布局"></a> 双飞翼布局</h3>
+<p>双飞翼布局其实就是去掉相对定位的圣杯布局</p>
+<style>
+    .box-11 {
+      width: 350px; 
+      border: 1px solid;
+      overflow: auto;
+    }
+    .box-11 > * {
+      height: 50px;
+      float:left;
+    }
+    .child-11-main {
+      width:100%;
+    }
+    .child-11-mainContent {
+      height: 50px;
+      background: red;
+      margin: 0 100px;
+    }
+    .child-11-left {
+      width: 100px;
+      margin-left:-100%;
+      background: yellow;
+    }
+    .child-11-right {
+      width:100px;
+      margin-left:-100px;
+      background: green;
+    }
+</style>
+<div class="box-11">
+  <div class="child-11-main">
+    <div class="child-11-mainContent"></div>
+  </div>
+  <div class="child-11-left"></div>
+  <div class="child-11-right"></div>
+</div>  
+<pre><code>&lt;style&gt;
+    .box-11 &#123;
+      width: 350px; 
+      border: 1px solid;
+      overflow: auto;
+    &#125;
+    .box-11 &gt; * &#123;
+      height: 50px;
+      float:left;
+    &#125;
+    .child-11-main &#123;
+      width:100%;
+    &#125;
+    .child-11-mainContent &#123;
+      height: 50px;
+      background: red;
+      margin: 0 100px;
+    &#125;
+    .child-11-left &#123;
+      width: 100px;
+      margin-left:-100%;
+      background: yellow;
+    &#125;
+    .child-11-right &#123;
+      width:100px;
+      margin-left:-100px;
+      background: green;
+    &#125;
+&lt;/style&gt;
+&lt;div class=&quot;box-11&quot;&gt;
+  &lt;div class=&quot;child-11-main&quot;&gt;
+    &lt;div class=&quot;child-11-mainContent&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;child-11-left&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;child-11-right&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;  </code></pre>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/unicode%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/">&lt;  unicode字符处理</a>
+      
+      
+        <a class="next" href="/article/%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD/">元素居中  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

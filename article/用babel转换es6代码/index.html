@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用Babel转换es6代码</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text"> 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85windows"><span class="toc-text"> 本地安装(windows)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85sublime-bable%E6%8F%92%E4%BB%B6"><span class="toc-text"> 安装sublime bable插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2es6%E4%BB%A3%E7%A0%81%E5%88%B0es5"><span class="toc-text"> 转换es6代码到es5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#polyfill-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-text"> polyfill 使用方法(浏览器)</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">用Babel转换es6代码</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-12-04T07:47:00.000Z">
+            2017-12-04
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/software/">
+            <span>software</span>
+          </a>
+        
+          <a href="/tags/Babel/">
+            <span>Babel</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>Babel是个js编译工具,可以把es6语法转换成es5,从而兼容ie9/10.</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/01/babel.html">Babel 入门教程 阮一峰</a><br />
+<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008706628">怎样设置babel-polyfill</a><br />
+<a target="_blank" rel="noopener" href="https://babeljs.io/">babel 官网</a><br />
+<a target="_blank" rel="noopener" href="https://babeljs.cn/">babel 中文网</a></p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<h3 id="本地安装windows"><a class="markdownIt-Anchor" href="#本地安装windows"></a> 本地安装(windows)</h3>
+<pre><code>#工程文件根目录下,用管理员模式执行
+npm install --save-dev babel-cli babel-preset-env
+
+# Babel默认只转换语法,如果需要转义Array Promise之类的es6全局变量,需安装polyfill
+npm install --save-dev babel-polyfill
+</code></pre>
+<p>不建议全局安装,目前有些问题<br />
+<a target="_blank" rel="noopener" href="https://github.com/babel/babel-preset-env/issues/186">Couldn't find preset &quot;env&quot; relative to directory </a></p>
+<pre><code>npm install -g babel-cli babel-preset-env
+</code></pre>
+<h3 id="安装sublime-bable插件"><a class="markdownIt-Anchor" href="#安装sublime-bable插件"></a> 安装sublime bable插件</h3>
+<pre><code>sublime &gt; press: ctrl + shift + p &gt; input: pip &gt; input: Babel
+</code></pre>
+<h2 id="转换es6代码到es5"><a class="markdownIt-Anchor" href="#转换es6代码到es5"></a> 转换es6代码到es5</h2>
+<pre><code>#用sublime打开需转换的.js文件
+Tools &gt; Babel &gt; Babel Transform
+</code></pre>
+<h2 id="polyfill-使用方法浏览器"><a class="markdownIt-Anchor" href="#polyfill-使用方法浏览器"></a> polyfill 使用方法(浏览器)</h2>
+<p>找到如下路径文件,在编译代码前引入</p>
+<pre><code>node_modules/babel-polyfill/dist/polyfill.js
+
+例
+&lt;html&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;polyfill.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;编译代码.js&quot;&gt;&lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/CSS%E9%80%89%E6%8B%A9%E5%99%A8/">&lt;  CSS选择器</a>
+      
+      
+        <a class="next" href="/article/unicode%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/">unicode字符处理  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

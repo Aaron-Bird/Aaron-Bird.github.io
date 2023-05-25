@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>-webkit-overflow-scrolling导致元素消失</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">-webkit-overflow-scrolling导致元素消失</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-03-24T09:00:00.000Z">
+            2019-03-24
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>在ios系统的浏览器中, 如果想让可滚动元素(例如有overflow: scroll属性的元素)带有弹性效果, 往往会给可滚动元素添加-webkit-overflow-scrolling: touch属性.<br />
+但这个属性有个bug, 可能会导致其内部的某些元素不显示.看起来就好象给元素加上了visibility:hidden一样.</p>
+<p>为了修复这个bug, 需要给&quot;某些&quot;后代元素添加transform: translate3d(0,0,0)属性.</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: scroll;</span><br><span class="line">  -webkit-<span class="attribute">overflow</span>-scrolling: touch;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: translate3d(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里之所以称&quot;某些&quot;,是因为无法确定到底应该加到哪些元素之上.<br />
+因为translate3d会产生很多副作用, 例如会改变元素的z-index, 要依具体情况而定.<br />
+需注意的是这个方法也不一定总是有效.</p>
+<span id="more"></span>
+<p>另外,有些教程会很极端的给所有元素都加上了translate3d.<br />
+这样不仅会改变元素顺序,还会生成大量无法合并的合成层.</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个糟糕的样式,最好不要这么作</span></span><br><span class="line"><span class="selector-tag">body</span> * &#123;</span><br><span class="line">  <span class="attribute">transform</span>: translate3d(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="http://isay.me/2015/09/one-css-bug-webkit-overflow-scrolling-touch.html">-webkit-overflow-scrolling设置为touch的一个bug</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9807620/ipad-safari-scrolling-causes-html-elements-to-disappear-and-reappear-with-a-dela">https://stackoverflow.com/questions/9807620/ipad-safari-scrolling-causes-html-elements-to-disappear-and-reappear-with-a-dela</a><br />
+<a target="_blank" rel="noopener" href="http://taobaofed.org/blog/2016/04/25/performance-composite/">无线性能优化：Composite | Taobao FED | 淘宝前端团队</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E7%BC%93%E5%8A%A8%E5%87%BD%E6%95%B0(easing%20function)/">&lt;  缓动函数(easing function)</a>
+      
+      
+        <a class="next" href="/article/%E5%B0%81%E8%A3%85Swiper%E4%B8%BAVue%E7%BB%84%E4%BB%B6/">封装Swiper为Vue组件  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

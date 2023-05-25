@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>阻止滚动穿透</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#body-scroll-lock"><span class="toc-text"> body-scroll-lock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text"> 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text"> 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0%E4%B8%8B%E7%9A%84%E6%BB%9A%E5%8A%A8%E7%A9%BF%E9%80%8F"><span class="toc-text"> 定位元素下的滚动穿透</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">阻止滚动穿透</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-03-31T11:00:00.000Z">
+            2019-03-31
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>当滚动元素滚动到顶/底时, 如果其外层还有可滚动的元素,则会触发外层可滚动元素的滚动.<br />
+<img src="/img/b3d2bfc3.gif" alt="a.gif" /></p>
+<p>这是个feature, 但有时这个feature会给开发者带来麻烦.<br />
+特别是safari, 如果某个可滚动元素设置了-webkit-overflow-scrolling: touch,滑动到头的时候经常会被卡住.</p>
+<span id="more"></span>  
+<h2 id="body-scroll-lock"><a class="markdownIt-Anchor" href="#body-scroll-lock"></a> body-scroll-lock</h2>
+<p>用body-scroll-lock可以解决这个问题.当滚动到元素边界时,阻止继续滚动.<br />
+<a target="_blank" rel="noopener" href="https://github.com/willmcpo/body-scroll-lock">GitHub - willmcpo/body-scroll-lock: Body scroll locking that just works with everything 😏</a></p>
+<p class="codepen" data-height="265" data-theme-id="0" data-default-tab="html,result" data-user="aaronbird" data-slug-hash="vMYyQg" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="vMYyQg">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/aaronbird/pen/vMYyQg/">
+  vMYyQg</a> by aaronbird (<a target="_blank" rel="noopener" href="https://codepen.io/aaronbird">@aaronbird</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<h2 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h2>
+<p>监控可滚动元素的touchmove事件, 判断手指的滑动方向和元素的滚动距离.<br />
+如果元素滚动到顶时用户继续下拉,则将scrollTop重置为零,同时调用event.preventDefault阻止页面滚动/刷新等默认动作.<br />
+如果元素滚动到底时用户继续上滑, 则将scrollTop重置为最大可滚动距离, 同时调用preventDefault.</p>
+<p>注意: 如果将tochmove事件挂在window document document.body这三个元素上,则必需设置addEventListener的第三个参数的passive属性为false.否则浏览器会忽略事件函数中调用的preventDefault.</p>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> fixScroll = <span class="hljs-function">(<span class="hljs-params">scrollEl</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">let</span> startY
+  scrollEl.addEventListener(<span class="hljs-string">'touchstart'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;
+    <span class="hljs-comment">// 如果多于1根手指点击屏幕,则不处理</span>
+    <span class="hljs-keyword">if</span> (event.targetTouches.length &gt; <span class="hljs-number">1</span>) &#123;
+      <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-comment">// 储存手指的初始位置</span>
+    startY = event.targetTouches[<span class="hljs-number">0</span>].clientY
+  &#125;, <span class="hljs-literal">false</span>)
+  scrollEl.addEventListener(<span class="hljs-string">'touchmove'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (event.targetTouches.length &gt; <span class="hljs-number">1</span>) &#123;
+      <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-comment">// 判断手指滑动方向, y大于0时向下滑动, 小于0时向上滑动</span>
+    <span class="hljs-keyword">const</span> y = event.targetTouches[<span class="hljs-number">0</span>].clientY - startY
+    <span class="hljs-comment">// 如果到顶时继续向下拉</span>
+    <span class="hljs-keyword">if</span> (scrollEl.scrollTop &lt;= <span class="hljs-number">0</span> &amp;&amp; y &gt; <span class="hljs-number">0</span>) &#123;
+      <span class="hljs-comment">// 重置滚动距离为最小值</span>
+      scrollEl.scrollTop = <span class="hljs-number">0</span>
+      <span class="hljs-comment">// 阻止滚动</span>
+      event.preventDefault()
+    &#125;
+    <span class="hljs-comment">// 如果到底时继续上滑  </span>
+    <span class="hljs-keyword">const</span> maxScrollTop = scrollEl.scrollHeight - scrollEl.clientHeight
+    <span class="hljs-keyword">if</span> (maxScrollTop - scrollEl.scrollTop &lt;= <span class="hljs-number">0</span> &amp;&amp; y &lt; <span class="hljs-number">0</span>) &#123;
+      scrollEl.scrollTop = maxScrollTop
+      event.preventDefault()
+    &#125;
+  &#125;, &#123;
+    <span class="hljs-attr">passive</span>: <span class="hljs-literal">false</span>
+  &#125;)
+&#125;
+</code></pre>
+<p class="codepen" data-height="265" data-theme-id="0" data-default-tab="js,result" data-user="aaronbird" data-slug-hash="PgobLO" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="fix scroll 例子">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/aaronbird/pen/PgobLO/">
+  fix scroll 例子</a> by aaronbird (<a target="_blank" rel="noopener" href="https://codepen.io/aaronbird">@aaronbird</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<h2 id="定位元素下的滚动穿透"><a class="markdownIt-Anchor" href="#定位元素下的滚动穿透"></a> 定位元素下的滚动穿透</h2>
+<p>如果定位元素下有滚动元素,也会发生滚动穿透现象.<br />
+<img src="/img/a03413c5.gif" alt="1.gif" /><br />
+如上图所示, 半透明的上层元素是一个fixed元素.即使在触发touchmove事件时调用event.stopPropagation,也不能阻止滚动穿透.</p>
+<p>另外要注意,即便用了fixScroll函数, 也必须在touchmove事件中调用event.stopPropagation.否者滑到底时会卡住.<br />
+<img src="/img/b923efbe.gif" alt="1.gif" /></p>
+<p>原因是touchmove事件穿透到下层去了<br />
+<img src="/img/ec3b62ca.PNG" alt="2.PNG" /></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/41594997/ios-10-safari-prevent-scrolling-behind-a-fixed-overlay-and-maintain-scroll-posi">javascript - iOS 10 Safari: Prevent scrolling behind a fixed overlay and maintain scroll position - Stack Overflow</a><br />
+<a target="_blank" rel="noopener" href="https://xiaoiver.github.io/coding/2018/05/20/%E5%9C%A8-iOS-%E4%B8%8B%E4%BD%BF%E7%94%A8-iframe-%E7%9A%84%E7%A7%8D%E7%A7%8D%E9%97%AE%E9%A2%98.html">在 iOS 下使用 iframe 的种种问题 - xiaOp的博客</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/(Safari%E5%85%BC%E5%AE%B9)overflow%E5%92%8Coverflow-scrolling%E5%AF%BC%E8%87%B4fixed%E5%85%83%E7%B4%A0%E4%B8%8D%E6%98%BE%E7%A4%BA/">&lt;  (Safari兼容)overflow和overflow-scrolling导致fixed元素不显示</a>
+      
+      
+        <a class="next" href="/article/(%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C)%E8%B7%9F%E9%9A%8F%E4%B8%8B%E6%8B%89%E6%94%BE%E5%A4%A7%E5%9B%BE%E5%83%8F/">(动画效果)跟随下拉放大图像  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

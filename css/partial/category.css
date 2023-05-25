@@ -1,0 +1,5 @@
+.main > .category {
+  line-height: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}

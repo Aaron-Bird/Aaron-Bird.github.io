@@ -1,0 +1,76 @@
+.main>.post {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.main>.post .article img {
+  margin: 16px auto;
+  display: block;
+}
+.main>.post .article li {
+  list-style-type: square;
+}
+.main>.post .article p a {
+  color: var(--font-dark);
+}
+.main>.post .article p a:before {
+  font-family: 'icomoon';
+  content: "\e923";
+  margin-right: 2px;
+  margin-left: -3px;
+}
+.main>.post .article a {
+  position: relative;
+}
+.main>.post .article a:after {
+  position: absolute;
+  content: "";
+  color: #000;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  background: #000;
+  transform: translateX(-50%);
+  transition: 0.2s linear;
+}
+@media (pointer: fine) {
+  .main>.post .article a:hover:after {
+    width: 100%;
+  }
+}
+.main>.post .post-toc {
+  font-size: 0.725rem;
+  position: absolute;
+  right: -300px;
+  width: 300px;
+  max-height: calc(100% - 20px);
+  overflow: auto;
+}
+.main>.post .post-toc .post-toc-content {
+  padding-right: 10px;
+}
+.main>.post .post-toc a {
+  transition: 0.2s linear;
+}
+.main>.post .post-toc a:hover {
+  color: #757575;
+}
+.main>.post .post-toc ol {
+  margin-left: 20px;
+}
+.main>.post .post-toc ol li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  list-style-type: none;
+}
+.main>.post .post-toc .toc>.toc-item li {
+  display: none;
+}
+@media screen and (max-width: 1300px) {
+  .main>.post .post-toc {
+    display: none;
+  }
+}

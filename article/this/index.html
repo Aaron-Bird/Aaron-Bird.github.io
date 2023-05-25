@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>this</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#execution-context%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text"> execution context(执行环境&#x2F;执行上下文)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thisbindingthis-%E7%BB%91%E5%AE%9A"><span class="toc-text"> ThisBinding(this 绑定)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%9A%84%E5%86%85%E9%83%A8%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text"> 函数调用的内部执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fcall"><span class="toc-text"> F.[[call]]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%B1%9E%E6%80%A7%E7%9A%84%E5%86%85%E9%83%A8%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text"> 访问属性的内部执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%B1%9E%E6%80%A7%E8%B0%83%E7%94%A8%E6%97%B6%E5%86%85%E9%83%A8-this-%E6%8C%87%E5%90%91"><span class="toc-text"> 函数作为属性调用时,内部 this 指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%A0%87%E8%AF%86%E7%AC%A6%E5%8F%98%E9%87%8F%E6%97%B6%E5%86%85%E9%83%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text"> 访问标识符(变量)时,内部的执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getidentifierreferencelex-name-strict"><span class="toc-text"> GetIdentifierReference(lex, name, strict)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E6%A0%87%E8%AF%86%E7%AC%A6%E8%B0%83%E7%94%A8%E6%97%B6%E5%86%85%E9%83%A8%E7%9A%84-this-%E6%8C%87%E5%90%91"><span class="toc-text"> 函数作为标识符调用时,内部的 this 指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-new-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E6%97%B6%E5%85%B6%E5%86%85%E9%83%A8%E7%9A%84%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text"> 使用 new 调用函数时,其内部的运行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text"> 运行过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fconstuct"><span class="toc-text"> F.[[constuct]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8-this-%E7%9A%84%E6%8C%87%E5%90%91"><span class="toc-text"> 构造函数内部 this 的指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functionprototypeapply-thisarg-argarray"><span class="toc-text"> Function.prototype.apply (thisArg, argArray)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8-apply-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8-this-%E7%9A%84%E6%8C%87%E5%90%91"><span class="toc-text"> 用 apply 调用函数,函数内部 this 的指向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functionprototypecall-thisarg-arg1-arg2"><span class="toc-text"> Function.prototype.call (thisArg [ , arg1 [ , arg2, … ] ] )</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functionprototypebind-thisarg-arg1-arg2"><span class="toc-text"> Function.prototype.bind (thisArg [, arg1 [, arg2, …]])</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#153451-call"><span class="toc-text"> 15.3.4.5.1 [[Call]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#153452-construct"><span class="toc-text"> 15.3.4.5.2 [[Construct]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#153453-hasinstance-v"><span class="toc-text"> 15.3.4.5.3 [[HasInstance]] (V)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">this</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-02-07T16:00:00.000Z">
+            2019-02-08
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>Es5 关于 this 的定义如下:<br />
+<a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-11.1.1">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<blockquote>
+<p>The this keyword evaluates to the value of the ThisBinding of the current execution context.<br />
+关键字&quot;this&quot;指向当前所在 execution context(执行环境)的 ThisBinding</p>
+</blockquote>
+<h2 id="execution-context执行环境执行上下文"><a class="markdownIt-Anchor" href="#execution-context执行环境执行上下文"></a> execution context(执行环境/执行上下文)</h2>
+<p>execution context 的说明在 10.3<br />
+<a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-10.3">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br />
+<a target="_blank" rel="noopener" href="https://www.w3.org/html/ig/zh/wiki/ES5/%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83#.E6.89.A7.E8.A1.8C.E7.8E.AF.E5.A2.83">ES5 可执行代码与执行环境</a></p>
+<blockquote>
+<p>When control is transferred to ECMAScript executable code, control is entering an execution context. Active execution contexts logically form a stack. The top execution context on this logical stack is the running execution context. A new execution context is created whenever control is transferred from the executable code associated with the currently running execution context to executable code that is not associated with that execution context. The newly created execution context is pushed onto the stack and becomes the running execution context.</p>
+<p>当控制器进入 ECMAScript executable code(可执行代码)时, 控制器会进入一个 execution context(执行环境/执行上下文).所有活动的 execution context 在逻辑上组成一个栈结构,栈顶的 execution context 叫 running execution context.当控制器从当前的 executable code(与 running execution context 相关的)转移到另一个 executable code(与 running execution context 无关的)时,会创建一个新的 execution context.然后将这个新创建的 execution context 推入栈中,使其成为新的 running execution context.</p>
+</blockquote>
+<span id="more"></span>
+<p>执行函数里的代码时, 会创建一个容器来保存函数所处环境(上下文)中的变量.这些装变量的容器又被储存在一个栈结构中.JS 引擎通过这些环境容器来查找对应的变量,如果没找到就到下一个容器里去找,直到全局环境容器为止.</p>
+<p>当进入函数时,控制器会创建一个执行环境,然后推入环境栈</p>
+<p>有如下函数:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">a</span>();</span><br></pre></td></tr></table></figure>
+<p>在调用 a 函数之前,环境栈的结构为:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title class_">LexicalEnvironment</span>:  &#123;</span><br><span class="line">            <span class="title class_">Environment</span> <span class="title class_">Record</span>: <span class="title class_">Global</span> <span class="title class_">Object</span></span><br><span class="line">            outer <span class="title class_">Lexical</span> <span class="title class_">Environment</span>: <span class="literal">null</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title class_">VariableEnvironment</span>: &#123;</span><br><span class="line">            <span class="title class_">Environment</span> <span class="title class_">Record</span>: <span class="title class_">Global</span> <span class="title class_">Object</span></span><br><span class="line">            outer <span class="title class_">Lexical</span> <span class="title class_">Environment</span>: <span class="literal">null</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title class_">Thisbinding</span>: <span class="title class_">Global</span> <span class="title class_">Object</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>当执行到 a 函数中的代码时,环境栈的结构变为:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title class_">LexicalEnvironment</span>:  &#123;</span><br><span class="line">            <span class="title class_">Environment</span> <span class="title class_">Record</span>: <span class="title class_">Declarative</span> <span class="title class_">Environment</span> <span class="title class_">Record</span></span><br><span class="line">            outer <span class="title class_">Lexical</span> <span class="title class_">Environment</span>: <span class="title class_">Global</span> <span class="title class_">Environment</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title class_">VariableEnvironment</span>: &#123;</span><br><span class="line">            <span class="title class_">Environment</span> <span class="title class_">Record</span>: <span class="title class_">Declarative</span> <span class="title class_">Environment</span> <span class="title class_">Record</span></span><br><span class="line">            outer <span class="title class_">Lexical</span> <span class="title class_">Environment</span>: <span class="title class_">Global</span> <span class="title class_">Environment</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title class_">Thisbinding</span>: <span class="title class_">Global</span> <span class="title class_">Object</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title class_">LexicalEnvironment</span>:  &#123;</span><br><span class="line">            <span class="title class_">Environment</span> <span class="title class_">Record</span>: <span class="title class_">Global</span> <span class="title class_">Object</span></span><br><span class="line">            outer <span class="title class_">Lexical</span> <span class="title class_">Environment</span>: <span class="literal">null</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title class_">VariableEnvironment</span>: &#123;</span><br><span class="line">            <span class="title class_">Environment</span> <span class="title class_">Record</span>: <span class="title class_">Global</span> <span class="title class_">Object</span></span><br><span class="line">            outer <span class="title class_">Lexical</span> <span class="title class_">Environment</span>: <span class="literal">null</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title class_">Thisbinding</span>: <span class="title class_">Global</span> <span class="title class_">Object</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Execution Context 有三个组件:</p>
+<ul>
+<li>LexicalEnvironment Component // 静态(词法)环境组件,用于储存 let const 这类不会被提升的变量</li>
+<li>VariableEnvironment Component // 变量环境组件,用于储存 var function 这类会被提升的变量</li>
+<li>Thisbinding Component // this 绑定组件</li>
+</ul>
+<p>新建 execution context 时,起初 LexicalEnvironment Component 和 VariableEnvironment Component 的值是相同的. 在执行(execution context 中的)代码时, VariableEnvironmentComponent 不会发生变化, 而 LexicalEnvironment Component 可能被改变.(例如执行 catch /with 里的代码时会创建新的 LexicalEnvironment)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> foo = <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">      <span class="keyword">var</span> bar = <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(foo, bar) <span class="comment">// 1 undefined</span></span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line">!<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">with</span> (&#123;&#125;) &#123;</span><br><span class="line">    <span class="keyword">var</span> foo = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(foo)</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
+<h2 id="thisbindingthis-绑定"><a class="markdownIt-Anchor" href="#thisbindingthis-绑定"></a> ThisBinding(this 绑定)</h2>
+<p>Thisbinding 决定了当前执行环境中,this 关键字的值.</p>
+<p>而 Thisbinding 是什么则取决于如何调用函数.<br />
+进入函数时, 控制器将 Thisbinding 指向调用者提供的参数(thisArg).</p>
+<p>以调用函数为例, thisArg 的传递过程如下:</p>
+<p>1 Function Calls</p>
+<p><a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-11.2.3">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br />
+<a target="_blank" rel="noopener" href="https://www.w3.org/html/ig/zh/wiki/ES5/%E8%A1%A8%E8%BE%BE%E5%BC%8F#.E5.87.BD.E6.95.B0.E8.B0.83.E7.94.A8">ES5/表达式 - HTML5 Chinese Interest Group Wiki</a></p>
+<p>thisArg由执行MemberExpression的返回结果决定</p>
+<p>函数的产生式为 CallExpression : MemberExpression Arguments<br />
+其中的MemberExpression是通常意义上的函数, Arguments是参数 ,该产生式会按照文档11.2.3的步骤执行<br />
+调用函数时,先获取MemberExpression的执行结果(以下称该结果为ref)<br />
+然后按照MemberExpression的返回结果设置thisValue<br />
+最后用thisValue作为参数调用函数的内部方法[[call]],最后按照文档10.4.3创建执行环境</p>
+<p>整个过程为:<br />
+解析 MemberExpression --&gt; &lt;11.2.3&gt; Function Calls --&gt; &lt;13.2.1&gt; 调用F.[[call]]  --&gt; &lt;10.4.3&gt;Entering Function Code</p>
+<h2 id="函数调用的内部执行过程"><a class="markdownIt-Anchor" href="#函数调用的内部执行过程"></a> 函数调用的内部执行过程</h2>
+<p><a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-11.2.3">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br />
+<a target="_blank" rel="noopener" href="https://www.w3.org/html/ig/zh/wiki/ES5/%E8%A1%A8%E8%BE%BE%E5%BC%8F#.E5.87.BD.E6.95.B0.E8.B0.83.E7.94.A8">https://www.w3.org/html/ig/zh/wiki/ES5/表达式#.E5.87.BD.E6.95.B0.E8.B0.83.E7.94.A8</a></p>
+<pre style="white-space: pre-wrap">
+The production CallExpression : MemberExpression Arguments is evaluated as follows:  
+1 Let ref be the result of evaluating MemberExpression.
+2 Let func be GetValue(ref).  
+3 Let argList be the result of evaluating Arguments, producing an internal list of argument values (see 11.2.4).  
+4 If Type(func) is not Object, throw a TypeError exception.
+5 If IsCallable(func) is false, throw a TypeError exception.
+6 If Type(ref) is Reference, then
+    a If IsPropertyReference(ref) is true, then
+        i Let thisValue be GetBase(ref).
+    b Else, the base of ref is an Environment Record
+        i Let thisValue be the result of calling the ImplicitThisValue concrete method of GetBase(ref).
+7 Else, Type(ref) is not Reference.
+    a Let thisValue be undefined.
+8 Return the result of calling the [[Call]] internal method on func, providing thisValue as the this value and providing the list argList as the argument values.
+</pre>
+<pre style="white-space: pre-wrap">
+1 令 ref 为执行 MemberExpression 的结果
+2 令 func 为调用 GetValue(ref)的结果
+3 令 argList 为执行 Arguments 的结果
+4 如果 func 不是 Object,抛出 TypeError
+5 如果 func 没有内部属性[[call]],抛出 TypeError
+6 如果 ref 是 Reference
+    a 如果 ref 的基值是 Boolean String Number Object //作为属性调用(Es6 新增 Symbol)
+        i 令 thisValue 为调用 GetBase(ref)的结果
+    b 否则, ref 的基值是环境记录 //作为变量调用
+        i 令 thisValue 为调用 GetBase(ref).ImplicitThisValue 的结果
+7 否则,ref 不是 Reference
+    a 令 thisValue 为 undefined // 进入函数时, thisVaule 为 undefined 会让 this 指向 window 全局对象
+8 return func.[[call]](thisValue, argList)
+</pre>
+<p>部分过程的注释:</p>
+<pre style="white-space: pre-wrap">
+1 这里的 MemberExpression 指的是括号前的部分. 例如函数"foo.bar()",只得就是括号前 foo.bar 的执行结果(返回一个 Reference).
+2 内部方法 GetValue(ref)会返回 ref 真正的值.例如: 如果 ref 是一个 reference, 则会调用 GetBase(ref)返回 ref 的 BaseValue(基值).
+4 判断 func 是否是对象(函数也是对象)
+5 判断 func 是否是函数(是否有内部方法[[call]])
+6 如果 ref 是引用类型
+    a 如果函数被作为对象的属性调用, 例如 foo.bar()
+        i 将对象作为 this
+    b 作为变量调用 例如 var foo = function() {}; foo()
+        i 将 undefined 作为 this, ImplicitThisValue 通常返回 undefined,除非 provideThis 值为 true(在 with 语句)
+7 如果 ref 不是引用类型, 例如 (function(){})()
+    a 将 undefined 作为 this
+8 调用函数对象的内部方法[[call]]
+</pre>
+<h3 id="fcall"><a class="markdownIt-Anchor" href="#fcall"></a> F.[[call]]</h3>
+<pre style="white-space: pre-wrap">
+When the [[Call]] internal method for a Function object F is called with a this value and a list of arguments, the following steps are taken:  
+1 Let funcCtx be the result of establishing a new execution context for function code using the value of F's [[FormalParameters]] internal property, the passed arguments List args, and the this value as described in 10.4.3.  
+2 Let result be the result of evaluating the FunctionBody that is the value of F's [[Code]] internal property. If F does not have a [[Code]] internal property or if its value is an empty FunctionBody, then result is (normal, undefined, empty).  
+3 Exit the execution context funcCtx, restoring the previous execution context.  
+4 If result.type is throw then throw result.value.  
+5 If result.type is return then return result.value.  
+6 Otherwise result.type must be normal. Return undefined.
+</pre>
+<pre style="white-space: pre-wrap">
+用 this 和 arguments 作为参数调用函数 F 的内部方法[[call]]时,执行如下步骤:
+1 用形参列表,实参列表和 this 创建新的 execution context(将其压入 execution context stack),根据文档 10.4.3(Entering Function Code)的步骤建立执行环境  
+2 运行函数内部代码((调用内部属性[[code]])),将结果赋值给 result.如果没有返回结果/没有属性[[code]],result = (normal, undefined, empty)  
+3 退出步骤 1 创建的 execution context  
+4 如果出错,抛出错误  
+5 如果正常,且有返回值(return),返回运行结果  
+6 如果没有返回值,返回 undefined
+</pre>
+<h2 id="访问属性的内部执行过程"><a class="markdownIt-Anchor" href="#访问属性的内部执行过程"></a> 访问属性的内部执行过程</h2>
+<p>属性可以通过&quot;.&quot;或&quot;[]&quot;访问,二者等价</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MemberExpression . IdentifierName</span><br><span class="line">CallExpression . IdentifierName</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MemberExpression [ Expression ]</span><br><span class="line">CallExpression [ Expression ]</span><br></pre></td></tr></table></figure>
+<p>内部执行过程 <a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-11.2.1">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<pre style="white-space: pre-wrap">
+The production MemberExpression : MemberExpression [ Expression ] is evaluated as follows:  
+1 Let baseReference be the result of evaluating MemberExpression.  
+2 Let baseValue be GetValue(baseReference).  
+3 Let propertyNameReference be the result of evaluating Expression.  
+4 Let propertyNameValue be GetValue(propertyNameReference).  
+5 Call CheckObjectCoercible(baseValue).  
+6 Let propertyNameString be ToString(propertyNameValue).  
+7 If the syntactic production that is being evaluated is contained in strict mode code, let strict be true, else let strict be false.  
+8 Return a value of type Reference whose base value is baseValue and whose referenced name is propertyNameString, and whose strict mode flag is strict.  
+</pre>
+<pre style="white-space: pre-wrap">
+1 令 baseReference 为执行 MemberExpression 的结果  
+2 令 baseValue 为 GetValue(baseReference)的结果 // 获取 baseValue 的真实值  
+3 令 propertyNameReference 为执行 Expression 的结果  
+4 令 propertyNameValue 为 GetValue(propertyNameReference)的结果  
+5 执行 CheckObjectCoercible(baseValue) // 如果 baseValue 值为 null/undefined,抛出 TypeError  
+6 令 propertyNameString 为执行 ToString(propertyNameValue)的结果 // 将属性名转为字符串  
+7 返回一个 Reference, 其基值为 baseValue, 引用名为 propertyNameString,严格模式标记为 strict
+</pre>
+<h3 id="函数作为属性调用时内部-this-指向"><a class="markdownIt-Anchor" href="#函数作为属性调用时内部-this-指向"></a> 函数作为属性调用时,内部 this 指向</h3>
+<p>作为属性调用的 ref 是一个 Reference, 基值为该属性所在的对象(以下记作对象 O)<br />
+当 ref 是 Reference 时,根据步骤 6 a,令 thisValue 值为该 Reference 的基值<br />
+运行函数内部代码时,函数内部的 this 指向对象 O</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">fun</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">obj.<span class="title function_">fun</span>(); <span class="comment">// &#123;fun: ƒ&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="访问标识符变量时内部的执行过程"><a class="markdownIt-Anchor" href="#访问标识符变量时内部的执行过程"></a> 访问标识符(变量)时,内部的执行过程</h2>
+<p><a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-11.1.2">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<pre style="white-space: pre-wrap">
+Identifier resolution is the process of determining the binding of an Identifier using the LexicalEnvironment of the running execution context. During execution of ECMAScript code, the syntactic production PrimaryExpression : Identifier is evaluated using the following algorithm:  
+
+1 Let env be the running execution context’s LexicalEnvironment.  
+2 If the syntactic production that is being evaluated is contained in a strict mode code, then let strict be true, else let strict be false.  
+3 Return the result of calling GetIdentifierReference function passing env, Identifier, and strict as arguments.
+
+The result of evaluating an identifier is always a value of type Reference with its referenced name component equal to the Identifier String.
+</pre>
+<pre style="white-space: pre-wrap">
+1 令 env 为 running execution context(执行环境)的 LexicalEnvironment 组件  
+2 如果为严格模式,令 strict 为 true.否则令 strict 为 false  
+3 调用 GetIdentifierReference(env, Identifier, strict),返回结果
+
+返回结果永远是一个 Reference,其基值为 undefined/Environment Record,referenced name 为标识符字符(变量名)
+</pre>
+<h3 id="getidentifierreferencelex-name-strict"><a class="markdownIt-Anchor" href="#getidentifierreferencelex-name-strict"></a> GetIdentifierReference(lex, name, strict)</h3>
+<pre style="white-space: pre-wrap">
+The abstract operation GetIdentifierReference is called with a Lexical Environment lex, an identifier String name, and a Boolean flag strict. The value of lex may be null. When called, the following steps are performed:
+
+1 If lex is the value null, then
+    a Return a value of type Reference whose base value is undefined, whose referenced name is name, and whose strict mode flag is strict.
+2 Let envRec be lex’s environment record.  
+3 Let exists be the result of calling the HasBinding(N) concrete method of envRec passing name as the argument N.  
+4 If exists is true, then  
+    a Return a value of type Reference whose base value is envRec, whose referenced name is name, and whose strict mode flag is strict.  
+5 Else  
+    a Let outer be the value of lex’s outer environment reference.  
+    b Return the result of calling GetIdentifierReference passing outer, name, and strict as arguments.
+
+1 如果 lex 为 null
+    a 返回一个Reference,其基值为undefined,引用名为name, 严格模式符号为strict // 递归基,全局对象的outer environment reference为null
+2 令 env 为 lex 的 environment record  
+3 让 exists 为调用 envRec.HasBinding(name)的结果  
+4 如果 exists 为 true  
+    a 返回一个 Reference,其基值为 envRec, 引用名为 name, 严格模式符号为 strict  
+5  否则  
+    a 令 outer 为 lex 的 outer environment reference  
+    b 返回 GetIdentifierReference(outer,name,strict)
+</pre>
+<h3 id="函数作为标识符调用时内部的-this-指向"><a class="markdownIt-Anchor" href="#函数作为标识符调用时内部的-this-指向"></a> 函数作为标识符调用时,内部的 this 指向</h3>
+<p>作为变量调用的 ref 是一个 Reference, 基值为 undefined/Environment Record<br />
+当 ref 是 Reference 且基值为 undefined 时,根据步骤 2,抛出 ReferenceError(GetValue(V) -&gt; IsUnresolvableReference(V))<br />
+当 ref 是 Reference 且基值为 Environment Record 时,根据步骤 6 b, thisValue 值为 undefined/Object Environment Records(with 语句)<br />
+运行函数内部代码时,函数内部的 this 指向全局对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fun</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fun</span>(); <span class="comment">// Window</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用-new-调用函数时其内部的运行过程"><a class="markdownIt-Anchor" href="#使用-new-调用函数时其内部的运行过程"></a> 使用 new 调用函数时,其内部的运行过程</h2>
+<h3 id="运行过程"><a class="markdownIt-Anchor" href="#运行过程"></a> 运行过程</h3>
+<p><a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-11.2.2">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<pre style="white-space: pre-wrap">
+The production NewExpression : new NewExpression is evaluated as follows:  
+1 Let ref be the result of evaluating NewExpression.  
+2 Let constructor be GetValue(ref).  
+3 If Type(constructor) is not Object, throw a TypeError exception.  
+4 If constructor does not implement the [[Construct]] internal method, throw a TypeError exception.  
+5 Return the result of calling the [[Construct]] internal method on constructor, providing no arguments (that is, an empty list of arguments).
+
+The production MemberExpression : new MemberExpression Arguments is evaluated as follows:  
+1 Let ref be the result of evaluating MemberExpression.  
+2 Let constructor be GetValue(ref).  
+3 Let argList be the result of evaluating Arguments, producing an internal list of argument values (11.2.4).  
+4 If Type(constructor) is not Object, throw a TypeError exception.  
+5 If constructor does not implement the [[Construct]] internal method, throw a TypeError exception.  
+6 Return the result of calling the [[Construct]] internal method on constructor, providing the list argList as the argument values.
+
+产生式 NewExpression : new NewExpression 按照如下步骤执行 // 不加括号  
+1 令 ref 为执行 NewExpression 的结果  
+2 令 constructor 为执行 GetValue(ref)的结果 // constructor 就是函数对象  
+3 如果 constructor 不是 Object,抛出 TypeError  
+4 如果 constructor 没有内部方法[[constuct]],抛出 TypeError  
+5 调用 constructor 的内部方法[[constuct]](),返回结果
+
+产生式 NewExpression : new NewExpression Arguments 按照如下步骤执行 // 加括号  
+1 令 ref 为执行 NewExpression 的结果  
+2 令 constructor 为执行 GetValue(ref)的结果 // constructor 就是函数对象  
+3 令 argList 为制定 Arguments 的结果 // argList 就是调用时的实参  
+4 如果 constructor 不是 Object,抛出 TypeError  
+5 如果 constructor 没有内部方法[[constuct]],抛出 TypeError  
+6 调用 constructor 的内部方法[[constuct]](argList),返回结果
+</pre>
+<p>new 的使用方式有两种,加括号/不加括号<br />
+根据不加括号步骤 5, 不加括号当作无参数来处理,仍可正常执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">per</span>(<span class="params">age= <span class="number">1</span></span>)&#123;<span class="variable language_">this</span>.<span class="property">age</span> = age&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> per <span class="comment">// per &#123;age: 1&#125;</span></span><br><span class="line"><span class="keyword">new</span> <span class="title function_">per</span>(<span class="number">2</span>) <span class="comment">// per &#123;age: 2&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="fconstuct"><a class="markdownIt-Anchor" href="#fconstuct"></a> F.[[constuct]]</h3>
+<p>调用构造函数本质上就是调用函数对象的内部方法[[constuct]],其内部运行过程如下<br />
+<a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-13.2.2">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<pre style="white-space: pre-wrap">
+When the [[Construct]] internal method for a Function object F is called with a possibly empty list of arguments, the following steps are taken:  
+1 Let obj be a newly created native ECMAScript object.  
+2 Set all the internal methods of obj as specified in 8.12.  
+3 Set the [[Class]] internal property of obj to "Object".  
+4 Set the [[Extensible]] internal property of obj to true.  
+5 Let proto be the value of calling the [[Get]] internal property of F with argument "prototype".  
+6 If Type(proto) is Object, set the [[Prototype]] internal property of obj to proto.  
+7 If Type(proto) is not Object, set the [[Prototype]] internal property of obj to the standard built-in Object prototype object as described in 15.2.4.  
+8 Let result be the result of calling the [[Call]] internal property of F, providing obj as the this value and providing the argument list passed into [[Construct]] as args.  
+9 If Type(result) is Object then return result.  
+10 Return obj.
+</pre>
+<pre style="white-space: pre-wrap">
+当使用参数 arguments(可能为空)调用函数 F 的内部方法 [[constuct]],执行如下步骤  
+1 令 obj 为新创建的原生 ECMAScript Object  
+2 依步骤 8.12 设置 obj 的内部方法  
+3 设置 obj.[[Class]]为"Object"  
+4 设置 obj.[[Extensible]为 true  
+5 令 proto 为调用 F.[[Get]]('prototype')的结果  
+6 如果 proto 是 Object,设置 obj.[[Prototype]]为 proto  
+7 如果 proto 不是 Object,设置 obj.[[Prototype]]为 standard built-in Object prototype object(就是 Object.prototype)(15.2.4)  
+8 调用 F.[[call]](obj, arguments),将结果赋值给 result  
+9 如果 result 是 Object,返回 result // 调用构造函数,如果 return 的是对象,则使 return 的对象  
+10 否者, 返回 obj // 如果不是,则使用 this 指向的那个对象
+</pre>
+<h3 id="构造函数内部-this-的指向"><a class="markdownIt-Anchor" href="#构造函数内部-this-的指向"></a> 构造函数内部 this 的指向</h3>
+<p>步骤 1 中,新创建的对象 obj 会一直作为参数,向下传递给 thisValue(F.[[constuct]] --&gt; F.[[call]] --&gt; Entering Function Code)<br />
+因此,在构造函数中 this 指向一个新创建的对象<br />
+如果构造函数没有返回对象类型的值,则返回这个新创建的 obj</p>
+<p>没有 return,返回 this 指向的新建对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">per</span>(<span class="params">age = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> <span class="title function_">per</span>(<span class="number">10</span>); <span class="comment">// per &#123;age: 10&#125;</span></span><br></pre></td></tr></table></figure>
+<p>return 值为对象时,返回对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">per</span>(<span class="params">age = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">  <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> <span class="title function_">per</span>(<span class="number">10</span>); <span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>return 值不是对象,返回 this 指向的新建对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">per</span>(<span class="params">age = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> <span class="title function_">per</span>(<span class="number">10</span>); <span class="comment">// per &#123;age: 10&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="functionprototypeapply-thisarg-argarray"><a class="markdownIt-Anchor" href="#functionprototypeapply-thisarg-argarray"></a> Function.prototype.apply (thisArg, argArray)</h2>
+<p><a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-15.3.4.3">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<pre style="white-space: pre-wrap">
+When the apply method is called on an object func with arguments thisArg and argArray, the following steps are taken:  
+1 If IsCallable(func) is false, then throw a TypeError exception.  
+2 If argArray is null or undefined, then
+    a Return the result of calling the [[Cal]] internal method of func, providing thisArg as the this value and an empty list of arguments.
+3 If Type(argArray) is not Object, then throw a TypeError exception.  
+4 Let len be the result of calling the [[Get]] internal method of argArray with argument "length".  
+5 Let n be ToUint32(len).  
+6 Let argList be an empty List.  
+7 Let index be 0.  
+8 Repeat while index < n  
+    a Let indexName be ToString(index).  
+    b Let nextArg be the result of calling the [[Get]] internal method of argArray with indexName as the argument.  
+    c Append nextArg as the last element of argList.  
+    d Set index to index + 1.  
+9 Return the result of calling the [[Call]] internal method of func, providing thisArg as the this value and argList as the list of arguments.  
+The length property of the apply method is 2.
+
+NOTE The thisArg value is passed without modification as the this value. This is a change from Edition 3, where a undefined or null thisArg is replaced with the global object and ToObject is applied to all other values and that result is passed as the this value.
+</pre>
+<pre style="white-space: pre-wrap">
+当使用 thisArg 和 argArray 作为参数,调用 func 的 apply 方法时,执行下列步骤  
+1 如果 IsCallable(func)返回 false, 抛出 TypeError  
+2 如果 argArray 为 null/undfined,则
+    a 以thisArg和空列表为参数,执行func的内部方法[[call]],返回结果
+
+3 如果 argArray 不是 Object, 抛出 TypeError  
+4 以"length"为参数,执行 argArray 的内部方法[[Get]],令 len 为结果  
+5 令 n 为执行 ToUint32(len)的结果  
+6 令 argList 为空 List  
+7 令 index 为 0  
+8 当 index < n 时  
+    a 让 indexName 为 ToString(index)  
+    b 以 indexName 为参数,调用 argArray 内部方法[[Get]],让 nextArg 为结果  
+    c 添加 nextArg 到 argList  
+    d index += 1  
+9 以 thisArg(作为 this)和 argList(作为 list of arguments)为参数,调用 func 的内部方法[[call]],返回结果
+</pre>
+<h3 id="用-apply-调用函数函数内部-this-的指向"><a class="markdownIt-Anchor" href="#用-apply-调用函数函数内部-this-的指向"></a> 用 apply 调用函数,函数内部 this 的指向</h3>
+<p>apply 方法直接使用第一个参数(以下记作: 参数 A)作为 this,调用内部方法[[call]]<br />
+运行函数内部代码时,函数内部的 this 指向参数 A</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">per</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>)</span><br><span class="line">&#125;</span><br><span class="line">per.<span class="title function_">apply</span>(&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;) <span class="comment">// &#123;a: 1&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="functionprototypecall-thisarg-arg1-arg2"><a class="markdownIt-Anchor" href="#functionprototypecall-thisarg-arg1-arg2"></a> Function.prototype.call (thisArg [ , arg1 [ , arg2, … ] ] )</h2>
+<p>call 和 apply 类似,区别为 apply 接受一个参数列表,call 接受多个参数作为调用函数时传入的参数<br />
+<a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-15.3.4.4">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<h2 id="functionprototypebind-thisarg-arg1-arg2"><a class="markdownIt-Anchor" href="#functionprototypebind-thisarg-arg1-arg2"></a> Function.prototype.bind (thisArg [, arg1 [, arg2, …]])</h2>
+<p><a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-15.3.4.5">ECMAScript Language Specification - ECMA-262 Edition 5.1</a></p>
+<pre style="white-space: pre-wrap">
+The bind method takes one or more arguments, thisArg and (optionally) arg1, arg2, etc, and returns a new function object by performing the following steps:  
+1 Let Target be the this value.  
+2 If IsCallable(Target) is false, throw a TypeError exception.  
+3 Let A be a new (possibly empty) internal list of all of the argument values provided after thisArg (arg1, arg2 etc), in order.  
+4 Let F be a new native ECMAScript object .  
+5 Set all the internal methods, except for [[Get]], of F as specified in 8.12.  
+6 Set the [[Get]] internal property of F as specified in 15.3.5.4.  
+7 Set the [[TargetFunction]] internal property of F to Target.  
+8 Set the [[BoundThis]] internal property of F to the value of thisArg.  
+9 Set the [[BoundArgs]] internal property of F to A.  
+10 Set the [[Class]] internal property of F to "Function".  
+11 Set the [[Prototype]] internal property of F to the standard built-in Function prototype object as specified in 15.3.3.1.  
+12 Set the [[Call]] internal property of F as described in 15.3.4.5.1.  
+13 Set the [[Construct]] internal property of F as described in 15.3.4.5.2.  
+14 Set the [[HasInstance]] internal property of F as described in 15.3.4.5.3.  
+15 If the [[Class]] internal property of Target is "Function", then
+    a Let L be the length property of Target minus the length of A.
+    b Set the length own property of F to either 0 or L, whichever is larger.
+16 Else set the length own property of F to 0.  
+17 Set the attributes of the length own property of F to the values specified in 15.3.5.1.  
+18 Set the [[Extensible]] internal property of F to true.  
+19 Let thrower be the [[ThrowTypeError]] function Object (13.2.3).  
+20 Call the [[DefineOwnProperty]] internal method of F with arguments "caller", PropertyDescriptor {[[Get]]: thrower, [[Set]]: thrower, [[Enumerable]]: false, [[Configurable]]: false}, and false.  
+21 Call the [[DefineOwnProperty]] internal method of F with arguments "arguments", PropertyDescriptor {[[Get]]: thrower, [[Set]]: thrower, [[Enumerable]]: false, [[Configurable]]: false}, and false.  
+22 Return F.  
+The length property of the bind method is 1.  
+NOTE Function objects created using Function.prototype.bind do not have a prototype property or the [[Code]], [[FormalParameters]], and [[Scope]] internal properties.
+</pre>
+<pre style="white-space: pre-wrap">
+bind 方法接受 thisArg 和 arg1,arg2...(可选)作为参数.按照以下步骤执行,返回一个新的函数  
+1 让 Target 为 this value  
+2 如果 IsCallable(Target)为 false, 抛出 TypeError 错误  
+3 令 A 为新的内部列表(可能为空), 该列表包含所有 thisArg 之后的参数(arg1,arg2...)  
+4 令 F 为一个新的原生 ECMAScript 对象(native ECMAScript object)  
+5 依照 8.12,设置 F 的所有的内部方法([[Get]]除外)  
+6 依照 15.3.5.4,设置 F 的内部方法[[Get]]  
+7 设置 F 的内部属性 [[TargetFunction]] 为 Target  
+8 设置 F 的内部属性[[BoundThis]]为 thisArg  
+9 设置 F 的内部属性[[BoundArgs]]为 A  
+10 设置 F 的内部属性[[Class]]为"Function"  
+11 依照 15.3.3.1,设置 F 的内部属性[[Prototype]]为标准的内建函数属性对象(standard built-in Function prototype object )  
+12 依照 15.3.4.5.1, 设置 F 的内部属性[[Call]]  
+13 依照 15.3.4.5.2, 设置 F 的内部属性[[Construct]]  
+14 依照 15.3.4.5.3, 设置 F 的内部属性[[HasInstance]]  
+15 如果 Target 的内部属性[[Class]]是"Function",则
+    a 令L为 Taget的length属性减A的长度
+    b 设置F的length属性为max(0, L)
+16 否则, 设置 F 的 length 属性为 0  
+17 Set the attributes of the length own property of F to the values specified in 15.3.5.1.  
+18 设置 F 的内部属性[[Extensible]]为 true  
+19 令 thrower 为[[ThrowTypeError]]函数对象(13.2.3)  
+20 以"caller",属性描述(PropertyDescriptor){[[Get]]: thrower, [[Set]]: thrower, [[Enumerable]]: false, [[Configurable]]: false}, false 作为参数,调用 F 的内部方法[[DefineOwnProperty]]  
+21 以"arguments",属性描述(PropertyDescriptor){[[Get]]: thrower, [[Set]]: thrower, [[Enumerable]]: false, [[Configurable]]: false}, false 作为参数,调用 F 的内部方法[[DefineOwnProperty]]  
+22 返回 F  
+bind 方法的 length 属性值为 1  
+注意 使用 Function.prototype.bind 创建的函数没有属性 prototype 或内部方法[[Code]] [[FormalParameters]]和 [[Scope]]
+</pre>
+<h3 id="153451-call"><a class="markdownIt-Anchor" href="#153451-call"></a> 15.3.4.5.1 [[Call]]</h3>
+<pre style="white-space: pre-wrap">
+[ECMAScript Language Specification - ECMA-262 Edition 5.1](http://ecma-international.org/ecma-262/5.1/#sec-15.3.4.5.1)
+
+When the [[Call]] internal method of a function object, F, which was created using the bind function is called with a this value and a list of arguments ExtraArgs, the following steps are taken:  
+1 Let boundArgs be the value of F’s [[BoundArgs]] internal property.  
+2 Let boundThis be the value of F’s [[BoundThis]] internal property.  
+3 Let target be the value of F’s [[TargetFunction]] internal property.  
+4 Let args be a new list containing the same values as the list boundArgs in the same order followed by the same values as the list ExtraArgs in the same order.  
+5 Return the result of calling the [[Call]] internal method of target providing boundThis as the this value and providing args as the arguments.
+</pre>
+<pre style="white-space: pre-wrap">
+当用 this value 和参数列表 ExtraArgs(a list of arguments ExtraArgs)作为参数,调用 bind 创建的函数对象 F 的内部方法[[call]]时,执行如下步骤  
+1 让 boundArgs 为 F 的内部属性[[BoundArgs]]  
+2 让 boundThis 为 F 的内部属性[[BoundThis]]  
+3 让 target 为 F 的内部属性[[TargetFunction]]  
+4 让 args 为一个新列表,该列表包含和 boundArgs 相同的值,紧接着包含和 ExtraArgs 相同的值(译者注: 相当于 args = [...boundArgs, ...ExtraArgs])  
+5 以 boundThis(作为 this value)和 args(作为 arguments)作为参数,调用 target 的内部方法[[Call]],返回结果
+</pre>
+<h3 id="153452-construct"><a class="markdownIt-Anchor" href="#153452-construct"></a> 15.3.4.5.2 [[Construct]]</h3>
+<pre style="white-space: pre-wrap">
+[ECMAScript Language Specification - ECMA-262 Edition 5.1](http://ecma-international.org/ecma-262/5.1/#sec-15.3.4.5.2)
+
+When the [[Construct]] internal method of a function object, F that was created using the bind function is called with a list of arguments ExtraArgs, the following steps are taken:  
+1 Let target be the value of F’s [[TargetFunction]] internal property.  
+2 If target has no [[Construct]] internal method, a TypeError exception is thrown.  
+3 Let boundArgs be the value of F’s [[BoundArgs]] internal property.  
+4 Let args be a new list containing the same values as the list boundArgs in the same order followed by the same values as the list ExtraArgs in the same order.  
+5 Return the result of calling the [[Construct]] internal method of target providing args as the arguments.
+</pre>
+<pre style="white-space: pre-wrap">
+当用 ExtraArgs(a list of arguments ExtraArgs)作为参数,调用 bind 创建的函数对象 F 的内部方法[[Construct]]时,执行如下步骤  
+1 令 target 为 F 的内部属性[[TargetFunction]]  
+2 如果 target 没有内部方法[[Construct]],抛出 TypeError  
+3 令 boundArgs 为 F 的内部属性[[BoundArgs]]  
+4 令 boundArgs 为一个新列表,该列表包含和 boundArgs 相同的值,紧接着包含和 ExtraArgs 相同的值(译者注: 相当于 args = [...boundArgs, ...ExtraArgs])  
+5 以 args(作为 arguments)作为参数,调用 target 的内部方法[[Call]],返回结果
+</pre>
+<h3 id="153453-hasinstance-v"><a class="markdownIt-Anchor" href="#153453-hasinstance-v"></a> 15.3.4.5.3 [[HasInstance]] (V)</h3>
+<pre style="white-space: pre-wrap">
+[ECMAScript Language Specification - ECMA-262 Edition 5.1](http://ecma-international.org/ecma-262/5.1/#sec-15.3.4.5.3)
+
+When the [[HasInstance]] internal method of a function object F, that was created using the bind function is called with argument V, the following steps are taken:  
+1 Let target be the value of F’s [[TargetFunction]] internal property.  
+2 If target has no [[HasInstance]] internal method, a TypeError exception is thrown.  
+3 Return the result of calling the [[HasInstance]] internal method of target providing V as the argument.
+</pre>
+<pre style="white-space: pre-wrap">
+当用 V 作为参数,调用 bind 创建的函数对象 F 的内部方法[[HasInstance]]时,执行如下步骤  
+1 令 target 为 F 的内部属性[[TargetFunction]]  
+2 如果 target 没有内部属性[[HasInstance]],抛出 TypeError  
+3 用 V 作为参数,调用 target 的内部属性[[HasInstance]], 返回结果
+</pre>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/mqyqingfeng/Blog/issues/7">JavaScript 深入之从 ECMAScript 规范解读 this</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/41529801/the-effect-of-parenthesis-with-this-binding-in-javascript">ecmascript 6 - The effect of parenthesis with <code>this</code> binding in javascript - Stack Overflow</a><br />
+<a target="_blank" rel="noopener" href="https://medium.com/@g.smellyshovel/the-ecmascript-executable-code-and-execution-contexts-chapter-explained-fa6e098e230f">The ECMAScript “Executable Code and Execution Contexts” chapter explained</a><br />
+<a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-10">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br />
+<a target="_blank" rel="noopener" href="https://www.plectica.com/maps/C7Z4HYSNU">JavaScript RunTime Model - Plectica</a><br />
+<s><a target="_blank" rel="noopener" href="https://shangchun.net/understanding-this-keyword.html">[译]理解 Javascript 关键字 this</a></s></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/scrolling%20box/">&lt;  scrolling box</a>
+      
+      
+        <a class="next" href="/article/vue-cli/">vue-cli  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

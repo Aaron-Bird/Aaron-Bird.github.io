@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>unicode字符处理</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFunicode"><span class="toc-text"> 什么是unicode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unicode%E5%AD%97%E7%AC%A6%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="toc-text"> unicode字符的表示方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unicode%E7%9A%84%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F"><span class="toc-text"> unicode的编码方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unicode%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-text"> unicode实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#utf-8"><span class="toc-text"> UTF-8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#utf-16"><span class="toc-text"> UTF-16</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#utf-32"><span class="toc-text"> UTF-32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ucs-2"><span class="toc-text"> UCS-2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E8%A1%A8%E7%A4%BA"><span class="toc-text"> 字符表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86"><span class="toc-text"> 字符处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E7%A0%81%E7%82%B9"><span class="toc-text"> 获取字符码点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E9%95%BF%E5%BA%A6"><span class="toc-text"> 获取字符长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text"> 反转字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%81%8D%E5%8E%86"><span class="toc-text"> 字符遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E5%A4%84%E7%90%86"><span class="toc-text"> 正则处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text"> 其他</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">unicode字符处理</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-12-01T05:34:00.000Z">
+            2017-12-01
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/unicode/">
+            <span>unicode</span>
+          </a>
+        
+          <a href="/tags/string/">
+            <span>string</span>
+          </a>
+        
+          <a href="/tags/regExp/">
+            <span>regExp</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>js的发布时间早于UTF,因此在unicode字符处理上,存在很多问题.</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/12/unicode.html">Unicode与JavaScript详解 阮一峰</a><br />
+<a target="_blank" rel="noopener" href="http://es6.ruanyifeng.com/#docs/string#%E5%AD%97%E7%AC%A6%E7%9A%84-Unicode-%E8%A1%A8%E7%A4%BA%E6%B3%95">字符串的扩展 阮一峰</a><br />
+<a target="_blank" rel="noopener" href="http://www.qqxiuzi.cn/zh/hanzi-unicode-bianma.php">汉字 Unicode 编码范围</a><br />
+<a target="_blank" rel="noopener" href="http://es6-features.org/#UnicodeStringRegExpLiteral">es6-features nicode String &amp; RegExp Literal</a><br />
+<a target="_blank" rel="noopener" href="https://mathiasbynens.be/notes/javascript-unicode">JavaScript has a Unicode problem</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/21109011/javascript-unicode-string-chinese-character-but-no-punctuation">chinese character regExp</a></p>
+<h2 id="什么是unicode"><a class="markdownIt-Anchor" href="#什么是unicode"></a> 什么是unicode</h2>
+<p>Unicode是一种字符格式,包含世界上的所有字符.<br />
+其目的是为了解决传统字符编码的兼容问题,只要支持unicode,就能显示世界上的大部分语言.</p>
+<h3 id="unicode字符的表示方式"><a class="markdownIt-Anchor" href="#unicode字符的表示方式"></a> unicode字符的表示方式</h3>
+<p>用&quot;U+&quot;后跟4-6位16进制数表示一个unicode字符,如中文&quot;我&quot;表示为 U+6211<br />
+旧版unicode3.0规定&quot;U-&quot;后跟8位,&quot;U+&quot;后跟4位</p>
+<h3 id="unicode的编码方式"><a class="markdownIt-Anchor" href="#unicode的编码方式"></a> unicode的编码方式</h3>
+<ul>
+<li>从0开始,为每个字符指定一个编号,这个编号被称为&quot;码点&quot;</li>
+<li>分&quot;平面&quot;(plane)存放,每个&quot;平面&quot;有65535个字符(2^16),目前有17个平面</li>
+<li>最前面的平面被称为基本平面(BMP,Basic Multilingual Plane),剩下的平面被称为辅助平面(Supplementary Plane)</li>
+<li>基本平面范围为U+0000-U+FFFF.U+D800到U+DFFF为空,用于映射辅助平面字符</li>
+<li>辅助平面范围为U+010000-\u10FFFF</li>
+</ul>
+<h2 id="unicode实现方式"><a class="markdownIt-Anchor" href="#unicode实现方式"></a> unicode实现方式</h2>
+<p>unicode有两类实现方式</p>
+<ul>
+<li>Unicode转换格式(UTF,Unicode Transformation Format)</li>
+<li>通用字符集(UCS,Universal Coded Character Set)</li>
+</ul>
+<h3 id="utf-8"><a class="markdownIt-Anchor" href="#utf-8"></a> UTF-8</h3>
+<p>UTF-8是一种变长格式,使用1-4个字节表示一个码点,兼容ASCII(0x0000-0x007F)<br />
+注:0x 表示其后数字为16进制数</p>
+<h3 id="utf-16"><a class="markdownIt-Anchor" href="#utf-16"></a> UTF-16</h3>
+<p>UTF-16 用2或4个字节表示码点</p>
+<ul>
+<li>U+0000-U+FFFF 每字符占两节</li>
+<li>U+010000-\u10FFFF 每字符占四节</li>
+</ul>
+<p>为了容易判断一个字符是两字/四字节字符,UTF-16通过公式将四字节的前两字节映射到U+D800-U+DBFF中,后两字节映射到U+DC00-U+DFFF中.<br />
+当读到的unicode位于U+D800-U-DBFF时,可以确定这是个4字节字符,要跟后面两个字节一起读取.</p>
+<h3 id="utf-32"><a class="markdownIt-Anchor" href="#utf-32"></a> UTF-32</h3>
+<p>UTF-32 用4个字节表示码点</p>
+<h3 id="ucs-2"><a class="markdownIt-Anchor" href="#ucs-2"></a> UCS-2</h3>
+<p>UCS-2只有基本平面(65536个字符),使用两个字节表示码点,是UTF-16的子集<br />
+JavaScript使用UCS-2编码,因此会把4字节字符当成2字节处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;我&#x27;</span>.<span class="property">length</span> <span class="comment">//1</span></span><br><span class="line"><span class="string">&#x27;𠀀&#x27;</span>.<span class="property">length</span> <span class="comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;𠀀&#x27;</span>.<span class="title function_">charCodeAt</span>(<span class="number">0</span>).<span class="title function_">toString</span>(<span class="number">16</span>) <span class="comment">// &quot;d840&quot;</span></span><br><span class="line"><span class="string">&#x27;𠀀&#x27;</span>.<span class="title function_">charCodeAt</span>(<span class="number">1</span>).<span class="title function_">toString</span>(<span class="number">16</span>) <span class="comment">// &quot;dc00&quot;</span></span><br><span class="line"> <span class="string">&#x27;\ud840\udc00&#x27;</span> <span class="comment">//&quot;𠀀&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;我&#x27;</span>.<span class="title function_">codePointAt</span>(<span class="number">0</span>).<span class="title function_">toString</span>(<span class="number">16</span>) <span class="string">&quot;6211&quot;</span></span><br><span class="line"> <span class="string">&#x27;𠀀&#x27;</span>.<span class="title function_">codePointAt</span>(<span class="number">0</span>).<span class="title function_">toString</span>(<span class="number">16</span>) <span class="string">&quot;20000&quot;</span></span><br><span class="line"> <span class="string">&#x27;\u&#123;20000&#125;&#x27;</span> <span class="comment">//&#x27;𠀀&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符表示"><a class="markdownIt-Anchor" href="#字符表示"></a> 字符表示</h2>
+<p>1 '\u码点'</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#x27;我&#x27;) // 我</span><br><span class="line">console.log(&#x27;\u6211&#x27;) // 我</span><br></pre></td></tr></table></figure>
+<p>该方法不支持辅助平面字符</p>
+<pre><code>'\u20000' // &quot; 0&quot;
+</code></pre>
+<p>2 '\u高字节\u低字节'</p>
+<pre><code>'\ud840\udc00'//&quot;𠀀&quot;
+'\ud840\udc00' === &quot;𠀀&quot; //true
+</code></pre>
+<p>3 '\u{<em>码点</em>}'</p>
+<pre><code> '\u&#123;20000&#125;' // &quot;𠀀&quot;
+ '\ud840\udc00' === '\u&#123;20000&#125;' //true
+</code></pre>
+<h2 id="字符处理"><a class="markdownIt-Anchor" href="#字符处理"></a> 字符处理</h2>
+<h3 id="获取字符码点"><a class="markdownIt-Anchor" href="#获取字符码点"></a> 获取字符码点</h3>
+<p><em>string</em>.codePointAt(<em>index</em>)<br />
+返回unicode码点</p>
+<pre><code>&quot;𠀀&quot;.codePointAt(0) // 131072
+131072 === 0x20000
+&quot;𠀀&quot;.codePointAt(0).toString(16) // &quot;20000&quot;
+</code></pre>
+<h3 id="获取字符长度"><a class="markdownIt-Anchor" href="#获取字符长度"></a> 获取字符长度</h3>
+<p>Array.from(<em>string</em>).length</p>
+<pre><code>Array.from(&quot;𠀀&quot;).length // 1
+</code></pre>
+<h3 id="反转字符串"><a class="markdownIt-Anchor" href="#反转字符串"></a> 反转字符串</h3>
+<p>Array.from(<em>string</em>).reverse().join(&quot;&quot;)</p>
+<pre><code>Array.from(&quot;𠀀𠀁𠀂𠀃&quot;).reverse().join('') // &quot;𠀃𠀂𠀁𠀀&quot;
+</code></pre>
+<p>直接用数组反转会出错</p>
+<pre><code>'𠀀𠀁𠀂𠀃'.split('').reverse().join('') // &quot;�𠀂𠀁𠀀�&quot;
+</code></pre>
+<h3 id="字符遍历"><a class="markdownIt-Anchor" href="#字符遍历"></a> 字符遍历</h3>
+<p>1 for (let i of <em>string</em>) {}</p>
+<pre><code>var string = &quot;𠀀𠀁𠀂𠀃&quot;
+for (let i of string) &#123;
+    console.log(i) //𠀀 𠀁 𠀂 𠀃
+&#125;
+</code></pre>
+<p>2  检测字符范围是否在0xD800-0xDBFF间,是的话拼接字符</p>
+<pre><code>var output = [];
+var index = -1;
+var string = &quot;𠀀𠀁𠀂𠀃&quot;;
+while (++index &lt;string.length) &#123;
+    var code = string.charCodeAt(index);
+    if (code &gt;= 0xD800 &amp;&amp; code &lt;= 0xDBFF ) &#123;
+        s = string[index] + string[++index];
+        output.push(s);
+    &#125; else &#123;
+        output.push(string[index])
+    &#125;
+&#125;
+for (var i in output) &#123;
+    console.log(output[i])
+&#125; 
+//𠀀 𠀁 𠀂 𠀃
+</code></pre>
+<p>作为对比,另外两种遍历方式无法正确处理辅助平面字符</p>
+<pre><code>for (var i in string) &#123;
+     console.log(string[i]) //��������
+&#125;
+
+for (var i=0; i &lt; string.length; i++) &#123;
+    console.log(string[i]) //��������
+&#125;
+</code></pre>
+<h3 id="正则处理"><a class="markdownIt-Anchor" href="#正则处理"></a> 正则处理</h3>
+<p>可用u修饰符判断4字节字符</p>
+<pre><code>var regExp = /^.$/u
+regExp.test('𠀀') // true
+
+//无法识别4字节字符
+var regExp1 = /^.$/
+regExp1.test('𠀀') // false
+</code></pre>
+<p>中文字符判断</p>
+<pre><code>/[\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\ud840-\ud868][\udc00-\udfff]|\ud869[\udc00-\uded6\udf00-\udfff]|[\ud86a-\ud86c][\udc00-\udfff]|\ud86d[\udc00-\udf34\udf40-\udfff]|\ud86e[\udc00-\udc1d]/
+
+var regExp = /[\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\ud840-\ud868][\udc00-\udfff]|\ud869[\udc00-\uded6\udf00-\udfff]|[\ud86a-\ud86c][\udc00-\udfff]|\ud86d[\udc00-\udf34\udf40-\udfff]|\ud86e[\udc00-\udc1d]/;
+regExp.test('𠀀'); // true
+</code></pre>
+<h3 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h3>
+<p><em>number</em>.toString(<em>radix</em>) 转换数字为指定进制的字符串</p>
+<pre><code>var num = 1000;
+num.toString(16) // &quot;3e8&quot;
+1000 === 0x3e8 // true
+</code></pre>
+<p><em>string</em>.charCodeAt(<em>index</em>) 返回字符码点,会把4节字符当成两个2字节字符处理</p>
+<pre><code> '我'.charCodeAt(0).toString(16) // &quot;6211&quot;
+  '我'.charCodeAt(1).toString(16) // &quot;NaN&quot;
+  '\u6211' //&quot;我&quot;
+
+'𠀀'.charCodeAt(0).toString(16) // &quot;d840&quot;
+ '𠀀'.charCodeAt(1).toString(16) // &quot;dc00&quot;
+'\ud840' // &quot;�&quot;
+'\ud840\udc00' // &quot;𠀀&quot;
+</code></pre>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E7%94%A8babel%E8%BD%AC%E6%8D%A2es6%E4%BB%A3%E7%A0%81/">&lt;  用Babel转换es6代码</a>
+      
+      
+        <a class="next" href="/article/%E8%B4%9F%E5%A4%96%E8%BE%B9%E8%B7%9D%E7%9A%84%E5%BD%B1%E5%93%8D/">负外边距的影响  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

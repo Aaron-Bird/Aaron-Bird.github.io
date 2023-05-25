@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript String</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#string"><span class="toc-text"> string</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text"> 声明字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F%E5%92%8C%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> 字面量和构造函数的区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-text"> 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#length"><span class="toc-text"> length</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text"> 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#charat"><span class="toc-text"> charAt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat"><span class="toc-text"> concat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#includes"><span class="toc-text"> includes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#indexof"><span class="toc-text"> indexOf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#search"><span class="toc-text"> search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#match"><span class="toc-text"> match</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#replace"><span class="toc-text"> replace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touppercase"><span class="toc-text"> toUpperCase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tolowercase"><span class="toc-text"> toLowerCase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trim"><span class="toc-text"> trim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#slice"><span class="toc-text"> slice</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#split"><span class="toc-text"> split</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#valueof"><span class="toc-text"> valueOf</span></a></li></ol></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">JavaScript String</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-02-20T23:37:00.000Z">
+            2018-02-21
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h1 id="string"><a class="markdownIt-Anchor" href="#string"></a> string</h1>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/5750656/whats-the-point-of-new-stringx-in-javascript">What's the point of new String(“x”) in JavaScript?</a><br />
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String">MDN String</a></p>
+<h2 id="声明字符串"><a class="markdownIt-Anchor" href="#声明字符串"></a> 声明字符串</h2>
+<ul>
+<li>字面量</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> word = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line"><span class="comment">// 模板字符串(es6)</span></span><br><span class="line"><span class="keyword">var</span> sen = <span class="string">`<span class="subst">$&#123;word&#125;</span> world`</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(word, sen); <span class="comment">// hello hello world</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>构造函数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> word = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(word) <span class="comment">// String &#123;&quot;hello&quot;&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>把String作为函数调用,和字面量声明效果相同</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fun = <span class="title class_">String</span>(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line">fun <span class="comment">// &quot;hello&quot;</span></span><br><span class="line">fun === <span class="string">&quot;hello&quot;</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="字面量和构造函数的区别"><a class="markdownIt-Anchor" href="#字面量和构造函数的区别"></a> 字面量和构造函数的区别</h4>
+<ul>
+<li>string object(由new String创建)的typeof值为object.而string(由字面量方法创建)值为string</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lit = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line"><span class="keyword">typeof</span> lit <span class="comment">// &quot;string&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> con= <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line"><span class="keyword">typeof</span> con <span class="comment">// &quot;object&quot;</span></span><br><span class="line"></span><br><span class="line">lit === con <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>因此,无法用typeof来判断一个变量是不是string object.作为代替,使用instanceof判断string object</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">con <span class="keyword">instanceof</span> <span class="title class_">String</span> <span class="comment">// true</span></span><br><span class="line"><span class="comment">// instanceof判断 变量否是某个对象的实例.因此,字面量方法创建的lit返回false</span></span><br><span class="line">lit <span class="keyword">instanceof</span> <span class="title class_">String</span> <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可合用typeof和instanceof判断是否是字符串</span></span><br><span class="line"><span class="keyword">typeof</span> con  === <span class="string">&#x27;string&#x27;</span> || con <span class="keyword">instanceof</span> <span class="title class_">String</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> lit  === <span class="string">&#x27;string&#x27;</span> || lit <span class="keyword">instanceof</span> <span class="title class_">String</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以向string object添加属性,而string不行</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> con = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;anna&#x27;</span>);</span><br><span class="line">con.<span class="property">like</span> = <span class="string">&#x27;apple&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(con.<span class="property">like</span>) <span class="comment">// apple</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lit = <span class="string">&#x27;anna&#x27;</span>;</span><br><span class="line">lit.<span class="property">like</span> = <span class="string">&#x27;apple&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(lit.<span class="property">like</span>) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>String object可以被继承,string不行</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> conC = <span class="title class_">Object</span>.<span class="title function_">create</span>(con);</span><br><span class="line"><span class="keyword">var</span> litC = <span class="title class_">Object</span>.<span class="title function_">create</span>(lit); <span class="comment">//  TypeError</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在相同判断(===)中,string object只能等于自身,而string能等于和自己有相同值的任意string</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> conA = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;anna&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> conB = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;anna&#x27;</span>);</span><br><span class="line">conA === conB <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> conC = conA;</span><br><span class="line">conC === conA <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> litA = <span class="string">&#x27;anna&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> litB = <span class="title class_">String</span>(<span class="string">&#x27;anna&#x27;</span>);</span><br><span class="line">litA === litB; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h2>
+<p>调用属性时,js会自动将string转换为string object</p>
+<h3 id="length"><a class="markdownIt-Anchor" href="#length"></a> length</h3>
+<p>返回字符串的长度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lit = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">lit.<span class="property">length</span> <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不可以像Array一样,通过改变length来增加/减少字符串长度</span></span><br><span class="line">lit.<span class="property">length</span> = <span class="number">10</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(lit.<span class="property">length</span>); <span class="comment">// 5</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="方法"><a class="markdownIt-Anchor" href="#方法"></a> 方法</h2>
+<p>所有涉及修改string内容的方法都返回新的字符串,不会改变原变量</p>
+<h3 id="charat"><a class="markdownIt-Anchor" href="#charat"></a> charAt</h3>
+<p>返回字符串<br />
+string.charAt(index);</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;hello&#x27;</span>.<span class="title function_">charAt</span>(<span class="number">0</span>); <span class="comment">// &quot;h&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="concat"><a class="markdownIt-Anchor" href="#concat"></a> concat</h3>
+<p>连接多个字符串<br />
+string.concat(string1,string2,...)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cA = <span class="string">&#x27;hello&#x27;</span></span><br><span class="line"><span class="keyword">var</span> cB = <span class="string">&#x27;world&#x27;</span></span><br><span class="line">cA.<span class="title function_">concat</span>(<span class="string">&#x27; &#x27;</span>, cB); <span class="comment">// &quot;hello world&quot;</span></span><br></pre></td></tr></table></figure>
+<p>出于性能原因,建议使用加号(+)代替concat<br />
+还可以避免下列情况发生</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// c是个数字,Number没有concat方法,因此会报错</span></span><br><span class="line">c.<span class="title function_">concat</span>(<span class="string">&#x27;hello&#x27;</span>); <span class="comment">// TypeError</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而加号就没事</span></span><br><span class="line">c + <span class="string">&#x27;hello&#x27;</span> <span class="comment">// &quot;1hello&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="includes"><a class="markdownIt-Anchor" href="#includes"></a> includes</h3>
+<p>IE不支持<br />
+判断是否包含某个字符串<br />
+string.includes(searchString, startIndex)</p>
+<ul>
+<li>startIndex 搜索开始位置(可选),可接受数字和数值型的字符串,例如1和&quot;1&quot;</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">c.<span class="title function_">includes</span>(<span class="string">&#x27;ello&#x27;</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">c.<span class="title function_">includes</span>(<span class="string">&#x27;ello&#x27;</span>, <span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 从2开始搜索(&#x27;llo&#x27;),因此找不到  </span></span><br><span class="line">c.<span class="title function_">includes</span>(<span class="string">&#x27;ello&#x27;</span>, <span class="number">2</span>); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 给startIndex传入其他值也不会报错,一律视为0(从头开始搜索)</span></span><br><span class="line">c.<span class="title function_">includes</span>(<span class="string">&#x27;ello&#x27;</span>, <span class="string">&#x27;abc&#x27;</span>); <span class="comment">// true</span></span><br><span class="line">c.<span class="title function_">includes</span>(<span class="string">&#x27;ello&#x27;</span>,  &#123;<span class="attr">a</span>:<span class="number">10</span>&#125;); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="indexof"><a class="markdownIt-Anchor" href="#indexof"></a> indexOf</h3>
+<p>搜索字符串,返回第一个匹配字符串的指针位置.未找到时,返回-1<br />
+string.indexOf(searchString, startIndex)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">c.<span class="title function_">indexOf</span>(<span class="string">&#x27;he&#x27;</span>); <span class="comment">// 0</span></span><br><span class="line">c.<span class="title function_">indexOf</span>(<span class="string">&#x27;eee&#x27;</span>); <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+<p>为了兼容IE,可以用indexOf代替includes</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(c.<span class="title function_">indexOf</span>(<span class="string">&#x27;he&#x27;</span>) !== -<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="search"><a class="markdownIt-Anchor" href="#search"></a> search</h3>
+<p>类似indexOf,区别为search可以用正则表达式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">c.<span class="title function_">search</span>(<span class="string">&#x27;he&#x27;</span>); <span class="comment">// 0</span></span><br><span class="line">c.<span class="title function_">search</span>(<span class="regexp">/[\w]/</span>); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<p>indexOf和search只返回首次匹配的指针位置<br />
+如果想获取多个匹配值,使用match方法代替</p>
+<h3 id="match"><a class="markdownIt-Anchor" href="#match"></a> match</h3>
+<p>返回一个数组,内涵匹配到的字符.如果未匹配到任何字符,则返回null<br />
+string.match(regexp | string)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">c.<span class="title function_">match</span>(<span class="regexp">/[\w]/</span>); <span class="comment">// [&quot;h&quot;, index: 0, input: &quot;hello&quot;]</span></span><br><span class="line"><span class="comment">// 如果使用g标志,可以返回多个匹配值</span></span><br><span class="line">c.<span class="title function_">match</span>(<span class="regexp">/[\w]/g</span>); <span class="comment">//  [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="replace"><a class="markdownIt-Anchor" href="#replace"></a> replace</h3>
+<p>替换字符<br />
+string.replace(regexp | string, replaceString|function)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;hello&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/^\w/</span>,<span class="keyword">function</span>(<span class="params">v</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> v.<span class="title function_">toUpperCase</span>();</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// &quot;Hello&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="touppercase"><a class="markdownIt-Anchor" href="#touppercase"></a> toUpperCase</h3>
+<p>转大写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;hello&#x27;</span>.<span class="title function_">toUpperCase</span>() <span class="comment">// &quot;HELLO&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="tolowercase"><a class="markdownIt-Anchor" href="#tolowercase"></a> toLowerCase</h3>
+<p>转小写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;HELLO&#x27;</span>.<span class="title function_">toLowerCase</span>() <span class="comment">// &quot;hello&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="trim"><a class="markdownIt-Anchor" href="#trim"></a> trim</h3>
+<p>不兼容ie8<br />
+删除字符串开头和结尾的空白字符(\n \t space tab)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="string">&#x27; hello\n&#x27;</span></span><br><span class="line">c.<span class="title function_">trim</span>(); <span class="comment">// &quot;hello&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="slice"><a class="markdownIt-Anchor" href="#slice"></a> slice</h3>
+<p>分隔字符<br />
+string.slice(startIndex, endIndex)</p>
+<ul>
+<li>startIndex和endIndex支持负值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;hello&#x27;</span>.<span class="title function_">slice</span>(<span class="number">1</span>) <span class="comment">// &quot;ello&quot;</span></span><br><span class="line"><span class="string">&#x27;hello&#x27;</span>.<span class="title function_">slice</span>(<span class="number">0</span>,<span class="number">3</span>) <span class="comment">// &quot;hel&quot;</span></span><br><span class="line"><span class="string">&#x27;hello&#x27;</span>.<span class="title function_">slice</span>(<span class="number">0</span>,-<span class="number">1</span>) <span class="comment">// &quot;hell&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="split"><a class="markdownIt-Anchor" href="#split"></a> split</h3>
+<p>把字符串转换成数组<br />
+string.split(RegExp|string)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;hello&#x27;</span>.<span class="title function_">split</span>() <span class="comment">// [&quot;hello&quot;]</span></span><br><span class="line"><span class="string">&#x27;hello&#x27;</span>.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>) <span class="comment">// [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]</span></span><br><span class="line"><span class="string">&#x27;hello&#x27;</span>.<span class="title function_">split</span>(<span class="regexp">/l/</span>) [<span class="string">&quot;he&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;o&quot;</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="valueof"><a class="markdownIt-Anchor" href="#valueof"></a> valueOf</h3>
+<p>返回string原始值 ,等于toString()</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// 可用valueOf把string object转换为string</span>
+<span class="hljs-keyword">var</span>  con = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">'hello'</span>);
+<span class="hljs-keyword">var</span> lit = c.valueOf();
+
+<span class="hljs-keyword">typeof</span> con <span class="hljs-comment">// "object"</span>
+<span class="hljs-keyword">typeof</span> lit <span class="hljs-comment">// "string"</span>
+<span class="hljs-string">``</span>
+
+</code></pre>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/bootstrap%E5%85%A5%E9%97%A8/">&lt;  Bootstrap入门</a>
+      
+      
+        <a class="next" href="/article/SASS/">SASS  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

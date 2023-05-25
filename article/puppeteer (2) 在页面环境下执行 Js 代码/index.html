@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>puppeteer (2) 在页面环境下执行 Js 代码</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C-js-%E5%87%BD%E6%95%B0"><span class="toc-text"> 执行 js 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0"><span class="toc-text"> 调用外部函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pageaddscripttag"><span class="toc-text"> page.addScriptTag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pageexposefunction"><span class="toc-text"> page.exposeFunction</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">puppeteer (2) 在页面环境下执行 Js 代码</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-01-13T16:00:00.000Z">
+            2020-01-14
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Puppeteer/">
+              <span>Puppeteer</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Puppeteer/">
+            <span>Puppeteer</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="执行-js-函数"><a class="markdownIt-Anchor" href="#执行-js-函数"></a> 执行 js 函数</h2>
+<p>page.evaluate(pageFunction[, ...args])</p>
+<ul>
+<li>pageFunction 在页面环境中执行的函数</li>
+<li>args 参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&quot;puppeteer&quot;</span>);</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">init</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">args</span>: [<span class="string">&#x27;--proxy-server=&quot;direct://&quot;&#x27;</span>, <span class="string">&quot;--proxy-bypass-list=*&quot;</span>],</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> page.evaluate(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">init</span>();</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>可以通过 page.evaluate 给页面环境中的函数传参<br />
+不过不能传 Function ,会变成 undefined</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> args = [</span><br><span class="line">  <span class="string">&quot;a&quot;</span>,</span><br><span class="line">  <span class="number">1</span>,</span><br><span class="line">  &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">  <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;foo&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"><span class="keyword">await</span> page.evaluate(<span class="keyword">async</span> (...args) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 别的都正常,传进去的 function 变成了 undefined</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(...args); <span class="comment">// &#x27;a&#x27; 1 &#123;a: 1&#125; [1,2] undefined</span></span><br><span class="line">&#125;, ...args);</span><br></pre></td></tr></table></figure>
+<p>还可以传 ElementHandle 实例,然后在页面环境里直接操作对应的 dom</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bodyHandle = <span class="keyword">await</span> page.$(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">await</span> page.evaluate(<span class="keyword">async</span> body =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(body);</span><br><span class="line">&#125;, bodyHandle);</span><br></pre></td></tr></table></figure>
+<p>注意不能返回函数, 会变成空对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> page.evaluate(<span class="keyword">async</span> (...args) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;foo&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result, <span class="keyword">typeof</span> result); <span class="comment">// &#123;&#125; &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>同样也不能返回 Dom</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> page.evaluate(<span class="keyword">async</span> (...args) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">document</span>.<span class="property">body</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result, <span class="keyword">typeof</span> result); <span class="comment">// &#123;&#125; &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>另外官方文档称,不能被序列化的返回值会变成 undefined.</p>
+<h2 id="调用外部函数"><a class="markdownIt-Anchor" href="#调用外部函数"></a> 调用外部函数</h2>
+<p>不能像这样在 evaluate 调用外部函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">&quot;puppeteer&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">init</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.<span class="title function_">launch</span>(&#123;</span><br><span class="line">    <span class="attr">headless</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">args</span>: [<span class="string">&#x27;--proxy-server=&quot;direct://&quot;&#x27;</span>, <span class="string">&quot;--proxy-bypass-list=*&quot;</span>],</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.<span class="title function_">newPage</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">say</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  page.evaluate(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 不能在 evaluate 直接调用外面的函数 say</span></span><br><span class="line">    <span class="title function_">say</span>(); <span class="comment">// ReferenceError: say is not defined</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">init</span>();</span><br></pre></td></tr></table></figure>
+<p>也不能将函数当作参数传给 page.evaluate</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">page.evaluate(<span class="function"><span class="params">say</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(say); <span class="comment">// undefined</span></span><br><span class="line">  <span class="title function_">say</span>();</span><br><span class="line">&#125;, say);</span><br></pre></td></tr></table></figure>
+<p>最简单的解决办法就是把 function 写在 evalute 里</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> page.evaluate(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">say</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(say);</span><br><span class="line">  <span class="title function_">say</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>但是有时没法这么干,对于这种状况有两种解决办法:</p>
+<h3 id="pageaddscripttag"><a class="markdownIt-Anchor" href="#pageaddscripttag"></a> page.addScriptTag</h3>
+<p>page.addScriptTag 会将 content 中的字符内容作为 script 添加到 head 中.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> page.<span class="title function_">addScriptTag</span>(&#123; <span class="attr">content</span>: <span class="string">`<span class="subst">$&#123;say&#125;</span>`</span> &#125;);</span><br><span class="line">page.evaluate(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">say</span>(); <span class="comment">// hello world</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意,如果是箭头函数,别忘了加上函数名,否则会报错.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">say</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">await</span> page.<span class="title function_">addScriptTag</span>(&#123; <span class="attr">content</span>: <span class="string">`const say = <span class="subst">$&#123;say&#125;</span>`</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/ae2068df.PNG" alt="2.PNG" /></p>
+<p>作为对比, 如果没有在 content 中 添加 &quot;const say =&quot; 的话会报错,效果如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> page.<span class="title function_">addScriptTag</span>(&#123; <span class="attr">content</span>: <span class="string">`<span class="subst">$&#123;say&#125;</span>`</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">say</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// ReferenceError: say is not defined</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/ce01cf62.PNG" alt="捕获.PNG" /></p>
+<p>对于对象方法, 则貌似没有什么好的解决办法.因为对象方法转成字符串之后是没有 function 关键字.<br />
+即使在前头加上&quot;const say =&quot; 之类的字符,也无法作为方法来使用.<br />
+<img src="/img/224cc9e6.PNG" alt="1.PNG" /></p>
+<p>不要这样写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="title function_">method</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>替代的解决办法:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="pageexposefunction"><a class="markdownIt-Anchor" href="#pageexposefunction"></a> page.exposeFunction</h3>
+<p>page.exposeFunction 会在 window 下绑定一个同名函数.在 evaluate 中调用同名函数时, 这个函数会在 node.js 环境下执行,并返回一个 Promise 对象.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">say</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">await</span> page.<span class="title function_">exposeFunction</span>(<span class="string">&quot;say&quot;</span>, say);</span><br><span class="line"><span class="keyword">await</span> page.evaluate(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(say);</span><br><span class="line">  <span class="title function_">say</span>();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// hello world</span></span><br></pre></td></tr></table></figure>
+<p>evaluate 中的 console.log(say) 输出的效果<br />
+<img src="/img/60135a6d.PNG" alt="1.PNG" /></p>
+<p>绑定的函数会在 nodejs 环境下运行,然后将结果包在 Promise 中返回.<br />
+因此 hello world 输出在命令行里, 而不再 chromium 浏览器中.<br />
+<img src="/img/326758b5.PNG" alt="1.PNG" /></p>
+<p>也不能传递 Dom Function 之类无法序列化的对象作为参数.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">say</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">await</span> page.<span class="title function_">exposeFunction</span>(<span class="string">&quot;say&quot;</span>, say);</span><br><span class="line"><span class="keyword">await</span> page.evaluate(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">say</span>(</span><br><span class="line">    <span class="string">&quot;a&quot;</span>,</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">    &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;,</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>,</span><br><span class="line">    <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;foo&quot;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;bar&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/206e3f8e.PNG" alt="捕获.PNG" /></p>
+<p>不要忘了在 page.exposeFunction 前加 await ,否则可能会报错.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里忘了加 await</span></span><br><span class="line">page.<span class="title function_">exposeFunction</span>(<span class="string">&quot;say&quot;</span>, say);</span><br><span class="line"><span class="keyword">await</span> page.evaluate(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(say);</span><br><span class="line">  <span class="title function_">say</span>();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// UnhandledPromiseRejectionWarning: Error: Evaluation failed: Invalid arguments: should be exactly one string.</span></span><br></pre></td></tr></table></figure>
+<p>exposeFunction 只接受函数, 例如把 path 模块传进去,然后调用 path.join() 的话会报错.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"><span class="keyword">await</span> page.<span class="title function_">exposeFunction</span>(<span class="string">&quot;path&quot;</span>, path);</span><br><span class="line"><span class="keyword">await</span> page.evaluate(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(path, path.<span class="property">join</span>);</span><br><span class="line">  path.<span class="title function_">join</span>(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//  Error: Evaluation failed: TypeError: path.join is not a function</span></span><br></pre></td></tr></table></figure>
+<p>解决办法,用啥传啥</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"><span class="keyword">await</span> page.<span class="title function_">exposeFunction</span>(<span class="string">&quot;join&quot;</span>, path.<span class="property">join</span>);</span><br><span class="line"><span class="keyword">await</span> page.evaluate(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> p = <span class="keyword">await</span> <span class="title function_">join</span>(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>); <span class="comment">// 注意别忘了 await, 传回来的是个 Promise</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(p); <span class="comment">// a\b</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>exposeFunction 函数实质上在外部的 Node 环境下运行, 因此可以使用 bind 绑定函数的 this/柯里化函数.(page.addScriptTag 不能这样作)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">outerFunc</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b); <span class="comment">// 1 2</span></span><br><span class="line">    <span class="keyword">return</span> [a, b]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">await</span> page.<span class="title function_">exposeFunction</span>(<span class="string">&#x27;outFunc&#x27;</span>, outerFunc.<span class="title function_">bind</span>(<span class="variable language_">this</span>, <span class="number">1</span>));</span><br><span class="line"><span class="keyword">await</span>  page.evaluate(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="title function_">outerFunc</span>(<span class="number">2</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>务必注意,网页内的 iframe 可能会导致 await page.exposeFunction 卡死</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://zhaoqize.github.io/puppeteer-api-zh_CN/#?product=Puppeteer&amp;version=v2.0.0&amp;show=api-pageevaluatepagefunction-args">官方文档 page.evaluate</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/48207414/how-can-i-dynamically-inject-functions-to-evaluate-using-puppeteer">javascript - How can I dynamically inject functions to evaluate using Puppeteer? - Stack Overflow</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/child_process/">&lt;  child_process</a>
+      
+      
+        <a class="next" href="/article/%E5%BF%AB%E6%8E%92/">快排  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

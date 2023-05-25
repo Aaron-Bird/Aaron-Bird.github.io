@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Three.js 模型载入</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#obj%E6%A0%BC%E5%BC%8F"><span class="toc-text"> obj格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text"> 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#load-%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6"><span class="toc-text"> load 加载文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#parse-%E8%A7%A3%E6%9E%90obj%E6%96%87%E6%9C%AC"><span class="toc-text"> parse 解析obj文本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mlt%E6%A0%BC%E5%BC%8F"><span class="toc-text"> mlt格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-2"><span class="toc-text"> 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#load-%E5%8A%A0%E8%BD%BDmtl%E6%96%87%E4%BB%B6"><span class="toc-text"> load 加载mtl文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setpath-%E8%AE%BE%E7%BD%AE%E5%9F%BA%E6%9C%AC%E8%B7%AF%E5%BE%84"><span class="toc-text"> setPath 设置基本路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setcrossorigin-%E5%85%81%E8%AE%B8%E8%B7%A8%E5%9F%9F"><span class="toc-text"> setCrossOrigin 允许跨域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setmaterialoptions"><span class="toc-text"> setMaterialOptions ?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mmdloaderjs"><span class="toc-text"> MMDLoader.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mmdloader"><span class="toc-text"> MMDLoader</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-3"><span class="toc-text"> 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#load-%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%8A%A8%E4%BD%9C%E6%96%87%E4%BB%B6"><span class="toc-text"> load 加载模型和动作文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#loadmodel-%E5%8A%A0%E8%BD%BDpmdpmx"><span class="toc-text"> loadModel 加载pmd|pmx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#loadvmd-%E5%8A%A0%E8%BD%BDvmd%E6%96%87%E4%BB%B6"><span class="toc-text"> loadVmd 加载vmd文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#loadvmds-%E5%8A%A0%E8%BD%BD%E5%A4%9A%E4%B8%AAvmd%E6%96%87%E4%BB%B6"><span class="toc-text"> loadVmds 加载多个vmd文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#loadaudio-%E5%8A%A0%E8%BD%BD%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6"><span class="toc-text"> loadAudio 加载音频文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#loadvpd-%E5%8A%A0%E8%BD%BD%E5%A7%BF%E5%8A%BF%E6%96%87%E4%BB%B6"><span class="toc-text"> loadVpd 加载姿势文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mmdhelper"><span class="toc-text"> MMDHelper</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#add"><span class="toc-text"> add</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setaudio-%E8%AE%BE%E7%BD%AE%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6"><span class="toc-text"> setAudio 设置音频文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setcamera-%E5%8A%A0%E8%BD%BD%E7%9B%B8%E6%9C%BA"><span class="toc-text"> setCamera 加载相机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setphysics-%E8%AE%BE%E7%BD%AE%E7%89%A9%E7%90%86%E6%95%88%E6%9E%9C%E9%87%8D%E5%8A%9B%E7%A2%B0%E6%92%9E%E4%B9%8B%E7%B1%BB%E7%9A%84"><span class="toc-text"> setPhysics 设置物理效果(重力,碰撞之类的)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setanimation-%E8%AE%BE%E7%BD%AE%E5%8A%A8%E7%94%BB"><span class="toc-text"> setAnimation 设置动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setcameraanimation-%E8%AE%BE%E7%BD%AE%E7%9B%B8%E6%9C%BA%E5%8A%A8%E7%94%BB"><span class="toc-text"> setCameraAnimation 设置相机动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unifyanimationduration"><span class="toc-text"> unifyAnimationDuration</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">Three.js 模型载入</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-01-04T05:20:00.000Z">
+            2018-01-04
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript-library/">
+              <span>JavaScript library</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/JavaScript-library/">
+            <span>JavaScript library</span>
+          </a>
+        
+          <a href="/tags/three-js/">
+            <span>three.js</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="obj格式"><a class="markdownIt-Anchor" href="#obj格式"></a> obj格式</h2>
+<p>THREE.OBJLoader(manager)</p>
+<ul>
+<li>manager 加载器使用的loadingManager,默认为THREE.DefaultLoadingManager</li>
+</ul>
+<h3 id="方法"><a class="markdownIt-Anchor" href="#方法"></a> 方法</h3>
+<h4 id="load-加载文件"><a class="markdownIt-Anchor" href="#load-加载文件"></a> load 加载文件</h4>
+<p>.load( url, onLoad, onProgress, onError)</p>
+<ul>
+<li>url 路径</li>
+<li>onLoad (可选)加载完成后调用的函数,接收Object3D作为参数</li>
+<li>onProgress (可选)加载过程中调用的函数,接收XMLHttpRequest实例作为参数,其中包含加载内容的总大小和已加载大小</li>
+<li>onError (可选)出错时调用的函数,接收错误信息作为参数</li>
+</ul>
+<p>示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> model;</span><br><span class="line"><span class="keyword">var</span> loader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">OBJLoader</span>();</span><br><span class="line">loader.<span class="title function_">load</span>(<span class="string">&#x27;model/tree/model.obj&#x27;</span>, <span class="keyword">function</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="comment">// 储存模型对象到全局变量中</span></span><br><span class="line">    model = obj;</span><br><span class="line">    <span class="comment">// obj是一个THREE.Group实例,</span></span><br><span class="line">    <span class="comment">// 要用.children获取其包含的所有THREE.Mesh实例</span></span><br><span class="line">    <span class="keyword">var</span> children = obj.<span class="property">children</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; children.<span class="property">length</span>; i++) &#123;</span><br><span class="line">         <span class="comment">//添加阴影</span></span><br><span class="line">        children[i].<span class="property">castShadow</span>= <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 添加模型到scene</span></span><br><span class="line">    scene.<span class="title function_">add</span>(obj);</span><br><span class="line">&#125;,<span class="keyword">function</span>(<span class="params">xhr</span>)&#123;</span><br><span class="line">    <span class="comment">// 显示加载进度</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>( ( xhr.<span class="property">loaded</span> / xhr.<span class="property">total</span> * <span class="number">100</span> ) + <span class="string">&#x27;% loaded&#x27;</span> );</span><br><span class="line">&#125;,<span class="keyword">function</span>(<span class="params">error</span>)&#123;</span><br><span class="line">    <span class="comment">// 显示错误信息</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="parse-解析obj文本"><a class="markdownIt-Anchor" href="#parse-解析obj文本"></a> parse 解析obj文本</h4>
+<p>直接加载obj文件文本内容<br />
+.parse ( text )</p>
+<ul>
+<li>test obj文件文本</li>
+</ul>
+<h2 id="mlt格式"><a class="markdownIt-Anchor" href="#mlt格式"></a> mlt格式</h2>
+<p>mlt是obj模型的材质文件<br />
+<a target="_blank" rel="noopener" href="https://threejs.org/docs/index.html#examples/loaders/MTLLoader">MTLLoader 官方文档</a><br />
+MTLLoader(loadingManager)</p>
+<ul>
+<li>loadingManager 默认值为DefaultLoadingManager</li>
+</ul>
+<h3 id="方法-2"><a class="markdownIt-Anchor" href="#方法-2"></a> 方法</h3>
+<h4 id="load-加载mtl文件"><a class="markdownIt-Anchor" href="#load-加载mtl文件"></a> load 加载mtl文件</h4>
+<p>从url加载mlt文件并返回加载的材质<br />
+.load ( url, onLoad, onProgress, onError )</p>
+<ul>
+<li>onLoad (可选)加载完成后调用的函数,接收MTLLoader.MaterialCreator实例作为参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> model;</span><br><span class="line"><span class="keyword">var</span> mtlLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MTLLoader</span>();</span><br><span class="line"><span class="keyword">var</span> objLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">OBJLoader</span>();</span><br><span class="line">mtlLoader.<span class="title function_">load</span>(<span class="string">&#x27;model/tree/materials.mtl&#x27;</span>, <span class="keyword">function</span>(<span class="params">materials</span>)&#123;</span><br><span class="line">    <span class="comment">// 设置材质</span></span><br><span class="line">    objLoader.<span class="title function_">setMaterials</span>(materials);</span><br><span class="line">    objLoader.<span class="title function_">load</span>(<span class="string">&#x27;model/tree/model.obj&#x27;</span>, <span class="keyword">function</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">        model = obj;</span><br><span class="line">        scene.<span class="title function_">add</span>(obj);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="setpath-设置基本路径"><a class="markdownIt-Anchor" href="#setpath-设置基本路径"></a> setPath 设置基本路径</h4>
+<p>.setPath ( path )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mtlLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MTLLoader</span>();</span><br><span class="line"><span class="comment">// 记得用&quot;/&quot;作为路径结尾,例如 &#x27;model/tree&#x27;中的tree会被忽略</span></span><br><span class="line">mtlLoader.<span class="title function_">setPath</span>(<span class="string">&#x27;model/tree/&#x27;</span>);</span><br><span class="line">mtlLoader.<span class="title function_">load</span>(<span class="string">&#x27;materials.mtl&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MTLLoader</span>().<span class="title function_">load</span>(<span class="string">&#x27;model/tree/model.obj&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="setcrossorigin-允许跨域"><a class="markdownIt-Anchor" href="#setcrossorigin-允许跨域"></a> setCrossOrigin 允许跨域</h4>
+<p>.setCrossOrigin ( useCrossOrigin )<br />
+如果需要从其他源加载纹理文件,设置为true</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mtl = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MTLLoader</span>();</span><br><span class="line">mtl.<span class="title function_">setCrossOrigin</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="setmaterialoptions"><a class="markdownIt-Anchor" href="#setmaterialoptions"></a> setMaterialOptions ?</h4>
+<p>.setMaterialOptions ( options )</p>
+<ul>
+<li>side THREE.FrontSide (default), THREE.BackSide, THREE.DoubleSide</li>
+<li>wrap</li>
+<li>normalizeRGB</li>
+<li>ignoreZeroRGBs</li>
+</ul>
+<h2 id="mmdloaderjs"><a class="markdownIt-Anchor" href="#mmdloaderjs"></a> MMDLoader.js</h2>
+<p>MMDLoader.js插件包含两个构造函数<br />
+THREE.MMDLoader()  用于加载模型/骨骼等文件<br />
+THREE.MMDHelper()  用于设置物理/骨骼/声音选项</p>
+<p>更多方法请参考MMDLoader<br />
+<a target="_blank" rel="noopener" href="https://github.com/takahirox/three.js/blob/master/examples/js/loaders/MMDLoader.js">源代码</a></p>
+<p>载入MMDLoader插件挺麻烦的,需要的依赖太多,可以在example目录下找到这些文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/loaders/MMDLoader.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--MMDLoader依赖下列库--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/loaders/TGALoader.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/libs/mmdparser.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--物理引擎--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/libs/ammo.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--描边效果--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/effects/OutlineEffect.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--骨骼--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/animation/CCDIKSolver.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--物理--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/animation/MMDPhysics.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="mmdloader"><a class="markdownIt-Anchor" href="#mmdloader"></a> MMDLoader</h2>
+<p>THREE.MMDLoader()</p>
+<h3 id="方法-3"><a class="markdownIt-Anchor" href="#方法-3"></a> 方法</h3>
+<h4 id="load-加载模型和动作文件"><a class="markdownIt-Anchor" href="#load-加载模型和动作文件"></a> load 加载模型和动作文件</h4>
+<p>load = function ( modelUrl, vmdUrls, callback, onProgress, onError )</p>
+<ul>
+<li>modelUrl pmd|pmx模型文件路径</li>
+<li>vmdUrls  一个数组,内含一组vmd动作文件路径</li>
+<li>callback 回调函数,模型加载完毕后调用</li>
+<li>onProgress (可选)加载过程中调用</li>
+<li>onError (可选)出错时调用</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> model;</span><br><span class="line"><span class="keyword">var</span> mmdLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="property">MMDLoader</span>;</span><br><span class="line"><span class="keyword">var</span> mmdPath = <span class="string">&#x27;model/kizunaai/kizunaai.pmx&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> vmdPath = [<span class="string">&#x27;model/vmd/Ririri.vmd&#x27;</span>,];</span><br><span class="line"></span><br><span class="line">mmdLoader.<span class="title function_">load</span>(mmdPath, vmdPath,<span class="keyword">function</span>(<span class="params">object</span>)&#123;</span><br><span class="line">    model = object;</span><br><span class="line">    scene.<span class="title function_">add</span>(object);</span><br><span class="line">&#125;); </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="loadmodel-加载pmdpmx"><a class="markdownIt-Anchor" href="#loadmodel-加载pmdpmx"></a> loadModel 加载pmd|pmx</h4>
+<p>loadModel( url, callback, onProgress, onError )<br />
+loadModel在内部使用this.createModel()创建模型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> model;</span><br><span class="line"><span class="keyword">var</span> mmdFile = <span class="string">&#x27;model/ia/IA.pmx&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> mmdLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MMDLoader</span>();</span><br><span class="line"><span class="comment">//加载模型</span></span><br><span class="line">mmdLoader.<span class="title function_">loadModel</span>(mmdFile, <span class="keyword">function</span>(<span class="params">object</span>)&#123;</span><br><span class="line">    model = object;</span><br><span class="line">    object.<span class="property">scale</span>.<span class="title function_">set</span>(<span class="number">40</span>, <span class="number">40</span>, <span class="number">40</span>);</span><br><span class="line">    <span class="comment">// 更改坐标位置</span></span><br><span class="line">    object.<span class="property">position</span>.<span class="property">x</span> = <span class="number">500</span>;</span><br><span class="line">    <span class="comment">// 添加阴影</span></span><br><span class="line">    object.<span class="property">castShadow</span> = <span class="literal">true</span>;</span><br><span class="line">    scene.<span class="title function_">add</span>(object);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="loadvmd-加载vmd文件"><a class="markdownIt-Anchor" href="#loadvmd-加载vmd文件"></a> loadVmd 加载vmd文件</h4>
+<p>.loadVmd( url, callback, onProgress, onError )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vmd;</span><br><span class="line"><span class="keyword">var</span> mmdLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MMDLoader</span>();</span><br><span class="line">mmdLoader.<span class="title function_">loadVmd</span>(<span class="string">&#x27;model/vmd/Ririri.vmd&#x27;</span>,<span class="keyword">function</span>(<span class="params">obj</span>)&#123;</span><br><span class="line">    vmd = obj;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="loadvmds-加载多个vmd文件"><a class="markdownIt-Anchor" href="#loadvmds-加载多个vmd文件"></a> loadVmds 加载多个vmd文件</h4>
+<p>.loadVmds( url, callback, onProgress, onError )</p>
+<ul>
+<li>url 一个队列,内含一组vmds文件的url</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vmd;</span><br><span class="line"><span class="keyword">var</span> mmdLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MMDLoader</span>();</span><br><span class="line"><span class="keyword">var</span> vmdPath = [<span class="string">&#x27;model/vmd/Ririri.vmd&#x27;</span>,<span class="string">&#x27;model/vmd/Ririri1.vmd&#x27;</span>]</span><br><span class="line">mmdLoader.<span class="title function_">loadVmds</span>(vmdPath ,<span class="keyword">function</span>(<span class="params">obj</span>)&#123;</span><br><span class="line">    vmd = obj;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="loadaudio-加载音频文件"><a class="markdownIt-Anchor" href="#loadaudio-加载音频文件"></a> loadAudio 加载音频文件</h4>
+<p>.loadAudio( url, callback, onProgress, onError )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mp3;</span><br><span class="line"><span class="keyword">var</span> lter;</span><br><span class="line"><span class="keyword">var</span> mmdLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MMDLoader</span>();</span><br><span class="line">mmdLoader.<span class="title function_">loadVmds</span>(vmdPath ,<span class="keyword">function</span>(<span class="params">audio, listener</span>)&#123;</span><br><span class="line">    mp3 = obj;</span><br><span class="line">    <span class="comment">// listener 是一个THREE.AudioListener实例</span></span><br><span class="line">    lter = listener;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="loadvpd-加载姿势文件"><a class="markdownIt-Anchor" href="#loadvpd-加载姿势文件"></a> loadVpd 加载姿势文件</h3>
+<p>.loadVpd( url, callback, onProgress, onError, params )</p>
+<h2 id="mmdhelper"><a class="markdownIt-Anchor" href="#mmdhelper"></a> MMDHelper</h2>
+<h3 id="add"><a class="markdownIt-Anchor" href="#add"></a> add</h3>
+<p>.add(mesh)</p>
+<ul>
+<li>mesh  用MMDLoader().load()获取到的模型</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mmdHelper = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MMDHelper</span>();</span><br><span class="line"><span class="keyword">var</span> mmdLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MMDLoader</span>();</span><br><span class="line"><span class="keyword">var</span> mmdPath = <span class="string">&#x27;model/kizunaai/kizunaai.pmx&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> vmdPath = [<span class="string">&#x27;model/vmd/Ririri.vmd&#x27;</span>,];</span><br><span class="line">mmdLoader.<span class="title function_">load</span>(mmdPath, vmdPath,<span class="keyword">function</span>(<span class="params">object</span>)&#123;</span><br><span class="line">    mmdHelper.<span class="title function_">add</span>(object);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="setaudio-设置音频文件"><a class="markdownIt-Anchor" href="#setaudio-设置音频文件"></a> setAudio 设置音频文件</h3>
+<p>.setAudio( audio, listener, params );</p>
+<ul>
+<li>params 对象,内含一组音频参数
+<ul>
+<li>delayTime 声音播放延迟,单位为秒</li>
+</ul>
+</li>
+</ul>
+<h3 id="setcamera-加载相机"><a class="markdownIt-Anchor" href="#setcamera-加载相机"></a> setCamera 加载相机</h3>
+<p>.setCamera( camera )</p>
+<h3 id="setphysics-设置物理效果重力碰撞之类的"><a class="markdownIt-Anchor" href="#setphysics-设置物理效果重力碰撞之类的"></a> setPhysics 设置物理效果(重力,碰撞之类的)</h3>
+<p>.setPhysics( mesh, params )</p>
+<ul>
+<li>params (可选)物理参数</li>
+</ul>
+<h3 id="setanimation-设置动画"><a class="markdownIt-Anchor" href="#setanimation-设置动画"></a> setAnimation 设置动画</h3>
+<p>.setAnimation( mesh )</p>
+<h3 id="setcameraanimation-设置相机动画"><a class="markdownIt-Anchor" href="#setcameraanimation-设置相机动画"></a> setCameraAnimation 设置相机动画</h3>
+<p>.setCameraAnimation( camera )</p>
+<h3 id="unifyanimationduration"><a class="markdownIt-Anchor" href="#unifyanimationduration"></a> unifyAnimationDuration</h3>
+<p>检测动作/音频/相机的时间长度,使其自动同步<br />
+.unifyAnimationDuration( params )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mmdModel,mmdCamera,mmdAudio,mmdListener,ready;</span><br><span class="line"><span class="keyword">var</span> camera = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">PerspectiveCamera</span>(<span class="number">45</span>, <span class="variable language_">window</span>.<span class="property">innerWidth</span> / <span class="variable language_">window</span>.<span class="property">innerHeight</span>, <span class="number">1</span>, <span class="number">2000</span>);</span><br><span class="line"><span class="keyword">var</span> mmdHelper = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MMDHelper</span>();</span><br><span class="line"><span class="keyword">var</span> mmdLoader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MMDLoader</span>();</span><br><span class="line"><span class="keyword">var</span> mmdPath = <span class="string">&#x27;model/kizunaai/kizunaai.pmx&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> vmdPath = [<span class="string">&#x27;model/vmd/Ririri.vmd&#x27;</span>];</span><br><span class="line"><span class="keyword">var</span> mmdCameraPath = [<span class="string">&#x27;model/vmd/wavefile_camera.vmd&#x27;</span>];</span><br><span class="line"><span class="keyword">var</span> <span class="title class_">AudioPath</span> = <span class="string">&#x27;mp3/Ririri.mp3&#x27;</span>;</span><br><span class="line">mmdLoader.<span class="title function_">load</span>(mmdPath, vmdPath,<span class="keyword">function</span>(<span class="params">object</span>)&#123;</span><br><span class="line">    mmdModel = object;</span><br><span class="line">    <span class="title function_">callback</span>();</span><br><span class="line">&#125;);</span><br><span class="line">mmdLoader.<span class="title function_">loadVmds</span>(mmdCameraPath, <span class="keyword">function</span> (<span class="params"> vmd </span>)&#123;</span><br><span class="line">    mmdCamera = vmd;</span><br><span class="line">    <span class="title function_">callback</span>();</span><br><span class="line">&#125;);</span><br><span class="line">mmdLoader.<span class="title function_">loadAudio</span>( <span class="title class_">AudioPath</span>, <span class="keyword">function</span> (<span class="params">audio, listener</span>) &#123;</span><br><span class="line">    mmdAudio = audio;</span><br><span class="line">    mmdListener = listener;</span><br><span class="line">    <span class="title function_">callback</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">callback</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!mmdModel || !mmdCamera || !mmdAudio || !mmdListener) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    mmdHelper.<span class="title function_">add</span>(mmdModel);</span><br><span class="line">    <span class="comment">// 加载摄像机运动轨迹</span></span><br><span class="line">    mmdHelper.<span class="title function_">setCamera</span>(camera);</span><br><span class="line">    <span class="comment">// 绑定vmd轨迹到相机对象</span></span><br><span class="line">    mmdLoader.<span class="title function_">pourVmdIntoCamera</span>(camera, mmdCamera);</span><br><span class="line">    <span class="comment">// 开启相机动画,在pourVmdIntoCamera后调用</span></span><br><span class="line">    mmdHelper.<span class="title function_">setCameraAnimation</span>(camera);</span><br><span class="line">    <span class="comment">// 加载物理效果</span></span><br><span class="line">    mmdHelper.<span class="title function_">setPhysics</span>(mmdModel);</span><br><span class="line">    <span class="comment">// 开启动作</span></span><br><span class="line">    mmdHelper.<span class="title function_">setAnimation</span>(mmdModel);</span><br><span class="line">    mmdListener.<span class="property">position</span>.<span class="property">z</span> = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 加载声音,延迟1s播放</span></span><br><span class="line">    mmdHelper.<span class="title function_">setAudio</span>(mmdAudio,mmdListener, &#123; <span class="attr">delayTime</span>: <span class="number">1</span>&#125;);</span><br><span class="line">    <span class="comment">// 同步声音和动作</span></span><br><span class="line">    mmdHelper.<span class="title function_">unifyAnimationDuration</span>();</span><br><span class="line">    scene.<span class="title function_">add</span>(mmdModel,mmdAudio,mmdListener);</span><br><span class="line">    ready = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> clock = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">Clock</span>();</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">animation</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (ready) &#123;</span><br><span class="line">        mmdHelper.<span class="title function_">animate</span>(clock.<span class="title function_">getDelta</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">requestAnimationFrame</span>(animation);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注 给mmd模型设置Physics后,不要再用scale修改模型大小(会导致模型变成一坨不明物体)</p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/Three.js%E7%9D%80%E8%89%B2%E5%99%A8/">&lt;  WebGL 着色器</a>
+      
+      
+        <a class="next" href="/article/%E5%88%A9%E7%94%A8Three.js%E5%AE%9E%E7%8E%B0%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F/">利用Three.js实现粒子系统  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

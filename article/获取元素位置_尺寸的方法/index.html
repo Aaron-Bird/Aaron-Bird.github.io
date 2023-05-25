@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>获取元素位置/尺寸的方法</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#clientwidth-offsetwidth-scrollwidth"><span class="toc-text"> clientWidth offsetWidth scrollWidth</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clientleft-offsetleft-scrollleft"><span class="toc-text"> clientLeft offsetLeft scrollLeft</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windowinnerwidthpagexoffsetscreenxouterwidthscrollx"><span class="toc-text"> Window.innerWidth|pageXOffset|screenX|outerWidth|scrollX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eventclientxoffsetxpagexscreenxx"><span class="toc-text"> event.clientX|offsetX|pageX|screenX|x</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">获取元素位置/尺寸的方法</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-02-09T16:00:00.000Z">
+            2019-02-10
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="clientwidth-offsetwidth-scrollwidth"><a class="markdownIt-Anchor" href="#clientwidth-offsetwidth-scrollwidth"></a> clientWidth offsetWidth scrollWidth</h2>
+<ul>
+<li>clientWidth|clientHeight 元素内容可视部分的宽度/高度,不包括 滚动条 border margin</li>
+<li>offsetWidth|offsetHeight 元素整体宽度/高度,包括滚动条和border,不包括margin</li>
+<li>scrollWidth|scrollHeight 元素内容实际宽度/高度,包含被隐藏的部分</li>
+</ul>
+<p>示例<br />
+<img src="/img/5bd68899.png" alt="50424091-e23a4980-0899-11e9-8b18-e8b210cbf876.png" /></p>
+<p>如上所示,两容器元素的宽/高均为200px, border为1px,padding为10px. 背景颜色为黄色, padding无颜色<br />
+两容器内均有一斜线为背景的子元素,其宽/高均为300px<br />
+容器1的overflow属性值为auto(可滚动).滚动条宽度为17px,颜色为蓝色<br />
+容器2的overflow的属性值为static(默认值,无滚动条)<br />
+clientWidth长度的计算不包含滚动条.当容器有滚动条时,clientWidth值为203px(220px - 17px).没有滚动条时,clientWidth值为220px<br />
+在chrome中,padding-right不参与scrollWidth值的计算.而padding-bottom相反,参与scrollHeight值的计算.因此, 可滚动元素的scrollWidth为310px,scrollHeight为320px</p>
+  <span id="more"></span>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;overflow&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container c1&quot;</span> <span class="attr">id</span>=<span class="string">&quot;c1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;child&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">pre</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span> <span class="attr">id</span>=<span class="string">&quot;i1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container c2&quot;</span> <span class="attr">id</span>=<span class="string">&quot;c2&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;child&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">pre</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span> <span class="attr">id</span>=<span class="string">&quot;i2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ff0</span>;  </span><br><span class="line">  <span class="attribute">background-clip</span>: content-box;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.c2</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: visible;</span><br><span class="line">&#125; </span><br><span class="line"><span class="selector-class">.child</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&#x27;data:image/svg+xml,%3Csvg width=\&#x27;6\&#x27; height=\&#x27;6\&#x27; viewBox=\&#x27;0 0 6 6\&#x27; xmlns=\&#x27;http://www.w3.org/2000/svg\&#x27;%3E%3Cg fill=\&#x27;%23ff0000\&#x27; fill-opacity=\&#x27;0.4\&#x27; fill-rule=\&#x27;evenodd\&#x27;%3E%3Cpath d=\&#x27;M5 0h1L0 6V5zM6 5v1H5z\&#x27;/%3E%3C/g%3E%3C/svg%3E&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.overflow</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line">::-webkit-scrollbar &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">17px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">17px</span>;</span><br><span class="line">    <span class="attribute">background</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line">::-webkit-scrollbar-thumb &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;  </span><br><span class="line">&#125;</span><br><span class="line">::-webkit-scrollbar-corner &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c1 = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#c1&#x27;</span>)      </span><br><span class="line"><span class="keyword">var</span> bound1 = c1.<span class="title function_">getBoundingClientRect</span>()</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#i1&#x27;</span>).<span class="property">innerText</span> =  <span class="string">`</span></span><br><span class="line"><span class="string">  clientWidth: <span class="subst">$&#123;c1.clientWidth&#125;</span>, clientHeight: <span class="subst">$&#123;c1.clientHeight&#125;</span>;  </span></span><br><span class="line"><span class="string">  offsetwidth: <span class="subst">$&#123;c1.offsetWidth&#125;</span>, offsetHeight: <span class="subst">$&#123;c1.offsetHeight&#125;</span>;  </span></span><br><span class="line"><span class="string">  scrollWidth: <span class="subst">$&#123;c1.scrollWidth&#125;</span>, scrollHeight: <span class="subst">$&#123;c1.scrollHeight&#125;</span>;    </span></span><br><span class="line"><span class="string">  scrollLeft: <span class="subst">$&#123;c1.scrollLeft&#125;</span>, scrollTop: <span class="subst">$&#123;c1.scrollTop&#125;</span>;</span></span><br><span class="line"><span class="string">  getBoundingClientRect.width: <span class="subst">$&#123;bound1.width&#125;</span>,  </span></span><br><span class="line"><span class="string">  getBoundingClientRect.height: <span class="subst">$&#123;bound1.height&#125;</span>;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c2 = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#c2&#x27;</span>)      </span><br><span class="line"><span class="keyword">var</span> bound2 = c1.<span class="title function_">getBoundingClientRect</span>()</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#i2&#x27;</span>).<span class="property">innerText</span> =  <span class="string">`</span></span><br><span class="line"><span class="string">  clientWidth: <span class="subst">$&#123;c2.clientWidth&#125;</span>, clientHeight: <span class="subst">$&#123;c2.clientHeight&#125;</span>;  </span></span><br><span class="line"><span class="string">  offsetwidth: <span class="subst">$&#123;c2.offsetWidth&#125;</span>, offsetHeight: <span class="subst">$&#123;c2.offsetHeight&#125;</span>;  </span></span><br><span class="line"><span class="string">  scrollWidth: <span class="subst">$&#123;c2.scrollWidth&#125;</span>, scrollHeight: <span class="subst">$&#123;c2.scrollHeight&#125;</span>;    </span></span><br><span class="line"><span class="string">  scrollLeft: <span class="subst">$&#123;c2.scrollLeft&#125;</span>, scrollTop: <span class="subst">$&#123;c2.scrollTop&#125;</span>;</span></span><br><span class="line"><span class="string">  getBoundingClientRect.width: <span class="subst">$&#123;bound2.width&#125;</span>,  </span></span><br><span class="line"><span class="string">  getBoundingClientRect.height: <span class="subst">$&#123;bound2.height&#125;</span>;</span></span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+<h2 id="clientleft-offsetleft-scrollleft"><a class="markdownIt-Anchor" href="#clientleft-offsetleft-scrollleft"></a> clientLeft offsetLeft scrollLeft</h2>
+<ul>
+<li>clientLeft|clientTop 元素border-left/border-top的宽度,没有则返回0.不包括margin/容器元素的padding</li>
+<li>offsetLeft|offsetTop 元素到距离最近的包含块的left/top padding edge的距离</li>
+</ul>
+<p>示例<br />
+<img src="/img/daeac3c9.png" alt="50424095-eebea200-0899-11e9-896b-499d35283b35.png" /><br />
+如上图所示,外层容器元素宽/高均为200px, margin-left为100px<br />
+容器元素内有一个宽/高均为100px的黄颜色子元素,其边框宽度为2px<br />
+子元素的clientLeft属性值为2,和边框宽度相同<br />
+offsetLeft属性为为100,和外层容器元素的margin-left值相同</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span> <span class="attr">id</span>=<span class="string">&quot;info&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 100vh&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#box</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding-left</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#item</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: <span class="number">#ff0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">2px</span> solid;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#item&#x27;</span>) </span><br><span class="line"><span class="keyword">var</span> bound = el.<span class="title function_">getBoundingClientRect</span>()</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#info&#x27;</span>).<span class="property">innerText</span> =  <span class="string">`</span></span><br><span class="line"><span class="string">clientLeft: <span class="subst">$&#123;el.clientLeft&#125;</span>, clientTop: <span class="subst">$&#123;el.clientTop&#125;</span>;      </span></span><br><span class="line"><span class="string">offsetLeft: <span class="subst">$&#123;el.offsetLeft&#125;</span>, offsetTop: <span class="subst">$&#123;el.offsetTop&#125;</span>;  </span></span><br><span class="line"><span class="string">getBoundingClientRect().left: <span class="subst">$&#123;bound.left&#125;</span>, </span></span><br><span class="line"><span class="string">getBoundingClientRect().top: <span class="subst">$&#123;bound.top&#125;</span>;  </span></span><br><span class="line"><span class="string">`</span>  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>scrollLeft|scrollTop 元素横向/纵向滚动的距离.如果无法滚动,则返回0<br />
+注:<br />
+1 拥有属性oveflow:hidden的元素也可以滚动<br />
+2 该属性可写,如果值大于最大可滚动距离,则视为最大可滚动距离.如果值小于0,则视为0<br />
+3 在chrome中,可滚动元素的padding-bottom也参与纵轴可滚动距离的计算</li>
+</ul>
+<p>示例<br />
+<img src="/img/e773f9e3.png" alt="50424103-0433cc00-089a-11e9-8189-a40c708b97b9.png" /><br />
+如上图所示,可滚动容器元素的宽/高均为200px,padding值为10px<br />
+可滚动容器元素内有一宽/高均为120px黄颜色子元素<br />
+将容器元素的滚动条拉到最右/下,可以发现scrollLeft和scrollTop并不相同<br />
+因为在chrome中,padding-right不参与可滚动距离的计算,而padding-bottom相反,参与可滚动距离的计算</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span> <span class="attr">id</span>=<span class="string">&quot;info&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#box</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: auto;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#item</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: <span class="number">#ff0</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#box&#x27;</span>) </span><br><span class="line">el.<span class="property">scrollTop</span> = <span class="number">100</span>   </span><br><span class="line">el.<span class="property">scrollLeft</span> = <span class="number">100</span> </span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#info&#x27;</span>).<span class="property">innerText</span> =  <span class="string">`</span></span><br><span class="line"><span class="string">scrollLeft: <span class="subst">$&#123;el.scrollLeft&#125;</span>, scrollTop: <span class="subst">$&#123;el.scrollTop&#125;</span>;      </span></span><br><span class="line"><span class="string">`</span>  </span><br></pre></td></tr></table></figure>
+<h2 id="windowinnerwidthpagexoffsetscreenxouterwidthscrollx"><a class="markdownIt-Anchor" href="#windowinnerwidthpagexoffsetscreenxouterwidthscrollx"></a> Window.innerWidth|pageXOffset|screenX|outerWidth|scrollX</h2>
+<ul>
+<li>innerWidth|innerHeight 视口的宽度/高度.包括滚动条,不包括书签栏 边框</li>
+<li>outerWidth|outerHeight 浏览器宽度/高度,包括标签栏 边框</li>
+<li>pageXOffset|pageYOffset 文档在水平/垂直方向的滚动距离</li>
+<li>scrollX|scrollY 同pageXOffset|pageYOffset</li>
+<li>screenX|screenY 浏览器在显示器中的位置</li>
+</ul>
+<p>注: window没有scrollLeft|scrollTop属性,使用pageYOffset代替.<br />
+类似window.pageYOffset的有document.documentElement.scrollLeft|scrollTop(移动端不可用 ?)</p>
+<p>示例<br />
+<img src="/img/e00d605e.png" alt="50424106-0c8c0700-089a-11e9-89b5-b9d7e1c90939.png" /><br />
+如上图所示, window对象的outerWidth属性比innerWidth多了一点,这个差就是浏览器边框的宽度<br />
+pageYoffset和scrollY都表示文档纵向滚动的距离,二者没有区别.出于兼容性的考虑,推荐使用pageYoffset<br />
+调用scrollLeft和scrollTop都返回了undefined,window对象没有这两个属性</p>
+<p>上图示例代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span> <span class="attr">id</span>=<span class="string">&quot;info&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 100vh&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">scrollTo</span>(<span class="number">0</span>, <span class="number">20</span>)</span><br><span class="line">  </span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#info&#x27;</span>).<span class="property">innerText</span> =  <span class="string">`</span></span><br><span class="line"><span class="string">innerWidth: <span class="subst">$&#123;<span class="variable language_">window</span>.innerWidth&#125;</span>, innerHeight: <span class="subst">$&#123;<span class="variable language_">window</span>.innerHeight&#125;</span>;      </span></span><br><span class="line"><span class="string">outerWidth: <span class="subst">$&#123;<span class="variable language_">window</span>.outerWidth&#125;</span>, outerHeight: <span class="subst">$&#123;<span class="variable language_">window</span>.outerHeight&#125;</span>; </span></span><br><span class="line"><span class="string">pageXOffset: <span class="subst">$&#123;<span class="variable language_">window</span>.pageXOffset&#125;</span>, pageYOffset: <span class="subst">$&#123;<span class="variable language_">window</span>.pageYOffset&#125;</span>;</span></span><br><span class="line"><span class="string">scrollX: <span class="subst">$&#123;<span class="variable language_">window</span>.scrollX&#125;</span>, scrollY: <span class="subst">$&#123;<span class="variable language_">window</span>.scrollY &#125;</span>;    </span></span><br><span class="line"><span class="string">screenX: <span class="subst">$&#123;<span class="variable language_">window</span>.screenX&#125;</span>, screenY: <span class="subst">$&#123;<span class="variable language_">window</span>.screenY&#125;</span>;  </span></span><br><span class="line"><span class="string">scrollLeft: <span class="subst">$&#123;<span class="variable language_">window</span>.scrollLeft&#125;</span>, scrollTop: <span class="subst">$&#123;<span class="variable language_">window</span>.scrollTop&#125;</span>;    </span></span><br><span class="line"><span class="string">`</span>  </span><br></pre></td></tr></table></figure>
+<p>window.innerWidth 和 document.documentElement.clientWidth的区别:<br />
+innerWidth包含滚动条,clientWidth的区别不包含滚动条</p>
+<h2 id="eventclientxoffsetxpagexscreenxx"><a class="markdownIt-Anchor" href="#eventclientxoffsetxpagexscreenxx"></a> event.clientX|offsetX|pageX|screenX|x</h2>
+<ul>
+<li>clientX|clientY 相对视口左上角的坐标</li>
+<li>offsetX|offsetY 相对目标元素left/top padding edge的坐标</li>
+<li>pageX|pageY 相对文档的坐标</li>
+<li>screenX|screenY 相对于显示器的坐标</li>
+<li>x|y 同clientX|clientY</li>
+</ul>
+<p>示例<br />
+<img src="/img/88524ba3.png" alt="50424110-16ae0580-089a-11e9-8fe4-a6188774384b.png" /><br />
+clientX|clientY相对于视口的位置计算,而pageX|pageY则相对于整个文档的位置计算<br />
+因此,向下滚动文档时, clientX|clientY发生变化,而pageX|pageY不变<br />
+另外,clinetX|clientY和x|y的表现完全相同</p>
+<p>注意:  offsetX/offsetY 永远相对于触发事件的元素计算(而非目标元素, 即使在捕获阶段触发事件也没用).如果目标元素中有子元素,则应使用clientX和getBoundingClientRect代替,例如</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.<span class="property">clientX</span> - el.<span class="title function_">getBoundingClientRect</span>().<span class="property">left</span></span><br></pre></td></tr></table></figure>
+<p>示例代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span> <span class="attr">id</span>=<span class="string">&quot;info&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-id">#box</span> &#123;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">border</span>: <span class="number">1px</span> solid;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">margin-top</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#box&#x27;</span>).<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#info&#x27;</span>).<span class="property">innerText</span> = <span class="string">`</span></span><br><span class="line"><span class="string">    event.clientX: <span class="subst">$&#123;event.clientX&#125;</span>, event.clientY: <span class="subst">$&#123;event.clientY&#125;</span>;</span></span><br><span class="line"><span class="string">    event.offsetX: <span class="subst">$&#123;event.offsetX&#125;</span>, event.offsetY: <span class="subst">$&#123;event.offsetY&#125;</span>;</span></span><br><span class="line"><span class="string">    event.pageX: <span class="subst">$&#123;event.pageX&#125;</span>, event.pageY: <span class="subst">$&#123;event.pageY&#125;</span>;</span></span><br><span class="line"><span class="string">    event.screenX: <span class="subst">$&#123;event.screenX&#125;</span>, event.screenY: <span class="subst">$&#123;event.screenY&#125;</span>;</span></span><br><span class="line"><span class="string">    event.x: <span class="subst">$&#123;event.x&#125;</span>, event.y: <span class="subst">$&#123;event.y&#125;</span>;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kongxianghai/p/4192032.html">web前端学习笔记---scrollWidth,clientWidth,offsetWidth的区别 - 白色的海 - 博客园</a><br />
+<a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2011/09/cssom%E8%A7%86%E5%9B%BE%E6%A8%A1%E5%BC%8Fcssom-view-module%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%86%E4%B8%8E%E4%BB%8B%E7%BB%8D/">CSSOM视图模式(CSSOM View Module)相关整理 « 张鑫旭-鑫空间-鑫生活</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/JSONP/">&lt;  JSONP</a>
+      
+      
+        <a class="next" href="/article/scrolling%20box/">scrolling box  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

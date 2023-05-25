@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verdaccio 使用笔记</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text"> 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text"> 使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90"><span class="toc-text"> 配置镜像源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD"><span class="toc-text"> 备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%81%E8%AE%B8%E5%85%B6%E4%BB%96%E7%94%B5%E8%84%91%E8%AE%BF%E9%97%AE"><span class="toc-text"> 允许其他电脑访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7"><span class="toc-text"> 注册用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E9%94%99-uplink-is-offline"><span class="toc-text"> 报错 uplink is offline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">Verdaccio 使用笔记</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2023-05-24T16:00:00.000Z">
+            2023-05-25
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Node-js/">
+              <span>Node.js</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>Verdaccio 是一个基于 Node.js 的轻量级 NPM 包缓存服务，无需安装数据库。<br />
+最常用应用场景是使用 Verdaccio 搭建 NPM 私服，解决离线环境下 Node.js 开发时无法安装依赖的问题。<br />
+对比其他的 npm 包服务，Verdaccio 的优点有：<br />
+1 容易安装配置，开箱即用。<br />
+2 在不同电脑间迁移数据仅需要拷贝配置文件和缓存文件夹。</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<p>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g verdaccio</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h2>
+<p>1 启动 verdaccio 服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
+<p>2 通过 verdaccio 安装 npm package</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install  --registry http://localhost:4873</span><br><span class="line"></span><br><span class="line">npm install lodash  --registry http://localhost:4873</span><br></pre></td></tr></table></figure>
+<h2 id="配置镜像源"><a class="markdownIt-Anchor" href="#配置镜像源"></a> 配置镜像源</h2>
+<p>启动 verdaccio 服务查看配置文件 config.yaml 的位置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;verdaccio</span><br><span class="line">info --- config file  - C:\Users\username\AppData\Roaming\verdaccio\config.yaml</span><br></pre></td></tr></table></figure>
+<p>修改 url: <a target="_blank" rel="noopener" href="https://registry.npmjs.org/">https://registry.npmjs.org/</a> 为阿里镜像</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uplinks:</span><br><span class="line">  npmjs:</span><br><span class="line">    url: https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://verdaccio.org/docs/zh-CN/linking-remote-registry">链接远程 Registry · Verdaccio</a></p>
+<h2 id="备份"><a class="markdownIt-Anchor" href="#备份"></a> 备份</h2>
+<p>直接复制 C:\Users\username\AppData\Roaming\verdaccio\storage 文件夹即可</p>
+<p>如果想通过 verdaccio 收集离线执行 npm install 所需的依赖包，务必在执行 npm install 前使用如下命令清除 npm 的缓存。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean --force</span><br></pre></td></tr></table></figure>
+<p>运行 npm cach 后可能会显示如下提示,这并不意味着运行失败。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm WARN using --force Recommended protections disabled.</span><br></pre></td></tr></table></figure>
+<p>可以使用如下命令确认缓存已经被清除</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache verify</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/70180990/getting-npm-warn-using-force-recommended-protections-disabled">node.js - Getting : npm WARN using --force Recommended protections disabled - Stack Overflow</a></p>
+<h2 id="允许其他电脑访问"><a class="markdownIt-Anchor" href="#允许其他电脑访问"></a> 允许其他电脑访问</h2>
+<p>修改 config.yaml 文件，添加如下配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen: 0.0.0.0:4873</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000023213407">https://segmentfault.com/a/1190000023213407</a></p>
+<h2 id="注册用户"><a class="markdownIt-Anchor" href="#注册用户"></a> 注册用户</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser --registry http://localhost:4873/</span><br></pre></td></tr></table></figure>
+<p>禁止用户注册,修改 config.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">auth:</span></span><br><span class="line">  <span class="attr">htpasswd:</span></span><br><span class="line">    <span class="attr">max_users:</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<h2 id="报错-uplink-is-offline"><a class="markdownIt-Anchor" href="#报错-uplink-is-offline"></a> 报错 uplink is offline</h2>
+<p>修改 config.yaml，该配置适用于网络环境较差的情况。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">uplinks<span class="punctuation">:</span></span><br><span class="line">  npmjs<span class="punctuation">:</span></span><br><span class="line">    url<span class="punctuation">:</span> https<span class="punctuation">:</span><span class="comment">//registry.npmjs.org/</span></span><br><span class="line">    # 最大重试次数，默认为 <span class="number">2</span></span><br><span class="line">    max_fails<span class="punctuation">:</span> <span class="number">20</span></span><br><span class="line">    # 超时时间，默认为<span class="number">5</span>m</span><br><span class="line">    fail_timeout<span class="punctuation">:</span> <span class="number">10</span>m</span><br></pre></td></tr></table></figure>
+<p>参考<br />
+<a target="_blank" rel="noopener" href="https://github.com/verdaccio/verdaccio/issues/1703">https://github.com/verdaccio/verdaccio/issues/1703</a></p>
+<p>更多配置见<br />
+<a target="_blank" rel="noopener" href="https://verdaccio.org/docs/uplinks/">Uplinks | Verdaccio</a></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://betgar.github.io/2019/03/09/deploy-private-npm-registry-verdaccio/#%E7%A7%81%E6%9C%89%E6%A8%A1%E5%9D%97%E5%8F%91%E5%B8%83%E5%92%8C%E4%BD%BF%E7%94%A8">npm 私有仓库 verdaccio 的部署 | 个人博客 | 一个 coder 的成长记录</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+      
+        <a class="next" href="/article/acme.sh%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">acme.sh 使用笔记  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

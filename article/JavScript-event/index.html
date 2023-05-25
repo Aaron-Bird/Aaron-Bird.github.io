@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js事件</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6%E8%A1%A8"><span class="toc-text"> 常用事件表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#event"><span class="toc-text"> event</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-text"> 事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#onload"><span class="toc-text"> onload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onclick"><span class="toc-text"> onclick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oninput"><span class="toc-text"> oninput</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onchange"><span class="toc-text"> onchange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onscroll"><span class="toc-text"> onscroll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oncontextmenu"><span class="toc-text"> oncontextmenu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onmouseenter-%E5%92%8C-onmouseover%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> onmouseenter 和 onmouseover的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onbeforeunload-onunload%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> onbeforeunload onunload的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6"><span class="toc-text"> 绑定事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#addeventlistener"><span class="toc-text"> addEventListener</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#removeeventlistener"><span class="toc-text"> removeEventListener</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attachevent-detachevent"><span class="toc-text"> attachEvent detachEvent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6-2"><span class="toc-text"> 绑定事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#addeventlistener-2"><span class="toc-text"> addEventListener</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#removeeventlistener-2"><span class="toc-text"> removeEventListener</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attachevent-detachevent-2"><span class="toc-text"> attachEvent detachEvent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#event-2"><span class="toc-text"> Event</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#eventclientx-eventclienty"><span class="toc-text"> event.clientX | event.clientY</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eventtarget"><span class="toc-text"> event.target</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eventwhich"><span class="toc-text"> event.which</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eventkey"><span class="toc-text"> event.key</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">js事件</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-04-24T05:34:00.000Z">
+            2018-04-24
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="常用事件表"><a class="markdownIt-Anchor" href="#常用事件表"></a> 常用事件表</h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>触发</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>load</td>
+<td>页面(包括CSS样式 图片 JS等资源)完全加载后触发(window可用)</td>
+</tr>
+<tr>
+<td>DOMContentLoaded</td>
+<td>HTML文档被加载后触发,无需等待图片 js CSS资源加载(window和document可用)</td>
+</tr>
+<tr>
+<td>beforeunload</td>
+<td>窗口被关闭/刷新(可阻止)</td>
+</tr>
+<tr>
+<td>unload</td>
+<td>文档被卸载后(window)</td>
+</tr>
+<tr>
+<td>abort</td>
+<td>图像/视频/音频加载被中断</td>
+</tr>
+<tr>
+<td>error</td>
+<td>文档/图像加载错误</td>
+</tr>
+<tr>
+<td>resize</td>
+<td>调整窗口大小(window)</td>
+</tr>
+<tr>
+<td>scroll</td>
+<td>页面滚动(window) <br>可用document.documentElement.scrollTop获取滚动距离</td>
+</tr>
+<tr>
+<td>focusin</td>
+<td>获得焦点(冒泡)</td>
+</tr>
+<tr>
+<td>focus</td>
+<td>获得焦点(不冒泡)</td>
+</tr>
+<tr>
+<td>focusout</td>
+<td>失去焦点(冒泡)</td>
+</tr>
+<tr>
+<td>blur</td>
+<td>失去焦点(不冒泡)</td>
+</tr>
+<tr>
+<td>mouseover</td>
+<td>鼠标移动到元素上(冒泡)</td>
+</tr>
+<tr>
+<td>mouseenter</td>
+<td>鼠标移动到元素上(不冒泡)</td>
+</tr>
+<tr>
+<td>mouseout</td>
+<td>鼠标移出元素(冒泡)</td>
+</tr>
+<tr>
+<td>mouseleave</td>
+<td>鼠标移出元素(不冒泡)</td>
+</tr>
+<tr>
+<td>mousedown</td>
+<td>鼠标键按下</td>
+</tr>
+<tr>
+<td>mouseup</td>
+<td>鼠标键松开</td>
+</tr>
+<tr>
+<td>click</td>
+<td>鼠标单击</td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>鼠标双击</td>
+</tr>
+<tr>
+<td>mousemove</td>
+<td>鼠标移动</td>
+</tr>
+<tr>
+<td>contextmenu</td>
+<td>调出上下文菜单(鼠标单击右键)</td>
+</tr>
+<tr>
+<td>mousewheel</td>
+<td>鼠标滚轮滚动(非标准事件)</td>
+</tr>
+<tr>
+<td>keydown</td>
+<td>键盘任意键被按下/按住</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td>键盘字符键被按下/按住</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td>键盘任意键被松开</td>
+</tr>
+<tr>
+<td>input</td>
+<td>用于input/textarea元素,用户输入时触发</td>
+</tr>
+<tr>
+<td>change</td>
+<td>元素值发生变化(例如select更改选项,input输入框输入)</td>
+</tr>
+<tr>
+<td>submit</td>
+<td>提交按钮被点击</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>重置按钮被点击</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>用户复制内容</td>
+</tr>
+<tr>
+<td>haschange</td>
+<td>URL参数(#号后的内容)变化时触发(window可用)</td>
+</tr>
+</tbody>
+</table>
+<span id="more"></span>
+<h2 id="event"><a class="markdownIt-Anchor" href="#event"></a> event</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>preventDefault()</td>
+<td>阻止默认事件</td>
+</tr>
+<tr>
+<td>stopPropagation()</td>
+<td>阻止继续捕获/冒泡</td>
+</tr>
+<tr>
+<td>stopImmediatePropagation()</td>
+<td>阻止继续捕获/冒泡,绑定在同一元素上的其他事件也被阻止</td>
+</tr>
+<tr>
+<td>clientX clientY</td>
+<td>鼠标坐标(相对于视口)</td>
+</tr>
+<tr>
+<td>pageX pageXY</td>
+<td>鼠标坐标(相对于视页面)</td>
+</tr>
+<tr>
+<td>screenX screenY</td>
+<td>鼠标坐标(相对于屏幕)</td>
+</tr>
+<tr>
+<td>shiftKey</td>
+<td>Shift键是否被按下</td>
+</tr>
+<tr>
+<td>ctrlKey</td>
+<td>Ctrl键是否被按下</td>
+</tr>
+<tr>
+<td>altKey</td>
+<td>Alt键是否被按下</td>
+</tr>
+<tr>
+<td>metaKey</td>
+<td>Windows/Cmd键是否被按下</td>
+</tr>
+<tr>
+<td>relatedTarget</td>
+<td>鼠标从哪个元素移入/移出到哪个元素(仅mouseover mouseout可用)</td>
+</tr>
+<tr>
+<td>button</td>
+<td>鼠标按下/释放的键,左键:0 滚轮:1 右键:2</td>
+</tr>
+<tr>
+<td>detail</td>
+<td>短时间内点击次数</td>
+</tr>
+<tr>
+<td>wheelDelta</td>
+<td>鼠标滚轮滚动,向前滚动返回: wheelDelta120,向后返回wheelDelta-120(mousewheel可用)<br>注: 120不是指滚动的距离</td>
+</tr>
+<tr>
+<td>key</td>
+<td>返回按键名或输入字符,例如&quot;Shift&quot; &quot;A&quot;</td>
+</tr>
+<tr>
+<td>keyCode</td>
+<td>keydown/keyup中调用返回按键ASCII码,keypress中调用返回输入文字的ASCII码</td>
+</tr>
+<tr>
+<td>charCode</td>
+<td>返回按键ASCII码(仅keypress可用,其它事件调用返回0)</td>
+</tr>
+<tr>
+<td>which</td>
+<td>同keyCode</td>
+</tr>
+<tr>
+<td>location</td>
+<td>按键所处位置, 默认键盘: 0 左侧键盘: 1 右侧键盘: 2,数字键盘: 3 虚拟键盘: 4 手柄: 5</td>
+</tr>
+<tr>
+<td>oldURL</td>
+<td>旧URL(hashchange可用)</td>
+</tr>
+<tr>
+<td>newURL</td>
+<td>新URL(hashchange可用)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="事件"><a class="markdownIt-Anchor" href="#事件"></a> 事件</h2>
+<h3 id="onload"><a class="markdownIt-Anchor" href="#onload"></a> onload</h3>
+<p>也可以在img和script元素上触发onload事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img.addEventListener(&#x27;load&#x27;, function(e)&#123;</span><br><span class="line">  console.log(&#x27;succeful&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注: img元素会在添加src属性时开始下载图片,而script元素添加到文档后才开始下载文件</p>
+<h3 id="onclick"><a class="markdownIt-Anchor" href="#onclick"></a> onclick</h3>
+<p>只能绑定一次,先绑定的会被后绑定的覆盖,不需要去掉事件名前头的&quot;on&quot;<br />
+<em>element</em>.onclick = <em>function</em></p>
+<pre><code>document.body.onclick = function()&#123;
+    alert(this);
+&#125;
+//body...
+</code></pre>
+<p>其他事件同上,例如</p>
+<pre><code>//鼠标移动时,获取鼠标坐标
+window.onmousemove = function()&#123;
+    console.log(`$&#123;event.clientX&#125;,$&#123;event.clientY&#125;`)
+&#125;;
+</code></pre>
+<h3 id="oninput"><a class="markdownIt-Anchor" href="#oninput"></a> oninput</h3>
+<p>用于input/textarea元素,当用户输入时触发.</p>
+<pre><code>//检测用户输入密码长度,小于5位提示密码不安全
+&lt;div class=&quot;container-9&quot;&gt;
+    &lt;input type=&quot;password&quot;&gt;
+    &lt;span&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+var input = document.querySelector('.container-9 input');
+var span = document.querySelector('.container-9 span');
+input.oninput = function()&#123;
+    span.innerText = '';
+    if (input.value.length &lt; 5) &#123;
+        span.innerText = &quot;密码太短&quot;
+    &#125; else &#123;
+        span.innerText =&quot;密码安全&quot;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="onchange"><a class="markdownIt-Anchor" href="#onchange"></a> onchange</h3>
+<p>当元素值(value)改变时触发,例如radio/checkbox/select/状态改变,input/textarea输入结束<br />
+类似oninput,区别是oninput立刻触发,而onchange失去焦点后才触发</p>
+<h3 id="onscroll"><a class="markdownIt-Anchor" href="#onscroll"></a> onscroll</h3>
+<pre><code>document.onscroll = function()&#123;
+    //获取滚动条到页面顶部的距离
+    console.log(window.pageYOffset);
+&#125;;
+</code></pre>
+<p>可用于向下滚动一定距离后,添加导航条/返回顶部按钮<br />
+例如向下滚动100px,修改背景颜色</p>
+<pre><code>window.onscroll = function() &#123;myFunction()&#125;;
+function myFunction() &#123;
+    if (document.body.scrollTop &gt; 100 || document.documentElement.scrollTop &gt; 100) &#123;
+        document.body.style.background = &quot;yellow&quot;;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="oncontextmenu"><a class="markdownIt-Anchor" href="#oncontextmenu"></a> oncontextmenu</h3>
+<p>当用户单击鼠标右键时激活事件,可用于屏蔽鼠标右键</p>
+<pre><code>window.oncontextmenu = function()&#123;
+    return false;
+&#125;
+</code></pre>
+<h3 id="onmouseenter-和-onmouseover的区别"><a class="markdownIt-Anchor" href="#onmouseenter-和-onmouseover的区别"></a> onmouseenter 和 onmouseover的区别</h3>
+<p>两个事件都会在鼠标移入元素时激活.<br />
+当元素中没有子元素,两个事件所表现的效果是一样的.<br />
+如果元素中有子元素,鼠标从元素移动到子元素上,或从子元素移动到另一个子元素时,onmouseover会被多次激活.<br />
+而onmouseenter只会在移入元素时激活.<br />
+下边的这两个方块分别绑定了onmouseenter和onmouseover,可以把鼠标移动到元素/子元素上观察效果.</p>
+<div class="container-7" style="border:1px solid;padding:20px;width:50px;">
+    <div style="background:#aaa;height:50px;">0</div>
+</div>
+onmouseenter
+<div class="container-8" style="border:1px solid;padding:20px;width:50px;">
+    <div style="background:#aaa;height:50px;">0</div>
+</div>
+onmouseover
+<script>
+var node1 = document.querySelector('.container-7');
+var childnode1 = document.querySelector('.container-7 div');
+counter1 = 0;
+node1.onmouseenter = function(){
+    childnode1.innerText = ++counter1;}
+var node2 = document.querySelector('.container-8');
+var childnode2 = document.querySelector('.container-8 div');
+counter2 = 0;
+node2.onmouseover = function(){
+    childnode2.innerText = ++counter2;
+}
+</script>
+<h3 id="onbeforeunload-onunload的区别"><a class="markdownIt-Anchor" href="#onbeforeunload-onunload的区别"></a> onbeforeunload onunload的区别</h3>
+<p>两个事件都会在页面被关闭/刷新时激活,<br />
+区别是onbeforeunload可以阻止页面被关闭,而onunload不行</p>
+<pre><code>// 当用户关闭页面时,弹出选择框询问是否关闭
+window.onbeforeunload = function()&#123;
+    // 如需需返回 true/任意字符(空字符串也行),如 return''
+    // 只写return或返回false/null不会有任何效果,如 return null
+    return true;
+&#125;
+</code></pre>
+<p>html5规定忽略onbeforeunload调用函数中的弹窗方法</p>
+<pre><code>// 下边的弹窗无效
+window.onbeforeunload = function()&#123;
+    alert(''); //Blocked alert('') during beforeunload.
+&#125;
+</code></pre>
+<p>应慎用onbeforeunload,死循环会导致窗口无法关闭,甚至可能连浏览器都关不了.</p>
+<pre><code>// 死循环导致页面失去响应
+var counter = 0;
+window.onbeforeunload =function()&#123;
+    while(true) &#123;
+        console.log(counter++);
+    &#125;
+&#125;
+</code></pre>
+<p>onunload可与ajax结合,备份页面关闭时未保存的数据.</p>
+<pre><code>// 关闭页面后修改cookies
+window.onunload = function()&#123;
+    document.cookie =&quot;test&quot;;
+&#125;
+</code></pre>
+<h2 id="绑定事件"><a class="markdownIt-Anchor" href="#绑定事件"></a> 绑定事件</h2>
+<h3 id="addeventlistener"><a class="markdownIt-Anchor" href="#addeventlistener"></a> addEventListener</h3>
+<p>向元素添加添加事件,可对同一个元素绑定多个事件,不支持ie8及以下浏览器<br />
+<em>element</em>.addEventListener(<em>event</em>, <em>function</em>);</p>
+<pre><code>var body = document.body;
+body.addEventListener('click', function()&#123;alert('')&#125;); 
+</code></pre>
+<p>事件名应去掉开头的&quot;on&quot;,例如</p>
+<pre><code>//正确
+body.addEventListener('click', function()&#123;alert('')&#125;);
+//错误
+body.addEventListener('onclick', function()&#123;alert('')&#125;);
+</code></pre>
+<p>所调用函数中的this指向被绑定元素本身<br />
+如下所示,给容器元素绑定click事件,点击容器内子元素,事件仍可正常执行.且this指向容器本身,而非触发事件的子元素.</p>
+<pre><code>&lt;div class=&quot;contain-1&quot; style=&quot;border:1px solid;&quot;&gt;
+  &lt;div style=&quot;width:100px;height:50px;background:yellow;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+var node = document.querySelector('.contain-1');
+node.addEventListener('click', function(event)&#123;
+    alert(this.classList); // contain-1
+&#125;)
+</code></pre>
+<p>可利用闭包储存变量</p>
+<pre><code>var temp = 1;
+document.body.addEventListener('click', (function()&#123;
+    var that = temp ;
+    return function()&#123;
+        alert(that);
+    &#125;
+&#125;)())
+var temp =2; 
+//1   
+</code></pre>
+<h3 id="removeeventlistener"><a class="markdownIt-Anchor" href="#removeeventlistener"></a> removeEventListener</h3>
+<p>移除addEventListener 方法绑定的事件,不支持ie8及以下.<br />
+<em>element</em>.removeEventListener(<em>event</em>,  <em>function</em>)</p>
+<pre><code>var event = () =&gt; alert('');
+//绑定点击事件
+document.body.addEventListener('click', event);
+//移出点击事件
+document.body.removeEventListener('click', event);
+</code></pre>
+<p>注意 removeEventListener方法无法移除匿名函数<br />
+例如向body添加点击事件后尝试移除事件.但无效果,点击页面还是会弹出alert.</p>
+<pre><code>document.body.addEventListener('click', function()&#123;alert('')&#125;);
+document.body.removeEventListener('click', function()&#123;alert('')&#125;);
+</code></pre>
+<h3 id="attachevent-detachevent"><a class="markdownIt-Anchor" href="#attachevent-detachevent"></a> attachEvent detachEvent</h3>
+<p>类似addEventListener,但只支持ie(edge也不支持)<br />
+<em>element</em>.attachEvent(<em>event</em>,<em>function</em>)<br />
+可对同一个元素绑定多个事件,需去掉事件名前的&quot;on&quot;</p>
+<pre><code>  document.body.attachEvent('onclick', function()&#123;alert('')&#125;);
+</code></pre>
+<p>addEventListener中的this指向元素自身,而attachEvent中的this指向全局对象(window)</p>
+<pre><code>document.body.attachEvent('onclick', function()&#123;alert(this)&#125;); //window
+</code></pre>
+<h2 id="绑定事件-2"><a class="markdownIt-Anchor" href="#绑定事件-2"></a> 绑定事件</h2>
+<h3 id="addeventlistener-2"><a class="markdownIt-Anchor" href="#addeventlistener-2"></a> addEventListener</h3>
+<p>向元素添加添加事件,可对同一个元素绑定多个事件,不支持ie8及以下浏览器<br />
+<em>element</em>.addEventListener(<em>event</em>, <em>function</em>);</p>
+<pre><code>var body = document.body;
+body.addEventListener('click', function()&#123;alert('')&#125;); 
+</code></pre>
+<p>事件名应去掉开头的&quot;on&quot;,例如</p>
+<pre><code>//正确
+body.addEventListener('click', function()&#123;alert('')&#125;);
+//错误
+body.addEventListener('onclick', function()&#123;alert('')&#125;);
+</code></pre>
+<p>所调用函数中的this指向被绑定元素本身<br />
+如下所示,给容器元素绑定click事件,点击容器内子元素,事件仍可正常执行.且this指向容器本身,而非触发事件的子元素.</p>
+<pre><code>&lt;div class=&quot;contain-1&quot; style=&quot;border:1px solid;&quot;&gt;
+  &lt;div style=&quot;width:100px;height:50px;background:yellow;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+var node = document.querySelector('.contain-1');
+node.addEventListener('click', function(event)&#123;
+    alert(this.classList); // contain-1
+&#125;)
+</code></pre>
+<p>可利用闭包储存变量</p>
+<pre><code>var temp = 1;
+document.body.addEventListener('click', (function()&#123;
+    var that = temp ;
+    return function()&#123;
+        alert(that);
+    &#125;
+&#125;)())
+var temp =2; 
+//1   
+</code></pre>
+<h3 id="removeeventlistener-2"><a class="markdownIt-Anchor" href="#removeeventlistener-2"></a> removeEventListener</h3>
+<p>移除addEventListener 方法绑定的事件,不支持ie8及以下.<br />
+<em>element</em>.removeEventListener(<em>event</em>,  <em>function</em>)</p>
+<pre><code>var event = () =&gt; alert('');
+//绑定点击事件
+document.body.addEventListener('click', event);
+//移出点击事件
+document.body.removeEventListener('click', event);
+</code></pre>
+<p>注意 removeEventListener方法无法移除匿名函数<br />
+例如向body添加点击事件后尝试移除事件.但无效果,点击页面还是会弹出alert.</p>
+<pre><code>document.body.addEventListener('click', function()&#123;alert('')&#125;);
+document.body.removeEventListener('click', function()&#123;alert('')&#125;);
+</code></pre>
+<h3 id="attachevent-detachevent-2"><a class="markdownIt-Anchor" href="#attachevent-detachevent-2"></a> attachEvent detachEvent</h3>
+<p>类似addEventListener,但只支持ie(edge也不支持)<br />
+<em>element</em>.attachEvent(<em>event</em>,<em>function</em>)<br />
+可对同一个元素绑定多个事件,需去掉事件名前的&quot;on&quot;</p>
+<pre><code>  document.body.attachEvent('onclick', function()&#123;alert('')&#125;);
+</code></pre>
+<p>addEventListener中的this指向元素自身,而attachEvent中的this指向全局对象(window)</p>
+<pre><code>document.body.attachEvent('onclick', function()&#123;alert(this)&#125;); //window
+</code></pre>
+<h2 id="event-2"><a class="markdownIt-Anchor" href="#event-2"></a> Event</h2>
+<p>chrome和ie会默认传入一个event,但firefox不会.例如下代码能在chrome里正常执行,但firefox会报错</p>
+<pre><code>window.onclick = function()&#123;
+    alert(event.clientX);
+&#125;    
+</code></pre>
+<h3 id="eventclientx-eventclienty"><a class="markdownIt-Anchor" href="#eventclientx-eventclienty"></a> event.clientX | event.clientY</h3>
+<p>返回事件触发时的鼠标位置<br />
+相对浏览器窗口计算,不考虑页面滚动</p>
+<pre><code>document.body.addEventListener('click',  function(event)&#123;
+    alert(event.clientX);
+&#125;)
+</code></pre>
+<h3 id="eventtarget"><a class="markdownIt-Anchor" href="#eventtarget"></a> event.target</h3>
+<p>返回触发事件的元素<br />
+父元素内有一50x50px子元素,用鼠标点击子元素,可看到target和this的指向不同元素.</p>
+<div class="container-9" style="border:1px solid;width:50px;">
+    <div class="child-9" style="background:#aaa;height:50px;"></div>
+</div>    
+<script>
+    var node = document.querySelector('.container-9');
+    node.onclick = function(event){
+        // target指向触发事件的元素,而this指向绑定事件的元素
+        alert('event.target ' + event.target.classList); //"child-9"
+        alert('this ' + this.classList); // "container-9"
+    }
+</script>
+<pre><code>&lt;div class=&quot;container-9&quot; style=&quot;border:1px solid;width:50px;&quot;&gt;
+    &lt;div class=&quot;child-9&quot; style=&quot;background:#aaa;height:50px;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;    
+
+var node = document.querySelector('.container-9');
+node.onclick = function(event)&#123;
+    // target指向触发事件的元素,而this指向绑定事件的元素
+    alert('event.target ' + event.target.classList); //&quot;child-9&quot;
+    alert('this ' + this.classList); // &quot;container-9&quot;
+&#125;
+</code></pre>
+<h3 id="eventwhich"><a class="markdownIt-Anchor" href="#eventwhich"></a> event.which</h3>
+<p>触发onkeypress事件时,返回按键的unicode code.<br />
+触发onkeydown/onkeyup事件时,返回按键的Unicode key code</p>
+<p>unicode code和Unicode key code的区别<br />
+字符A和a的unicode code值分别为65和97,但Unicode key code都是65.</p>
+<h3 id="eventkey"><a class="markdownIt-Anchor" href="#eventkey"></a> event.key</h3>
+<p>触发键盘事件时,返回所按键字符<br />
+返回值有两类</p>
+<ul>
+<li>单个字符,例如 a A 1 !</li>
+<li>多字符,例如 Enter F1</li>
+</ul>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/JavaScript-RegExp/">&lt;  JavaScript 正则表达式</a>
+      
+      
+        <a class="next" href="/article/JavaScript-Number/">JavaScript Number  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

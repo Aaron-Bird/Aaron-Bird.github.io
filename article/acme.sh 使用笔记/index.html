@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>acme.sh 使用笔记</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="toc-text"> 官方文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text"> 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E8%AF%81%E4%B9%A6"><span class="toc-text"> 生成证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx-%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6"><span class="toc-text"> nginx 安装证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2%E8%AF%81%E4%B9%A6-server"><span class="toc-text"> 更换证书 Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0"><span class="toc-text"> 使用计划任务自动更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7"><span class="toc-text"> 升级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-text"> 其他命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text"> 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">acme.sh 使用笔记</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2023-02-25T16:00:00.000Z">
+            2023-02-26
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Linux/">
+              <span>Linux</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Linux/">
+            <span>Linux</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p><a target="_blank" rel="noopener" href="http://acme.sh">acme.sh</a> 是一个HTTS SSL 证书自动获取、更新工具，本文记录了该工具的部分命令使用方式。</p>
+<h2 id="官方文档"><a class="markdownIt-Anchor" href="#官方文档"></a> 官方文档</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh">GitHub - acmesh-official/acme.sh: A pure Unix shell script implementing ACME client protocol</a></p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt install git -y</span><br><span class="line"></span><br><span class="line">git clone https://github.com/acmesh-official/acme.sh.git</span><br><span class="line">cd ./acme.sh</span><br><span class="line">./acme.sh --install -m my@example.com</span><br></pre></td></tr></table></figure>
+<h2 id="生成证书"><a class="markdownIt-Anchor" href="#生成证书"></a> 生成证书</h2>
+<p>直接生成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt install socat</span><br><span class="line"> </span><br><span class="line">// 生成证书需要使用 80 端口，注意端口占用</span><br><span class="line">systemctl stop caddy</span><br><span class="line">/root/.acme.sh/acme.sh --issue -d example.com  -d www.example.com --standalone</span><br></pre></td></tr></table></figure>
+<p>强制更新证书</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/root/.acme.sh/acme.sh --issue -d example.com  -d www.example.com --standalone --force</span><br></pre></td></tr></table></figure>
+<h2 id="nginx-安装证书"><a class="markdownIt-Anchor" href="#nginx-安装证书"></a> nginx 安装证书</h2>
+<p>生成证书</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">acme.sh  --issue  -d example.com  --nginx</span><br><span class="line">// or 强制更新</span><br><span class="line">acme.sh  --issue  -d example.com  --nginx --force </span><br></pre></td></tr></table></figure>
+<p>安装证书(acme.sh不建议直接使用 .acme.sh 文件夹里的证书)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /root/example.com</span><br><span class="line">acme.sh --install-cert -d example.com \</span><br><span class="line">--key-file       /root/cert/example.com/key.pem  \</span><br><span class="line">--fullchain-file /root/cert/example.com/cert.pem \</span><br><span class="line">--reloadcmd     &quot;nginx -s reload&quot;</span><br></pre></td></tr></table></figure>
+<p>修改 nginx 配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name example.com;</span><br><span class="line">    charset utf-8;</span><br><span class="line">    ssl on;</span><br><span class="line">    #ssl证书的pem文件路径</span><br><span class="line">    ssl_certificate /root/cert/example.com/cert.pem;</span><br><span class="line">    #ssl证书的key文件路径</span><br><span class="line">    ssl_certificate_key /root/cert/example.com/key.pem;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="更换证书-server"><a class="markdownIt-Anchor" href="#更换证书-server"></a> 更换证书 Server</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh/wiki/Server">https://github.com/acmesh-official/acme.sh/wiki/Server</a><br />
+默认使用 zerossl</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --set-default-ca --server zerossl</span><br></pre></td></tr></table></figure>
+<p>使用 letsencrypt</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --set-default-ca --server letsencrypt</span><br></pre></td></tr></table></figure>
+<h2 id="使用计划任务自动更新"><a class="markdownIt-Anchor" href="#使用计划任务自动更新"></a> 使用计划任务自动更新</h2>
+<p>仅需要配置定时任务即可，<a target="_blank" rel="noopener" href="http://acme.sh">acme.sh</a> 会自动记录执行过的命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab  -l</span><br><span class="line"></span><br><span class="line">56 * * * * &quot;/root/.acme.sh&quot;/acme.sh --cron --home &quot;/root/.acme.sh&quot; &gt; /dev/null</span><br></pre></td></tr></table></figure>
+<h2 id="升级"><a class="markdownIt-Anchor" href="#升级"></a> 升级</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --upgrade</span><br></pre></td></tr></table></figure>
+<h2 id="其他命令"><a class="markdownIt-Anchor" href="#其他命令"></a> 其他命令</h2>
+<p>查看证书列表 <a target="_blank" rel="noopener" href="http://acme.sh">acme.sh</a> --list<br />
+停止自动更新 <a target="_blank" rel="noopener" href="http://acme.sh">acme.sh</a> --remove -d <a target="_blank" rel="noopener" href="http://example.com">example.com</a> [--ecc]<br />
+查看、测试nginx 配置 nginx -t<br />
+查看nginx进程 ps -ef | grep nginx<br />
+kill nginx进程 kill -9 &lt;pid&gt;</p>
+<h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
+<p>1 Please install socat tools first.<br />
+安装 socat</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install socat</span><br></pre></td></tr></table></figure>
+<p>2 timeout 超时</p>
+<p>设置超时时间 export MAX_RETRY_TIMES=9999</p>
+<p>3 Can not find conf file for domain <a target="_blank" rel="noopener" href="http://example.com">example.com</a></p>
+<p>修改nginx配置,添加 server_name <a target="_blank" rel="noopener" href="http://example.com">example.com</a>;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  server &#123;</span><br><span class="line">    server_name example.com;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">``````</span><br><span class="line"></span><br><span class="line">4 Verify error:&quot;error&quot;:</span><br><span class="line">使用 --debug 2 重新执行命令</span><br><span class="line"></span><br><span class="line">根据日志发现，报错的原因是无法访问nginx 的 .well-known/acme-challenge/ 路径</span><br><span class="line"></span><br><span class="line">查看并修改 nginx 配置</span><br><span class="line"></span><br><span class="line">before</span><br><span class="line">```conf</span><br><span class="line">http &#123;</span><br><span class="line">  server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    location / &#123;</span><br><span class="line">      // root ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>after</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen 443;</span><br><span class="line">    location / &#123;</span><br><span class="line">      // root ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原因是如果没配置 80 端口，nginx 访问的不是 location root 中的文件夹<br />
+debug 模式不会自动删除 .well-known/acme-challenge/ 中的文件，可以将复制链接到浏览器里试试能不能正常访问</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347064501">用acme.sh帮你免费且自动更新的HTTPS证书，省时又省力 - 知乎</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/Verdaccio%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">&lt;  Verdaccio 使用笔记</a>
+      
+      
+        <a class="next" href="/article/%E6%AD%A3%E5%88%99%E6%96%AD%E8%A8%80(RegExp%20assertion)/">正则断言(RegExp assertion)  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

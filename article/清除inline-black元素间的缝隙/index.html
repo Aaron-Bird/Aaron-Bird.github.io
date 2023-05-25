@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>清除inline-black元素间的缝隙</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post hide-toc">
+  <!-- table of content -->
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">清除inline-black元素间的缝隙</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-11-26T02:47:00.000Z">
+            2017-11-26
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+          <a href="/tags/inline-block/">
+            <span>inline-block</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>行内块元素间存在一定的空隙,可使用下列方法清除</p>
+<p>1 删除两个元素标签间的空白符</p>
+<pre><code>&lt;button&gt;测试&lt;/button&gt;&lt;button&gt;测试&lt;/button&gt;
+</code></pre>
+<p><button>测试</button><button>测试</button></p>
+<p>2 利用注释</p>
+<pre><code>&lt;button&gt;测试&lt;/button&gt;&lt;!--
+--&gt;&lt;button&gt;测试&lt;/button&gt;
+</code></pre>
+<p><button>测试</button><!--
+--><button>测试</button></p>
+<p>3 设置容器属性 font-size: 0</p>
+<pre><code>&lt;div style=&quot;font-size:0&quot;&gt;
+	&lt;button style=&quot;font-size: 12px&quot;&gt;测试&lt;/button&gt;
+	&lt;button style=&quot;font-size: 12px&quot;&gt;测试&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<div style="font-size:0">
+    <button style="font-size: 12px">测试</button>
+    <button style="font-size: 12px">测试</button>
+</div>
+<p>4 设置 margin-left:为负值</p>
+<pre><code>&lt;div&gt;
+	&lt;button&gt;测试&lt;/button&gt;
+	&lt;button style=&quot;margin-left: -4px&quot;&gt;测试&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p><button>测试</button><br />
+<button style="margin-left: -4px">测试</button></p>
+<p>5 利用js写入元素</p>
+<pre><code>&lt;div class=&quot;test1&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+    var container = document.querySelector('.test1');
+    var btn =document.createElement('button');
+    btn.textContent = '测试';
+    container.appendChild(btn);
+    var btn1 = document.createElement('button');
+    btn1.textContent = '测试';
+    container.appendChild(btn1);
+    // 如需保留缝隙,写入元素时在后添加空格
+    // container.innerHMTL += ' ';
+&lt;/script&gt;
+</code></pre>
+<script async src="//jsfiddle.net/AaronBird/j16772r6/embed/"></script>
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87-BFC/">&lt;  块格式化上下文 BFC (Block Formatting Context)</a>
+      
+      
+        <a class="next" href="/article/width-100/">width: 100%相对于谁计算  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>储存keep-alive内组件的滚动位置</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post hide-toc">
+  <!-- table of content -->
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">储存keep-alive内组件的滚动位置</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-03-19T23:00:00.000Z">
+            2019-03-20
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Vue/">
+              <span>Vue</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Vue/">
+            <span>Vue</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>keep-alive一般被用来缓存组件实例.当从一个组件切换到另一个时, 这个组件不会被销毁, 而会被保存起来供下次调用时使用.<br />
+遗憾的是, 如果被keep-alive包裹的组件中有滚动元素,keep-alive不会储存滚动位置.<br />
+需要在滚动时储存位置, 然后在组件被激活时还原.</p>
+<p>keep-alive 组件有两个特殊的生命周期钩子:  activated和deactivated.<br />
+activated在keep-alive组件激活时调用.<br />
+deactivated在keep-alive组件被停用时调用.<br />
+<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#activated">API — Vue.js</a></p>
+<span id="more"></span>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="title function_">mounted</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 获取组件根元素Dom</span></span><br><span class="line">  <span class="keyword">const</span> page = <span class="variable language_">this</span>.<span class="property">$el</span>;</span><br><span class="line">  <span class="comment">// 绑定事件,滚动时,储存位置到this.scrollTop</span></span><br><span class="line">  page.<span class="title function_">addEventListener</span>(<span class="string">&quot;scroll&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">this</span>.<span class="property">scrollTop</span> = page.<span class="property">scrollTop</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125;,</span><br><span class="line"> <span class="comment">// activated生命钩子在keep-alive被激活时调用</span></span><br><span class="line"> <span class="title function_">activated</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 如果曾滚动过,则还原位置</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">scrollTop</span>) &#123;</span><br><span class="line">   <span class="keyword">const</span> page = <span class="variable language_">this</span>.<span class="property">$el</span>;</span><br><span class="line">   page.<span class="property">scrollTop</span> = <span class="variable language_">this</span>.<span class="property">scrollTop</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> <span class="comment">// deactivated生命钩子在keep-alive被停用时调用</span></span><br><span class="line"> <span class="comment">// 如果onScroll绑定在window之类的元素上,记得用removeEventListener删除事件</span></span><br><span class="line"> <span class="title function_">deactivated</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>另外,可以将这段代码储存为mixin, 需要时调用即可.</p>
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="aaronbird" data-slug-hash="BbVgJo" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="[Vue] 记录keep-alive内组件的滚动位置">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/aaronbird/pen/BbVgJo/">
+  [Vue] 记录keep-alive内组件的滚动位置</a> by aaronbird (<a target="_blank" rel="noopener" href="https://codepen.io/aaronbird">@aaronbird</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>  
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.9/vue.min.js&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">  <span class="tag">&lt;<span class="name">keep-alive</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">   <span class="comment">&lt;!--    动态组件 --&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">   <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">&quot;componentName&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">  <span class="tag">&lt;/<span class="name">keep-alive</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"> <span class="comment">&lt;!--   导航 --&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;navs&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;nav&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;componentName = tag&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;tag of tags&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">   </span><span class="template-variable">&#123;&#123;<span class="name">tag</span>&#125;&#125;</span><span class="language-xml"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line"> <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line"> <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@mixin</span> pin() &#123;</span><br><span class="line"> <span class="attribute">position</span>: absolute;</span><br><span class="line"> <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line"> <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line"> <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line"> <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line"> <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.app</span> &#123;</span><br><span class="line"> <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line"> <span class="attribute">display</span>: flex;</span><br><span class="line"> <span class="attribute">flex-direction</span>: column;</span><br><span class="line"> <span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> auto;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="selector-class">.home</span> &#123;</span><br><span class="line">   <span class="attribute">color</span>: red;</span><br><span class="line">   <span class="attribute">background</span>: blue; </span><br><span class="line">   <span class="keyword">@include</span> pin();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.shop</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">    <span class="attribute">background</span>: red;   </span><br><span class="line">   <span class="keyword">@include</span> pin();</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="selector-class">.navs</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ffa</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="selector-class">.nav</span> &#123;</span><br><span class="line">   <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> auto;</span><br><span class="line">   <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">   <span class="attribute">line-height</span>: <span class="number">50px</span>;</span><br><span class="line">   <span class="attribute">text-align</span>: center;</span><br><span class="line">   <span class="attribute">border-right</span>: <span class="number">1px</span> solid <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>);</span><br><span class="line">   &amp;<span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">    <span class="attribute">border-right</span>: none;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义mixin, 用于记录scroll位置</span></span><br><span class="line"><span class="keyword">const</span> keepScrollTop = &#123;</span><br><span class="line"> <span class="title function_">mounted</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 获取组件根元素Dom</span></span><br><span class="line">  <span class="keyword">const</span> page = <span class="variable language_">this</span>.<span class="property">$el</span>;</span><br><span class="line">  <span class="comment">// 绑定事件,滚动时,储存位置到this.scrollTop</span></span><br><span class="line">  page.<span class="title function_">addEventListener</span>(<span class="string">&quot;scroll&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">this</span>.<span class="property">scrollTop</span> = page.<span class="property">scrollTop</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125;,</span><br><span class="line"> <span class="comment">// activated生命钩子在keep-alive被激活时调用</span></span><br><span class="line"> <span class="title function_">activated</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 如果曾滚动过,则还原位置</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">scrollTop</span>) &#123;</span><br><span class="line">   <span class="keyword">const</span> page = <span class="variable language_">this</span>.<span class="property">$el</span>;</span><br><span class="line">   page.<span class="property">scrollTop</span> = <span class="variable language_">this</span>.<span class="property">scrollTop</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> <span class="comment">// deactivated生命钩子在keep-alive被停用时调用</span></span><br><span class="line"> <span class="comment">// 如果onScroll绑定在window之类的元素上,记得用removeEventListener删除事件</span></span><br><span class="line"> <span class="title function_">deactivated</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 定义组件home</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">component</span>(<span class="string">&quot;home&quot;</span>, &#123;</span><br><span class="line"> <span class="attr">mixins</span>: [keepScrollTop],</span><br><span class="line"> <span class="attr">template</span>: <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div class=&quot;home&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;div v-for=&quot;i of 50&quot;&gt;&#123;&#123;i&#125;&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 定义组件shop</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">component</span>(<span class="string">&quot;shop&quot;</span>, &#123;</span><br><span class="line"> <span class="attr">mixins</span>: [keepScrollTop],</span><br><span class="line"> <span class="attr">template</span>: <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div class=&quot;shop&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;div v-for=&quot;i of 50&quot;&gt;&#123;&#123;i&#125;&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 创建Vue实例</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line"> <span class="attr">el</span>: <span class="string">&quot;.app&quot;</span>,</span><br><span class="line"> <span class="attr">data</span>: &#123;</span><br><span class="line">  <span class="attr">tags</span>: [<span class="string">&quot;home&quot;</span>, <span class="string">&quot;shop&quot;</span>],</span><br><span class="line">  <span class="attr">componentName</span>: <span class="string">&quot;home&quot;</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E5%9C%86%E5%BD%A2%E8%BF%90%E7%AE%97%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">&lt;  圆形运算相关知识点</a>
+      
+      
+        <a class="next" href="/article/event%20loop/">event loop  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数声明与函数表达式</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-text"> 原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E8%BF%87%E7%A8%8B"><span class="toc-text"> 内部过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">函数声明与函数表达式</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-04-18T14:00:00.000Z">
+            2019-04-18
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>偶然看到了一道题,  问如下代码中的console输出什么:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">(<span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>)&#123;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a)&#125;</span><br><span class="line">)()</span><br></pre></td></tr></table></figure>
+<p>结果console输出的不是数值2,而是函数本身:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ƒ <span class="title function_">a</span>(<span class="params"></span>)&#123;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>  
+<h2 id="原因"><a class="markdownIt-Anchor" href="#原因"></a> 原因</h2>
+<p>有两种声明函数的方式:</p>
+<ul>
+<li>函数声明</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;I am foo&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数表达式</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;I am foo&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这是个函数表达式,而非函数声明</span></span><br><span class="line">(<span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;I am foo&#x27;</span>)</span><br><span class="line">&#125;)()</span><br><span class="line"><span class="comment">// 匿名函数表达式</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;I am foo&#x27;</span>)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>函数表达式内部有一个特殊的变量.该变量和函数名相同,指向函数本身,无法被修改.</p>
+<p>变量foo只能在函数内部使用:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// ƒ foo() &#123; ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">bar</span>()</span><br></pre></td></tr></table></figure>
+<p>变量foo不能在函数外使用:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(foo)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>() <span class="comment">// ReferenceError: foo is not defined</span></span><br></pre></td></tr></table></figure>
+<p>变量foo不能被修改:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  foo = <span class="number">1</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// ƒ foo() &#123; ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">bar</span>()</span><br></pre></td></tr></table></figure>
+<p>但如果在内部用var声明一个同名变量,则foo会被覆盖:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> foo = <span class="number">1</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">bar</span>()</span><br></pre></td></tr></table></figure>
+<p>不同于函数表达式, 函数声明内部没有这个特殊变量.<br />
+虽然用&quot;函数声明&quot;创建的函数也能在内部用调用foo,但其实调用的是函数外部作用域的foo.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  foo = <span class="number">1</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>()</span><br><span class="line"><span class="comment">// foo 变成了1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>作为对比,函数表达式的表现:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  foo = <span class="number">1</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// ƒ foo() &#123; ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">bar</span>()</span><br><span class="line"><span class="comment">// 无论内外,都没有变  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(bar) <span class="comment">// ƒ foo() &#123; ...</span></span><br></pre></td></tr></table></figure>
+<p>最后,再回到最上面的这道题:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">(<span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>)&#123;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a)&#125;</span><br><span class="line">)()</span><br></pre></td></tr></table></figure>
+<p>函数a是一个函数表达式,而非函数声明(因为被群组运算符包裹).<br />
+其内部变量a指向其本身,且无法被修改.因此&quot;a = 2&quot; 这句话是无效的.<br />
+最终console.log输出函数本身.</p>
+<h2 id="内部过程"><a class="markdownIt-Anchor" href="#内部过程"></a> 内部过程</h2>
+<p>函数声明的语句结构为:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FunctionExpression :</span><br><span class="line">  function Identifieropt ( FormalParameterList opt ) &#123; FunctionBody &#125;</span><br></pre></td></tr></table></figure>
+<p>函数声明的内部解析过程如下:</p>
+<blockquote>
+<p>FunctionExpression : function Identifier ( FormalParameterList opt ) { FunctionBody } is evaluated as follows:<br />
+1 Let funcEnv be the result of calling NewDeclarativeEnvironment passing the running execution context’s Lexical Environment as the argument<br />
+2 Let envRec be funcEnv’s environment record.<br />
+3 Call the CreateImmutableBinding concrete method of envRec passing the String value of Identifier as the argument.<br />
+4 Let closure be the result of creating a new Function object as specified in <a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-13.2">13.2</a> with parameters specified by FormalParameterListopt and body specified by FunctionBody. Pass in funcEnv as the Scope. Pass in true as the Strict flag if the FunctionExpression is contained in strict code or if its FunctionBody is strict code.<br />
+5 Call the InitializeImmutableBinding concrete method of envRec passing the String value of Identifier and closure as the arguments.<br />
+6 Return closure.</p>
+</blockquote>
+<blockquote>
+<p>1 令 funcEnv 为调用 NewDeclarativeEnvironment 的结果(用当前执行环境的 Lexical Environment 作为参数).<br />
+2 令 envRec为 funcEnv 的环境记录项.<br />
+3 调用envRec的CreateImmutableBinding方法(用Identifier为参数).<br />
+4 令closure 为依照13.2创建的函数对象(用FormalParameterList,FunctionBody, funcEnv(作为scope)  strict作为参数.如果函数表达式处于严格模式/内部包含'use strict',则strict参数为true,否则为false).<br />
+5 调用envRec的InitializeImmutableBinding方法(用Identifier字符串和closure作为参数).<br />
+6 返回closure.</p>
+</blockquote>
+<p>其中步骤3 ~ 5 的作用为:<br />
+3 在函数内部创建了一个和函数同名的&quot;不可变&quot;变量<br />
+4 创建函数对象<br />
+5 初始化步骤3创建的不可变变量,将其指向步骤4创建的函数对象</p>
+<p>作为对比,函数声明的内部解析过程如下:</p>
+<blockquote>
+<p>The production<br />
+FunctionDeclaration : function Identifier ( FormalParameterListopt ) { FunctionBody } is instantiated as follows during Declaration Binding instantiation (10.5):<br />
+1 Return the result of creating a new Function object as specified in 13.2 with parameters specified by FormalParameterListopt, and body specified by FunctionBody. Pass in the VariableEnvironment of the running execution context as the Scope. Pass in true as the Strict flag if the FunctionDeclaration is contained in strict code or if its FunctionBody is strict code.</p>
+</blockquote>
+<p>和函数表达式不同,函数声明仅创建了一个函数对象,其内部作用域没有特殊的同名变量.</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-13">ECMAScript Language Specification - ECMA-262 Edition 5.1</a><br />
+<a target="_blank" rel="noopener" href="https://www.w3.org/html/ig/zh/wiki/ES5/%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89#FunctionExpression">ES5/函数定义 - HTML5 Chinese Interest Group Wiki</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/puppeteer%E5%85%A5%E9%97%A8/">&lt;  puppeteer入门</a>
+      
+      
+        <a class="next" href="/article/(ios%E5%A4%B8%E5%85%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9)%E5%8F%AF%E6%BB%9A%E5%8A%A8%E5%85%83%E7%B4%A0%E5%86%85%E7%9A%84fixed%E5%85%83%E7%B4%A0%E6%97%A0%E6%B3%95%E5%9B%BA%E5%AE%9A/">(Ios夸克浏览器兼容)可滚动元素内的fixed元素无法固定  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

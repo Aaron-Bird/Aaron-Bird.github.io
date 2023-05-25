@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>116 Populating Next Right Pointers in Each Node</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-text"> 题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text"> 解题思路</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">116 Populating Next Right Pointers in Each Node</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-05-11T16:00:00.000Z">
+            2020-05-12
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/leetcode/">
+              <span>leetcode</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/leetcode/">
+            <span>leetcode</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<p>You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct <span class="title class_">Node</span> &#123;</span><br><span class="line">int val;</span><br><span class="line"><span class="title class_">Node</span> *left;</span><br><span class="line"><span class="title class_">Node</span> *right;</span><br><span class="line"><span class="title class_">Node</span> \*next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.</p>
+<p>Initially, all next pointers are set to NULL.</p>
+<p>Follow up:</p>
+<p>You may only use constant extra space.<br />
+Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.</p>
+<p>Example 1:</p>
+<p><img src="/img/53972a73.png" alt="116_sample.png" /></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: root = [1,2,3,4,5,6,7]</span><br><span class="line">Output: [1,#,2,3,#,4,5,6,7,#]</span><br><span class="line">Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with &#x27;#&#x27; signifying the end of each level.</span><br></pre></td></tr></table></figure>
+<p>Constraints:</p>
+<p>The number of nodes in the given tree is less than 4096.<br />
+-1000 &lt;= node.val &lt;= 1000</p>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<p>1 因为是完美二叉树,因此所有节点(不包括叶子节点)都一定有两个子节点.<br />
+广度优先遍历二叉树,将同一层的所有节点储存在数组中.<br />
+对于数组中的节点 n (下标为 i), 如果存在 n1 (下标为 i + 1), 则 n1 一定是 n 的右侧节点.</p>
+<p>代码实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Node</span>(<span class="params">val, left, right, next</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">val</span> = val === <span class="literal">undefined</span> ? <span class="literal">null</span> : val;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">left</span> = left === <span class="literal">undefined</span> ? <span class="literal">null</span> : left;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">right</span> = right === <span class="literal">undefined</span> ? <span class="literal">null</span> : right;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">next</span> = next === <span class="literal">undefined</span> ? <span class="literal">null</span> : next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">Node</span>&#125; <span class="variable">root</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">Node</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">connect</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="comment">// 广度优先遍历</span></span><br><span class="line">  <span class="comment">// 当前层的节点</span></span><br><span class="line">  <span class="keyword">let</span> currentLevelNodes = [root];</span><br><span class="line">  <span class="comment">// 下一层的所有子节点</span></span><br><span class="line">  <span class="keyword">let</span> nextLevelNodes = [];</span><br><span class="line">  <span class="keyword">while</span> (currentLevelNodes.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> len = currentLevelNodes.<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> node = currentLevelNodes[i];</span><br><span class="line">      <span class="comment">// 获取右侧节点</span></span><br><span class="line">      node.<span class="property">next</span> = (i + <span class="number">1</span> &lt; len) ? currentLevelNodes[i + <span class="number">1</span>] : <span class="literal">null</span>;</span><br><span class="line">      <span class="keyword">if</span> (node.<span class="property">left</span>) &#123;</span><br><span class="line">        nextLevelNodes.<span class="title function_">push</span>(node.<span class="property">left</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (node.<span class="property">right</span>) &#123;</span><br><span class="line">        nextLevelNodes.<span class="title function_">push</span>(node.<span class="property">right</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    currentLevelNodes = nextLevelNodes;</span><br><span class="line">    nextLevelNodes = [];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> root;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// test</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createTree</span>(<span class="params">val = <span class="number">1</span>, deep = <span class="number">2</span></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (deep &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> node = <span class="keyword">new</span> <span class="title class_">Node</span>(val);</span><br><span class="line">  node.<span class="property">left</span> = <span class="title function_">createTree</span>(val * <span class="number">2</span>, deep - <span class="number">1</span>);</span><br><span class="line">  node.<span class="property">right</span> = <span class="title function_">createTree</span>(val * <span class="number">2</span> + <span class="number">1</span>, deep - <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="title function_">createTree</span>(<span class="number">1</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(root, <span class="string">&#x27;\n&#x27;</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+<p>2 观察完美二叉树的结构可知:</p>
+<ul>
+<li>左子树的右侧节点一定是右子树</li>
+<li>右子树的右侧节点(node.right.next)一定是其父节点的右侧节点的左子树(node.next.left)</li>
+</ul>
+<p>因此可以通过父节点来获取对应的右侧节点.</p>
+<p>代码实现<br />
+1 循环</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">connect</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 当前层最左侧的节点</span></span><br><span class="line">  <span class="keyword">let</span> leftmostNode = root;</span><br><span class="line">  <span class="keyword">while</span> (leftmostNode.<span class="property">left</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> node = leftmostNode;</span><br><span class="line">    <span class="keyword">while</span> (node) &#123;</span><br><span class="line">      <span class="comment">// 左子节点右侧节点一定是父节点的右子节点</span></span><br><span class="line">      node.<span class="property">left</span>.<span class="property">next</span> = node.<span class="property">right</span>;</span><br><span class="line">      <span class="keyword">if</span> (node.<span class="property">next</span>) &#123;</span><br><span class="line">       <span class="comment">// 右子节点的右侧节点一定是父节点的右侧节点的左节点</span></span><br><span class="line">        node.<span class="property">right</span>.<span class="property">next</span> = node.<span class="property">next</span>.<span class="property">left</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 储存右侧节点</span></span><br><span class="line">      node = node.<span class="property">next</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 储存下一层的最左侧节点</span></span><br><span class="line">    leftmostNode = leftmostNode.<span class="property">left</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> root;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>2 递归</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">connect</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">dfs</span>(<span class="params">node, next</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!node) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    node.<span class="property">next</span> = next;</span><br><span class="line">    <span class="title function_">dfs</span>(node.<span class="property">left</span>, node.<span class="property">right</span>);</span><br><span class="line">    <span class="title function_">dfs</span>(node.<span class="property">right</span>, node.<span class="property">next</span> ? node.<span class="property">next</span>.<span class="property">left</span>: <span class="literal">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">dfs</span>(root, <span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">return</span> root;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/121%20Best%20Time%20to%20Buy%20and%20Sell%20Stock/">&lt;  121 Best Time to Buy and Sell Stock</a>
+      
+      
+        <a class="next" href="/article/118%20Pascal's%20Triangle/">118 Pascal&#39;s Triangle  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

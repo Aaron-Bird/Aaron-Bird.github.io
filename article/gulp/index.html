@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gulp 4.0</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text"> 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="toc-text"> 常用插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-sass"><span class="toc-text"> gulp-sass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-babel"><span class="toc-text"> gulp-babel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-file-include"><span class="toc-text"> gulp-file-include</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#browser-sync"><span class="toc-text"> browser-sync</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-font-spider"><span class="toc-text"> gulp-font-spider</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#api"><span class="toc-text"> API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#src-%E7%9B%91%E5%90%AC%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE"><span class="toc-text"> src 监听文件位置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#optionsbuffer"><span class="toc-text"> options.buffer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#optionsread"><span class="toc-text"> options.read</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#optionsbase"><span class="toc-text"> options.base</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dest-%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6"><span class="toc-text"> dest 输出文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task-%E5%88%9B%E5%BB%BA%E4%BB%BB%E5%8A%A1"><span class="toc-text"> task 创建任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#series-%E4%BE%9D%E5%BA%8F%E8%BF%90%E8%A1%8C%E5%A4%9A%E4%B8%AA%E4%BB%BB%E5%8A%A1"><span class="toc-text"> series 依序运行多个任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parallel-%E5%B9%B6%E8%A1%8C%E8%BF%90%E8%A1%8C%E5%A4%9A%E4%B8%AA%E4%BB%BB%E5%8A%A1"><span class="toc-text"> parallel 并行运行多个任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#watch-%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6"><span class="toc-text"> watch 监控文件</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">gulp 4.0</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-03-25T13:19:00.000Z">
+            2018-03-25
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/gulp/">
+              <span>gulp</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/gulp/">
+            <span>gulp</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>前端自动化工具</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">gulp getting started</a><br />
+<a target="_blank" rel="noopener" href="https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulptaskname-fn">gulp api</a><br />
+<a target="_blank" rel="noopener" href="https://github.com/onface/gulp-book">gulp 入门指南</a></p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 安装gulp-cli</span><br><span class="line">npm install --global gulp-cli</span><br><span class="line">// 创建package.js.会提示输入项目信息,可直接按回车跳过.</span><br><span class="line">npm init</span><br><span class="line">// 安装gulp</span><br><span class="line">npm install --save-dev gulp@next</span><br></pre></td></tr></table></figure>
+<p>注:<br />
+本文安装的gulp版本为4.0<br />
+目前(2018/1)<br />
+使用 npm install --save-dev gulp 命令安装的gulp版本为3.9<br />
+而 npm install --save-dev gulp@next (多了@next)命令安装的gulp版本为4.0<br />
+相较于gulp3,gulp4的语法有一些改动<br />
+如果想查看版本信息,可用gulp -v查询</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;gulp -v</span><br><span class="line">[14:37:58] CLI version 2.0.0</span><br><span class="line">[14:37:58] Local version 4.0.0</span><br></pre></td></tr></table></figure>
+<p>测试是否安装成功<br />
+在项目根目录下新建gulpfile.js文件,填入以下内容</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;default&#x27;</span>, defaultTask);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">defaultTask</span>(<span class="params">done</span>) &#123;</span><br><span class="line">  <span class="comment">// place code for your default task here</span></span><br><span class="line">  <span class="title function_">done</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后打开cmd,在项目根目录运行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp</span><br></pre></td></tr></table></figure>
+<p>如果出现下列提示,则安装成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Using gulpfile ~/my-project/gulpfile.js</span><br><span class="line">[11:15:51] Starting &#x27;default&#x27;...</span><br><span class="line">[11:15:51] Finished &#x27;default&#x27; after 103 μs</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="常用插件"><a class="markdownIt-Anchor" href="#常用插件"></a> 常用插件</h2>
+<p>如需同时安装多个插件,用空格将多个插件名隔开即可,例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-sass gulp-babel babel-preset-env babel-cli babel-preset-env gulp-file-include</span><br></pre></td></tr></table></figure>
+<h3 id="gulp-sass"><a class="markdownIt-Anchor" href="#gulp-sass"></a> gulp-sass</h3>
+<p>将SCSS文件编译为CSS<br />
+<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/gulp-sass">npm gulp-sass</a></p>
+<p>安装命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-sass --save-dev</span><br></pre></td></tr></table></figure>
+<p>gulpfile.js文件设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sass = <span class="built_in">require</span>(<span class="string">&#x27;gulp-sass&#x27;</span>);</span><br><span class="line"><span class="comment">// 创建任务</span></span><br><span class="line"><span class="comment">// &#x27;sass&#x27;: 任务名</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;sass&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// &#x27;./sass/**/*.scss&#x27;: 需编译的文件路径</span></span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>(<span class="string">&#x27;./sass/**/*.scss&#x27;</span>) </span><br><span class="line">        <span class="comment">// 调用sass</span></span><br><span class="line">        <span class="comment">// outputStyle: 设置输出CSS格式</span></span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">sass</span>(&#123;<span class="attr">outputStyle</span>: <span class="string">&#x27;expanded&#x27;</span>&#125;).<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, sass.<span class="property">logError</span>))</span><br><span class="line">        <span class="comment">// 输出文件</span></span><br><span class="line">        <span class="comment">// &#x27;./css&#x27;: 编译后文件的储存路径</span></span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./css&#x27;</span>)); </span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 实时监控文件.如发生变化,自动调用sass</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;sass:watch&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// npm 3.0 写法</span></span><br><span class="line">    <span class="comment">// gulp.watch(&#x27;./sass/**/*.scss&#x27;, [&#x27;sass&#x27;]);</span></span><br><span class="line">    <span class="comment">// npm 4.0 写法</span></span><br><span class="line">    gulp.<span class="title function_">watch</span>(<span class="string">&#x27;./sass/**/*.scss&#x27;</span>, gulp.<span class="title function_">series</span>(<span class="string">&#x27;sass&#x27;</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 项目根目录下输入</span><br><span class="line">gulp sass</span><br><span class="line">// or 实时编译</span><br><span class="line">gulp sass:watch</span><br></pre></td></tr></table></figure>
+<h3 id="gulp-babel"><a class="markdownIt-Anchor" href="#gulp-babel"></a> gulp-babel</h3>
+<p>将ES6代码转换为ES5<br />
+安装命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-babel babel-preset-env</span><br></pre></td></tr></table></figure>
+<p>gulpfile.js设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const gulp = require(&#x27;gulp&#x27;);</span><br><span class="line">const babel = require(&#x27;gulp-babel&#x27;);</span><br><span class="line">gulp.task(&#x27;babel&#x27;, () =&gt;</span><br><span class="line">    gulp.src(&#x27;src/app.js&#x27;)</span><br><span class="line">        .pipe(babel(&#123;</span><br><span class="line">            presets: [&#x27;env&#x27;]</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(&#x27;dist&#x27;))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>运行方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp babel</span><br></pre></td></tr></table></figure>
+<h3 id="gulp-file-include"><a class="markdownIt-Anchor" href="#gulp-file-include"></a> gulp-file-include</h3>
+<p>HTML复用/拆分.在html文档中,载入其他html文档,类似css的import<br />
+安装命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-file-include </span><br></pre></td></tr></table></figure>
+<p>gulpfile.js设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fileinclude = <span class="built_in">require</span>(<span class="string">&#x27;gulp-file-include&#x27;</span>),</span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;fileinclude&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  gulp.<span class="title function_">src</span>([<span class="string">&#x27;app/html/index.html&#x27;</span>])</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">fileinclude</span>(&#123;</span><br><span class="line">      <span class="attr">prefix</span>: <span class="string">&#x27;@@&#x27;</span>,</span><br><span class="line">      <span class="attr">basepath</span>: <span class="string">&#x27;@file&#x27;</span></span><br><span class="line">    &#125;))</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;app&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用方法<br />
+假设有文件header.html,其内容为</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如需在其它html中载入header.html,使用@@include关键字即可</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    @@include(&quot;header.html&quot;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>编译结果</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>gulpfile.js设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">&#x27;browser-sync&#x27;</span>).<span class="title function_">create</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Static server</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;browser-sync&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    browserSync.<span class="title function_">init</span>(&#123;</span><br><span class="line">        <span class="attr">server</span>: &#123;</span><br><span class="line">            <span class="attr">baseDir</span>: <span class="string">&quot;./&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// or...</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;browser-sync&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    browserSync.<span class="title function_">init</span>(&#123;</span><br><span class="line">        <span class="attr">proxy</span>: <span class="string">&quot;yourlocal.dev&quot;</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="browser-sync"><a class="markdownIt-Anchor" href="#browser-sync"></a> browser-sync</h3>
+<p>多浏览器同时自动刷新,无需安装编辑器/浏览器插件<br />
+安装browser-sync</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install browser-sync --save-dev</span><br></pre></td></tr></table></figure>
+<p>gulpfile.js设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">&#x27;browser-sync&#x27;</span>).<span class="title function_">create</span>();</span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;browserSync&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;    </span><br><span class="line">    browserSync.<span class="title function_">init</span>(&#123;</span><br><span class="line">        <span class="attr">server</span>: &#123;</span><br><span class="line">            <span class="attr">baseDir</span>: <span class="string">&#x27;./&#x27;</span> <span class="comment">//监听文件目录</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;browserSync:watch&#x27;</span>, <span class="keyword">function</span>(<span class="params">done</span>)&#123;</span><br><span class="line">    gulp.<span class="title function_">watch</span>(<span class="string">&#x27;test/**/*&#x27;</span>, <span class="keyword">function</span>(<span class="params">done</span>)&#123;</span><br><span class="line">        browserSync.<span class="title function_">reload</span>();</span><br><span class="line">        <span class="comment">// 参考 https://github.com/BrowserSync/browser-sync/issues/1065</span></span><br><span class="line">        <span class="title function_">done</span>(); </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;run&#x27;</span>, gulp.<span class="title function_">parallel</span>(<span class="string">&#x27;browserSync&#x27;</span>,<span class="string">&#x27;browserSync:watch&#x27;</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="gulp-font-spider"><a class="markdownIt-Anchor" href="#gulp-font-spider"></a> gulp-font-spider</h3>
+<p>字蛛的gulp插件,通过扫描CSS @fontface和HTML文档内容,缩小字体文件体积<br />
+windows下的字蛛通过node-gyp编译,需要windows-build-tools运行环境<br />
+如果出现node-gyp编译失败的提示.先用uninstall命令删除gulp-font-spider,安装windows-build-tools.再重新安装gulp-font-spider</p>
+<p>安装命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-font-spider --save-dev</span><br></pre></td></tr></table></figure>
+<p>使用方式</p>
+<p>gulp-font-spider会自动搜索使用@fontface载入的字体,自动简化ttf文件大小</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;openSans&quot;</span>;</span><br><span class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&quot;../font/OpenSans-Regular.ttf&quot;</span>);</span><br><span class="line">    <span class="attribute">font-weight</span>: normal;</span><br><span class="line">    <span class="attribute">font-style</span>: normal;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;openSans&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="api"><a class="markdownIt-Anchor" href="#api"></a> API</h2>
+<h3 id="src-监听文件位置"><a class="markdownIt-Anchor" href="#src-监听文件位置"></a> src 监听文件位置</h3>
+<p>gulp.src(globs[, options])</p>
+<ul>
+<li>globs 文件路径</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单个文件</span></span><br><span class="line">gulp.<span class="title function_">src</span>(<span class="string">&#x27;app/index.html&#x27;</span>);</span><br><span class="line"><span class="comment">// 多个文件</span></span><br><span class="line">gulp.<span class="title function_">src</span>([<span class="string">&#x27;app/index.html&#x27;</span>, <span class="string">&#x27;app/header.html&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+<p>常用的options</p>
+<h4 id="optionsbuffer"><a class="markdownIt-Anchor" href="#optionsbuffer"></a> options.buffer</h4>
+<p>是否返回buffer,默认为true<br />
+为false时返回stream, 这在处理大文件时很有用<br />
+注: 部分插件可能不支持stream</p>
+<h4 id="optionsread"><a class="markdownIt-Anchor" href="#optionsread"></a> options.read</h4>
+<p>默认值为true.为false不读取文件,返回null</p>
+<h4 id="optionsbase"><a class="markdownIt-Anchor" href="#optionsbase"></a> options.base</h4>
+<p>设置输出文件的路径结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// gulp.dest(&#x27;build&#x27;)的作用是输出文件到build文件夹下</span></span><br><span class="line"><span class="comment">// 输出文件路径为build/index.html</span></span><br><span class="line">gulp.<span class="title function_">src</span>(<span class="string">&#x27;app/html/index.html&#x27;</span>).<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;build&#x27;</span>)); </span><br><span class="line"><span class="comment">// 输出路径build/app/html/index.html,即保存了文件的相对路径</span></span><br><span class="line">gulp.<span class="title function_">src</span>(<span class="string">&#x27;app/html/index.html&#x27;</span>, &#123;<span class="attr">base</span>: <span class="string">&#x27;.&#x27;</span>&#125;).<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;build&#x27;</span>)); </span><br><span class="line"><span class="comment">// 输出路径build/html/index.html, 新生成的路径里没有app</span></span><br><span class="line">gulp.<span class="title function_">src</span>(<span class="string">&#x27;app/html/index.html&#x27;</span>, &#123;<span class="attr">base</span>: <span class="string">&#x27;app&#x27;</span>&#125;).<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;build&#x27;</span>)); </span><br><span class="line"><span class="comment">// 输出路径build/index.html, 没有app/html</span></span><br><span class="line">gulp.<span class="title function_">src</span>(<span class="string">&#x27;app/html/index.html&#x27;</span>, &#123;<span class="attr">base</span>: <span class="string">&#x27;app/html&#x27;</span>&#125;).<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;build&#x27;</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="dest-输出文件"><a class="markdownIt-Anchor" href="#dest-输出文件"></a> dest 输出文件</h3>
+<p>输出文件,可通过pipe多次调用<br />
+gulp.dest(path[, options])</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将app/index.html输出到build和test文件夹下</span></span><br><span class="line">gulp.<span class="title function_">src</span>(<span class="string">&#x27;app/index.html&#x27;</span>)</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;build&#x27;</span>)) </span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;test&#x27;</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="task-创建任务"><a class="markdownIt-Anchor" href="#task-创建任务"></a> task 创建任务</h3>
+<p>gulp.task([name,] fn)</p>
+<ul>
+<li>name 任务名</li>
+<li>fn 被执行的函数,或gulp.series gulp.parallel gulp.lastRun</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建任务copy,作用是复制html文件到build文件夹下</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;copy&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>(<span class="string">&#x27;app/*.html&#x27;</span>)</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;build&#x27;</span>)); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>调用copy任务</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在pipe中调用</span></span><br><span class="line"><span class="title function_">gulp</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    gulp.<span class="title function_">src</span>(<span class="string">&#x27;app/*.css&#x27;</span>)</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">copy</span>())</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 使用gulp.series调用</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;build&#x27;</span>, gulp.<span class="title function_">series</span>(<span class="string">&#x27;sass&#x27;</span>, <span class="string">&#x27;babel&#x27;</span>, <span class="string">&#x27;copy&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果想在cmd调用任务,执行命令为: gulp 任务名</span></span><br><span class="line">gulp copy</span><br></pre></td></tr></table></figure>
+<h3 id="series-依序运行多个任务"><a class="markdownIt-Anchor" href="#series-依序运行多个任务"></a> series 依序运行多个任务</h3>
+<p>gulp.series(...tasks)<br />
+依序调用一系列任务/函数.当发生错误时,后边的任务不会被执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;one&#x27;</span>,<span class="keyword">function</span>(<span class="params">done</span>)&#123;</span><br><span class="line">    <span class="title function_">done</span>();</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">two</span>(<span class="params">done</span>)&#123;</span><br><span class="line">    <span class="title function_">done</span>();</span><br><span class="line">&#125;</span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;default&#x27;</span>, gulp.<span class="title function_">series</span>(<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="parallel-并行运行多个任务"><a class="markdownIt-Anchor" href="#parallel-并行运行多个任务"></a> parallel 并行运行多个任务</h3>
+<p>gulp.parallel(...tasks)<br />
+类似series,区别是parallel并行调用任务.即使有一个任务出错,后边的函数都会被执行<br />
+如果一堆任务中有watch,建议使用parallel<br />
+因为用series的话,watch会一直运行下去,导致后面的任务无法被执行</p>
+<h3 id="watch-监控文件"><a class="markdownIt-Anchor" href="#watch-监控文件"></a> watch 监控文件</h3>
+<p>gulp.watch(globs[, opts][, fn])<br />
+监控文件,当发生变化时,调用fn</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp.watch(&#x27;app/**/*&#x27;, gulp.parallel(&#x27;copy&#x27;));</span><br></pre></td></tr></table></figure>
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/JavaScript-Object/">&lt;  JavaScript 对象</a>
+      
+      
+        <a class="next" href="/article/git/">Git  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

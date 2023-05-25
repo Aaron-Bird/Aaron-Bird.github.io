@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javaScript jQuery 常用属性对照</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0"><span class="toc-text"> 获取元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%85%83%E7%B4%A0"><span class="toc-text"> 创建元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text"> 添加&#x2F;插入&#x2F;删除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E5%85%83%E7%B4%A0"><span class="toc-text"> 复制元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%8E%B7%E5%8F%96htmltextvalue"><span class="toc-text"> 修改&#x2F;获取html&#x2F;text&#x2F;value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-text"> 属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class"><span class="toc-text"> Class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0"><span class="toc-text"> 显示&#x2F;隐藏元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css"><span class="toc-text"> CSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">javaScript jQuery 常用属性对照</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2018-03-05T03:34:00.000Z">
+            2018-03-05
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/jQuery/">
+              <span>jQuery</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/jQuery/">
+            <span>jQuery</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="获取元素"><a class="markdownIt-Anchor" href="#获取元素"></a> 获取元素</h2>
+<table>
+<thead>
+<tr>
+<th>jQuery</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$('html') <br> $(':root')</td>
+<td>document.documentElement</td>
+</tr>
+<tr>
+<td>$('body')</td>
+<td>document.body</td>
+</tr>
+<tr>
+<td>$('head')</td>
+<td>document.head</td>
+</tr>
+<tr>
+<td>$('.class')</td>
+<td>.getElementsByClass('class')</td>
+</tr>
+<tr>
+<td>$('tag')</td>
+<td>.getElementsByTagName('tag')</td>
+</tr>
+<tr>
+<td>$('#id')</td>
+<td>document.getElementById('id')</td>
+</tr>
+<tr>
+<td>$('selector')</td>
+<td>.querySelector('selector')</td>
+</tr>
+<tr>
+<td>^</td>
+<td>.querySelectorAll('selector')</td>
+</tr>
+<tr>
+<td>.children('selector')</td>
+<td>.children // 只返回元素节点</td>
+</tr>
+<tr>
+<td> </td>
+<td>.childNodes // 返回文本/注释/元素节点</td>
+</tr>
+<tr>
+<td>.first()</td>
+<td>.querySelectorAll('selector')[0]</td>
+</tr>
+<tr>
+<td>.last()</td>
+<td>var elemArr = document.querySelectorAll('selector');<br> elemArr[elemArr.length -1];</td>
+</tr>
+<tr>
+<td>.children().eq(0)</td>
+<td>.firstElementChild</td>
+</tr>
+<tr>
+<td> </td>
+<td>.firstChild // 含文本节点</td>
+</tr>
+<tr>
+<td>.children().eq(-1)</td>
+<td>.lastElementChild</td>
+</tr>
+<tr>
+<td> </td>
+<td>.lastChild // 含文本节点</td>
+</tr>
+<tr>
+<td>.parent(['selector'])</td>
+<td>.parentElement</td>
+</tr>
+<tr>
+<td>^</td>
+<td>.parentNode</td>
+</tr>
+<tr>
+<td>.parents(['selector'])</td>
+<td> </td>
+</tr>
+<tr>
+<td>.next()</td>
+<td>.nextElementSibling</td>
+</tr>
+<tr>
+<td>^</td>
+<td>.nextSibling  // 含文本节点</td>
+</tr>
+<tr>
+<td>.prev()</td>
+<td>.previousElementSibling</td>
+</tr>
+<tr>
+<td>^</td>
+<td>.previousSibling // 含文本节点</td>
+</tr>
+<tr>
+<td>.nextAll()</td>
+<td> </td>
+</tr>
+<tr>
+<td>.prevAll()</td>
+<td> </td>
+</tr>
+<tr>
+<td>.siblings(['selector'])</td>
+<td> </td>
+</tr>
+<tr>
+<td>.find('selector')</td>
+<td> </td>
+</tr>
+<tr>
+<td>.get({index}) //返回Dom对象</td>
+<td>{nodeList}[{index}]</td>
+</tr>
+<tr>
+<td>.eq({index}) //返回jQ对象</td>
+<td>^</td>
+</tr>
+<tr>
+<td>$('*')</td>
+<td>document.all // 非W3C标准,不建议使用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="创建元素"><a class="markdownIt-Anchor" href="#创建元素"></a> 创建元素</h2>
+<table>
+<thead>
+<tr>
+<th>jQuery</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$('<span>anna</span>')</td>
+<td>document.createElement('tag');</td>
+</tr>
+<tr>
+<td> </td>
+<td>document.createTextNode('string');</td>
+</tr>
+</tbody>
+</table>
+<h2 id="添加插入删除元素"><a class="markdownIt-Anchor" href="#添加插入删除元素"></a> 添加/插入/删除元素</h2>
+<table>
+<thead>
+<tr>
+<th>jQuery</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.append()</td>
+<td>.appendChild()</td>
+</tr>
+<tr>
+<td>.prepend()</td>
+<td>{ele}.insertBefore({newEle}, {ele}.firstElementChild)</td>
+</tr>
+<tr>
+<td>.before()</td>
+<td>{oldEle}.parentNode.insertBefore({newEle}, {oldEle})</td>
+</tr>
+<tr>
+<td>.after()</td>
+<td>{oldEle}.parentNode.insertBefore({newEle}, {oldEle.nextElementSibling})</td>
+</tr>
+<tr>
+<td>.remove()</td>
+<td>{ele}.parentNode.removeChild({ele})</td>
+</tr>
+</tbody>
+</table>
+<h2 id="复制元素"><a class="markdownIt-Anchor" href="#复制元素"></a> 复制元素</h2>
+<table>
+<thead>
+<tr>
+<th>jQuery</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> </td>
+<td>.cloneNode(false) // 浅拷贝</td>
+</tr>
+<tr>
+<td>clone()</td>
+<td>.cloneNode(true) // 深拷贝</td>
+</tr>
+</tbody>
+</table>
+<h2 id="修改获取htmltextvalue"><a class="markdownIt-Anchor" href="#修改获取htmltextvalue"></a> 修改/获取html/text/value</h2>
+<table>
+<thead>
+<tr>
+<th>jQuery</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.text()</td>
+<td>.innerText</td>
+</tr>
+<tr>
+<td>^</td>
+<td>.textContent</td>
+</tr>
+<tr>
+<td>.text('text')</td>
+<td>.innerText = 'text'</td>
+</tr>
+<tr>
+<td>^</td>
+<td>.textContent = 'text'</td>
+</tr>
+<tr>
+<td>.html()</td>
+<td>.innerHTML</td>
+</tr>
+<tr>
+<td>.html('html')</td>
+<td>.innerHTML = 'html'</td>
+</tr>
+<tr>
+<td>.prop(&quot;outerHTML&quot;)</td>
+<td>.outerHTML</td>
+</tr>
+<tr>
+<td>.prop(&quot;outerHTML&quot;, 'html')</td>
+<td>.outerHTML = 'html'</td>
+</tr>
+<tr>
+<td>.val()</td>
+<td>.value</td>
+</tr>
+<tr>
+<td>.val('value')</td>
+<td>.value = 'value'</td>
+</tr>
+<tr>
+<td>.empty()</td>
+<td>.innerHTML = ''</td>
+</tr>
+</tbody>
+</table>
+<h2 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h2>
+<table>
+<thead>
+<tr>
+<th>jQuery</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.attr('name')</td>
+<td>.getAttribute('name')</td>
+</tr>
+<tr>
+<td>.attr('name', 'value')</td>
+<td>.setAttribute('name', 'value')</td>
+</tr>
+<tr>
+<td>.removeAttr('name')</td>
+<td>.removeAttribute('name')</td>
+</tr>
+<tr>
+<td>.prop('name')</td>
+<td>{eleList}[0].getAttribute('name')</td>
+</tr>
+<tr>
+<td>.prop('name', 'value')</td>
+<td>{eleList}[0].setAttribute('name')</td>
+</tr>
+</tbody>
+</table>
+<h2 id="class"><a class="markdownIt-Anchor" href="#class"></a> Class</h2>
+<table>
+<thead>
+<tr>
+<th>jQuery</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.addClass('name')</td>
+<td>.classList.add('name')</td>
+</tr>
+<tr>
+<td>.removeClass('name')</td>
+<td>.classList.remove('name')</td>
+</tr>
+<tr>
+<td>.hasClass('name')</td>
+<td>.classList.contains('name')</td>
+</tr>
+<tr>
+<td>.toggleClass('name')</td>
+<td>.classList.toggle('name')</td>
+</tr>
+</tbody>
+</table>
+<h2 id="显示隐藏元素"><a class="markdownIt-Anchor" href="#显示隐藏元素"></a> 显示/隐藏元素</h2>
+<table>
+<thead>
+<tr>
+<th>jQuery</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.hide()</td>
+<td>.style.display='block'</td>
+</tr>
+<tr>
+<td>.show()</td>
+<td>.style.display='none'</td>
+</tr>
+<tr>
+<td>.toggle()</td>
+<td> </td>
+</tr>
+<tr>
+<td>.css('visibility', 'hidden/visible')</td>
+<td>.style.visibility = 'hidden/visible'</td>
+</tr>
+</tbody>
+</table>
+<h2 id="css"><a class="markdownIt-Anchor" href="#css"></a> CSS</h2>
+<table>
+<thead>
+<tr>
+<th>jQuery</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.css('name')</td>
+<td>.style.{name} // css样式表未定义的得不到</td>
+</tr>
+<tr>
+<td>.css('name', 'value')</td>
+<td>.style.{name} = 'value'</td>
+</tr>
+<tr>
+<td>.css({'name0':'value0','name1','value1'...})</td>
+<td>.style.cssText += 'name0: value0;name1, value1;...'</td>
+</tr>
+<tr>
+<td> </td>
+<td>window.getComputedStyle({ele}, null).{name} // 只读,最终样式</td>
+</tr>
+<tr>
+<td> </td>
+<td>window.getComputedStyle({ele}, null).getPropertyValue('name') // 同上,样式名不用转成驼峰</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/2408424/document-all-vs-document-getelementbyid">javascript - document.all vs. document.getElementById - Stack Overflow</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/sublime-plugin/">&lt;  SublimeText 常用插件</a>
+      
+      
+        <a class="next" href="/article/bootstrap%E5%85%A5%E9%97%A8/">Bootstrap入门  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

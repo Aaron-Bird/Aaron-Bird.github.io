@@ -1,0 +1,175 @@
+span[class|="icon"] {
+  vertical-align: -0.5px;
+}
+.article >.title {
+  text-align: center;
+}
+.post-meta {
+  text-align: center;
+  margin: 0.5rem 0 3rem;
+  font-size: 0.75rem;
+  color: var(--font-shallow);
+}
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: calc(9 / 16 * 100%);
+}
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+section,
+footer {
+  margin: 10px 0;
+}
+time {
+  color: var(--font-shallow);
+}
+blockquote {
+  margin: 16px 0;
+  padding: 0 16px;
+  border-left: 4px solid var(--line-dark);
+  background-color: var(--bg-shallow);
+  overflow: hidden;
+}
+.pullquote {
+  border: 0;
+  background-color: inherit;
+  width: 50%;
+  margin: 0;
+}
+.pullquote.left {
+  float: left;
+  margin-right: 1rem;
+}
+.pullquote.right {
+  float: right;
+  text-align: right;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
+}
+pre {
+  line-height: 1.5em;
+  margin: 1rem 0;
+  padding: 1rem;
+  word-spacing: -0.1rem;
+  background-color: var(--bg-shallow);
+  font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
+  overflow: auto;
+}
+pre code {
+  font-family: inherit;
+}
+@media screen and (max-width: 720px) {
+  pre {
+    padding: 1rem !important;
+  }
+}
+figure.highlight {
+  margin: 1rem 0;
+  padding: 1rem 0;
+  overflow: auto;
+  background-color: var(--bg-shallow);
+}
+figure.highlight figcaption {
+  margin-top: -10px;
+  margin-left: 20px;
+  padding: 4px;
+  color: var(--font-dark);
+}
+figure.highlight pre {
+  margin: 0;
+  padding: 0;
+}
+figure.highlight table,
+figure.highlight tr,
+figure.highlight td {
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+figure.highlight .gutter {
+  min-width: 1rem;
+  text-align: right;
+  user-select: none;
+  color: var(--font-shallow);
+}
+figure.highlight .gutter pre {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+figure.highlight .code {
+  width: 100%;
+}
+figure.highlight .code pre {
+  position: relative;
+  padding-left: 1.5rem;
+}
+figure.highlight .code pre:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: calc(100% - 10px);
+  width: 0px;
+  border-left: 1px dashed var(--line-shallow);
+}
+@media screen and (max-width: 720px) {
+  figure.highlight {
+    padding: 0px 0;
+  }
+  figure.highlight td.gutter {
+    display: none;
+  }
+  figure.highlight .code pre {
+    border-left: 0;
+  }
+  figure.highlight .code pre:before {
+    display: none;
+  }
+}
+.pagination {
+  margin: 1rem 0;
+  text-align: center;
+  overflow: hidden;
+  user-select: none;
+}
+.pagination .page-number,
+.pagination .next,
+.pagination .prev,
+.pagination .space {
+  display: inline-block;
+  min-width: 3rem;
+  height: 3rem;
+  margin: 0.5rem;
+  transition: 0.2s linear;
+  line-height: 3rem;
+}
+.pagination .page-number:hover,
+.pagination .next:hover,
+.pagination .prev:hover,
+.pagination .space:hover {
+  color: var(--font-dark);
+}
+.pagination .current {
+  color: var(--font-dark);
+  border-bottom: 1px solid;
+}
+.main {
+  margin: 6rem 0;
+  padding: 8px;
+  overflow: hidden;
+}
+@media screen and (max-width: 720px) {
+  .main {
+    margin: 20px 0;
+  }
+}

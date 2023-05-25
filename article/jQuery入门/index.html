@@ -1,0 +1,567 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery入门</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%BD%E5%85%A5jquery"><span class="toc-text"> 载入jQuery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text"> 兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0"><span class="toc-text"> 获取元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"> $()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find-%E8%8E%B7%E5%8F%96%E5%AD%90%E5%AD%99%E8%8A%82%E7%82%B9"><span class="toc-text"> find 获取子&#x2F;孙节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#children"><span class="toc-text"> children</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parent"><span class="toc-text"> parent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parents"><span class="toc-text"> parents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#next"><span class="toc-text"> next</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prev"><span class="toc-text"> prev</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#first"><span class="toc-text"> first</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#last"><span class="toc-text"> last</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eq"><span class="toc-text"> eq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get"><span class="toc-text"> get</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E5%86%85%E5%AE%B9"><span class="toc-text"> 修改&#x2F;获取元素内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#text"><span class="toc-text"> text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html"><span class="toc-text"> html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#val"><span class="toc-text"> val</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0"><span class="toc-text"> 插入元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#append"><span class="toc-text"> append</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#before"><span class="toc-text"> before</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#after"><span class="toc-text"> after</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text"> 删除元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#remove"><span class="toc-text"> remove</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#detach"><span class="toc-text"> detach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#empty"><span class="toc-text"> empty</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css"><span class="toc-text"> CSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class"><span class="toc-text"> class</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hasclass-%E6%A3%80%E6%9F%A5class"><span class="toc-text"> hasClass 检查class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#addclass-%E6%B7%BB%E5%8A%A0class"><span class="toc-text"> addClass 添加class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#removeclass-%E5%88%A0%E9%99%A4claass"><span class="toc-text"> removeClass 删除claass</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-text"> 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#attr"><span class="toc-text"> attr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prop-%E8%8E%B7%E5%8F%96%E8%AE%BE%E7%BD%AE%E5%B1%9E%E6%80%A7"><span class="toc-text"> prop 获取&#x2F;设置属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#removeattr-%E5%88%A0%E9%99%A4%E5%B1%9E%E6%80%A7"><span class="toc-text"> removeAttr 删除属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-text"> 事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#on-%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6"><span class="toc-text"> on 绑定事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#off-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6"><span class="toc-text"> off 删除事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#click-%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6"><span class="toc-text"> click 点击事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ready-dom%E8%BD%BD%E5%85%A5%E5%90%8E%E8%A7%A6%E5%8F%91"><span class="toc-text"> ready dom载入后触发</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#event"><span class="toc-text"> event</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#eventwidth-eventheight-%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E5%AE%BD%E9%AB%98%E5%BA%A6"><span class="toc-text"> event.width | event.height 获取元素宽&#x2F;高度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eventpagex"><span class="toc-text"> event.pageX</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96"><span class="toc-text"> 对象转化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E4%B8%BAjquery%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 转换为jQuery对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%98%E5%8E%9Fjs%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 还原js对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#-2"><span class="toc-text"> $()[]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#get-2"><span class="toc-text"> get()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jquery%E5%AF%B9%E8%B1%A1%E9%81%8D%E5%8E%86"><span class="toc-text"> jQuery对象遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#each"><span class="toc-text"> each</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map"><span class="toc-text"> map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is"><span class="toc-text"> is</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#filter-%E8%BF%87%E6%BB%A4%E8%8A%82%E7%82%B9"><span class="toc-text"> filter 过滤节点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text"> 其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hide-show"><span class="toc-text"> hide() | show()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#toggle"><span class="toc-text"> toggle()</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">jQuery入门</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-12-16T12:40:00.000Z">
+            2017-12-16
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/jQuery/">
+              <span>jQuery</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/jQuery/">
+            <span>jQuery</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <script type="text/javascript" src="/js/jquery.slim.min.js"></script>
+<p>jquery是一个Javascript库.简化了js Dom/CSS/Ajax操作,支持链式表达式/动画.兼容ie6+浏览器,拥有丰富的第三方扩展</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.jquery123.com/?s=is">jQuery API 中文文档</a></p>
+<h2 id="载入jquery"><a class="markdownIt-Anchor" href="#载入jquery"></a> 载入jQuery</h2>
+<p>本地加载</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;jquery-3.2.1.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&lt;/head</span><br></pre></td></tr></table></figure>
+<p>cdn加载</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--使用Microsoft CDN加载jQuery--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="兼容性"><a class="markdownIt-Anchor" href="#兼容性"></a> 兼容性</h2>
+<p>jQuery 2.x和3.x版本支持ie9及以上版本的浏览器<br />
+如需兼容不兼容ie6~ie8 ,需使用jQuery 1.12版本</p>
+<h2 id="获取元素"><a class="markdownIt-Anchor" href="#获取元素"></a> 获取元素</h2>
+<h3 id=""><a class="markdownIt-Anchor" href="#"></a> $()</h3>
+<p>用于获取/转换节点,返回jQuery对象<br />
+向$函数传入css选择器,$函数会返回一个对象,内含css选择器匹配到的元素<br />
+$(selector| node)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;body&#x27;</span>) <span class="comment">// [body, selector: &quot;body&quot;, context: document]</span></span><br></pre></td></tr></table></figure>
+<p>不要直接用for循环迭代jQ选择器返回的对象,因为返回的是对象而非数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> $(<span class="string">&#x27;*&#x27;</span>))&#123;&#125; <span class="comment">// $(...) is not a function or its return value is not iterable </span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> $(<span class="string">&#x27;body&#x27;</span>))&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(i)&#125; <span class="comment">// 0 selector context...</span></span><br></pre></td></tr></table></figure>
+<p>正确的方式是使用each()获取所有元素</p>
+<p>$符号是jQuery的别名<br />
+当jQuery中的$符号和其他库冲突时,用noConflict()方法将$赋值给其他变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ === jQuery <span class="comment">//true</span></span><br><span class="line"><span class="keyword">var</span> j = jQuery.<span class="title function_">noConflict</span>();</span><br><span class="line"><span class="title function_">j</span>(<span class="string">&#x27;body&#x27;</span>) <span class="comment">// [body...</span></span><br><span class="line">$ <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>常用选择器<br />
+:input //选择input textarea select button<br />
+:radio //选择单选框<br />
+:focus //选择当前焦点<br />
+:checked //选择以被选中的单选框/复选框<br />
+:enabled // 选择可用的input select<br />
+:disabled 选择不可用的input select<br />
+:visible //选择可见元素<br />
+:hidden //选择隐藏元素</p>
+<h3 id="find-获取子孙节点"><a class="markdownIt-Anchor" href="#find-获取子孙节点"></a> find 获取子/孙节点</h3>
+<p>.find(selector)<br />
+获取后代节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="variable language_">document</span>.<span class="property">body</span>).<span class="title function_">find</span>(<span class="string">&#x27;*&#x27;</span>); <span class="comment">// [div,div...</span></span><br></pre></td></tr></table></figure>
+<h3 id="children"><a class="markdownIt-Anchor" href="#children"></a> children</h3>
+<p>$().children([selector])</p>
+<ul>
+<li>selector 可选,留空时返回所有子元素</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;html&#x27;</span>).<span class="title function_">children</span>() <span class="comment">// [head, body]</span></span><br><span class="line">$(<span class="string">&#x27;html&#x27;</span>).<span class="title function_">children</span>(<span class="string">&#x27;body&#x27;</span>) <span class="comment">//[body]</span></span><br></pre></td></tr></table></figure>
+<h3 id="parent"><a class="markdownIt-Anchor" href="#parent"></a> parent</h3>
+<p>.parent([selector])<br />
+获取父节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;button&#x27;</span>).<span class="title function_">parent</span>() <span class="comment">// [body...</span></span><br></pre></td></tr></table></figure>
+<h3 id="parents"><a class="markdownIt-Anchor" href="#parents"></a> parents</h3>
+<p>.parents([selector])<br />
+获取所有祖先节点(父/祖父...)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;button&#x27;</span>).<span class="title function_">parents</span>() <span class="comment">// [body, html...</span></span><br></pre></td></tr></table></figure>
+<h3 id="next"><a class="markdownIt-Anchor" href="#next"></a> next</h3>
+<p>获取下一个同级节点(相当于node.nextElementSibling)<br />
+.next()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;head&#x27;</span>).<span class="title function_">next</span>() <span class="comment">//[body..</span></span><br></pre></td></tr></table></figure>
+<h3 id="prev"><a class="markdownIt-Anchor" href="#prev"></a> prev</h3>
+<p>获取上一个同级节点(相当于node.previousElementSibling)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">prev</span>() <span class="comment">// [head... </span></span><br></pre></td></tr></table></figure>
+<h3 id="first"><a class="markdownIt-Anchor" href="#first"></a> first</h3>
+<p>获取匹配的元素合集的第一个元素<br />
+.first()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">first</span>() <span class="comment">// [div...</span></span><br></pre></td></tr></table></figure>
+<h3 id="last"><a class="markdownIt-Anchor" href="#last"></a> last</h3>
+<p>获取匹配到的元素合集的最后一个元素<br />
+.last()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">last</span>() <span class="comment">// [div...</span></span><br></pre></td></tr></table></figure>
+<h3 id="eq"><a class="markdownIt-Anchor" href="#eq"></a> eq</h3>
+<p>获取匹配到的元素合集的第n的元素,返回jQuery对象<br />
+.eq(n)</p>
+<ul>
+<li>n可以为负数(从-1开始)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">eq</span>(<span class="number">1</span>) <span class="comment">// [div...</span></span><br></pre></td></tr></table></figure>
+<h3 id="get"><a class="markdownIt-Anchor" href="#get"></a> get</h3>
+<p>获取匹配到的元素合集的第n的元素,返回js DOM对象<br />
+.get([n])</p>
+<ul>
+<li>n 可选,留空时返回一个数组,包含获取到的所有js DOM对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">get</span>(<span class="number">0</span>) <span class="comment">// [div...</span></span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line">$(<span class="string">&#x27;div&#x27;</span>)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="修改获取元素内容"><a class="markdownIt-Anchor" href="#修改获取元素内容"></a> 修改/获取元素内容</h2>
+<h3 id="text"><a class="markdownIt-Anchor" href="#text"></a> text</h3>
+<p>获取/修改元素文本内容(相当于innerText)<br />
+.text([text])</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改元素文本内容</span></span><br><span class="line">$(<span class="variable language_">document</span>.<span class="property">body</span>).<span class="title function_">text</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="comment">// 获取元素文本内容</span></span><br><span class="line">$(<span class="variable language_">document</span>.<span class="property">body</span>).<span class="title function_">text</span>() <span class="comment">// &quot;hello&quot;</span></span><br><span class="line">$(<span class="variable language_">document</span>.<span class="property">body</span>).<span class="title function_">text</span>(<span class="string">&#x27;&lt;button&gt;test&lt;/button&gt;&#x27;</span>) </span><br></pre></td></tr></table></figure>
+<h3 id="html"><a class="markdownIt-Anchor" href="#html"></a> html</h3>
+<p>获取/修改元素内的HTML文档内容(相当于innerHTML)<br />
+.html(content|function)</p>
+<ul>
+<li>content 需添加内容,接受String Object jQuery</li>
+<li>function 需定义两个参数,分别为所获元素的index和html内容.将返回内容(可以是html文档/dom对象/jQuery对象)作为修改的html</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改元素内容</span></span><br><span class="line">$(<span class="variable language_">document</span>.<span class="property">body</span>).<span class="title function_">html</span>(<span class="string">&#x27;&lt;button&gt;hello&lt;/button&gt;&#x27;</span>)</span><br><span class="line"><span class="comment">// 获取元素内容</span></span><br><span class="line">$(<span class="variable language_">document</span>.<span class="property">body</span>).<span class="title function_">html</span>() <span class="comment">// &quot;&lt;button&gt;hello&lt;/button&gt;&quot;</span></span><br><span class="line"><span class="comment">// 也可以传入DOM/jQuery对象  </span></span><br><span class="line"><span class="keyword">var</span> n = $(<span class="string">&#x27;&lt;button&gt;test&lt;/button&gt;&#x27;</span>);</span><br><span class="line">$(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">html</span>(n);</span><br><span class="line"><span class="comment">// 传入函数</span></span><br><span class="line">$(<span class="string">&#x27;button&#x27;</span>).<span class="title function_">html</span>(<span class="keyword">function</span>(<span class="params">index,html</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(index); <span class="comment">// 0 1...</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(html) <span class="comment">// test submit...</span></span><br><span class="line">    <span class="keyword">return</span> html + <span class="string">&#x27;end&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="val"><a class="markdownIt-Anchor" href="#val"></a> val</h3>
+<p>获取/修改input/select/textarea元素的的value值(相当于node.value)<br />
+.val(string|function)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="string">&#x27;&lt;input value=&quot;1&quot;&gt;&#x27;</span></span><br><span class="line">$(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">append</span>(n);</span><br><span class="line"><span class="comment">// 获取值</span></span><br><span class="line">$(<span class="string">&#x27;input&#x27;</span>).<span class="title function_">val</span>() <span class="comment">// &quot;1&quot;</span></span><br><span class="line"><span class="comment">// 修改值</span></span><br><span class="line">$(<span class="string">&#x27;input&#x27;</span>).<span class="title function_">val</span>(<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="comment">// 传入函数</span></span><br><span class="line">$(<span class="string">&#x27;input&#x27;</span>).<span class="title function_">val</span>(<span class="keyword">function</span>(<span class="params">index,value</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(value) + <span class="number">1</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="插入元素"><a class="markdownIt-Anchor" href="#插入元素"></a> 插入元素</h2>
+<h3 id="append"><a class="markdownIt-Anchor" href="#append"></a> append</h3>
+<p>在内部子元素结尾添加元素(相当于appendChild(newNode))<br />
+$().append(content|function)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//向body添加div</span></span><br><span class="line">$(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">append</span>(<span class="string">&#x27;&lt;button&gt;test&lt;/button&gt;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">append</span>(<span class="keyword">function</span>(<span class="params">index,html</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&lt;button&gt;test&lt;/button&gt;&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="before"><a class="markdownIt-Anchor" href="#before"></a> before</h3>
+<p>在元素前插入元素(相当于node.parentElement.insertBefore(newNode,node))<br />
+.before(content|function)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;button&#x27;</span>).<span class="title function_">before</span>(<span class="string">&#x27;&lt;span&gt;test&lt;/span&gt;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="after"><a class="markdownIt-Anchor" href="#after"></a> after</h3>
+<p>在元素后插入内容(相当于node.parentNode.insertBefore(newNode,node.nextSibling))<br />
+.after(content|function)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;button&#x27;</span>).<span class="title function_">after</span>(<span class="string">&#x27;&lt;span&gt;test&lt;/span&gt;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="删除元素"><a class="markdownIt-Anchor" href="#删除元素"></a> 删除元素</h2>
+<h3 id="remove"><a class="markdownIt-Anchor" href="#remove"></a> remove</h3>
+<p>把匹配的元素从DOM文档树中删除<br />
+.remove([selector])</p>
+<ul>
+<li>selector 可选,当元素匹配选择器时,删除该元素</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">remove</span>(); </span><br><span class="line"><span class="comment">// 删除符合选择器的内容</span></span><br><span class="line">$(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">remove</span>(<span class="string">&#x27;:parent&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>该方法会清除所有绑定在元素上jQuery数据,如事件/附加数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;button&#x27;</span>)[<span class="number">0</span>].<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="title function_">alert</span>(<span class="string">&#x27;1&#x27;</span>)&#125;;</span><br><span class="line">$(<span class="string">&#x27;button&#x27;</span>).<span class="title function_">click</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="title function_">alert</span>(<span class="string">&#x27;2&#x27;</span>)&#125;)</span><br><span class="line"><span class="keyword">var</span> b = $(<span class="string">&#x27;button&#x27;</span>).<span class="title function_">remove</span>(); </span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(b[<span class="number">0</span>])</span><br><span class="line"><span class="comment">// 点击button 弹出&quot;1&quot; </span></span><br></pre></td></tr></table></figure>
+<h3 id="detach"><a class="markdownIt-Anchor" href="#detach"></a> detach</h3>
+<p>把匹配的元素从DOM文档树中删除.类似remove,区别是detach保留jQuery绑定数据<br />
+.detach([selector])</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;button&#x27;</span>)[<span class="number">0</span>].<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="title function_">alert</span>(<span class="string">&#x27;1&#x27;</span>)&#125;;</span><br><span class="line">$(<span class="string">&#x27;button&#x27;</span>).<span class="title function_">click</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="title function_">alert</span>(<span class="string">&#x27;2&#x27;</span>)&#125;)</span><br><span class="line"><span class="keyword">var</span> b = $(<span class="string">&#x27;button&#x27;</span>).<span class="title function_">detach</span>(); </span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(b[<span class="number">0</span>])</span><br><span class="line"><span class="comment">// 点击button 弹出&quot;1&quot; &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="empty"><a class="markdownIt-Anchor" href="#empty"></a> empty</h3>
+<p>删除元素的所有子节点(包括文本节点)<br />
+.empty()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">empty</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="css"><a class="markdownIt-Anchor" href="#css"></a> CSS</h2>
+<p>可用css()获取/设置css属性<br />
+$().css(<em>property</em>) 获取属性<br />
+$().css(<em>property</em>, <em>value</em>) 设置css属性</p>
+<pre><code>//只传入一个参数,则返回css属性值  
+$('body').css('background-color') // &quot;rgb(255, 255, 255)&quot;
+</code></pre>
+<p>css方法同时可用于设置属性,需传入两个参数,第二个参数为css属性值</p>
+<pre><code>//设置背景颜色为灰色
+$('body').css('background-color', '#aaa');
+// 删除背景颜色
+$('body').css('background-color', '');
+</code></pre>
+<h2 id="class"><a class="markdownIt-Anchor" href="#class"></a> class</h2>
+<h3 id="hasclass-检查class"><a class="markdownIt-Anchor" href="#hasclass-检查class"></a> hasClass 检查class</h3>
+<p>检查jQuery对象的class属性是否有某值,相当于classList.contains()</p>
+<pre><code>&lt;div class=&quot;c-4 test&quot;&gt;&lt;/div&gt;
+alert($('.c-4').hasClass(&quot;test&quot;)) //true
+alert($('.c-4').hasClass(&quot;t&quot;)) //false
+</code></pre>
+<h3 id="addclass-添加class"><a class="markdownIt-Anchor" href="#addclass-添加class"></a> addClass 添加class</h3>
+<p>添加类名,相当于classList.add()</p>
+<pre><code>$('.c-4').addClass(&quot;t&quot;);
+alert($('.c-4').hasClass(&quot;t&quot;)) // true
+</code></pre>
+<h3 id="removeclass-删除claass"><a class="markdownIt-Anchor" href="#removeclass-删除claass"></a> removeClass 删除claass</h3>
+<p>删除类名,相当于classList.remove()</p>
+<pre><code>$('.c-4').removeClass(&quot;t&quot;);
+alert($('.c-4').hasClass(&quot;t&quot;)) // flase
+</code></pre>
+<h2 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h2>
+<h3 id="attr"><a class="markdownIt-Anchor" href="#attr"></a> attr</h3>
+<p>获取/设置属性<br />
+$().attr(<em>attribute</em>) //获取属性<br />
+$().attr(<em>attribute</em>, <em>value</em>) //设置属性</p>
+<pre><code>//获取body的class属性
+$('body').attr('class') //body
+//设置body的class属性值为test
+$('body').attr('class','test')
+</code></pre>
+<h3 id="prop-获取设置属性"><a class="markdownIt-Anchor" href="#prop-获取设置属性"></a> prop 获取/设置属性</h3>
+<p>类似attr,区别为对于checked属性,attr返回checked/undefined,prop返回true/false</p>
+<pre><code>&lt;input type=&quot;radio&quot;&gt;&lt;/input&gt;
+alert($('input').attr('checked')) //undefined
+$('input').attr('checked','checked')
+alert($('input').attr('checked')) //checked
+
+alert($('input').prop('checked')) // false
+$('input').prop('checked', true)
+alert($('input').prop('checked')) // true
+//或
+$('input').prop('checked', 'true')
+</code></pre>
+<p>要是想移除选中,用attr('checked','')是没用的.<br />
+应使用attr('checked',false)或removeAttr('checked')<br />
+操作selected/checked等还是建议用prop</p>
+<h3 id="removeattr-删除属性"><a class="markdownIt-Anchor" href="#removeattr-删除属性"></a> removeAttr 删除属性</h3>
+<p>删除jQuery对象的属性<br />
+$().removeAttr(<em>attribute</em>)</p>
+<pre><code>//删除body的class属性
+$('body').removeAttr('class')
+</code></pre>
+<h2 id="事件"><a class="markdownIt-Anchor" href="#事件"></a> 事件</h2>
+<h3 id="on-绑定事件"><a class="markdownIt-Anchor" href="#on-绑定事件"></a> on 绑定事件</h3>
+<p>$().on(<em>event</em>,function(){...}) //绑定事件<br />
+$().on(<em>event</em>) //触发事件</p>
+<pre><code>//给body元素绑定onclick事件
+$('body').on('click',function()&#123;alert('')&#125;);
+</code></pre>
+<p><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/jquery/jquery_ref_events.asp">其他事件见参考Jquery事件手册</a></p>
+<p>可用$().on(<em>event</em>)触发事件</p>
+<pre><code>//触发点击事件
+$('body').on('click')
+</code></pre>
+<h3 id="off-删除事件"><a class="markdownIt-Anchor" href="#off-删除事件"></a> off 删除事件</h3>
+<p>删除绑定在元素上的事件,无法删除绑定的匿名函数<br />
+$('body').off(<em>event</em>, <em>functionName</em>)</p>
+<pre><code>function print()&#123;
+    alert('');
+&#125;
+$('body').click(print);
+$('body').off('click', print)
+</code></pre>
+<p>如下的匿名函数是无法删除的</p>
+<pre><code>$('body').click(()=&gt;alert(''));
+//两个匿名函数不是同一个函数对象,因此无法移出lick绑定的函数事件
+$('body').off('click', ()=&gt;alert(''));
+</code></pre>
+<h3 id="click-点击事件"><a class="markdownIt-Anchor" href="#click-点击事件"></a> click 点击事件</h3>
+<p>绑定事件还有一种写法,直接在jQuery对象后接事件名作为方法调用<br />
+$().<em>event</em>(function(...)) //绑定点击事件<br />
+$().click() // 触发点击事件</p>
+<pre><code>$().click(function()&#123;alert('')&#125;);
+//等价于
+$('body').on('click',function()&#123;alert('')&#125;);
+</code></pre>
+<p>js中有一个长得很像的属性叫onclick<br />
+二者的区别是click可向同一个元素绑定多个事件,而onclick先绑定的事件会被后绑定的覆盖</p>
+<pre><code>//隐藏body元素
+$('.hide-page').click(function()&#123;
+    $(&quot;body&quot;).hide();
+&#125;)
+
+//更改背景颜色
+$('.hide-page').click(function()&#123;
+    $(&quot;body&quot;).css(&quot;background&quot;,&quot;yellow&quot;);
+&#125;)
+</code></pre>
+<p><button class="hide-page">隐藏页面后更改背景颜色</button></p>
+<script>
+$('.hide-page').click(function(){
+    $("body").hide();
+});
+$('.hide-page').click(function(){
+    $("body").css("background","yellow");
+})
+</script>
+<h3 id="ready-dom载入后触发"><a class="markdownIt-Anchor" href="#ready-dom载入后触发"></a> ready dom载入后触发</h3>
+<p>ready事件会在dom载入后触发,防止代码在dom加载前执行</p>
+<pre><code>$('body').ready(() =&gt; alert(''));
+//等价于
+$('body').on('ready', () =&gt; alert(''));
+</code></pre>
+<p>$().ready()还有一种简写 $(function(){})</p>
+<pre><code>$(function()&#123;alert('')&#125;)
+//等价于
+$('window').on('ready',function()&#123;alert('')&#125;
+//其实就是个dom载入后触发的子执行匿名函数
+</code></pre>
+<h2 id="event"><a class="markdownIt-Anchor" href="#event"></a> event</h2>
+<p>所有事件都会自动传入event作为参数,内含所有的事件信息<br />
+$().on(<em>event</em>,function(event){...})</p>
+<pre><code>//打印触发click事件的元素名
+$('body').click((e)=&gt;alert(e.target.tagName)); //H!
+</code></pre>
+<h3 id="eventwidth-eventheight-获取元素宽高度"><a class="markdownIt-Anchor" href="#eventwidth-eventheight-获取元素宽高度"></a> event.width | event.height 获取元素宽/高度</h3>
+<p>获取/设置元素宽度/高度<br />
+width() //获取元素宽度<br />
+width(<em>number</em>) //设置元素宽度</p>
+<pre><code>$(window).width(); //1000
+$(window).height(); // 500
+
+//设置body宽度为100px;
+$('body').width(100)
+</code></pre>
+<h3 id="eventpagex"><a class="markdownIt-Anchor" href="#eventpagex"></a> event.pageX</h3>
+<p>鼠标位置(相对于窗口)</p>
+<pre><code>var body = $('body');
+body.mousemove(function(e)&#123;
+    console.log(e.pageX);
+&#125;)
+</code></pre>
+<h2 id="对象转化"><a class="markdownIt-Anchor" href="#对象转化"></a> 对象转化</h2>
+<h3 id="转换为jquery对象"><a class="markdownIt-Anchor" href="#转换为jquery对象"></a> 转换为jQuery对象</h3>
+<p>可以用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">函</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">将</mi><mi>j</mi><mi>s</mi><mi mathvariant="normal">对</mi><mi mathvariant="normal">象</mi><mi mathvariant="normal">转</mi><mi mathvariant="normal">换</mi><mi mathvariant="normal">成</mi><mi>j</mi><mi>Q</mi><mi>u</mi><mi>e</mi><mi>r</mi><mi>y</mi><mi mathvariant="normal">对</mi><mi mathvariant="normal">象</mi><mi mathvariant="normal">将</mi><mi>j</mi><mi>s</mi><mi mathvariant="normal">对</mi><mi mathvariant="normal">象</mi><mi mathvariant="normal">作</mi><mi mathvariant="normal">为</mi><mi mathvariant="normal">参</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">传</mi><mi mathvariant="normal">给</mi></mrow><annotation encoding="application/x-tex">函数将js对象转换成jQuery对象  
+将js对象作为参数传给</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord cjk_fallback">函</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">将</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault">s</span><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">象</span><span class="mord cjk_fallback">转</span><span class="mord cjk_fallback">换</span><span class="mord cjk_fallback">成</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault">Q</span><span class="mord mathdefault">u</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">象</span><span class="mord cjk_fallback">将</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault">s</span><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">象</span><span class="mord cjk_fallback">作</span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">参</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">给</span></span></span></span>函数,返回jQuery对象<br />
+$(<em>jsObj</em>)</p>
+<pre><code>var body = document.getElementsByTagName('body')
+$(body) instanceof jQuery; // true
+</code></pre>
+<h3 id="还原js对象"><a class="markdownIt-Anchor" href="#还原js对象"></a> 还原js对象</h3>
+<p>从jQuery中获取js对象有两种方式</p>
+<h4 id="-2"><a class="markdownIt-Anchor" href="#-2"></a> $()[]</h4>
+<p>可用[]号直接从jQuery中获取js对象</p>
+<pre><code>$(body)[0].tagName //&quot;BODY&quot;
+</code></pre>
+<h4 id="get-2"><a class="markdownIt-Anchor" href="#get-2"></a> get()</h4>
+<p>可用get函数将jQuery对象转换为js对象<br />
+$().get(<em>index</em>)</p>
+<pre><code>$(body).get(0).tagName //body
+</code></pre>
+<p>另需注意 each等方法传入的第二个参数是js对象,不是jQuery对象</p>
+<pre><code>$('body').each(function(i, node)&#123;
+    //node相当于this,是一个js对象
+    alert(node instanceof jQuery); //false
+    alert(node.tagName) // BODY
+&#125;)
+</code></pre>
+<h2 id="jquery对象遍历"><a class="markdownIt-Anchor" href="#jquery对象遍历"></a> jQuery对象遍历</h2>
+<h3 id="each"><a class="markdownIt-Anchor" href="#each"></a> each</h3>
+<p>遍历jQuery对象,为处理其中的所有节点<br />
+each中的函数将被传入两个参数,循环计数(从0开始)和js对象<br />
+$().each(function(index,node){})</p>
+<pre><code>$(&quot;div&quot;).each(function(i,node)&#123;
+    //node是js对象,需使用$()转换成jQuery对象
+    console.log($(node).text());
+&#125;)
+</code></pre>
+<p>注:index,node参数是可选的</p>
+<pre><code>$(&quot;div&quot;).each(function()&#123;
+    console.log(this);
+&#125;)
+</code></pre>
+<p>可用return结束每一循环</p>
+<pre><code>$(&quot;div&quot;).each(function(i,node)&#123;
+    console.log('1'); //1 1 1 1 1...
+    return;
+    //return后的代码不会被执行
+    console.log('2');
+&#125;)    
+</code></pre>
+<h3 id="map"><a class="markdownIt-Anchor" href="#map"></a> map</h3>
+<p>类似each,区别为map()返回一个新jQuery对象,内含所有return返回的值<br />
+$().map(function(index, node){return ...})</p>
+<pre><code>$('div').map(function(i)&#123;
+    return i;
+&#125;) //[0, 1, 2, 3, 4, 5, 6, 7, 8]
+</code></pre>
+<h3 id="is"><a class="markdownIt-Anchor" href="#is"></a> is</h3>
+<p>检查jQuery对像<br />
+$().is(<em>selector</em>) //检查对象是否符合css选择器规则<br />
+$().is(function(index){return }) //根据返回值判断<br />
+$().is(<em>Object</em> | <em>jQueryObj</em>) //检测jQ对象和传入对象是否是同一节点</p>
+<pre><code>//判断body是否是html的子元素
+$('body').is('html&gt;*') //true
+//判读$('body')获取的Dom节点和对象node是否是同一节点
+var node = document.querySelector('body');
+$('body').is(); //true
+//判断$('body')的元素名是否是&quot;BODY&quot;
+$('body').is(function(index)&#123;
+    //如果函数返回true,is()也返回true,反之亦然.
+    return this.tagName === &quot;BODY&quot;; //true
+&#125;)
+</code></pre>
+<h3 id="filter-过滤节点"><a class="markdownIt-Anchor" href="#filter-过滤节点"></a> filter 过滤节点</h3>
+<p>删除jQuery对象中不符合条件的节点<br />
+$().filter(<em>selector</em> | function(){})</p>
+<pre><code>$('html').children().each((i,node)=&gt; alert(node.tagName)); // HTML BODY
+//html不符合filter内选择器条件,被删除
+$('html').children().filter(&quot;body&quot;).each((i,node)=&gt; alert(node.tagName)); //BODY
+</code></pre>
+<p>也可传入一个函数作为参数<br />
+该函数将被传入两个参数(序号和Dom对象),通过返回true/false决定是否保留元素</p>
+<pre><code>$('html').children().filter(function(i, node)&#123;
+    return node.tagName === &quot;BODY&quot;;
+&#125;).each((i,node)=&gt; alert(node.tagName)) //BDOY
+</code></pre>
+<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
+<h3 id="hide-show"><a class="markdownIt-Anchor" href="#hide-show"></a> hide() | show()</h3>
+<p>隐藏/显示元素<br />
+$(<em>selector</em>).hide(<em>speed</em>,<em>callback</em>)<br />
+$(<em>selector</em>).show(<em>speed</em>,<em>callback</em>)</p>
+<pre><code>$('div').hide();
+$('div').show();
+</code></pre>
+<div class="c-1">试一试</div>
+<button class="hide-ele">隐藏</button>
+<button class="show-ele">显示</button>
+<script>
+$('.hide-ele').click(function(){
+    $(".c-1").hide();
+});
+$('.show-ele').click(function(){
+    $(".c-1").show();
+})
+</script>
+<p>speed 元素显示/隐藏速度,默认值为0</p>
+<ul>
+<li>'slow'</li>
+<li>'normal'</li>
+<li>'fast'</li>
+<li><em>number</em></li>
+</ul>
+<p>callback hide/show执行完后,要执行的函数,可选(必须设置speed,才能设置callback)</p>
+<p><button class="hide-show-page">隐藏后自动显示页面</button></p>
+<script>
+$('.hide-show-page').click(function(){
+    $("body").hide(1000, function(){
+        $("body").show();
+    });
+});
+</script>
+<pre><code>$('.hide-show-page').click(function()&#123;
+    $(&quot;body&quot;).hide(1000, function()&#123;
+        $(&quot;body&quot;).show();
+    &#125;);
+&#125;);
+</code></pre>
+<h3 id="toggle"><a class="markdownIt-Anchor" href="#toggle"></a> toggle()</h3>
+<p>toggle可切换元素的hide和show状态<br />
+$(<em>selector</em>).toggle(<em>speed</em>,<em>callback</em>)</p>
+<pre><code>$('div').toggle();
+</code></pre>
+<div class="c-2">试一试</div>
+<button class="toggle-ele">隐藏/显示</button>
+<script>
+$('.toggle-ele').click(function(){
+    $(".c-2").toggle();
+});
+</script>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/JavaScript-Array/">&lt;  JavaScript Array</a>
+      
+      
+        <a class="next" href="/article/CSS%E5%8A%A8%E7%94%BB/">CSS动画  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

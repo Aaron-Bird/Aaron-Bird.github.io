@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sequelize</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hello-world"><span class="toc-text"> hello world</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-text"> 创建表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E6%95%B0%E6%8D%AE"><span class="toc-text"> 新增数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create"><span class="toc-text"> create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bulkcreate"><span class="toc-text"> bulkCreate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findorcreate"><span class="toc-text"> findOrCreate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="toc-text"> 修改数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#update"><span class="toc-text"> update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#upsert"><span class="toc-text"> upsert</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="toc-text"> 查询数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#findall"><span class="toc-text"> findAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findandcountall"><span class="toc-text"> findAndCountAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findbypk"><span class="toc-text"> findByPk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findone"><span class="toc-text"> findOne</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#count"><span class="toc-text"> count</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-text"> 删除数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#destroy"><span class="toc-text"> destroy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#model"><span class="toc-text"> Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#option-%E5%8F%82%E6%95%B0"><span class="toc-text"> option 参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#where"><span class="toc-text"> where</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order"><span class="toc-text"> order</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">Sequelize</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2020-03-07T16:00:00.000Z">
+            2020-03-08
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/Sequelize/">
+              <span>Sequelize</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/Node/">
+            <span>Node</span>
+          </a>
+        
+          <a href="/tags/Sequelize/">
+            <span>Sequelize</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>Sequelize 是基于 Node 的 ORM 库, 支持的数据库有 Postgres | MySQL | MariaDB, SQLite | Microsoft SQL Server.<br />
+Sequelize 将数据库键值对映射成对象, 将增删改查操作映射成方法,抹平了不同数据库间的语法区别.</p>
+<h2 id="hello-world"><a class="markdownIt-Anchor" href="#hello-world"></a> hello world</h2>
+<p>安装 Sequelize</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add sequelize</span><br><span class="line">yarn add sqlite3</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>hello world</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Sequelize</span> = <span class="built_in">require</span>(<span class="string">&quot;sequelize&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建数据库连接</span></span><br><span class="line"><span class="keyword">const</span> db = <span class="keyword">new</span> <span class="title class_">Sequelize</span>(&#123;</span><br><span class="line">  <span class="attr">dialect</span>: <span class="string">&quot;sqlite&quot;</span>,</span><br><span class="line">  <span class="attr">storage</span>: <span class="string">&quot;./db.sqlite&quot;</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建表</span></span><br><span class="line"><span class="keyword">const</span> userTable = db.<span class="title function_">define</span>(<span class="string">&quot;user&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="title class_">Sequelize</span>.<span class="property">STRING</span>,</span><br><span class="line">  <span class="attr">age</span>: &#123;</span><br><span class="line">    <span class="comment">// data type</span></span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">Sequelize</span>.<span class="property">INTEGER</span>,</span><br><span class="line">    <span class="comment">// 默认值</span></span><br><span class="line">    <span class="attr">defaultValue</span>: <span class="number">18</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="comment">// 同步数据库</span></span><br><span class="line">  <span class="keyword">await</span> db.<span class="title function_">sync</span>();</span><br><span class="line">  <span class="comment">// 写入内容</span></span><br><span class="line">  <span class="keyword">await</span> userTable.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;anna&quot;</span>,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 关闭数据库</span></span><br><span class="line">  db.<span class="title function_">close</span>();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="创建表"><a class="markdownIt-Anchor" href="#创建表"></a> 创建表</h2>
+<p>Sequelize 会自动添加 createdAt 和 updatedAt, 分别对应创建时间和更新时间.可通过设置 timestamps: false 禁止自动添加 createdAt 和 updatedAt.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.<span class="title function_">define</span>(<span class="string">&quot;user&quot;</span>, &#123;&#125;, &#123; <span class="attr">timestamps</span>: <span class="literal">false</span> &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="新增数据"><a class="markdownIt-Anchor" href="#新增数据"></a> 新增数据</h2>
+<h3 id="create"><a class="markdownIt-Anchor" href="#create"></a> create</h3>
+<p>新增数据, 创建一个 model 并调用 save. <a target="_blank" rel="noopener" href="https://sequelize.org/master/class/lib/model.js~Model.html#static-method-create">Model | Sequelize</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> anna = <span class="keyword">await</span> userTable.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;anna&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">20</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(anna.<span class="property">name</span>, anna.<span class="property">age</span>);</span><br></pre></td></tr></table></figure>
+<p>可通过修改这个返回的 model 来更新表中所对应的数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">anna.<span class="property">age</span> = <span class="number">25</span>;</span><br><span class="line"><span class="keyword">await</span> anna.<span class="title function_">save</span>(); <span class="comment">// 调用 save 方法来同步修改</span></span><br></pre></td></tr></table></figure>
+<h3 id="bulkcreate"><a class="markdownIt-Anchor" href="#bulkcreate"></a> bulkCreate</h3>
+<p>批量新增, 返回一个数组,包含一组表示映射关系的 model. <a target="_blank" rel="noopener" href="https://sequelize.org/master/class/lib/model.js~Model.html#static-method-bulkCreate">Model | Sequelize</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user = [&#123; <span class="attr">name</span>: <span class="string">&quot;anna&quot;</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;, &#123; <span class="attr">name</span>: <span class="string">&quot;bob&quot;</span>, <span class="attr">age</span>: <span class="number">25</span> &#125;];</span><br><span class="line"><span class="keyword">const</span> userList = <span class="keyword">await</span> userTable.<span class="title function_">bulkCreate</span>(user);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> result) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i.<span class="property">userList</span>); <span class="comment">// anna bob;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="findorcreate"><a class="markdownIt-Anchor" href="#findorcreate"></a> findOrCreate</h3>
+<p>没有找到对应值则新增,有则不不做任何更改.<br />
+返回一个数组, 其中包含一个表示映射关系的 model,和一个表示是否是新增数据的布尔值.</p>
+<p>查找 name: &quot;anna&quot; 是否存在, 不存在时用 defaults 参数中的值新建.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [anna, isCreate] = <span class="keyword">await</span> userTable.<span class="title function_">findOrCreate</span>(&#123;</span><br><span class="line">  <span class="attr">defaults</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;david&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">20</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">&quot;david&quot;</span> &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(anna.<span class="property">name</span>, isCreate); <span class="comment">// david true</span></span><br></pre></td></tr></table></figure>
+<h2 id="修改数据"><a class="markdownIt-Anchor" href="#修改数据"></a> 修改数据</h2>
+<h3 id="update"><a class="markdownIt-Anchor" href="#update"></a> update</h3>
+<p>更新数据, 必须提供属性 where. <a target="_blank" rel="noopener" href="https://sequelize.org/master/class/lib/model.js~Model.html#static-method-update">Model | Sequelize</a><br />
+返回一个数组,包含两个数值.第一个数值为修改行数, 第二个值为实际影响的行数(? 仅支持 postgres )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> updateInfo = <span class="keyword">await</span> userTable.<span class="title function_">update</span>(</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&quot;ava&quot;</span>, <span class="attr">age</span>: <span class="number">22</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">&quot;anna&quot;</span> &#125; &#125; <span class="comment">// 将 name 值 anna 更改为 ava</span></span><br><span class="line">);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(updateInfo); <span class="comment">// [ 1 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="upsert"><a class="markdownIt-Anchor" href="#upsert"></a> upsert</h3>
+<p>符合条件则修改该行数据, 未找到则新增一行数据. <a target="_blank" rel="noopener" href="https://sequelize.org/master/class/lib/model.js~Model.html#static-method-upsert">Model | Sequelize</a><br />
+返回一个布尔值, 表示该操作是新增还是修改.(不同数据库的返回值各不相同, sqlite 不返回任何值, 详见官方文档).</p>
+<p>upsert 只根据参数的 主键/设置了唯一标识( unique: true) 来判断是否更新某行, 不支持 where.</p>
+<p>务必要保证提供了 主键(例如 id)/设置了唯一标识的参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> userTable.<span class="title function_">upsert</span>(&#123; <span class="attr">name</span>: <span class="string">&quot;liam&quot;</span>, <span class="attr">age</span>: <span class="number">25</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;);</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">const</span> userTable = db.<span class="title function_">define</span>(<span class="string">&quot;user&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">name</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">Sequelize</span>.<span class="property">STRING</span>,</span><br><span class="line">    <span class="attr">unique</span>: <span class="literal">true</span>, <span class="comment">// 唯一标识</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">await</span> db.<span class="title function_">sync</span>(&#123;&#125;); <span class="comment">// 注意: 不要使用 alter: true, 这个参数不会同步 unique 标识. (尚不知这是否是 bug)</span></span><br><span class="line"><span class="keyword">await</span> userTable.<span class="title function_">upsert</span>(&#123; <span class="attr">name</span>: <span class="string">&quot;liam&quot;</span>, <span class="attr">age</span>: <span class="number">25</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>错误示例, 只会插入一行新数据:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> liam = userTable.<span class="title function_">build</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;liam&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">20</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">await</span> liam.<span class="title function_">save</span>();</span><br><span class="line"><span class="keyword">await</span> userTable.<span class="title function_">upsert</span>(&#123; <span class="attr">name</span>: <span class="string">&quot;liam&quot;</span>, <span class="attr">age</span>: <span class="number">25</span> &#125;, &#123; <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">&quot;liam&quot;</span> &#125; &#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/611029fc.PNG" alt="捕获.PNG" /></p>
+<h2 id="查询数据"><a class="markdownIt-Anchor" href="#查询数据"></a> 查询数据</h2>
+<h3 id="findall"><a class="markdownIt-Anchor" href="#findall"></a> findAll</h3>
+<p>获取多行数据,可用 where 参数设置查询条件.<br />
+返回一个数组, 包含匹配到的 model.未找到到时返回空数组.</p>
+<p>返回所有数据:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findList = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> findList) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i.<span class="property">name</span>); anna  ava liam</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 where 设置过滤条件:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findList = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123;</span><br><span class="line">  <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">&quot;anna&quot;</span> &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> findList) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i.<span class="property">name</span>);</span><br><span class="line">  anna;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可通过 limit 设置返回的行数<br />
+只返回一条记录:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findList = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123; <span class="attr">limit</span>: <span class="number">1</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>设置排序,其中的 ASC 表示升序, DESC 表示降序<br />
+按 name 降序排列. 如果 name 值相同, 则相同值按 age 升序排列:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findList = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123;</span><br><span class="line">  <span class="attr">order</span>: [[<span class="string">&quot;name&quot;</span>, <span class="string">&quot;DESC&quot;</span>], [<span class="string">&quot;age&quot;</span>, <span class="string">&quot;ASC&quot;</span>]],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>设置偏移量(起始位置):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123; <span class="attr">offset</span>: <span class="number">2</span> &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="findandcountall"><a class="markdownIt-Anchor" href="#findandcountall"></a> findAndCountAll</h3>
+<p>类似 findAll, 同样支持 where offset limit order 等参数.</p>
+<p>区别为除了返回匹配到的数据之外,还返回所匹配的行数.<br />
+其返回一个对象, 其包含两个属性: count 和 rows.<br />
+count 为匹配数据的总数, 受 where 影响, 但不受 offset limit 影响.<br />
+rows 为匹配到的数据(即 findAll 的返回值).</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> findInfo = <span class="keyword">await</span> userTable.<span class="title function_">findAndCountAll</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(findInfo.<span class="property">count</span>); <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 where 后, count 减少</span></span><br><span class="line">findInfo = <span class="keyword">await</span> userTable.<span class="title function_">findAndCountAll</span>(&#123; <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">&quot;ava&quot;</span> &#125; &#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(findInfo.<span class="property">count</span>); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不受 limit 影响,仍然返回了所匹配数据的总数</span></span><br><span class="line">findInfo = <span class="keyword">await</span> userTable.<span class="title function_">findAndCountAll</span>(&#123; <span class="attr">limit</span>: <span class="number">1</span> &#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(findInfo.<span class="property">count</span>); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>通过 limit offset 实现分页功能:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * currentPage 当前页码, 从 1 开始</span></span><br><span class="line"><span class="comment"> * pageSize 每页展示数量</span></span><br><span class="line"><span class="comment"> * return &#123;</span></span><br><span class="line"><span class="comment"> *  count, 总数</span></span><br><span class="line"><span class="comment"> *  rows 表数据</span></span><br><span class="line"><span class="comment"> *  &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">pagation</span>(<span class="params">currentPage, pageSize</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> userTable.<span class="title function_">findAndCountAll</span>(&#123;</span><br><span class="line">    <span class="attr">offset</span>: (currentPage - <span class="number">1</span>) * pageSize,</span><br><span class="line">    <span class="attr">limit</span>: pageSize,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获取第 2 页的数据, 每页 3 个</span></span><br><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> <span class="title function_">pagation</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="property">count</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> result.<span class="property">rows</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="findbypk"><a class="markdownIt-Anchor" href="#findbypk"></a> findByPk</h3>
+<p>通过主键获取数据, 未找到时返回 null.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> model = <span class="keyword">await</span> userTable.<span class="title function_">findByPk</span>(<span class="number">1</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(model.<span class="property">name</span>); <span class="comment">// anna</span></span><br></pre></td></tr></table></figure>
+<h3 id="findone"><a class="markdownIt-Anchor" href="#findone"></a> findOne</h3>
+<p>返回找到的第一个 model,相当于 findAll({limit: 1}).<br />
+未找到时返回 null.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> model = <span class="keyword">await</span> userTable.<span class="title function_">findOne</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(model.<span class="property">name</span>); <span class="comment">// anna</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> model = <span class="keyword">await</span> userTable.<span class="title function_">findOne</span>(&#123;</span><br><span class="line">  <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">&quot;ava&quot;</span> &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(model.<span class="property">name</span>); <span class="comment">// ava</span></span><br></pre></td></tr></table></figure>
+<h3 id="count"><a class="markdownIt-Anchor" href="#count"></a> count</h3>
+<p>返回匹配的记录行数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> count = <span class="keyword">await</span> userTable.<span class="title function_">count</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(count); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<p>使用 where 参数过滤匹配条件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> count = <span class="keyword">await</span> userTable.<span class="title function_">count</span>(&#123;</span><br><span class="line">  <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">&quot;anna&quot;</span> &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(count); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h2 id="删除数据"><a class="markdownIt-Anchor" href="#删除数据"></a> 删除数据</h2>
+<h3 id="destroy"><a class="markdownIt-Anchor" href="#destroy"></a> destroy</h3>
+<p>删除匹配的记录, 必须提供 where 参数.<br />
+返回一个数值,表示删了几行.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> count = <span class="keyword">await</span> userTable.<span class="title function_">destroy</span>(&#123;</span><br><span class="line">  <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">&quot;anna&quot;</span> &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(count); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h2 id="model"><a class="markdownIt-Anchor" href="#model"></a> Model</h2>
+<p>Model 实例是对表行的映射</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建 model</span></span><br><span class="line"><span class="keyword">const</span> liam = userTable.<span class="title function_">build</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;liam&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">20</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用 save 将操作同步到数据库中</span></span><br><span class="line"><span class="keyword">await</span> liam.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改 model</span></span><br><span class="line">liam.<span class="property">age</span> = <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除 model</span></span><br><span class="line"><span class="keyword">await</span> liam.<span class="title function_">destroy</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> liam.<span class="title function_">save</span>();</span><br></pre></td></tr></table></figure>
+<p>对于某些类型(例如 Sequelize.JSON), 只调用 model.save 可能不起作用.<br />
+需要在 调用 save 方法前 调用 changed(key name, true) 方法.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">model.<span class="title function_">changed</span>(<span class="string">&quot;value&quot;</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="comment">// model.set(&#x27;value&#x27;, this.settingModel.value);</span></span><br><span class="line"><span class="keyword">await</span> model.<span class="title function_">save</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="option-参数"><a class="markdownIt-Anchor" href="#option-参数"></a> option 参数</h2>
+<h3 id="where"><a class="markdownIt-Anchor" href="#where"></a> where</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/demopark/sequelize-docs-Zh-CN/blob/v5/querying.md#where">sequelize-docs-Zh-CN/querying.md at v5 · demopark/sequelize-docs-Zh-CN · GitHub</a></p>
+<p>获取字段 name 值为 anna 的所有记录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findList = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123; <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">&quot;anna&quot;</span> &#125; &#125;);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> findList) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i.<span class="property">name</span>);</span><br><span class="line">  anna;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>where 还支持运算符操作 <a target="_blank" rel="noopener" href="https://github.com/demopark/sequelize-docs-Zh-CN/blob/v5/querying.md#%E6%93%8D%E4%BD%9C%E7%AC%A6">sequelize-docs-Zh-CN/querying.md at v5 · demopark/sequelize-docs-Zh-CN · GitHub</a><br />
+先载入 Op 对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Op</span> = <span class="title class_">Sequelize</span>.<span class="property">Op</span>;</span><br></pre></td></tr></table></figure>
+<p>或操作,返回所有 name 值为 anna 或 ava 的记录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findList = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123;</span><br><span class="line">  <span class="attr">where</span>: &#123;</span><br><span class="line">    [<span class="title class_">Op</span>.<span class="property">or</span>]: [&#123; <span class="attr">name</span>: <span class="string">&quot;anna&quot;</span> &#125;, &#123; <span class="attr">name</span>: <span class="string">&quot;ava&quot;</span> &#125;],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>另一种写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findList = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123;</span><br><span class="line">  <span class="attr">where</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: &#123;</span><br><span class="line">      [<span class="title class_">Op</span>.<span class="property">or</span>]: [<span class="string">&quot;anna&quot;</span>, <span class="string">&quot;ava&quot;</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>返回所有年龄在范围 [20, 25] 内的记录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findList = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123;</span><br><span class="line">  <span class="attr">where</span>: &#123;</span><br><span class="line">    <span class="attr">age</span>: &#123;</span><br><span class="line">      [<span class="title class_">Op</span>.<span class="property">in</span>]: [<span class="number">20</span>, <span class="number">25</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>返回 name 值包含 an 字母的记录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findList = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123;</span><br><span class="line">  <span class="attr">where</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: &#123;</span><br><span class="line">      [<span class="title class_">Op</span>.<span class="property">like</span>]: <span class="string">&quot;%an%&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>返回 name 值含有字母 a, 或 age 值为 20 的记录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findModel = <span class="keyword">await</span> userTable.<span class="title function_">findAll</span>(&#123;</span><br><span class="line">  <span class="attr">where</span>: &#123;</span><br><span class="line">    [<span class="title class_">Op</span>.<span class="property">or</span>]: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">name</span>: &#123;</span><br><span class="line">          [<span class="title class_">Op</span>.<span class="property">substring</span>]: <span class="string">&quot;a&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">age</span>: &#123;</span><br><span class="line">          [<span class="title class_">Op</span>.<span class="property">eq</span>]: <span class="number">20</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="order"><a class="markdownIt-Anchor" href="#order"></a> order</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/demopark/sequelize-docs-Zh-CN/blob/v5/querying.md#%E6%8E%92%E5%BA%8F">sequelize-docs-Zh-CN/querying.md at v5 · demopark/sequelize-docs-Zh-CN · GitHub</a></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://demopark.github.io/sequelize-docs-Zh-CN/">Sequelize Docs 中文版 | sequelize-docs-Zh-CN</a><br />
+<a target="_blank" rel="noopener" href="https://sequelize.org/master/class/lib/model.js~Model.html">Model | Sequelize</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/URL/">&lt;  URL</a>
+      
+      
+        <a class="next" href="/article/child_process/">child_process  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

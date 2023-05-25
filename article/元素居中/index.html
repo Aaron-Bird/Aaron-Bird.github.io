@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>元素居中</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="toc-text"> 水平居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%86%85%E8%81%94%E5%85%83%E7%B4%A0%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="toc-text"> 行内(内联)元素水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="toc-text"> 块状元素水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="toc-text"> 多个块状元素水平居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text"> 垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E8%A1%8C%E5%86%85%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text"> 行内元素|行内块状元素垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C"><span class="toc-text"> 单行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C"><span class="toc-text"> 多行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0"><span class="toc-text"> 块状元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B7%B2%E7%9F%A5"><span class="toc-text"> 块状元素高度已知</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0%E6%9C%AA%E7%9F%A5%E9%AB%98%E5%BA%A6"><span class="toc-text"> 块状元素未知高度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E5%A4%96%E8%BE%B9%E8%B7%9D%E7%9A%84%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0"><span class="toc-text"> 无外边距的块状元素</span></a></li></ol></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">元素居中</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-11-29T01:21:00.000Z">
+            2017-11-29
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/CSS/">
+              <span>CSS</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/CSS/">
+            <span>CSS</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://css-tricks.com/centering-css-complete-guide/">Centering in CSS: A Complete Guide</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/35113393">position:absolute和margin:auto连用居中的原理</a></p>
+<h2 id="水平居中"><a class="markdownIt-Anchor" href="#水平居中"></a> 水平居中</h2>
+<h3 id="行内内联元素水平居中"><a class="markdownIt-Anchor" href="#行内内联元素水平居中"></a> 行内(内联)元素水平居中</h3>
+<pre><code>.box&#123;text-align: center;&#125;
+</code></pre>
+<style>
+    .box-1 {width:200px;border:1px solid;}
+</style>
+<div class="box-1" style="text-align:center">
+    <span>inline element</span>
+</div>
+<pre><code>&lt;style&gt;
+    .box-1 &#123;width:200px;border:1px solid;&#125;
+&lt;/style&gt;
+&lt;div class=&quot;box-1&quot; style=&quot;text-align:center&quot;&gt;
+    &lt;span&gt;inline element&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="块状元素水平居中"><a class="markdownIt-Anchor" href="#块状元素水平居中"></a> 块状元素水平居中</h3>
+<pre><code>.child&#123;margin: 0 auto;&#125;
+</code></pre>
+<style>
+    .box-2 {width:200px;border:1px solid;}
+    .child-2 {background:yellow;width:100px;height:20px;}
+</style>
+<div class="box-2">
+    <div class="child-2" style="margin: 0 auto"></div>
+</div>
+<pre><code>&lt;style&gt;
+    .box-2 &#123;width:200px;border:1px solid;&#125;
+    .child-2 &#123;background:yellow;width:100px;height:20px;&#125;
+&lt;/style&gt;
+&lt;div class=&quot;box-2&quot;&gt;
+    &lt;div class=&quot;child-2&quot; style=&quot;margin: 0 auto&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="多个块状元素水平居中"><a class="markdownIt-Anchor" href="#多个块状元素水平居中"></a> 多个块状元素水平居中</h3>
+<p>1  转换为行内块元素</p>
+<pre><code>.box&#123;text-align:center;&#125;
+.child&#123;display: inline-block;&#125;  
+</code></pre>
+<style>
+    .box-3 {width:200px;border:1px solid;}
+    .child-3 {background:yellow;width:50px;height:20px;}
+</style>        
+<div class="box-3" style="text-align: center">
+    <div class="child-3" style="display:inline-block;">1</div>
+    <div class="child-3" style="display:inline-block;">2</div>
+</div>
+<pre><code>&lt;style&gt;
+    .box-3 &#123;width:200px;border:1px solid;&#125;
+    .child-3 &#123;background:yellow;width:50px;height:20px;&#125;
+&lt;/style&gt;        
+&lt;div class=&quot;box-3&quot; style=&quot;text-align: center&quot;&gt;
+    &lt;div class=&quot;child-3&quot; style=&quot;display:inline-block;&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child-3&quot; style=&quot;display:inline-block;&quot;&gt;2&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>内联块元素默认对齐基线,所以父容器底部会空出来一块</p>
+<style>
+    .box-31 {width:200px;border:1px solid;font-size:0;}
+    .child-31 {background:yellow;width:50px;height:20px;font-size:14px;}
+</style>        
+<div class="box-31" style="text-align: center">
+    <div class="child-31" style="display:inline-block;">1</div>
+    <div class="child-31" style="display:inline-block;">2</div>
+</div>
+<pre><code>&lt;style&gt;
+    .box-31 &#123;width:200px;border:1px solid;font-size:0;&#125;
+    .child-31 &#123;background:yellow;width:50px;height:20px;font-size:14px;&#125;
+&lt;/style&gt;        
+&lt;div class=&quot;box-31&quot; style=&quot;text-align: center&quot;&gt;
+    &lt;div class=&quot;child-31&quot; style=&quot;display:inline-block;&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child-31&quot; style=&quot;display:inline-block;&quot;&gt;2&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>2 利用flex布局</p>
+<pre><code>.box&#123;
+    display: flex;
+    justify-content: center;
+&#125;
+</code></pre>
+<style>
+    .box-4 {width:200px;border:1px solid;}
+    .child-4 {background:yellow;width:50px;height:20px;}
+</style> 
+<div class="box-4" style="text-align: center">
+    <div class="child-4" style="display:inline-block;">1</div>
+    <div class="child-4" style="display:inline-block;">2</div>
+</div>
+<pre><code>&lt;style&gt;
+    .box-4 &#123;width:200px;border:1px solid;&#125;
+    .child-4 &#123;background:yellow;width:50px;height:20px;&#125;
+&lt;/style&gt; 
+&lt;div class=&quot;box-4&quot; style=&quot;text-align: center&quot;&gt;
+    &lt;div class=&quot;child-4&quot; style=&quot;display:inline-block;&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child-4&quot; style=&quot;display:inline-block;&quot;&gt;2&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="垂直居中"><a class="markdownIt-Anchor" href="#垂直居中"></a> 垂直居中</h2>
+<h3 id="行内元素行内块状元素垂直居中"><a class="markdownIt-Anchor" href="#行内元素行内块状元素垂直居中"></a> 行内元素|行内块状元素垂直居中</h3>
+<h4 id="单行"><a class="markdownIt-Anchor" href="#单行"></a> 单行</h4>
+<p>1 利用父容器内边距垂直居中</p>
+<pre><code>    .box &#123;
+        padding-top:30px;
+        padding-bottom:30px;
+    &#125;
+</code></pre>
+<style>
+    .box-5 {width:200px;border:1px solid;}
+    .child-5 {background:yellow;}
+</style>     
+<div class="box-5" style="padding:20px 0 ;">
+    <span class="child-5">inline</span>
+</div>        
+<pre><code>&lt;style&gt;
+    .box-5 &#123;width:200px;border:1px solid;&#125;
+    .child-5 &#123;background:yellow;&#125;
+&lt;/style&gt;     
+&lt;div class=&quot;box-5&quot; style=&quot;padding:20px 0 ;&quot;&gt;
+    &lt;span class=&quot;child-5&quot;&gt;inline&lt;/span&gt;
+&lt;/div&gt; 
+</code></pre>
+<p>2 容器高度固定,利用行高垂直居中</p>
+<pre><code>.box &#123;
+    height:100px;
+    line-height:100px;
+&#125;
+</code></pre>
+<style>
+    .box-6 {width:200px;border:1px solid;}
+    .child-6 {background:yellow;}
+</style>     
+<div class="box-6" style="height:40px;line-height:40px;">
+    <span class="child-6">inline</span>
+</div>   
+<h4 id="多行"><a class="markdownIt-Anchor" href="#多行"></a> 多行</h4>
+<p>1 利用表的特性</p>
+<pre><code>.box&#123;display:table;vertical-align:middle;&#125;
+.child&#123;display:table-cell;vertical-align:middle;&#125;
+</code></pre>
+<style>
+    .box-7 {width:200px;height:100px;border:1px solid;}
+</style>
+<div class="box-7" style="display:table;">
+    <span style="display:table-cell;vertical-align:middle;">
+        Alice was beginning to get very tired of sitting by her sister on the bank
+    </span>
+</div>
+<pre><code>&lt;style&gt;
+    .box-7 &#123;width:200px;height:100px;border:1px solid;&#125;
+&lt;/style&gt;
+&lt;div class=&quot;box-7&quot; style=&quot;display:table;&quot;&gt;
+    &lt;span style=&quot;display:table-cell;vertical-align:middle;&quot;&gt;
+        Alice was beginning to get very tired of sitting by her sister on the bank
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<p>2 利用伪元素和vertical-align:middle</p>
+<pre><code>.box::before &#123;
+    content: &quot;&quot;;
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+&#125;
+.child &#123;
+    display: inline-block;
+    vertical-align: middle;
+&#125;
+</code></pre>
+<style type="text/css">
+    .box-8 {
+        width: 200px;
+        height: 150px;
+        border: 1px solid;
+    }
+    .child-8 {
+        width: 180px;
+        background: green;
+    }
+    /*添加伪元素*/
+    .box-8:before {
+        content:"";
+        display: inline-block;
+        width: 4px;
+        height: 100%;
+        background: yellow;
+        vertical-align: middle;
+    }
+</style>
+<div class="box-8">
+    <span class="child-8" style="display:inline-block;vertical-align: middle;">
+        Alice was beginning to get very tired of sitting by her sister on the bank
+    </span>
+</div>        
+<pre><code>&lt;style type=&quot;text/css&quot;&gt;
+    .box-8 &#123;
+        width: 200px;
+        height: 150px;
+        border: 1px solid;
+    &#125;
+    .child-8 &#123;
+        width: 180px;
+        background: green;
+    &#125;
+    /*添加伪元素*/
+    .box-8:before &#123;
+        content:&quot;&quot;;
+        display: inline-block;
+        width: 4px;
+        height: 100%;
+        background: yellow;
+        vertical-align: middle;
+    &#125;
+&lt;/style&gt;
+&lt;div class=&quot;box-8&quot;&gt;
+    &lt;span class=&quot;child-8&quot; style=&quot;display:inline-block;vertical-align: middle;&quot;&gt;
+        Alice was beginning to get very tired of sitting by her sister on the bank
+    &lt;/span&gt;
+&lt;/div&gt;      
+</code></pre>
+<p>inline-block元素间有缝隙,当子元素宽度为100%时会被挤下去(伪元素width:0也一样)</p>
+<style type="text/css">
+    .box-9 {
+        width:200px;
+        height:100px;
+        border:1px solid;
+    }
+    .child-9 {
+        background: green;
+    }
+    /*添加伪元素*/
+    .box-9:before {
+        content:"";
+        display: inline-block;
+        width:4px;
+        height:100%;
+        background:yellow;
+        vertical-align: middle;
+    }
+</style>
+<div class="box-9">
+    <span class="child-9" style="width: calc(100% - 4px);display:inline-block;vertical-align: middle;">
+        My width is 100% - 4px;
+    </span>
+</div>    
+<br>
+<br>
+<h3 id="块状元素"><a class="markdownIt-Anchor" href="#块状元素"></a> 块状元素</h3>
+<h4 id="块状元素高度已知"><a class="markdownIt-Anchor" href="#块状元素高度已知"></a> 块状元素高度已知</h4>
+<pre><code>position: absolute;
+height: 100px;
+top: 50%;
+margin-top: -50px;
+</code></pre>
+<style>
+   .box-10 {
+        width:200px;
+        height:100px;
+        position: relative;
+        border: 1px solid;
+   }
+   .child-10 {
+        position: absolute;
+        top:50%;
+        margin-top: -30px;
+        width:50px;
+        height:60px;
+        background:yellow;
+   } 
+</style>
+<div class="box-10">
+    <div class="child-10"></div>
+</div> 
+<pre><code>&lt;style&gt;
+   .box-10 &#123;
+        width:200px;
+        height:100px;
+        position: relative;
+        border: 1px solid;
+   &#125;
+   .child-10 &#123;
+        position: absolute;
+        top:50%;
+        margin-top: -30px;
+        width:50px;
+        height:60px;
+        background:yellow;
+   &#125; 
+&lt;/style&gt;
+&lt;div class=&quot;box-10&quot;&gt;
+    &lt;div class=&quot;child-10&quot;&gt;&lt;/div&gt;
+&lt;/div&gt; 
+</code></pre>
+<h4 id="块状元素未知高度"><a class="markdownIt-Anchor" href="#块状元素未知高度"></a> 块状元素未知高度</h4>
+<pre><code>display:absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+</code></pre>
+<style>
+   .box-11 {
+        width:200px;
+        height:100px;
+        position: relative;
+        border: 1px solid;
+   }
+   .child-11 {
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width:50px;
+        height: 30%;
+        background:yellow;
+   } 
+</style>
+<div class="box-11">
+    <div class="child-11"></div>
+</div> 
+<pre><code>&lt;style&gt;
+    .box-11 &#123;
+        width:200px;
+        height:100px;
+        position: relative;
+        border: 1px solid;
+    &#125;
+    .child-11 &#123;
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width:50px;
+        height: 30%;
+        background:yellow;
+    &#125; 
+&lt;/style&gt;
+&lt;div class=&quot;box-11&quot;&gt;
+    &lt;div class=&quot;child-11&quot;&gt;&lt;/div&gt;
+&lt;/div&gt; 
+</code></pre>
+<p>absolute会导致margin: 0 auto失效,可用.box{left: 50%; transform: translateX(-50%);}代替</p>
+<h4 id="无外边距的块状元素"><a class="markdownIt-Anchor" href="#无外边距的块状元素"></a> 无外边距的块状元素</h4>
+<pre><code>display:absolute;
+top:0;
+bottom:0;
+left:0;
+right:0;
+margin: auto;   
+</code></pre>
+<style>
+   .box-12 {
+        width:100px;
+        height:100px;
+        position: relative;
+        border: 1px solid;
+   }
+   .child-12 {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width:50px;
+        height: 50px;
+        background:yellow;
+   } 
+</style>
+<div class="box-12">
+    <div class="child-12"></div>
+</div> 
+<pre><code>&lt;style&gt;
+   .box-12 &#123;
+        width:100px;
+        height:100px;
+        position: relative;
+        border: 1px solid;
+   &#125;
+   .child-12 &#123;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width:50px;
+        height: 50px;
+        background:yellow;
+   &#125; 
+&lt;/style&gt;
+&lt;div class=&quot;box-12&quot;&gt;
+    &lt;div class=&quot;child-12&quot;&gt;&lt;/div&gt;
+&lt;/div&gt; </code></pre>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/%E8%B4%9F%E5%A4%96%E8%BE%B9%E8%B7%9D%E7%9A%84%E5%BD%B1%E5%93%8D/">&lt;  负外边距的影响</a>
+      
+      
+        <a class="next" href="/article/%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87-BFC/">块格式化上下文 BFC (Block Formatting Context)  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

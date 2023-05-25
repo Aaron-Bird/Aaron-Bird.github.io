@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Array</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-text"> 速查表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="toc-text"> 实例化(创建)数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0"><span class="toc-text"> 访问数组元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#slice"><span class="toc-text"> slice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E9%95%BF%E5%BA%A6"><span class="toc-text"> 数组长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD"><span class="toc-text"> 判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E6%98%AF%E6%95%B0%E7%BB%84"><span class="toc-text"> 判断对象是否是数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%85%83%E7%B4%A0%E6%98%AF%E5%90%A6%E5%9C%A8%E6%95%B0%E7%BB%84"><span class="toc-text"> 判断元素是否在数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-text"> 添加元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#push"><span class="toc-text"> push</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unshift"><span class="toc-text"> unshift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat"><span class="toc-text"> concat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#splice"><span class="toc-text"> splice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text"> 删除元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pop"><span class="toc-text"> pop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shift"><span class="toc-text"> shift</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E6%8B%B7%E8%B4%9D%E5%A4%8D%E5%88%B6"><span class="toc-text"> 数组的拷贝(复制)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text"> 浅拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-text"> 深拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text"> 数组转字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tostring"><span class="toc-text"> toString</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join"><span class="toc-text"> join</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="toc-text"> 字符串转数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-text"> 数组的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for"><span class="toc-text"> for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-in"><span class="toc-text"> for in</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-of"><span class="toc-text"> for of</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F"><span class="toc-text"> 数组排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sort"><span class="toc-text"> sort</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BF%BB%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="toc-text"> 翻转数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%BA%8F"><span class="toc-text"> 随机排序</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">JavaScript Array</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2017-12-18T15:27:00.000Z">
+            2017-12-18
+          </time>
+        
+        <!-- categories -->
+        <!--
+          <span class="icon-baseline-work_outline-24px"></span>
+          
+            <a href="/categories/JavaScript/">
+              <span>JavaScript</span>
+            </a>
+          
+        -->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+          <a href="/tags/JavaScript/">
+            <span>JavaScript</span>
+          </a>
+        
+          <a href="/tags/Array/">
+            <span>Array</span>
+          </a>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>数组是一种数据结构,内含一组有序元素.在js中,数组也是对象</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/ziyunfei/archive/2012/11/05/2754156.html">Object.prototype.toString方法的原理 紫云飞</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array">How can I shuffle an array? stackoverflow</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range">获取两个数间的随机数 stackoverflow</a></p>
+<h2 id="速查表"><a class="markdownIt-Anchor" href="#速查表"></a> 速查表</h2>
+<p><img src="/img/arraymind.PNG" alt="" /></p>
+<h2 id="实例化创建数组"><a class="markdownIt-Anchor" href="#实例化创建数组"></a> 实例化(创建)数组</h2>
+<p>有两种方式创建数组<br />
+1 通过Array构造函数创建数组<br />
+new Array()<br />
+new Array(<em>length</em> | <em>element1</em>, element2...)</p>
+<pre><code>//不传入参数,返回空数组
+var arr = new Array();
+console.log(arr) //[]
+
+//传入单个整数,返回该整数长度的空数组
+var arr = new Array(3)
+console.log(arr); //[empty × 3]
+
+//传入单个非数字/多个对象,返回包含这些对象的数组
+var arr = new Arry('3');
+console.log(arr); //[&quot;3&quot;]
+</code></pre>
+<p>注意 传入单个非整数数字会报错</p>
+<pre><code>var arr = new Array(3.1)
+console.log(arr); //RangeError: Invalid array length
+</code></pre>
+<p>2 通过声明数组自面量的方式创建数组对象<br />
+[] // 创建一个空数组<br />
+[<em>element1</em>, <em>element2</em>,...] //创建一个数组,内含元素 element1 element2 ...</p>
+<pre><code>var array = [1, 2, 3]
+console.log(array) // [1, 2, 3]
+</code></pre>
+<p>字面量(literal)是一种值的表示方法.看到该值,就能立刻明白该值是什么对象<br />
+1 true null {num:1}都是一种字面量<br />
+例如 数字17有很多种表示方法</p>
+<pre><code>var num = 17 // 十进制
+var num = 0b10001 // 2进制
+var num = 0x11 // 16进制
+</code></pre>
+<h2 id="访问数组元素"><a class="markdownIt-Anchor" href="#访问数组元素"></a> 访问数组元素</h2>
+<p>可用一对中括号获取/设置数组元素<br />
+<em>array</em>[<em>index</em>]<br />
+index 数组元素的索引(),从0开始计数</p>
+<pre><code>// 获取数组的第一个元素
+var arr = [1, 2, 3]
+arr[0] // 1
+</code></pre>
+<p>也可用中括号修改指定的数组元素</p>
+<pre><code>// 更改数组的第一个元素
+arr[0] = 'a'
+console.log(arr) //  [&quot;a&quot;, 2, 3]
+</code></pre>
+<h3 id="slice"><a class="markdownIt-Anchor" href="#slice"></a> slice</h3>
+<p>获取一段数组元素,返回该段元素组成的新数组<br />
+<em>array</em>.slice()  //如果参数为空,则返回包含所有元素的新数组<br />
+<em>array</em>.slice(<em>startIndex</em>)<br />
+<em>array</em>.slice(<em>startIndex</em>, <em>endIndex</em>)</p>
+<pre><code>var arr = [1, 2, 3];
+arr.slice(0) // [1, 2, 3]
+arr.slice(1) //  [2, 3]
+</code></pre>
+<p>指针也可以从后向前计数,从-1开始</p>
+<pre><code>//获取倒数第一个元素
+arr.slice(-1) // [3]
+</code></pre>
+<p>注意 所获元素不包含<em>endIndex</em></p>
+<pre><code>//不包含最后一个元素
+arr.slice(0,2) // [1, 2]
+arr.slice(0,-1) //[1, 2]
+</code></pre>
+<h2 id="数组长度"><a class="markdownIt-Anchor" href="#数组长度"></a> 数组长度</h2>
+<p>可用length属性获得/更改数组长度<br />
+array.length //返回数组长度<br />
+array.length = <em>num</em> //设置数组长度</p>
+<pre><code>var arr = [1, 2, 3];
+arr.length // 3
+
+arr.length = 10
+console.log(arr) //  [1, 2, 3, empty × 7]
+//更改数组长度为1,相当于除第一个外的数组元素都被删除了
+arr.length = 1
+console.log(arr) //[1]
+</code></pre>
+<h2 id="判断"><a class="markdownIt-Anchor" href="#判断"></a> 判断</h2>
+<h3 id="判断对象是否是数组"><a class="markdownIt-Anchor" href="#判断对象是否是数组"></a> 判断对象是否是数组</h3>
+<p>Object.prototype.toString.call(object) === '[object Array]'<br />
+把toSring方法中的this指向需判断的对象,以此来获取内部Class属性值(只有这一个方法能取到)</p>
+<pre><code>Object.prototype.toString() //&quot;[object Object]&quot;
+
+Object.prototype.toString.call([]) === '[object Array]';  //true
+Object.prototype.toString.call(&#123;&#125;) === '[object Array]';  //false
+</code></pre>
+<p>apply也一样</p>
+<pre><code>Object.prototype.toString.apply([]) // &quot;[object Array]&quot;
+</code></pre>
+<h3 id="判断元素是否在数组"><a class="markdownIt-Anchor" href="#判断元素是否在数组"></a> 判断元素是否在数组</h3>
+<p><em>array</em>.indexOf() // 返回该元素的下标,未找到返回 -1</p>
+<pre><code>['a'].indexOf('a') // 0
+['a'].indexOf('b') // -1
+'a'.indexOf('a') // 0
+'aba'.indexOf('a',1) // 0 第二个参数定义起始搜索位置
+</code></pre>
+<h2 id="添加元素"><a class="markdownIt-Anchor" href="#添加元素"></a> 添加元素</h2>
+<h3 id="push"><a class="markdownIt-Anchor" href="#push"></a> push</h3>
+<p>可通过push方法向数组尾部添加多个元素<br />
+array.push(<em>element1</em>, <em>element2</em>,...)</p>
+<pre><code>var arr = [];
+arr.push(1);
+console.log(arr) // [1]
+</code></pre>
+<p>可同时添加多个元素,元素间用逗号隔开</p>
+<pre><code>arr.push(2,3); 
+console.log(arr) // [1, 2, 3]
+</code></pre>
+<h3 id="unshift"><a class="markdownIt-Anchor" href="#unshift"></a> unshift</h3>
+<p>可通过push方法向数组头部插入元素<br />
+array.unshift(<em>element1</em>, <em>element2</em>,...)</p>
+<pre><code>var arr = [1];
+arr.unshift(2); 
+console.log(arr); // [2, 1]
+arr.unshift('a','b');
+console.log(arr); // [&quot;a&quot;, &quot;b&quot;, 2, 1]
+</code></pre>
+<p>push | unshift方法会返回数组长度值</p>
+<pre><code>var len = arr.unshift();
+console.log(len); // 5
+</code></pre>
+<h3 id="concat"><a class="markdownIt-Anchor" href="#concat"></a> concat</h3>
+<p>可用concat方法连接多个数组<br />
+array.concat()<br />
+array.concat(<em>array1</em>,<em>array2</em>,...)</p>
+<pre><code>var arr = [1]
+var arr2 = arr.concat([2],[3])
+console.log(arr2) // [1, 2, 3]
+</code></pre>
+<p>concat方法返回新的数组,不会修改原来的数组对象,因此可用于数组浅复制</p>
+<pre><code>var arr = [1];
+var arrCopy = arr.concat();
+arrCopy.push(2)
+
+//可见原数组arr未发生改变
+console.log(arr); // [1]
+console.log(arrCopy); // [1, 2]
+</code></pre>
+<h3 id="splice"><a class="markdownIt-Anchor" href="#splice"></a> splice</h3>
+<p>插入/删除元素.返回一个数组,内含被删除的元素<br />
+array.splice(index)<br />
+array.splice(index,deleteCount)<br />
+array.splice(index,deleteCount,item1,item2,...)</p>
+<p>index 插入元素位置,原来在该位置上的元素会自动向后挪<br />
+deleteCount 删除元素数个数,小于等于0时不删除元素<br />
+itemX 插入元素,可选</p>
+<pre><code>var arr = [1 ,2, 3];
+
+arr.splice(0, 0,'a');
+console.log(arr); // [&quot;a&quot;, 1, 2, 3]
+
+arr.splice(0, 1); // [&quot;a&quot;]
+console.log(arr); // [1, 2, 3]
+
+arr.splice(-1, 0, 'a', 'b');
+console.log(arr); // [1, 2, &quot;a&quot;, &quot;b&quot;, 3]
+</code></pre>
+<h2 id="删除元素"><a class="markdownIt-Anchor" href="#删除元素"></a> 删除元素</h2>
+<h3 id="pop"><a class="markdownIt-Anchor" href="#pop"></a> pop</h3>
+<p>array.pop()<br />
+删除数组末尾元素</p>
+<pre><code>var arr = ['a', 'b'];
+arr.pop(); // &quot;b&quot;
+arr; // [&quot;a&quot;]
+</code></pre>
+<h3 id="shift"><a class="markdownIt-Anchor" href="#shift"></a> shift</h3>
+<p>array.shift()<br />
+删除数组内第一个元素</p>
+<pre><code>var arr = ['a', 'b'];
+arr.shift(); // &quot;a&quot;
+arr // [&quot;b&quot;]
+</code></pre>
+<h2 id="数组的拷贝复制"><a class="markdownIt-Anchor" href="#数组的拷贝复制"></a> 数组的拷贝(复制)</h2>
+<p>因为数组对象引用时传递的是内存地址,因此不能像复制字符串一样把数组赋值给其他变量</p>
+<pre><code>var arr = [1];
+var arrc = arr;
+arrc.push(2);
+// 修改arrc,arr 也发生改变.因为这两个变量指向的是同一个数组对象.
+console.log(arr); //  [1, 2]
+</code></pre>
+<h3 id="浅拷贝"><a class="markdownIt-Anchor" href="#浅拷贝"></a> 浅拷贝</h3>
+<p>浅拷贝只能复制字符串元素,不能复制数组/对象元素<br />
+array.slice()<br />
+array.concat()</p>
+<pre><code>var arr = [1];
+var arrc = arr.slice();
+console.log(arrc);
+
+var arrc = arr.concat();
+console.log(arrc); //[1]
+</code></pre>
+<p>数组里的数组/对象元素还是指向原来的元素</p>
+<pre><code>var arr= [1, [2], &#123;num:3&#125;]
+var arrc= arr.slice();
+// 修改新数组中的元素
+arrc[0] = 'a'
+arrc[1][0] = 'b'
+arrc[2].num = 'c'
+// 原数组中的数组和对象也被修改了
+console.log(arr) //  [1, [&quot;b&quot;], &#123;num:&quot;c&quot;&#125;]
+
+arr.push('!');
+console.log(arr); // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;!&quot;]
+console.log(compareArr); // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;!&quot;]
+console.log(arrCopy); // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+</code></pre>
+<h3 id="深拷贝"><a class="markdownIt-Anchor" href="#深拷贝"></a> 深拷贝</h3>
+<p>1 JSON.parse(JSON.stringify(<em>array</em>))<br />
+用于多维数组拷贝</p>
+<pre><code>var arr = [1, [2]]
+var arrc =  JSON.parse(JSON.stringify(arr));
+arrc[1][0] = 'a';
+//原数组没有被改变
+console.log(arr[1]); // [2]
+
+console.log(arr[3]); // [&quot;!&quot;]
+console.log(compareArr[3]); // [&quot;!&quot;]
+console.log(arrDeepCopy[3]); // [&quot;d&quot;]
+</code></pre>
+<p>缺点 不能拷贝函数和Data对象</p>
+<pre><code>var arr = [1,2,v =&gt; console.log(v)] // [1, 2, function]
+JSON.parse(JSON.stringify(arr)); // [1, 2, null]
+</code></pre>
+<p>2 递归深拷贝</p>
+<pre><code>function deepCopy(arr) &#123;    
+    function _isArr(obj) &#123;
+        // 检测是否是数组 , 返回布尔值
+        return Object.prototype.toString.call(obj) === '[object Array]';
+    &#125;
+    var item;
+    var arrc = [];
+    for (var i = 0; i &lt; arr.length; i++) &#123;
+        if (_isArr(arr[i])) &#123;
+            //数组
+            item = deepCopy(arr[i]);
+        &#125; else if (arr[i].constructor === Object) &#123;
+            //对象
+            item = &#123;&#125;;
+            for (var key in arr[i]) &#123;
+                var value = arr[i][key];
+                if (arr[i].hasOwnProperty(key) === true) &#123;
+                 item[key] = _isArr(value) ? deepCopy(value) : value;
+                &#125;
+            &#125;
+        &#125; else&#123;
+            //其他,例如字符串 Data等
+            item = arr[i];
+        &#125;
+        arrc.push(item);  
+      &#125;
+    //for end
+    return  arrc;
+&#125;
+
+var arr = [1,[[2],], &#123;num: [4, function()&#123;console.log('hi')&#125;]&#125;]
+var arrc = deepCopy(arr);
+arrc[1][0] = 'a';
+console.log(arr[1][0]); // [2]
+
+arrc[2].num[0] = 'b';
+console.log(arr[2].num[0]); // 4
+arr[2].num[1]() //hi
+</code></pre>
+<p>注意 该函数未考虑互相调用的情况</p>
+<pre><code>var a = [];
+var b = [];
+a.push(b);
+b.push(a);
+deepCopy(a); // Uncaught RangeError: Maximum call stack size exceeded(…)
+</code></pre>
+<p>3 jQuery.extend<br />
+利用jQuery拷贝数组<br />
+jQuery.extend(true, {}, <em>array</em>) //深拷贝<br />
+jQuery.extend(false, {}, <em>array</em>) //浅拷贝</p>
+<pre><code>var arr = [1,[[2],], &#123;num: [4, function()&#123;console.log('hi')&#125;]&#125;]
+var arrc = jQuery.extend(true, &#123;&#125;, arr)
+</code></pre>
+<h2 id="数组转字符串"><a class="markdownIt-Anchor" href="#数组转字符串"></a> 数组转字符串</h2>
+<h3 id="tostring"><a class="markdownIt-Anchor" href="#tostring"></a> toString</h3>
+<p><em>array</em>.toString()</p>
+<pre><code>var arr = [1 ,2 ,3];
+arr.toString(); // &quot;1,2,3&quot;
+</code></pre>
+<h3 id="join"><a class="markdownIt-Anchor" href="#join"></a> join</h3>
+<p><em>array</em>.join('sep')<br />
+sep 元素间的分隔符号,留空时使用逗号分隔</p>
+<pre><code>var arr = [1 ,2 ,3];
+arr.join(); // &quot;1,2,3&quot;
+arr.join(' '); // &quot;1 2 3&quot;
+</code></pre>
+<h2 id="字符串转数组"><a class="markdownIt-Anchor" href="#字符串转数组"></a> 字符串转数组</h2>
+<p>string.split(<em>sep</em>)<br />
+string.split(<em>regExp</em>)<br />
+string.split(<em>sep</em>, Maxlength)</p>
+<pre><code>var str = &quot;1,2,3&quot;
+str.split() // [&quot;1,2,3&quot;]
+</code></pre>
+<p>splite接受正则表达式作为分割依据</p>
+<pre><code>var str = &quot;1,,2,,,,3&quot;
+str.split(/\,+/) //  [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
+str.split(' ', 2) // [&quot;1&quot;, &quot;2&quot;]
+</code></pre>
+<p>Maxlength 规定返回数组的最大长度</p>
+<pre><code>var str = &quot;1,2,3&quot;
+//规定返回数组最大长度为2
+ str.split(',',2) // [&quot;1&quot;, &quot;2&quot;]
+</code></pre>
+<h2 id="数组的遍历"><a class="markdownIt-Anchor" href="#数组的遍历"></a> 数组的遍历</h2>
+<h3 id="for"><a class="markdownIt-Anchor" href="#for"></a> for</h3>
+<p>循环语句使用for关键字开头,后接括号.括号内包含三条语句(可选),使用分号(;)分隔<br />
+for(<em>initialization</em>; <em>condition</em>; <em>final-expression</em>){<em>statement</em>}</p>
+<p>initialization 在循环开始时执行<br />
+condition 在单次循环开始前运行.运算结果为true将继续执行,反之结束运行(被省略则一直为true)<br />
+final-expression 单次循环结束后运行</p>
+<pre><code>var arr = ['a', 'b', 'c'];
+for (var i = 0; i &lt; arr.length; i++)&#123;
+    console.log(i); // 0 1 2
+    console.log(arr[i]); // a b c
+&#125;
+</code></pre>
+<p>这三条语句均可以被省略</p>
+<pre><code>var i = 0;
+for(;;)&#123;
+    console.log(i++); // 0 1 2 3 ...
+&#125;
+</code></pre>
+<h3 id="for-in"><a class="markdownIt-Anchor" href="#for-in"></a> for in</h3>
+<p>for (var i in <em>array</em>){...}</p>
+<pre><code>var arr = ['a', 'b', 'c'];
+for(var i in arr)&#123;
+    console.log(i); // 0 1 2
+    console.log(arr[i]); // a b c
+&#125;
+</code></pre>
+<p>for in循环中的i看起来像个数字,其实是数组对象的属性名</p>
+<pre><code>for(var i in ['a'])&#123;
+    console.log(i);
+    console.log(Object.prototype.toString.call(i) === '[object Number]'); // false
+    console.log(Object.prototype.toString.call(i) === '[object String]'); // true      
+&#125;
+</code></pre>
+<p>因此,应尽量避免使用for in 遍历数组</p>
+<pre><code>var arr = ['a', 'b', 'c'];
+//假设某个js库更改了array对象
+Array.prototype.name = 'anna';
+for(var i in arr)&#123;
+    //属性name也被遍历出来了
+    console.log(i); // 0 1 2 name
+    console.log(arr[i]); // a b c anna
+&#125;
+//而普通的for循环就没有这种问题
+for (var i = 0; i &lt; arr.length; i++)&#123;
+    console.log(i); // 0 1 2
+    console.log(arr[i]); // a b c
+&#125;
+</code></pre>
+<h3 id="for-of"><a class="markdownIt-Anchor" href="#for-of"></a> for of</h3>
+<p>es6的新增方法<br />
+for (let i of arr){...}</p>
+<pre><code>var arr = ['a', 'b', 'c'];
+for(let i of arr)&#123;
+    console.log(i); // a b c
+&#125; 
+</code></pre>
+<h2 id="数组排序"><a class="markdownIt-Anchor" href="#数组排序"></a> 数组排序</h2>
+<h3 id="sort"><a class="markdownIt-Anchor" href="#sort"></a> sort</h3>
+<p>利用sort方法对数组对象排序<br />
+arr.sort()<br />
+arr.sort(<em>function</em>)</p>
+<pre><code>var arr = [2, 1, 3];
+arr.sort(); // [1, 2, 3]
+</code></pre>
+<p>可传入一个函数作为排序依据,根据返回值决定是否交换元素位置(返回值是否大于零)</p>
+<pre><code>var arr = [2, 1, 3];
+arr.sort((x, y) =&gt; &#123;return y - x;&#125;); // [3, 2, 1]
+
+//多维数组排序
+var arr = [[2, 10],[1, 100],[3, 100]]
+arr.sort((x,y) =&gt; &#123;
+    // 以数组的第一个元素作为排序依据
+    return x[0] - y[0];
+&#125;);
+console.log(arr) //[ [1, 100], [2, 10], [3, 100]]
+</code></pre>
+<h3 id="翻转数组"><a class="markdownIt-Anchor" href="#翻转数组"></a> 翻转数组</h3>
+<p>可用reverse方法翻转数组<br />
+array.reverse()</p>
+<pre><code>var arr = [1, 2, 3];
+arr.reverse(); // [3, 2, 1]
+</code></pre>
+<p>注意 sort reverse方法返回的是原来的数组对象,不会返回新的数组</p>
+<pre><code>var arr = [2, 1, 3];    
+var arrt = arr.sort();
+arrt[0] = 'a';
+console.log(arr); // [&quot;a&quot;, 2, 3]
+</code></pre>
+<h3 id="随机排序"><a class="markdownIt-Anchor" href="#随机排序"></a> 随机排序</h3>
+<pre><code>function shuffle(a) &#123;
+    var j, x, i;
+    for (i = a.length - 1; i &gt; 0; i--) &#123;
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    &#125;
+&#125;
+suffle([1, 2, 3, 4, 5]);
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array">How can I shuffle an array? stackoverflow</a></p>
+<p>Math.random()<br />
+返回一个[0,1)之间的浮点数(小数)</p>
+<pre><code>Math.random() // 0.9480720531476523
+
+// 取[0,100)间的数
+Math.random() * 100 // 98.3447739091475
+</code></pre>
+<p>取[min,max)间的整数<br />
+Math.floor(Math.random() * (max - min + 1)) + min</p>
+<pre><code>// 取[10,100)间的整数 
+Math.floor(Math.random() * (100 - 10 + 1)) + 10
+
+// 取[-10, 100]间的整数
+Math.floor(Math.random() * (100 + 10 + 1)) - 10
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range">更多详见 stackoverflow</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/html2canvas/">&lt;  html2canvas</a>
+      
+      
+        <a class="next" href="/article/jQuery%E5%85%A5%E9%97%A8/">jQuery入门  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>

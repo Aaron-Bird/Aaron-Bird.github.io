@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <!--[if lte IE 8]>
+      <script type="text/javascript">
+        var tags = ['header', 'footer', 'nav', 'aside', 'article', 'section', 'object', 'main'];
+        for (var i in tags) {
+          document.createElement(tags[i]);
+        }
+      </script>
+    <![endif]-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>常用 POST 数据类型</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <!-- js -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/katex/katex.min.css" />
+     
+    <link rel="stylesheet" href="/css/index.css" />
+     
+  <meta name="generator" content="Hexo 5.4.1"></head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+  <div class="logo">
+    <!-- logo -->
+    <div class="logo-wrap">
+      <a href="/" id="logo"></a>
+    </div>
+  </div>
+  <nav class="nav" id="top-nav">
+    <ul>
+      
+        <li>
+          <a class="" href="/">主页</a>
+        </li>
+      
+        <li>
+          <a class="" href="/categories">分类</a>
+        </li>
+      
+        <li>
+          <a class="" href="/tags">标签</a>
+        </li>
+      
+        <li>
+          <a class="" href="/archives">归档</a>
+        </li>
+      
+      <!-- search -->
+      
+    </ul>
+  </nav>
+</header>
+
+
+  
+    <!-- main -->
+    <main id="main" class="main">
+      <!-- post -->
+
+<div class="post show-toc">
+  <!-- table of content -->
+  
+    <div class="post-toc">
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#applicationjson"><span class="toc-text"> application&#x2F;json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multipartform-data"><span class="toc-text"> multipart&#x2F;form-data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#applicationx-www-form-urlencoded"><span class="toc-text"> application&#x2F;x-www-form-urlencoded</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#textplain"><span class="toc-text"> text&#x2F;plain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text"> 参考</span></a></li></ol>
+      </div>
+    </div>
+  
+  <!-- table of content end-->
+  <!-- article -->
+  <div class="cell">
+    <article class="article">
+      <!-- title -->
+      
+          <h1  class="title">常用 POST 数据类型</h1> 
+      
+      <div class="post-meta">
+        <!-- time -->
+        
+          <span class="icon-baseline-query_builder-24px"></span>
+          <time datetime="2019-08-22T16:00:00.000Z">
+            2019-08-23
+          </time>
+        
+        <!-- categories -->
+        <!---->
+        <!-- categories end -->
+        <!-- tag -->
+        <span class="icon-baseline-subtitles-24px"></span>
+        
+      </div>
+      <!-- content -->
+      <div class="article-content">
+      <p>Content-Type 接受 MIME类型 作为参数值.<br />
+传送数据时, 浏览器通过 Content-Type 来告诉服务器发送的数据格式是什么.<br />
+发送POST数据时, 常用的 MIME类型 有以下几种:</p>
+<h2 id="applicationjson"><a class="markdownIt-Anchor" href="#applicationjson"></a> application/json</h2>
+<p>Content-Type: application/json 中的 application 表示 POST 数据为 &quot;应用程序特有的格式&quot;, json 表示子类为 &quot;JSON&quot;.</p>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://jsonplaceholder.typicode.com/posts&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xml.<span class="title function_">open</span>(<span class="string">&#x27;POST&#x27;</span>, url);</span><br><span class="line">xml.<span class="property">withCredentials</span> = <span class="literal">true</span>;</span><br><span class="line">xml.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;content-type&#x27;</span>, <span class="string">&#x27;application/json&#x27;</span>);</span><br><span class="line">xml.<span class="property">onreadystatechange</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.<span class="property">readyState</span> === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xml.<span class="property">status</span> &gt;= <span class="number">200</span> &amp;&amp; xml.<span class="property">status</span> &lt; <span class="number">300</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(xml.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> data = &#123; <span class="attr">foo</span>: <span class="string">&#x27;bar&#x27;</span> &#125;;</span><br><span class="line">xml.<span class="title function_">send</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data));</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p><img src="/img/bdceb130.PNG" alt="2.PNG" /><br />
+<img src="/img/a20bc200.PNG" alt="1.PNG" /></p>
+<p><a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc4627.txt">rfc4627 json</a></p>
+<h2 id="multipartform-data"><a class="markdownIt-Anchor" href="#multipartform-data"></a> multipart/form-data</h2>
+<p><img src="/img/5a6781af.PNG" alt="1234.PNG" /></p>
+<p>multipart/form-data 常被用于发送二进制文件,如图片/视频等内容.<br />
+Content-Type: multipart/form-data 中的 multipart 表示该数据是多种不同格式数据的组合.</p>
+<p>当传递 FormData 对象作为 xml.send 的参数时, 浏览器会自动设置 content-type: multipart/form-data;boundary=----xxx.<br />
+content-type 和 Form Data 中的 boundary 字段由浏览器自动生成,便于分割数据.其作用类似于  application/x-www-form-urlencoded 的 '&amp;'.</p>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://jsonplaceholder.typicode.com/posts&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xml.<span class="title function_">open</span>(<span class="string">&#x27;POST&#x27;</span>, url);</span><br><span class="line">xml.<span class="property">withCredentials</span> = <span class="literal">true</span>;</span><br><span class="line">xml.<span class="property">onreadystatechange</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.<span class="property">readyState</span> === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xml.<span class="property">status</span> &gt;= <span class="number">200</span> &amp;&amp; xml.<span class="property">status</span> &lt; <span class="number">300</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(xml.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> data = &#123; <span class="attr">foo</span>: <span class="string">&#x27;bar&#x27;</span>, <span class="attr">bar</span>: <span class="string">&#x27;foo&#x27;</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> <span class="title class_">FormData</span>();</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(data).<span class="title function_">forEach</span>(<span class="function"><span class="params">key</span> =&gt;</span> formData.<span class="title function_">append</span>(key, data[key]));</span><br><span class="line">xml.<span class="title function_">send</span>(formData);  </span><br></pre></td></tr></table></figure>
+<p><img src="/img/3dba5a98.PNG" alt="123.PNG" /><br />
+<img src="/img/195b43bc.PNG" alt="1234.PNG" /></p>
+<p>需注意在传递 FormData 时, 不要手动修改 content-type. 这会使服务器无法正确的分割数据.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误的设置,不要这样作</span></span><br><span class="line">xml.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;content-type&#x27;</span>, <span class="string">&#x27;multipart/form-data; boundary=----xxx&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/6317687f.PNG" alt="qer.PNG" /></p>
+<p><a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7578">RFC 7578 - Returning Values from Forms: multipart/form-data</a></p>
+<h2 id="applicationx-www-form-urlencoded"><a class="markdownIt-Anchor" href="#applicationx-www-form-urlencoded"></a> application/x-www-form-urlencoded</h2>
+<p>&lt;form&gt; 表单元素默认的数据提交格式.</p>
+<p>当传递 URLSearchParams 对象作为 xml.send 的参数时, 浏览器会自动设置 content-type: application/x-www-form-urlencoded.</p>
+<p>数据格式 application/x-www-form-urlencoded 是一组用&quot;=&quot;号连接的键值对, 键值对间由&quot;&amp;&quot;号分隔.  非字母或数字的字符会被转换为 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding">percent-encoding</a>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;foo&quot;:&quot;bar&quot;&#125;</span><br><span class="line">--&gt;</span><br><span class="line">foo=bar&amp;bar=foo</span><br></pre></td></tr></table></figure>
+<p>如果传入一个数组, 也会作为对象解析.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3]</span><br><span class="line">--&gt;</span><br><span class="line">0=1&amp;1=2&amp;2=3</span><br></pre></td></tr></table></figure>
+<p>非字母/数字的字符会被转换为 percent-encoding, 其行为类似于方法 encodeURIComponent</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123; foo: &#x27;测试&#x27;, bar: &#x27;foo&#x27; &#125;</span><br><span class="line">--&gt;</span><br><span class="line">foo=%E6%B5%8B%E8%AF%95&amp;bar=foo</span><br><span class="line"></span><br><span class="line">encodeURIComponent(&#x27;测试&#x27;) // &quot;%E6%B5%8B%E8%AF%95&quot;</span><br></pre></td></tr></table></figure>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://jsonplaceholder.typicode.com/posts&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xml.<span class="title function_">open</span>(<span class="string">&#x27;POST&#x27;</span>, url);</span><br><span class="line">xml.<span class="property">withCredentials</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// xml.setRequestHeader(&#x27;content-type&#x27;, &#x27;application/x-www-form-urlencoded;charset=UTF-8&#x27;);</span></span><br><span class="line">xml.<span class="property">onreadystatechange</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.<span class="property">readyState</span> === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xml.<span class="property">status</span> &gt;= <span class="number">200</span> &amp;&amp; xml.<span class="property">status</span> &lt; <span class="number">300</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(xml.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> data = &#123; <span class="attr">foo</span>: <span class="string">&#x27;bar&#x27;</span>, <span class="attr">bar</span>: <span class="string">&#x27;foo&#x27;</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>();</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(data).<span class="title function_">forEach</span>(<span class="function"><span class="params">key</span> =&gt;</span> params.<span class="title function_">append</span>(key, data[key]));</span><br><span class="line">xml.<span class="title function_">send</span>(params);  </span><br></pre></td></tr></table></figure>
+<p><img src="/img/f616ca69.PNG" alt="1.PNG" /><br />
+<img src="/img/3ff9cf9f.PNG" alt="2.PNG" /></p>
+<p>注意: ie不支持 URLSearchParams</p>
+<p><a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc1866#section-8.2.1">RFC 1866 - Hypertext Markup Language - 2.0</a></p>
+<h2 id="textplain"><a class="markdownIt-Anchor" href="#textplain"></a> text/plain</h2>
+<p>当传递 对象/ 基本类型作为 xml.send 的参数,且没有手动设置 content-type 时,浏览器会自动将 content-type 设置为 text/plain.</p>
+<p>发送方式:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://jsonplaceholder.typicode.com/posts&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xml = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xml.<span class="title function_">open</span>(<span class="string">&#x27;POST&#x27;</span>, url);</span><br><span class="line">xml.<span class="property">withCredentials</span> = <span class="literal">true</span>;</span><br><span class="line">xml.<span class="property">onreadystatechange</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xml.<span class="property">readyState</span> === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xml.<span class="property">status</span> &gt;= <span class="number">200</span> &amp;&amp; xml.<span class="property">status</span> &lt; <span class="number">300</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(xml.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> data = &#123; <span class="attr">foo</span>: <span class="string">&#x27;bar&#x27;</span> &#125;;</span><br><span class="line">xml.<span class="title function_">send</span>(data);  </span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html">四种常见的 POST 提交数据方式 | JerryQu 的小站</a><br />
+<a target="_blank" rel="noopener" href="https://web.archive.org/web/20140613004726/http://laichendong.com/rfc4627-zh_cn/">https://web.archive.org/web/20140613004726/http://laichendong.com/rfc4627-zh_cn/</a><br />
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data">http - application/x-www-form-urlencoded or multipart/form-data? - Stack Overflow</a></p>
+
+      </div>
+    </article>
+  </div>
+  <!-- pagination -->
+  
+    <nav class="pagination">
+      
+        <a class="prev" href="/article/HTTP%20%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81/">&lt;  HTTP 响应状态码</a>
+      
+      
+        <a class="next" href="/article/3%20Longest%20Substring%20Without%20Repeating%20Characters/">3 Longest Substring Without Repeating Characters  &gt;</a>
+      
+    </nav>    
+  
+  <!-- pagination end -->
+</div>
+
+
+
+
+
+
+    </main>
+
+    <!-- search -->
+     
+    
+    <script src="/js/main.js"></script>
+     
+  </body>
+</html>
